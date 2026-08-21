@@ -1,5 +1,5 @@
 # _The Book of Blessings_
-The _Book of Blessings_, published by the authority of Pope John Paul II, approved for use in the USA and confirmed by Rome, now available (unofficially) on your phone. The _Standard Book of Spells_ for Catholics. Why isn’t it available anywhere else? Now you can bless your kids, your Advent wreath, your neighbor’s car, the parish swim team, the world.
+The _Book of Blessings_, published by the authority of Pope John Paul II, approved for use in the USA and confirmed by Rome, now available (unofficially) on your phone. The _Standard Book of Spells_ for Catholics. Now you can bless your kids, your Advent wreath, your neighbor’s car, the parish swim team, the world.
 
 ## Who can use it?
 Most of these blessings can be given by any baptized person. A few are reserved to clergy.
