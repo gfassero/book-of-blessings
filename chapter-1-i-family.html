@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-1-i-family-->
+<p class="orderTitle">I. Order for the Blessing of a Family</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">42</span> The celebration of the blessing provided here is a suitable means of fostering the Christian life in the members of a family, whenever a blessing is requested by the family or suggested by pastoral considerations. To ensure that the celebration serves its purpose, it is to be adapted to each individual situation.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">43</span> The blessing of a family may also be carried out within Mass, by use of the order provided in nos. 62-67 of the complete edition.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">44</span> The present order may be used by a priest or deacon. It may also be used by a layperson, who follows the rites and prayers designated for a lay minister.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">45</span> While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="riteHeading">Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">46</span> When the family has gathered, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">47</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">The grace and peace of God our Father and the Lord Jesus Christ be with you all.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack">Blessed be God for ever.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">48</span> A lay minister greets those present in the following words.</p>
+
+<p class="theBlack">The grace of our Lord Jesus Christ be with us all, now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">49</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">My dear friends, from the sacrament of marriage the family has received newness of life and the grace of Christ. The family is specially important to the Church and to civil society, for it is the primary life-giving community.</p>
+
+<p class="theBlack">In our celebration today we call down the Lord’s blessing upon you, so that you may continually be instruments of God’s grace to one another and witnesses to faith in all the circumstances of life.</p>
+
+<p class="theBlack">With God as your help you will fulfill your mission by conforming your entire life to the Gospel and so witness to Christ before the world.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">50</span> One of those present or the minister reads one of the following texts of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the first letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">12:12-14</span></p>
+
+<p class="rubricReadingTheme">We are all one body.</p>
+
+<p class="theBlack">As a body is one though it has many parts, and all the parts of the body, though many, are one body, so also Christ. For in one Spirit we were all baptized into one body, whether Jews or Greeks, slaves or free persons, and we were all given to drink of one Spirit.</p>
+
+<p class="theBlack">Now the body is not a single part, but many.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">51</span> Or:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the apostle Paul to the Ephesians:<span class="rubricCitationInRdgIntro">4:1-6</span></p>
+
+<p class="rubricReadingTheme">Bear with one another lovingly.</p>
+
+<p class="theBlack">I, then, a prisoner for the Lord, urge you to live in a manner worthy of the call you have received, with all humility and gentleness, with patience, bearing with one another through love, striving to preserve the unity of the spirit through the bond of peace: one body and one Spirit, as you were also called to the one hope of your call; one Lord, one faith, one baptism; one God and Father of all, who is over all and through all and in all.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">52</span> Or:</p>
+
+<p class="rubricAltReading">Romans 12:4-16—<span class="readingTheme">Love each other with mutual affection.</span></p>
+
+<p class="rubricAltReading">1 Corinthians 12:31b-13:7—<span class="readingTheme">Love is always ready to excuse, to trust, to hope, and to endure whatever comes.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">53</span> As circumstances suggest, the following responsorial psalm may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Happy are those who fear the Lord.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 128</p>
+
+<p class="theBlack">Happy are you who fear the LORD,<br/>
+who walk in his ways!<br/>
+For you shall eat the fruit of your handiwork;<br/>
+happy shall you be, and favored. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Behold, thus is the man blessed<br/>
+who fears the LORD.<br/>
+The LORD bless you from Zion:<br/>
+may you see the prosperity of Jerusalem<br/>
+all the days of your life;<br/>
+May you see your children’s children. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">54</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">55</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">Christ the Lord, the Word coeternal with the Father, lived among us and chose to be part of a family and to enrich it with his blessings. Let us humbly ask for his favor and protection on this family.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, keep our family in your peace.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Through your own obedience to Mary and Joseph you consecrated family life; make this family holy by your presence. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Your heart was set on the concerns of your Father; make every home a place where he is worshiped with reverence. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You made your own family the model of prayer, of love, and of obedience to your Father’s will; by your grace make this family holy and make it rich with your gifts. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You loved those who were close to you and they returned your love; bind all families together in the bonds of peace and of love for each other. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">At Cana in Galilee, when a new family was beginning, you gladdened it with your first miracle, changing water into wine; alleviate the sorrows and worries of this family and change them into joy. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">In your concern for the integrity of the family you said: “Let no one separate those whom God has bound together”; bind this husband and wife ever more closely together in the bond of your own love. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">56</span> After the intercessions, the minister, in the following or similar words, invites all present to sing or say the Lord’s Prayer:</p>
+
+<p class="theBlack">Let us pray with confidence to the Father in the words our Savior taught us:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">57</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched over the family members; a lay minister says the prayer with hands joined.</p>
+
+<p class="theBlack">O God,<br/>
+you have created us in love and saved us in mercy,<br/>
+and through the bond of marriage<br/>
+you have established the family<br/>
+and willed that it should become a sign of Christ’s love for his Church.</p>
+
+<p class="theBlack">Shower your blessings on this family gathered here in your name.<br/>
+Enable those who are joined by one love<br/>
+to support one another<br/>
+by their fervor of spirit and devotion to prayer.<br/>
+Make them responsive to the needs of others<br/>
+and witnesses to the faith in all they say and do.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">58</span> Or:</p>
+
+<p class="theBlack">We bless your name, O Lord,<br/>
+for sending your own incarnate Son<br/>
+to become part of a family,<br/>
+so that, as he lived its life,<br/>
+he would experience its worries and its joys.</p>
+
+<p class="theBlack">We ask you, Lord,<br/>
+to protect and watch over this family,<br/>
+so that in the strength of your grace<br/>
+its members may enjoy prosperity,<br/>
+possess the priceless gift of your peace,<br/>
+and, as the Church alive in the home,<br/>
+bear witness in this world to your glory.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">59</span> As circumstances suggest, the minister in silence may sprinkle the family with holy water.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">60</span> The minister concludes the rite by saying:</p>
+
+<p class="theBlack">May the Lord Jesus,<br/>
+who lived with his holy family in Nazareth,<br/>
+dwell also with your family,<br/>
+keep it from all evil,<br/>
+and make all of you one in heart and mind.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">61</span> It is preferable to end the celebration with a suitable song.</p>
+
+<p class="orderTitle">II. Order for the Annual Blessing of Families in Their Own Homes</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">62</span> Pastors must regard as one of their primary pastoral duties the faithful visitation of families to bring the message of Christ’s peace. They will thus obey the command of Christ to his disciples: “On entering any house, first say: ‘Peace to this house’” (Luke 10:5).</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">63</span> Pastors and their assistants must therefore consider as a sacred trust the custom of an annual visit, particularly during the Easter Season, to the families living in their parish. The occasion is a rich opportunity to fulfill pastoral responsibilities that grow in effectiveness the more the priests come to know the families.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">64</span> The order for the annual blessing of families in their homes directly pertains to the family and therefore requires the presence of the family members.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">65</span> No house is to be blessed unless the residents are present.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">66</span> The present order may be used by a priest or deacon.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">67</span> Normally the blessing is celebrated in each individual home. But for pastoral reasons and in the interest of increased unity between families living in the same building or locale, the blessing may be celebrated for several families gathered together in one convenient place. The text of the prayer of blessing is then adapted accordingly.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">68</span> While maintaining the structure and chief elements of the rite, the celebrant should adapt the celebration to the circumstances of the place and the families involved. The celebrant’s manner of presiding at the celebration should manifest the attentive concern of charity toward all present, particularly the young, the elderly, and the sick.</p>
+
+<p class="riteHeading">Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">69</span> When the community has gathered, the celebrant greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">Peace be with this house and with all who live here.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack">The grace and peace of God our Father and the Lord Jesus Christ be with you.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">70</span> In the following or similar words, which should always be adapted to suit the particular situation, the celebrant prepares those present for the blessing.</p>
+
+<p class="theBlack">The purpose of the parish visit is that through the ministry of the priest (deacon) Christ may enter your home to bring you peace and joy. This happens above all through the reading of the word of God and the prayer of the Church.</p>
+
+<p class="theBlack">Let us, then, prepare ourselves inwardly, so that, through the Holy Spirit, Christ himself will speak to us in this celebration and bring us the comfort of his presence.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">71</span> One of those present or the celebrant reads a text of sacred Scripture, taken preferably from those indicated here.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Matthew:<span class="rubricCitationInRdgIntro">7:24-28</span></p>
+
+<p class="rubricReadingTheme">A house built on rock.</p>
+
+<p class="theBlack">Jesus said to his disciples: “Everyone who listens to these words of mine and acts on them will be like a wise man who built his house on rock. The rain fell, the floods came, and the winds blew and buffeted the house. But it did not collapse; it had been set solidly on rock. And everyone who listens to these words of mine but does not act on them will be like a fool who built his house on sand. The rain fell, the floods came, and the winds blew and buffeted the house. And it collapsed and was completely ruined.”</p>
+
+<p class="theBlack">When Jesus finished these words, the crowds were astonished at his teaching.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">72</span> Or:</p>
+
+<p class="rubricAltReading">Ephesians 4:1-6—<span class="readingTheme">Bear with one another lovingly.</span></p>
+
+<p class="rubricAltReading">Colossians 3:12-25—<span class="readingTheme">Over all these virtues put on love.</span></p>
+
+<p class="rubricAltReading">Acts 2:44-47—<span class="readingTheme">In their homes they broke bread. With exultant and sincere hearts they took their meals in common.</span></p>
+
+<p class="rubricAltReading">Luke 19:1-10—<span class="readingTheme">Today salvation has come to this house.</span></p>
+
+<p class="rubricAltReading">John 1:35-39—<span class="readingTheme">They stayed with him that day.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">73</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> We are his people: the sheep of his flock.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 100</p>
+
+<p class="theBlack">Sing joyfully to the LORD, all you lands;<br/>
+serve the LORD with gladness;<br/>
+come before him with joyful song. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Know that the LORD is God;<br/>
+he made us, his we are;<br/>
+his people, the flock he tends. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Enter his gates with thanksgiving, his courts with praise;<br/>
+Give thanks to him; bless his name. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">For he is good:<br/>
+the LORD, whose kindness endures forever,<br/>
+and his faithfulness, to all generations. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 128:1-2, 3, 4-6a</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (4) See how the Lord blesses those who fear him.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 148:1-2, 3-4, 12-13</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (13a) Let all praise the name of the Lord.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">74</span> As circumstances suggest, the celebrant may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">75</span> The intercessions are then said. The celebrant introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">During the Easter Season</p>
+
+<p class="rubricInlineUnnumbered">The celebrant says:</p>
+
+<p class="theBlack">My brothers and sisters, these are the days of our Easter gladness. Prompted by the Holy Spirit, let us pray to the risen Christ, whom the Father has made the beginning and foundation of our communion with each other. Calling on his name, let us say to him:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, stay with us.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Lord Jesus Christ, after the resurrection you appeared to your disciples and gladdened them with the gift of your peace; make this family aware of your presence and help them to strive to remain close to you in the serenity of your peace. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You reached the glory of the resurrection through the humiliation of your passion; teach all the members of this family how to use even their daily trials to build up a household of love. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">While you were at table with the disciples you showed yourself to them through the breaking of the bread; as the members of this family share in the eucharist with the Christian community, make them strong in faith and eager witnesses before the world to their faith in you. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">With the power of the Holy Spirit you filled the house where the disciples were gathered; send the same Holy Spirit upon this family with the gifts of peace and joy. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">76</span> Or:</p>
+
+<p class="rubricInlineUnnumbered">Outside the Easter Season</p>
+
+<p class="rubricInlineUnnumbered">The celebrant says:</p>
+
+<p class="theBlack">My brothers and sisters, as we ask the blessing of the Lord on this family, we must remember that a way of life that is a true communion can only endure and grow if the Lord is its source. Let us therefore call upon him, saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, make us holy.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Lord Jesus Christ, through whom every family is like a building constructed by the Holy Spirit to become a temple of your glory, grant that this family of yours may be bonded together in your name. May you be the unshakeable foundation of their life together. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">With Mary and Joseph you sanctified domestic life; teach all who live here that self-giving is the way to guide and uphold their life as a family. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Through Christian initiation you have joined the natural family to a larger spiritual family, the Church; help the members of this family to carry out faithfully their responsibility in your Church. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You gathered the first members of the Church together in the upper room around Mary your mother; grant that the members of this household Church may learn from her to keep your words in their hearts, to be constant in prayer, and to be generous in giving of themselves and of all they possess to others. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">77</span> After the intercessions the celebrant, in the following or similar words, invites all present to sing or say the Lord’s Prayer:</p>
+
+<p class="theBlack">Let us pray with confidence to the Father in the words our Savior taught us:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">78</span> With hands outstretched over the family members, the celebrant continues with the prayer of blessing.</p>
+
+<p class="rubricInlineUnnumbered">During the Easter Season</p>
+
+<p class="theBlack">Blessed are you, O Lord.<br/>
+In the Passover of the Old Testament<br/>
+you kept unharmed the houses of your people<br/>
+that were sprinkled with the blood of a lamb.<br/>
+The fulfillment of your signs is the true paschal lamb,<br/>
+the Son you gave to us.<br/>
+He was crucified for us and raised from the dead,<br/>
+so that we might all be filled with the grace of the Holy Spirit.<br/>
+Bless <span class="cross">+</span> this family and this home,<br/>
+so that the joy of your love<br/>
+may gladden the hearts of all who live here.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">79</span> Or:</p>
+
+<p class="rubricInlineUnnumbered">Outside the Easter Season</p>
+
+<p class="theBlack">Almighty and eternal God,<br/>
+your fatherly tenderness never ceases to provide for our needs.<br/>
+We ask you to bestow on this family and this home<br/>
+the riches of your <span class="cross">+</span> blessing.<br/>
+With the gift of your grace sanctify those who live here,<br/>
+so that, faithful to your commandments,<br/>
+they will care for each other,<br/>
+ennoble this world by their lives,<br/>
+and reach the home you have prepared for them in heaven.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">80</span> Or:</p>
+
+<p class="theBlack">Blessed are you, God our Father,<br/>
+for your gift of this house as the dwelling place of this family.<br/>
+Grant that those who live here<br/>
+may obtain the gifts of the Holy Spirit.<br/>
+Through their works of charity let them show<br/>
+what grace your <span class="cross">+</span> blessing brings,<br/>
+so that all who visit this home<br/>
+will find the spirit of love and peace<br/>
+which only you can give.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">81</span> After the prayer of blessing, the celebrant sprinkles those present and the home with holy water and, as circumstances suggest, may say:</p>
+
+<p class="theBlack">Let this water call to mind our baptism into Christ, who has redeemed us by his death and resurrection.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">82</span> The celebrant concludes the rite, by saying:</p>
+
+<p class="theBlack">May the God of hope fill you with every joy in believing.<br/>
+May the peace of Christ abound in your hearts.<br/>
+May the Holy Spirit enrich you with his gifts,<br/>
+now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">83</span> It is preferable to end the celebration with a suitable song.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-20-->
+<p class="chapterNumber">Chapter 20</p>
+
+<p class="chapterTitle">Order for the Blessing of Seeds at Planting Time</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">769</span> At the beginning of the planting season it is customary for farmers to seek God’s blessing on their crops. As the seeds are planted, God is asked to protect them from disease and destruction and to bring forth from them an abundant yield.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">770</span> This order may be used for the blessing of seeds or for young plants before planting.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">771</span> These orders may be used by a priest or a deacon, and also by a layperson, who follows the rites and prayers designated for a lay minister.</p>
+
+<p class="orderTitle">I. Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">772</span> When the community has gathered, a suitable song may be sung. After the singing, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">773</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">The grace, the love, and the mercy of God be with you all.</p>
+
+<p class="rubricInlineUnnumbered">And all reply:</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">774</span> A lay minister greets those present in the following words:</p>
+
+<p class="theBlack">Let us praise God, who plants the seeds and reaps the harvest. Blessed be God for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">775</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">Today we seek God’s blessing on these seeds and the crops they will produce. Christ reminds us that, unless the seed is planted in the earth and dies, it will not yield fruit. As these seeds grow and are cared for, may they be signs of the new life that comes from God.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">776</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the first letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">15:35-39</span></p>
+
+<p class="rubricReadingTheme">The seed you sow does not germinate unless it dies.</p>
+
+<p class="theBlack">But someone may say, “How are the dead raised? With what kind of body will they come back?”</p>
+
+<p class="theBlack">You fool! What you sow is not brought to life unless it dies. And what you sow is not the body that is to be but a bare kernel of wheat, perhaps, or of some other kind; but God gives it a body as he chooses, and to each of the seeds its own body. Not all flesh is the same, but there is one kind for human beings, another kind of flesh for animals, another kind of flesh for birds, and another for fish.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">777</span> Or:</p>
+
+<p class="rubricAltReading">Genesis 1:27-31—<span class="readingTheme">Creation.</span></p>
+
+<p class="rubricAltReading">Isaiah 55:10-13—<span class="readingTheme">God gives seed to the one who sows.</span></p>
+
+<p class="rubricAltReading">2 Corinthians 9:6-10—<span class="readingTheme">God will increase the harvest.</span></p>
+
+<p class="rubricAltReading">Matthew 13:31-32—<span class="readingTheme">Parable of the mustard seed.</span></p>
+
+<p class="rubricAltReading">Mark 4:26-29—<span class="readingTheme">The seed and the kingdom of God.</span></p>
+
+<p class="rubricAltReading">Luke 12:16-21—<span class="readingTheme">Be rich in what matters to God.</span></p>
+
+<p class="rubricAltReading">John 12:23-25—<span class="readingTheme">Unless the grain of wheat falls to the earth and dies.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">778</span> As circumstances suggest, one of the following responsorial psalms may be sung, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Those that sow in tears shall reap rejoicing.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 126</p>
+
+<p class="theBlack">When the LORD brought back the captives of Zion,<br/>
+we were like men dreaming.<br/>
+Then our mouth was filled with laughter,<br/>
+and our tongue with rejoicing. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Then they said among the nations,<br/>
+“The LORD has done great things for them.”<br/>
+The LORD has done great things for us;<br/>
+we are glad indeed. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Restore our fortunes, O LORD,<br/>
+like the torrents in the southern desert.<br/>
+Those that sow in tears<br/>
+shall reap rejoicing. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Although they go forth weeping,<br/>
+carrying the seed to be sown,<br/>
+They shall come back rejoicing,<br/>
+carrying their sheaves. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 65:1-2, 9-10, 11-12, 13</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 2) To you we owe our hymn of praise, O God, in Zion.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">779</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Litany</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">780</span> The litany is then said. The minister introduces the invocations and an assisting minister or one of those present announces them. From the following those best suited to the occasion may be used or adapted, or other invocations that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">The Lord of the harvest sustains us, let us call upon him.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Deliver us, O Lord.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">From despair in times of drought: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">From wastefulness in times of plenty: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">From neglect of those in need: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">From blindness to your presence in our work: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">From hunger and thirst: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">781</span> After the litany the minister, in the following or similar words, invites all present to sing or say the Lord’s Prayer.</p>
+
+<p class="theBlack">Remember us, Lord, in your kingdom, and teach us to pray:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">782</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+
+<p class="theBlack">Lord of the harvest,<br/>
+you placed the gifts of creation in our hands<br/>
+and called us to till the earth and make it fruitful.</p>
+
+<p class="theBlack">We ask your blessing<br/>
+as we prepare to place these seeds (seedlings) in the earth.<br/>
+May the care we show these seeds (seedlings)<br/>
+remind us of your tender love for your people.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">783</span> A minister who is a priest or deacon concludes the rite by saying:</p>
+
+<p class="theBlack">May God nourish you and care for you, now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">784</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+
+<p class="theBlack">May God nourish us and care for us, now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">785</span> It is preferable to end the celebration with a suitable song.</p>
+
+<p class="orderTitle">II. Shorter Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">786</span> All make the sign of the cross as the minister says:</p>
+
+<p class="theBlack">Our help is in the name of the Lord.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">Who made heaven and earth.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">787</span> One of those present or the minister reads a text of sacred Scripture, for example:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the first letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">15:35-39</span></p>
+
+<p class="rubricReadingTheme">The seed you sow does not germinate unless it dies.</p>
+
+<p class="theBlack">But someone may say, “How are the dead raised? With what kind of body will they come back?”</p>
+
+<p class="theBlack">You fool! What you sow is not brought to life unless it dies. And what you sow is not the body that is to be but a bare kernel of wheat, perhaps, or of some other kind; but God gives it a body as he chooses, and to each of the seeds its own body. Not all flesh is the same, but there is one kind for human beings, another kind of flesh for animals, another kind of flesh for birds, and another for fish.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">788</span> Or:</p>
+
+<p class="rubricAltReading">Genesis: 1:27-31—<span class="readingTheme">Creation.</span></p>
+
+<p class="rubricAltReading">Matthew 13:31-32—<span class="readingTheme">Parable of the mustard seed.</span></p>
+
+<p class="rubricAltReading">Mark 4:26-29—<span class="readingTheme">The seed and the kingdom of God.</span></p>
+
+<p class="rubricAltReading">John 12:23-25—<span class="readingTheme">Unless the grain of wheat falls to the earth and dies.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">789</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+
+<p class="theBlack">Lord of the harvest,<br/>
+you placed the gifts of creation in our hands<br/>
+and called us to till the earth and make it fruitful.</p>
+
+<p class="theBlack">We ask your blessing<br/>
+as we prepare to place these seeds (seedlings) in the earth.<br/>
+May the care we show these seeds (seedlings)<br/>
+remind us of your tender love for your people.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

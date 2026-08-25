@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-2-ii-addiction-substance-abuse-->
+<p class="orderTitle">II. Order for the Blessing of a Person Suffering from Addiction or Substance Abuse</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">373</span> Addiction to alcohol, drugs, and other controlled substances causes great disruption in the life of an individual and his or her family. This blessing is intended to strengthen the addicted person in the struggle to overcome addiction and also to assist his or her family and friends.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">374</span> This blessing may also be used for individuals who, although not addicted, abuse alcohol or drugs and wish the assistance of God’s blessing in their struggle.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">375</span> Ministers should be aware of the spiritual needs of a person suffering from addiction or substance abuse, and to this end the pastoral guidance on the care of the sick and the rites of Pastoral Care of the Sick will be helpful.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">376</span> If the recovery process is slow or is marked by relapses, the blessing may be repeated when pastorally appropriate.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">377</span> These orders may be used by a priest or a deacon, and also by a layperson, who follows the rites and prayers designated for a lay minister.</p>
+
+<p class="riteHeading">A. Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">378</span> When the community has gathered, a suitable song may be sung. After the singing, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">379</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">The Lord be with you.</p>
+
+<p class="rubricInlineUnnumbered">And all reply:</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">380</span> A lay minister greets those present in the following words:</p>
+
+<p class="theBlack">Let us praise God our creator, who gives us courage and strength, now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">381</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">God created the world and all things in it and entrusted them into our hands that we might use them for our good and for the building up of the Church and human society. Today we pray for N., that God may strengthen him/her in his/her weakness and restore him/her to the freedom of God’s children. We pray also for ourselves that we may encourage and support him/her in the days ahead.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">382</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the second letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">4:6-9</span></p>
+
+<p class="rubricReadingTheme">We are afflicted, but not crushed.</p>
+
+<p class="theBlack">For God who said, “Let light shine out of darkness,” has shone in our hearts to bring to light the knowledge of the glory of God on the face of Jesus Christ.</p>
+
+<p class="theBlack">But we hold this treasure in earthen vessels, that the surpassing power may be of God and not from us. We are afflicted in every way, but not constrained; perplexed, but not driven to despair; persecuted, but not abandoned; struck down, but not destroyed.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">383</span> Or:</p>
+
+<p class="rubricAltReading">Isaiah 63:7-9—<span class="readingTheme">He has favored us according to his mercy.</span></p>
+
+<p class="rubricAltReading">Romans 8:18-25—<span class="readingTheme">I consider the sufferings of the present to be as nothing compared with the glory to be revealed in us.</span></p>
+
+<p class="rubricAltReading">Matthew 15:21-28—<span class="readingTheme">Woman, you have great faith.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">384</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Our help is from the Lord who made heaven and earth.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 121</p>
+
+<p class="theBlack">I lift up my eyes toward the mountains;<br/>
+whence shall help come to me?<br/>
+My help is from the LORD<br/>
+who made heaven and earth. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">May he not suffer your foot to slip;<br/>
+may he slumber not who guards you:<br/>
+Indeed he neither slumbers nor sleeps,<br/>
+the guardian of Israel. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">The LORD is your guardian; the LORD is your shade;<br/>
+he is beside you at your right hand.<br/>
+The sun shall not harm you by day,<br/>
+nor the moon by night. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">The LORD will guard you from all evil;<br/>
+he will guard your life.<br/>
+The LORD will guard your coming and your going,<br/>
+both now and forever. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 130:1-2, 3-4, 5-6, 7-8</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 5) My soul trusts in the Lord.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">385</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">386</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">Our God gives us life and constantly calls us to new life; let us pray to God with confidence.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For those addicted to alcohol/drugs, that God may be their strength and support, we pray. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For N., bound by the chains of addiction/substance abuse, that we encourage and assist him/her in his/her struggle, we pray. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For N., that he/she may trust in the mercy of God through whom all things are possible, we pray. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For the family and friends of N., that with faith and patience they show him/her their love, we pray. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For the Church, that it may always be attentive to those in need, we pray. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">387</span> After the intercessions the minister, in the following or similar words, invites all present to sing or say the Lord’s Prayer.</p>
+
+<p class="theBlack">Let us pray to our merciful God as Jesus taught us:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">388</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched over the person; a lay minister says the prayer with hands joined.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> For addiction</p>
+
+<p class="theBlack">God of mercy,<br/>
+we bless you in the name of your Son, Jesus Christ,<br/>
+who ministered to all who came to him.<br/>
+Give your strength to N., your servant,<br/>
+bound by the chains of addiction.<br/>
+Enfold him/her in your love<br/>
+and restore him/her to the freedom of God’s children.</p>
+
+<p class="theBlack">Lord,<br/>
+look with compassion on all those<br/>
+who have lost their health and freedom.<br/>
+Restore to them the assurance of your unfailing mercy,<br/>
+and strengthen them in the work of recovery.</p>
+
+<p class="theBlack">To those who care for them,<br/>
+grant patient understanding and a love that perseveres.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> For substance abuse</p>
+
+<p class="theBlack">God of mercy,<br/>
+we bless you in the name of your Son, Jesus Christ,<br/>
+who ministered to all who came to him.<br/>
+Give your strength to N., your servant,<br/>
+enfold him/her in your love<br/>
+and restore him/her to the freedom of God’s children.</p>
+
+<p class="theBlack">Lord,<br/>
+look with compassion on all those<br/>
+who have lost their health and freedom.<br/>
+Restore to them the assurance of your unfailing mercy,<br/>
+strengthen them in the work of recovery,<br/>
+and help them to resist all temptation.</p>
+
+<p class="theBlack">To those who care for them,<br/>
+grant patient understanding and a love that perseveres.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">As circumstances suggest, the minister in silence may sprinkle the person with holy water.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">389</span> A minister who is a priest or deacon concludes the rite by saying:</p>
+
+<p class="theBlack">May God give you light and peace.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May God raise you up and save you.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May God give you courage and strength.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">390</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+
+<p class="theBlack">May our all-merciful God, Father, Son, and Holy Spirit, bless us and embrace us in love for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">391</span> It is preferable to end the celebration with a suitable song.</p>
+
+<p class="riteHeading">B. Shorter Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">392</span> All make the sign of the cross as the minister says:</p>
+
+<p class="theBlack">Our help is in the name of the Lord.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">Who made heaven and earth.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">393</span> One of those present or the minister reads a text of sacred Scripture, for example:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the second letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">4:6-9</span></p>
+
+<p class="rubricReadingTheme">We are afflicted, but not crushed.</p>
+
+<p class="theBlack">For God who said, “Let light shine out of darkness,” has shone in our hearts to bring to light the knowledge of the glory of God on the face of Jesus Christ.</p>
+
+<p class="theBlack">But we hold this treasure in earthen vessels, that the surpassing power may be of God and not from us. We are afflicted in every way, but not constrained; perplexed, but not driven to despair; persecuted, but not abandoned; struck down, but not destroyed.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">394</span> Or:</p>
+
+<p class="rubricAltReading">Isaiah 63:7-9—<span class="readingTheme">He has favored us according to his mercy.</span></p>
+
+<p class="rubricAltReading">Matthew 15:21-28—<span class="readingTheme">Woman, you have great faith.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">395</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched over the person; a lay minister says the prayer with hands joined.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> For addiction</p>
+
+<p class="theBlack">God of mercy,<br/>
+we bless you in the name of your Son, Jesus Christ,<br/>
+who ministered to all who came to him.<br/>
+Give your strength to N., your servant,<br/>
+bound by the chains of addiction.<br/>
+Enfold him/her in your love<br/>
+and restore him/her to the freedom of God’s children.</p>
+
+<p class="theBlack">Lord,<br/>
+look with compassion on all those<br/>
+who have lost their health and freedom.<br/>
+Restore to them the assurance of your unfailing mercy,<br/>
+and strengthen them in the work of recovery.</p>
+
+<p class="theBlack">To those who care for them,<br/>
+grant patient understanding and a love that perseveres.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> For substance abuse</p>
+
+<p class="theBlack">God of mercy,<br/>
+we bless you in the name of your Son, Jesus Christ,<br/>
+who ministered to all who came to him.<br/>
+Give your strength to N., your servant,<br/>
+enfold him/her in your love<br/>
+and restore him/her to the freedom of God’s children.</p>
+
+<p class="theBlack">Lord,<br/>
+look with compassion on all those<br/>
+who have lost their health and freedom.<br/>
+Restore to them the assurance of your unfailing mercy,<br/>
+strengthen them in the work of recovery,<br/>
+and help them to resist all temptation.</p>
+
+<p class="theBlack">To those who care for them,<br/>
+grant patient understanding and a love that perseveres.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

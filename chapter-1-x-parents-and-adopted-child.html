@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-1-x-parents-and-adopted-child-->
+<p class="orderTitle">X. Order for the Blessing of Parents and an Adopted Child</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">274</span> The adoption of a child is an important event in the lives of a married couple or a single parent. This blessing serves as a public thanksgiving for the precious gift of a child and as a welcome of the child into its new family.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">275</span> If the child is old enough to respond, provision is made for the child to accept the new parents as his or her own. In this case, the introduction of the rite should be adapted to the circumstances, and a more appropriate reading may be chosen.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">276</span> If there is only one parent, the rite should be adapted to the circumstances by the minister.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">277</span> This order may be used by a priest or a deacon, and also by a layperson, who follows the rites and prayers designated for a lay minister.</p>
+
+<p class="riteHeading">Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">278</span> When the community has gathered, a suitable song may be sung. After the singing, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">279</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">May the love of God be with you always.</p>
+
+<p class="rubricInlineUnnumbered">And all reply:</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">280</span> A lay minister greets those present in the following words:</p>
+
+<p class="theBlack">Let us praise our loving God. Blessed be God for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">281</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">It has pleased God our heavenly Father to answer the earnest prayers of N. and N. for the gift of a child. Today we join them in offering heartfelt thanks for the joyful and solemn responsibility which becomes theirs by the arrival of N. into their family.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">282</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Mark:<span class="rubricCitationInRdgIntro">10:13-16</span></p>
+
+<p class="rubricReadingTheme">Jesus blesses the little children.</p>
+
+<p class="theBlack">People were bringing children to Jesus that he might touch them, but the disciples rebuked the people. When Jesus saw this he became indignant and said to the disciples, “Let the children come to me; do not prevent them, for the kingdom of God belongs to such as these. Amen, I say to you, whoever does not accept the kingdom of God like a child will not enter it.” Then he embraced the children and blessed them, placing his hands on them.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">283</span> Or:</p>
+
+<p class="rubricAltReading">Deuteronomy 6:4-7—<span class="readingTheme">Diligently teach your children.</span></p>
+
+<p class="rubricAltReading">Deuteronomy 31:12-13—<span class="readingTheme">Do this that your children may hear.</span></p>
+
+<p class="rubricAltReading">1 Samuel 1:9-11, 20-28; 2:26—<span class="readingTheme">The birth and presentation of Samuel.</span></p>
+
+<p class="rubricAltReading">Matthew 18:1-4—<span class="readingTheme">Those who humble themselves like children will be the greatest.</span></p>
+
+<p class="rubricAltReading">Luke 2:22-32, 52—<span class="readingTheme">Presentation of Jesus in the temple.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">284</span> As circumstances suggest, one of the following responsorial psalms may be sung, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> O Lord, our God, how wonderful your name in all the earth!</p>
+
+<p class="rubricInlineUnnumbered">Psalm 8</p>
+
+<p class="theBlack">O LORD, our Lord,<br/>
+how glorious is your name over all the earth!<br/>
+You have exalted your majesty above the heavens.<br/>
+Out of the mouths of babes and sucklings<br/>
+you have fashioned praise because of your foes,<br/>
+to silence the hostile and the vengeful. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">When I behold your heavens, the work of your fingers,<br/>
+the moon and the stars which you set in place—<br/>
+What is man that you should be mindful of him,<br/>
+or the son of man that you should care for him? <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">You have made him little less than the angels,<br/>
+and crowned him with glory and honor.<br/>
+You have given him rule over the works of your hands,<br/>
+putting all things under his feet. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">All sheep and oxen,<br/>
+yes, and the beasts of the field,<br/>
+The birds of the air, the fishes of the sea,<br/>
+and whatever swims the paths of the seas. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">O LORD, our Lord,<br/>
+how glorious is your name over all the earth! <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 78:1-7</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 4) Tell the coming generations the glorious deeds of the Lord.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">285</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Acknowledgment by the Child and Parents</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">286</span> The minister asks the parents:</p>
+
+<p class="theBlack">You have received N. into your family;<br/>
+will you (continue to) love and care for him/her?</p>
+
+<p class="rubricInlineUnnumbered">Parents:</p>
+
+<p class="theBlack">We will.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">287</span> If the child is old enough to answer, the minister asks:</p>
+
+<p class="theBlack">You have accepted N. and N. as your parents;<br/>
+will you love and respect them?</p>
+
+<p class="rubricInlineUnnumbered">The child replies:</p>
+
+<p class="theBlack">I will.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">288</span> The minister says:</p>
+
+<p class="theBlack">As God has made us all his children by grace and adoption, may this family always abide in his love.</p>
+
+<p class="theBlack">The Canticle of Mary or another hymn of praise may then be sung.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">289</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">God is the author of all life and calls us into his loving family; with thankful hearts we pray:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Loving Father, hear us.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For the Church throughout the world, that it may nurture, guide, protect and love all who are joined to it in baptism, let us pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For N. and N. and their new son/daughter, N., that God may bind them together in love as a family in Christ, let us pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">[For the brother(s) and sister(s) of N., that they may grow in friendship and love, let us pray to the Lord. <span class="rubricRV">℟.</span>]</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For married couples who desire the gift of a child, that God may hear their prayers, let us pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For all Christian families, that the love of Christ may dwell in their homes, let us pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">290</span> After the intercessions the minister, in the following or similar words, invites all present to sing or say the Lord’s Prayer.</p>
+
+<p class="theBlack">As God’s children by adoption, we pray:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">291</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched over the parents and child; a lay minister says the prayer with hands joined.</p>
+
+<p class="theBlack">Loving God,<br/>
+your Son has taught us<br/>
+that whoever welcomes a child in his name, welcomes him.<br/>
+We give you thanks for N.,<br/>
+whom N. and N. have welcomed into their family.<br/>
+Bless this family.<br/>
+Confirm a lively sense of your presence with them<br/>
+and grant to these parents patience and wisdom,<br/>
+that their lives may show forth the love of Christ<br/>
+as they bring N. up to love all that is good.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">As circumstances suggest, the minister in silence may sprinkle the family with holy water.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">292</span> A minister who is a priest or deacon concludes the rite by saying:</p>
+
+<p class="theBlack">May almighty God, who has called us into the family of Christ,<br/>
+fill you with grace and peace,<br/>
+now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">293</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+
+<p class="theBlack">May almighty God, who has called us into the family of Christ, fill us with grace and peace, now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">294</span> It is preferable to end the celebration with a suitable song.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

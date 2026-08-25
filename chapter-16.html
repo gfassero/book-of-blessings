@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-16-->
+<p class="chapterNumber">Chapter 16</p>
+
+<p class="chapterTitle">Order for the Blessing of Technical Installations or Equipment</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">682</span> Through labor and intelligence, and especially by using science and technology, the human race continually extends its mastery over nature, with resultant benefits that improve human life for both individuals and peoples. The inauguration therefore of technical installations or equipment is an opportune occasion for the celebration of a blessing, in order to make it clear that the message of the Gospel is not inimical to the building up of this world.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">683</span> The order of blessing provided here has reference to the community in whose interest the technical equipment or installation (for example, a central energy source or power house, a reservoir or water system, a seismograph) has been established and to the managers and staff. Therefore the blessing is not to be celebrated without the presence at least of representatives of such groups.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">684</span> The present order may be used by a priest or deacon. It may also be used by a layperson, who follows the rites and prayers designated for a lay minister.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">685</span> While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="riteHeading">Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">686</span> When the community has gathered, a suitable song may be sung. After the singing, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">687</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">May God, who has set us over the works of his hands, be with you all.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">688</span> A lay minister greets those present in the following words.</p>
+
+<p class="theBlack">Let us give praise to God, who has set us over the works of his hands. Blessed be God now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">689</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">Through the work of our hands and the help of technology we cooperate with the Creator to improve the earth as the dwelling place of the human family. By our efforts to bring the work of creation to perfection, we contribute to the advancement of society and carry out Christ’s mandate to follow him in serving one another in love. Let us, then, bless God as we use these products of technology for our advantage and never forget to offer praise to him, who is the true light and the fount of that water which springs up to eternal life.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">690</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the book of Genesis:<span class="rubricCitationInRdgIntro">1:1-5a, 14-18</span></p>
+
+<p class="rubricReadingTheme">God said: Let there be light, and there was light.</p>
+
+<p class="theBlack">In the beginning, when God created the heavens and the earth, the earth was a formless wasteland, and darkness covered the abyss, while a mighty wind swept over the waters. Then God said, “Let there be light,” and there was light. God saw how good the light was. God then separated the light from the darkness. God called the light “day,” and the darkness he called “night.”</p>
+
+<p class="theBlack">Then God said: “Let there be lights in the dome of the sky, to separate day from night. Let them mark the fixed times, the days and the years, and serve as luminaries in the dome of the sky, to shed light upon the earth.” And so it happened: God made the two great lights, the greater one to govern the day, and the lesser one to govern the night; and he made the stars. God set them in the dome of the sky, to shed light upon the earth, to govern the day and the night, and to separate the light from the darkness. God saw how good it was.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">691</span> Or:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to John:<span class="rubricCitationInRdgIntro">4:5-14</span></p>
+
+<p class="rubricReadingTheme">Whoever drinks the water I give will never be thirsty.</p>
+
+<p class="theBlack">Jesus came to a town of Samaria called Sychar, near the plot of land that Jacob had given to his son Joseph. Jacob’s well was there. Jesus, tired from his journey, sat down there at the well. It was about noon.</p>
+
+<p class="theBlack">A woman of Samaria came to draw water. Jesus said to her, “Give me a drink.” His disciples had gone into the town to buy food. The Samaritan woman said to him, “How can you, a Jew, ask me, a Samaritan woman, for a drink?” (For Jews use nothing in common with Samaritans.) Jesus answered and said to her, “If you knew the gift of God and who is saying to you, ‘Give me a drink,’ you would have asked him and he would have given you living water.” The woman said to him, “Sir, you do not even have a bucket and the cistern is deep; where then can you get this living water? Are you greater than our father Jacob, who gave us this cistern and drank from it himself with his children and his flocks?” Jesus answered and said to her, “Everyone who drinks this water will be thirsty again; but whoever drinks the water I shall give will never thirst; the water I shall give will become in him a spring of water welling up to eternal life.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">692</span> Or:</p>
+
+<p class="rubricAltReading">Numbers 20:2-11—<span class="readingTheme">Water gushed out in abundance.</span></p>
+
+<p class="rubricAltReading">Isaiah 55:1-11—<span class="readingTheme">All you who are thirsty, come to the water.</span></p>
+
+<p class="rubricAltReading">Sirach 17:1-6 (Greek, 17:1-7)—<span class="readingTheme">He gave them authority over everything on earth.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">693</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> My God, you are always there to help me; I place my trust in you.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 18</p>
+
+<p class="theBlack">And he made darkness the cloak about him;<br/>
+dark, misty rain-clouds his wrap.<br/>
+From the brightness of his presence<br/>
+coals were kindled to flame. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">And the LORD thundered from heaven,<br/>
+the Most High gave forth his voice;<br/>
+He sent forth his arrows to put them to flight,<br/>
+with frequent lightnings he routed them. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Then the bed of the sea appeared,<br/>
+and the foundations of the world were laid bare,<br/>
+At the rebuke of the LORD,<br/>
+at the blast of the wind of his wrath. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">He reached out from on high and grasped me;<br/>
+he drew me out of the deep waters.<br/>
+He set me free in the open,<br/>
+and he rescued me, because he loves me. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 29:1-2, 3-4, 7-9, 10-11</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 2) Give to the Lord the glory due his name.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 148:1-2, 3-4, 5-6</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 13c) His glory is above earth and heaven.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">694</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">695</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, no. 697.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">In human works and the inventions of human genius we must recognize the continuing activity of God the Creator. Rightly, then, we offer praise to God with grateful hearts and call on him with confidence, saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, sustain the work of our hands.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Eternal God, you made all things good and gave them into our care; grant that we may use the forces of nature wisely for your glory and our own well-being. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You continually give us your Holy Spirit; grant that we may cooperate with the same Spirit for the renewal of the face of the earth, not merely through technology but through justice and charity. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You know what lies in our hearts; grant that a desire for what is right and good will guide the use of scientific knowledge. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Your wish is that all should call you Father; grant that those people who suffer discrimination may be helped by all of us to gain the rights and advantages that belong to every human being. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">696</span> When there are no intercessions, the minister, before the prayer of blessing, says:</p>
+
+<p class="theBlack">Let us pray.</p>
+
+<p class="rubricInlineUnnumbered">As circumstances suggest, all may then pray for a moment in silence before the prayer of blessing.</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">697</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> Blessing of any kind of technical equipment</p>
+
+<p class="theBlack">Blessed are you, Lord our God,<br/>
+and worthy of all praise,<br/>
+for you have provided for the perfecting of your creation<br/>
+through human labor and intelligence,<br/>
+and you show your own power and goodness<br/>
+in the inventions of the human race.<br/>
+Grant that all those who will use this equipment to improve their lives<br/>
+may recognize that you are wonderful in your works<br/>
+and may learn to carry out your will more readily.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> Blessing of a central energy source or power house</p>
+
+<p class="theBlack">Lord God,<br/>
+all-powerful Creator of light,<br/>
+source and origin of us all,<br/>
+look with kindness upon your servants<br/>
+who will use this equipment to produce (electricity, atomic power).</p>
+
+<p class="theBlack">Grant that by continuing to seek your face<br/>
+they may, after the darkness of this world,<br/>
+find you, the unfailing light,<br/>
+in whom we live and move and have our being.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">C</span> Blessing of a reservoir or water system</p>
+
+<p class="theBlack">Blessed are you, Lord our God,<br/>
+and worthy of all praise,<br/>
+for you have provided for the perfecting of your creation<br/>
+through human labor and intelligence,<br/>
+and you show your own power and goodness<br/>
+in the inventions of the human race.</p>
+
+<p class="theBlack">Grant that all those who will use this supply of water for their needs<br/>
+may recognize that you are their living fountain,<br/>
+the source of the water that springs up to eternal life.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">698</span> After the prayer of blessing, the new equipment is turned on for the first time and a suitable song may be sung.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">699</span> A minister who is a priest or deacon concludes the rite by saying:</p>
+
+<p class="theBlack">May God, from whom every good gift comes,<br/>
+make his countenance to shine upon you<br/>
+and guide you into the way of peace,<br/>
+now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">700</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+
+<p class="theBlack">May God, from whom every good gift comes,<br/>
+make his countenance to shine upon us<br/>
+and guide us into the way of peace,<br/>
+now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">701</span> It is preferable to end the celebration with a suitable song.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

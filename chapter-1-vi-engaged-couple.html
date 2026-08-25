@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-1-vi-engaged-couple-->
+<p class="orderTitle">VI. Order for the Blessing of an Engaged Couple</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">167</span> Besides seeing to the upbringing of their children, Christian parents have the further serious responsibility, an exercise of their own apostolate, of helping the children to prepare themselves properly for marriage.</p>
+
+<p class="rubricParaUnnumbered">The betrothal of a young Christian couple therefore is a special occasion for their families, who should celebrate it together with prayer and a special rite. In this way they ask God’s blessing that the happiness promised by the children’s engagement will be brought to fulfillment.</p>
+
+<p class="rubricParaUnnumbered">In order that the celebration will better achieve its purpose, it should be adapted to suit the particular circumstances.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">168</span> When the engagement is celebrated within the circle of the two families, one of the parents should preside. But when a priest or a deacon is present, the office of presiding more fittingly belongs to him (provided it is clear to all that the blessing is not the celebration of the sacrament of marriage itself).</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">169</span> The present order may be used by the parents, a priest, a deacon, or a lay minister. While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">170</span> The present order may also be celebrated during the engagement period on an occasion when couples are brought together for premarital instruction. Neither a formal betrothal nor the special blessing of an engaged couple is ever to be combined with the celebration of Mass.</p>
+
+<p class="riteHeading">Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">171</span> When the families have gathered, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">172</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">The grace and peace of our Lord Jesus Christ, who loved us and gave himself for us, be with you all.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">173</span> A lay minister greets those present in the following words.</p>
+
+<p class="theBlack">Brothers and sisters, let us praise our Lord Jesus Christ, who loved us and gave himself for us. Let us bless him now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">174</span> In the following or similar words, the minister prepares the couple and all present for the blessing.</p>
+
+<p class="theBlack">We know that all of us need God’s blessing at all times; but at the time of their engagement to be married, Christians are in particular need of grace as they prepare themselves to form a new family.</p>
+
+<p class="theBlack">Let us pray, then, for God’s blessing to come upon this couple, our brother and sister: that as they await the day of their wedding, they will grow in mutual respect and in their love for one another; that through their companionship and prayer together they will prepare themselves rightly and chastely for marriage.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">175</span> One of those present or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to John:<span class="rubricCitationInRdgIntro">15:9-12</span></p>
+
+<p class="rubricReadingTheme">This is my commandment: love one another as I have loved you.</p>
+
+<p class="theBlack">Jesus said to his disciples: “As the Father loves me, so I also love you. Remain in my love. If you keep my commandments, you will remain in my love, just as I have kept my Father’s commandments and remain in his love.</p>
+
+<p class="theBlack">“I have told you this so that my joy might be in you and your joy might be complete. This is my commandment: love one another as I love you.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">176</span> Or:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the first letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">13:4-13</span></p>
+
+<p class="rubricReadingTheme">There is no limit to love’s forbearance, to its trust, its hope, its power to endure.</p>
+
+<p class="theBlack">Love is patient, love is kind. It is not jealous, love is not pompous, it is not inflated, it is not rude, it does not seek its own interests, it is not quick-tempered, it does not brood over injury, it does not rejoice over wrongdoing but rejoices with the truth. It bears all things, believes all things, hopes all things, endures all things.</p>
+
+<p class="theBlack">Love never fails. If there are prophecies, they will be brought to nothing; if tongues, they will cease; if knowledge, it will be brought to nothing. For we know partially and we prophesy partially, but when the perfect comes, the partial will pass away. When I was a child, I used to talk as a child, think as a child, reason as a child; when I became a man, I put aside childish things. At present we see indistinctly, as in a mirror, but then face to face. At present I know partially; then I shall know fully as I am fully known. So faith, hope, love remain, these three; but the greatest of these is love.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">177</span> Or:</p>
+
+<p class="rubricAltReading">Hosea 2:21-26—<span class="readingTheme">I will espouse you in fidelity.</span></p>
+
+<p class="rubricAltReading">Philippians 2:1-5—<span class="readingTheme">United in spirit and ideals.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">178</span> As circumstances suggest, the following responsorial psalm may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> The Lord is good to all.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 145</p>
+
+<p class="theBlack">The LORD is gracious and merciful,<br/>
+slow to anger and of great kindness.<br/>
+The LORD is good to all<br/>
+and compassionate toward all his works. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Let all your works give you thanks, O LORD,<br/>
+and let your faithful ones bless you.<br/>
+The eyes of all look hopefully to you,<br/>
+and you give them their food in due season. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">The LORD is just in all his ways<br/>
+and holy in all his works.<br/>
+The LORD is near to all who call upon him,<br/>
+to all who call upon him in truth. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">179</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration and its difference from the celebration of marriage.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">180</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">God our Father has so loved us that in Christ he makes us his children and the witnesses to his love before the entire world. Let us, therefore, call upon him in all confidence, saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, help us to remain always in your love.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">God our Father, you willed that your true children, brothers and sisters in Christ, should be known by their love for one another. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You place upon us the sweet demands of love so that we may find happiness by responding to them. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You join a man and a woman together by their love for each other, so that in the family they establish they may rejoice in children, the crown of their love. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Through the paschal offering, Christ espoused the Church as his Bride and in his blood offered it to you, holy and immaculate. In this you have given us the ideal of the love that should exist between husband and wife in the sacrament of marriage. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You call N. and N. to the communion of life and love that binds the Christian family together, mind and heart. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">181</span> In accord with local custom, before the prayer of blessing, the engaged couple may express some sign of their pledge to each other, for example, by signing a document or by exchanging rings or gifts.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">182</span> The engagement rings or gifts may be blessed by use of the following formulary.</p>
+
+<p class="theBlack">In due course may you honor the sacred pledge symbolized by these gifts which you now exchange.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">183</span> A lay minister says the following prayer of blessing with hands joined. A priest or deacon says the following prayer with hands outstretched.</p>
+
+<p class="theBlack">We praise you, Lord,<br/>
+for your gentle plan draws together your children, N. and N.,<br/>
+in love for one another.<br/>
+Strengthen their hearts,<br/>
+so that they will keep faith with each other,<br/>
+please you in all things,<br/>
+and so come to the happiness of celebrating the sacrament of their marriage.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">184</span> Or a minister who is a priest or deacon may say the following prayer of blessing.</p>
+
+<p class="theBlack">Lord God,<br/>
+the source of all love,<br/>
+the wise plan of your providence has brought these young people together.<br/>
+As they prepare themselves for the sacrament of marriage<br/>
+and pray for your grace,<br/>
+grant that, strengthened by your blessing, <span class="cross">+</span><br/>
+they may grow in their respect for one another<br/>
+and cherish each other with a sincere love.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">185</span> The minister concludes the rite by saying:</p>
+
+<p class="theBlack">May the God of love and peace<br/>
+abide in you, guide your steps,<br/>
+and confirm your hearts in his love,<br/>
+now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">186</span> It is preferable to end the celebration with a suitable song.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

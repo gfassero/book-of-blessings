@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-2-->
+<p class="chapterNumber">Chapter 2</p>
+
+<p class="chapterTitle">Orders for the Blessing of the Sick</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">342</span> The blessing of the sick by the ministers of the Church is a very ancient custom, having its origins in the practice of Christ himself and his apostles. When ministers visit those who are sick, they are to respect the provisions of Pastoral Care of the Sick: Rites of Anointing and Viaticum, nos. 42-56, but the primary concern of every minister should be to show the sick how much Christ and his Church are concerned for them.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">343</span> The text of Pastoral Care of the Sick indicates many occasions for blessing the sick and provides the blessing formularies.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">344</span> The present order may be used by a priest or deacon. It may also be used by a layperson, who follows the rites and prayers designated for a lay minister. While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">345</span> When just one sick person is to be blessed, a priest or a deacon may use the short formulary given in no. 372.</p>
+
+<p class="orderTitle">I. Order of Blessing</p>
+
+<p class="riteHeading">A. Order for the Blessing of Adults</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">346</span> When the community has gathered, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">347</span> A minister who is a priest or a deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">Peace be with you (this house) and all who live here.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack">The peace of the Lord be with you always.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">348</span> A lay minister greets those present in the following words.</p>
+
+<p class="theBlack">Brothers and sisters, let us bless the Lord, who went about doing good and healing the sick. Blessed be God now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God now and for ever.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">349</span> In the following or similar words, the minister prepares the sick and all present for the blessing.</p>
+
+<p class="theBlack">The Lord Jesus, who went about doing good works and healing sickness and infirmity of every kind, commanded his disciples to care for the sick, to pray for them, and to lay hands on them. In this celebration we shall entrust our sick brothers and sisters to the care of the Lord, asking that he will enable them to bear their pain and suffering in the knowledge that, if they accept their share in the pain of his own passion, they will also share in its power to give comfort and strength.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">350</span> A reader, another person present, or the minister reads a text of sacred Scripture, taken preferably from the texts given in Pastoral Care of the Sick and the Lectionary for Mass. The readings chosen should be those that best apply to the physical and spiritual condition of those who are sick.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the second letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">1:3-7</span></p>
+
+<p class="rubricReadingTheme">The God of all consolation.</p>
+
+<p class="theBlack">Blessed be the God and Father of our Lord Jesus Christ, the Father of compassion and God of all encouragement, who encourages us in our every affliction, so that we may be able to encourage those who are in any affliction with the encouragement with which we ourselves are encouraged by God. For as Christ’s sufferings overflow to us, so through Christ does our encouragement also overflow. If we are afflicted, it is for your encouragement and salvation; if we are encouraged, it is for your encouragement, which enables you to endure the same sufferings that we suffer. Our hope for you is firm, for we know that as you share in the sufferings, you also share in the encouragement.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">351</span> Or:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Matthew:<span class="rubricCitationInRdgIntro">11:28-30</span></p>
+
+<p class="rubricReadingTheme">Come to me and I will refresh you.</p>
+
+<p class="theBlack">Jesus said to the crowds: “Come to me, all you who labor and are burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am meek and humble of heart; and you will find rest for yourselves. For my yoke is easy, and my burden light.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">352</span> Or:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Mark:<span class="rubricCitationInRdgIntro">6:53-56</span></p>
+
+<p class="rubricReadingTheme">They laid the sick in the marketplace.</p>
+
+<p class="theBlack">After making the crossing, Jesus and his disciples came to land at Gennesaret and tied up there. As they were leaving the boat, people immediately recognized him. They scurried about the surrounding country and began to bring in the sick on mats to wherever they heard he was. Whatever villages or towns or countryside he entered, they laid the sick in the marketplaces and begged him that they might touch only the tassel on his cloak; and as many as touched it were healed.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">353</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, you have preserved my life from destruction.</p>
+
+<p class="rubricInlineUnnumbered">Isaiah 38</p>
+
+<p class="theBlack">Once I said,<br/>
+“In the noontime of life I must depart!<br/>
+To the gates of the nether world I shall be consigned<br/>
+for the rest of my years.” <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">I said, “I shall see the LORD no more<br/>
+in the land of the living.<br/>
+No longer shall I behold my fellow men<br/>
+among those who dwell in the world.” <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">My dwelling, like a shepherd’s tent,<br/>
+is struck down and borne away from me;<br/>
+You have folded up my life, like a weaver<br/>
+who severs the last thread. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Those live whom the LORD protects;<br/>
+yours...the life of my spirit.<br/>
+You have given me health and life. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 102:2-3, 24-25</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 2) Lord, hear my prayer, let my cry come unto you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">354</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">355</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to those who are sick and to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">The Lord Jesus loves our brothers and sisters who are ill. With trust let us pray to him that he will comfort them with his grace, saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, give those who are sick the comfort of your presence.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Lord Jesus, you came as healer of body and of spirit, in order to cure all our ills. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You were a man of suffering, but it was our infirmities that you bore, our sufferings that you endured. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You chose to be like us in all things, in order to assure us of your compassion. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You experienced the weakness of the flesh in order to deliver us from evil. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">At the foot of the cross your Mother stood as companion in your sufferings, and in your tender care you gave her to us as our Mother. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">It is your wish that in our own flesh we should fill up what is wanting in your sufferings for the sake of your Body, the Church. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">356</span> Instead of the intercessions or in addition to them, one of the following litanies taken from Pastoral Care of the Sick, nos. 245 and 138, may be used.</p>
+
+<p class="rubricInlineUnnumbered">Minister:</p>
+
+<p class="theBlack">You bore our weakness and carried our sorrows: Lord, have mercy.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, have mercy.</p>
+
+<p class="rubricInlineUnnumbered">Minister:</p>
+
+<p class="theBlack">You felt compassion for the crowd, and went about doing good and healing the sick: Christ, have mercy.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Christ, have mercy.</p>
+
+<p class="rubricInlineUnnumbered">Minister:</p>
+
+<p class="theBlack">You commanded your apostles to lay their hands on the sick in your name: Lord, have mercy.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, have mercy.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">357</span> Or:</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">Let us pray to God for our brothers and sisters and for all those who devote themselves to caring for them.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Bless N. and N. and fill them with new hope and strength: Lord, have mercy.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, have mercy.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Relieve their pain: Lord, have mercy. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Free them from sin and do not let them give way to temptation: Lord, have mercy. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Sustain all the sick with your power: Lord, have mercy. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Assist all who care for the sick: Lord, have mercy. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Give life and health to our brothers and sisters on whom we lay our hands in your name: Lord, have mercy. <span class="rubricRV">℟.</span></p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">358</span> A minister who is a priest or deacon may, as circumstances suggest, lay his hands on the head of each sick person, and then say the prayer of blessing.</p>
+
+<p class="theBlack">Lord, our God,<br/>
+you sent your Son into the world<br/>
+to bear our infirmities<br/>
+and to endure our sufferings.<br/>
+For N. and N., your servants who are sick,<br/>
+we ask that your blessing will give them strength<br/>
+to overcome their weakness<br/>
+through the power of patience and the comfort of hope<br/>
+and that with your aid they will soon be restored to health.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">359</span> Or, without the laying on of hands:</p>
+
+<p class="theBlack">Lord Jesus,<br/>
+who went about doing good and healing all,<br/>
+we ask you to bless your friends who are sick.<br/>
+Give them strength in body, courage in spirit, and patience with pain.<br/>
+Let them recover their health,<br/>
+so that, restored to the Christian community,<br/>
+they may joyfully praise your name,<br/>
+for you live and reign for ever and ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">360</span> A lay minister traces the sign of the cross on the forehead of each sick person and says the following prayer of blessing.</p>
+
+<p class="theBlack">Lord, our God,<br/>
+who watch over your creatures with unfailing care,<br/>
+keep us in the safe embrace of your love.<br/>
+With your strong right hand raise up your servants (N. and N.)<br/>
+and give them the strength of your own power.<br/>
+Minister to them and heal their illnesses,<br/>
+so that they may have from you the help they long for.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">361</span> Or, for one sick person:</p>
+
+<p class="theBlack">Lord and Father, almighty and eternal God,<br/>
+by your blessing you give us strength and support in our frailty:<br/>
+turn with kindness toward this your servant N.<br/>
+Free him/her from all illness and restore him/her to health,<br/>
+so that in the sure knowledge of your goodness<br/>
+he/she will gratefully bless your holy name.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">362</span> After the prayer of blessing, the minister invites all present to pray for the protection of the Blessed Virgin. They may do so by singing or reciting a Marian antiphon, for example, <span class="hymnName">We turn to you for protection</span> (<span class="hymnName">Sub tuum praesidium</span>) or <span class="hymnName">Hail, Holy Queen</span>.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">363</span> A minister who is a priest or a deacon concludes the rite by facing the sick and saying:</p>
+
+<p class="theBlack">May God the Father bless you.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May God the Son comfort you.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May God the Holy Spirit enlighten you.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">364</span> A lay minister invokes the Lord’s blessing on the sick and all present by signing himself or herself with the sign of the cross and saying:</p>
+
+<p class="theBlack">May the Lord Jesus Christ,<br/>
+who went about doing good and healing the sick,<br/>
+grant that we may have good health<br/>
+and be enriched by his blessings.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteHeading">B. Order for the Blessing of Children</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">365</span> For the blessing of sick children, the texts already given are to be adapted to the children’s level, but special intercessions are provided here and a special prayer of blessing.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">366</span> To the following intentions others may be added that apply to the condition of the sick children and to the particular circumstances.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">The Lord Jesus loved and cherished the little ones with a special love. Let us, then, pray to him for these sick children, saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, keep them in all their ways.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Lord Jesus, you called the little children to come to you and said that the kingdom of heaven belongs to such as these; listen with mercy to our prayers for these children. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You revealed the mysteries of the kingdom of heaven, not to the wise of this world, but to little children; give these children the proof of your love. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You praised the children who cried out their Hosannas on the eve of your passion; strengthen these children and their parents with your holy comfort. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You charged your disciples to take care of the sick; stand at the side of all those who so gladly devote themselves to restoring the health of these children. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">367</span> A minister who is a priest or deacon may, as circumstances suggest, lay his hands on the head of each sick child, and then say the prayer of blessing.</p>
+
+<p class="theBlack">Lord, our God,<br/>
+your Son Jesus Christ welcomed little children and blessed them.<br/>
+Stretch out your right hand over these little children, N. and N., who are sick.<br/>
+Grant that, made well again,<br/>
+they may return to their parents<br/>
+and to the community of your holy Church<br/>
+and give you thanks and praise.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">368</span> A lay minister, and particularly a mother or father when blessing a sick child, traces the sign of the cross on each child’s forehead and then says the following prayer of blessing.</p>
+
+<p class="theBlack">Father of mercy and God of all consolation,<br/>
+you show tender care for all your creatures<br/>
+and give health of soul and body.<br/>
+Raise up these children (or this child or the son/daughter you have given us) from their (his/her) sickness.<br/>
+Then, growing in wisdom and grace in your sight and ours,<br/>
+they (he/she) will serve you all the days of their (his/her) life<br/>
+in uprightness and holiness<br/>
+and offer the thanksgiving due to your mercy.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteHeading">C. Shorter Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">369</span> The minister says:</p>
+
+<p class="theBlack">Our help is in the name of the Lord.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">Who made heaven and earth.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">370</span> One of those present or the minister reads a text of sacred Scripture, for example:</p>
+
+<p class="rubricInlineUnnumbered">2 Corinthians 1:3-4</p>
+
+<p class="theBlack">Blessed be the God and Father of our Lord Jesus Christ, the Father of compassion and God of all encouragement, who encourages us in our every affliction, so that we may be able to encourage those who are in any affliction with the encouragement with which we ourselves are encouraged by God.</p>
+
+<p class="rubricInlineUnnumbered">Matthew 11:28-29</p>
+
+<p class="theBlack">Jesus said: “Come to me, all you who labor and are burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am meek and humble of heart; and you will find rest for yourselves.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">371</span> As circumstances suggest, a minister who is a priest or deacon may lay hands on the sick person while saying the prayer of blessing; a lay minister may trace the sign of the cross on the sick person’s forehead while saying the prayer.</p>
+
+<p class="theBlack">Lord and Father, almighty and eternal God,<br/>
+by your blessing you give us strength and support in our frailty:<br/>
+turn with kindness toward your servant, N.<br/>
+Free him/her from all illness and restore him/her to health,<br/>
+so that in the sure knowledge of your goodness<br/>
+he/she will gratefully bless your holy name.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Short Formulary</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">372</span> As circumstances suggest, a priest or deacon may use the following short blessing formulary.</p>
+
+<p class="theBlack">May he who alone is Lord and Redeemer<br/>
+bless <span class="cross">+</span> you, N.<br/>
+May he give health to your body<br/>
+and holiness to your soul.<br/>
+May he bring you safely to eternal life.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

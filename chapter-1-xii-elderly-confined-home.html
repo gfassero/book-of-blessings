@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-1-xii-elderly-confined-home-->
+<p class="orderTitle">XII. Orders for the Blessing of Elderly People Confined to Their Homes</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">316</span> The faithful who are elderly and infirm, confined at home or in a nursing home, need their brothers and sisters in Christ to help them feel that they are still part of the family and the ecclesial community. The purpose of the present blessing is that the elderly may receive from the community a mark of respect and affection and together with the community thank God for his favors and for the good he has enabled them to do in their lives.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">317</span> The present orders may be used by a priest, a deacon, or a lay minister. While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">318</span> When the blessing of the elderly takes place during Mass, nos. 363-368 of the complete edition are used. When communion is brought to them at home, the blessing in nos. 335-337 below is used. The blessing may also be celebrated by an acolyte or by a duly appointed special minister of the eucharist, who follows the rites and texts designated for use by lay ministers.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">319</span> When just one elderly person is to be blessed, a priest or a deacon may use the short formulary given in no. 341.</p>
+
+<p class="riteHeading">A. Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">320</span> When the family or community has gathered, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">321</span> A minister who is a priest or deacon greets the elderly people and all present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">The grace of our Lord Jesus Christ and the love of God and the fellowship of the Holy Spirit be with you all.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">322</span> A lay minister greets the elderly people and all present in the following words.</p>
+
+<p class="theBlack">Brothers and sisters, let us bless the Lord Jesus, whom the aged Simeon held in his arms. The child he held was his Lord and Master. Blessed be God now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God now and for ever.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">323</span> In the following or similar words, the minister may prepare the elderly people and all present for the blessing.</p>
+
+<p class="theBlack">The period of old age is a gift that should be received from God with gratitude. Elderly people have the opportunity to share with us the riches of their experience and of their Christian lives. Let us therefore now join them in thanking God and in asking that he will keep high their hopes and strengthen their trust in him.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">324</span> A reader, another person present, or the minister reads a text of sacred Scripture. As circumstances suggest, the following reading may be shortened.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">2:25-32, 36-38</span></p>
+
+<p class="rubricReadingTheme">Awaiting the consolation of Israel.</p>
+
+<p class="theBlack">Now there was a man in Jerusalem whose name was Simeon. This man was righteous and devout, awaiting the consolation of Israel, and the holy Spirit was upon him. It had been revealed to him by the holy Spirit that he should not see death before he had seen the Messiah of the Lord. He came in the Spirit into the temple; and when the parents brought in the child Jesus to perform the custom of the law in regard to him, he took him into his arms and blessed God, saying:</p>
+
+<p class="theBlack">“Now, Master, you may let your servant go<br/>
+in peace, according to your word,<br/>
+for my eyes have seen your salvation,<br/>
+which you prepared in sight of all the peoples,<br/>
+a light for revelation to the Gentiles,<br/>
+and glory for your people Israel.”</p>
+
+<p class="theBlack">There was also a prophetess, Anna, the daughter of Phanuel, of the tribe of Asher. She was advanced in years, having lived seven years with her husband after her marriage, and then as a widow until she was eighty-four. She never left the temple, but worshiped night and day with fasting and prayer. And coming forward at that very time, she gave thanks to God and spoke about the child to all who were awaiting the redemption of Jerusalem.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">325</span> Or:</p>
+
+<p class="rubricAltReading">Sirach 3:2-18—<span class="readingTheme">Take care of your father when he is old.</span></p>
+
+<p class="rubricAltReading">Sirach 25:6-8, 13-16 (Greek, 25:4-6, 10-12)—<span class="readingTheme">The glory of the old is their fear of the Lord.</span></p>
+
+<p class="rubricAltReading">Wisdom 4:8-9—<span class="readingTheme">An unsullied life, the attainment of old age.</span></p>
+
+<p class="rubricAltReading">Philippians 3:20-4:1—<span class="readingTheme">We eagerly await the coming of our Savior.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">326</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> My God, come quickly to help me.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 71</p>
+
+<p class="theBlack">In you, O LORD, I take refuge;<br/>
+let me never be put to shame.<br/>
+In your justice rescue me, and deliver me;<br/>
+incline your ear to me, and save me. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Be my rock of refuge,<br/>
+a stronghold to give me safety,<br/>
+for you are my rock and my fortress.<br/>
+O my God, rescue me from the hand of the wicked,<br/>
+from the grasp of the criminal and the violent. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">For you are my hope, O LORD;<br/>
+my trust, O God, from my youth.<br/>
+On you I depend from birth;<br/>
+from my mother’s womb you are my strength;<br/>
+constant has been my hope in you. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">But I will always hope<br/>
+and praise you ever more and more.<br/>
+My mouth shall declare your justice,<br/>
+day by day your salvation,<br/>
+though I know not their extent. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 126:1-2b, 2d-3, 4-5, 6</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 3) The Lord has done great things for us; we are filled with joy.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">327</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">328</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">God, our almighty Father, gives us new strength and power by his life-giving grace all through our lives. Let us then pray to him saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, do not forsake us.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">O God, you rewarded the expectations of Simeon and Anna by revealing your Son to them; grant that these servants of yours may in faith see your salvation and rejoice in the consolation of the Holy Spirit. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You sent your Son into the world to tell all who are weary that in him they would find rest; help these your servants to take up their cross with patience each day. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Your generous kindness can never be surpassed by anyone; grant that these your servants may receive from their families and friends the tender care owed to them. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">In your love you never turn away from anyone, least of all those who are weak and afflicted; grant that society will acknowledge and unfailingly respect the dignity of the elderly. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">329</span> A minister who is a priest or deacon may, as circumstances suggest, extend his hands over the elderly people, individually or as a group, or trace the sign of the cross on the forehead of each, as he says the prayer of blessing; a lay minister says the prayer with hands joined.</p>
+
+<p class="theBlack">Lord, our God,<br/>
+you have given these your faithful<br/>
+the grace to maintain their hope in you<br/>
+through all life’s changes<br/>
+and to taste and see your goodness.<br/>
+We bless you for the gifts you have showered on them for so many years.<br/>
+We ask that they may find joy in a renewed strength of spirit,<br/>
+that they may have good health,<br/>
+and that they may inspire us by the example of their serene way of life.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">330</span> Or:</p>
+
+<p class="theBlack">All-powerful and ever-living God,<br/>
+in whom we live and move and have our being,<br/>
+we thank you and praise you<br/>
+for giving N. and N. (the members of this community) long years,<br/>
+lived in faith and in doing good.</p>
+
+<p class="theBlack">Grant that they may have the loving support of their friends and relatives,<br/>
+that in good health they may be cheerful,<br/>
+and in poor health not lose hope.<br/>
+Sustained by the help of your blessing,<br/>
+let them spend their old age giving praise to your name.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">331</span> Or:</p>
+
+<p class="theBlack">Lord God almighty,<br/>
+bless these your servants,<br/>
+to whom you have given a long life.<br/>
+Let them be aware of your nearness,<br/>
+so that, when they worry about past failings,<br/>
+they will rejoice in your mercy<br/>
+and, when they think of the future,<br/>
+they will faithfully rely on you as their hope.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">332</span> After the invitation, “Bow your heads and pray for God’s blessing,” or something similar is said, a minister who is a priest or deacon concludes the rite by facing the elderly people and, with hands outstretched, saying:</p>
+
+<p class="theBlack">May the Lord Jesus Christ be with you<br/>
+to protect you.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May he go before you<br/>
+to lead you<br/>
+and follow after you<br/>
+to give you strength.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May he watch over you,<br/>
+keep you in his care,<br/>
+and bless you with his peace.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">333</span> A lay minister invokes God’s blessing on the elderly people and all present by signing himself or herself with the sign of the cross and saying:</p>
+
+<p class="theBlack">May the Lord bless us,<br/>
+protect us from all evil,<br/>
+and bring us to everlasting life.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">334</span> It is preferable to end the celebration with a suitable song.</p>
+
+<p class="riteHeading">B. Order of Blessing with Communion Outside Mass</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">335</span> When the rite is combined with an extended celebration of the word of God, the texts of sacred Scripture may be taken from those indicated already in nos. 324-326.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">336</span> The intercessions may take the form given in no. 328, but a minister who is a priest or deacon always concludes the intercessions with the following prayer of blessing, said with hands outstretched over the elderly people.</p>
+
+<p class="theBlack">Lord, our God,<br/>
+you have given these your faithful<br/>
+the grace to maintain their hope in you<br/>
+through all life’s changes<br/>
+and to taste and see your goodness.<br/>
+We bless you for the gifts you have showered on them for so many years.<br/>
+We ask that they may find joy in a renewed strength of spirit,<br/>
+that they may have good health,<br/>
+and that they may inspire us by the example of their serene way of life.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">337</span> A lay minister says the following prayer of blessing with hands joined.</p>
+
+<p class="theBlack">Lord God almighty,<br/>
+bless these your servants,<br/>
+to whom you have given a long life.<br/>
+Let them be aware of your nearness,<br/>
+so that, when they worry about past failings,<br/>
+they will rejoice in your mercy<br/>
+and, when they think of the future,<br/>
+they will faithfully rely on you as their hope.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteHeading">C. Shorter Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">338</span> The minister says:</p>
+
+<p class="theBlack">Our help is in the name of the Lord.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">Who made heaven and earth.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">339</span> One of those present or the minister reads a text of sacred Scripture, for example:</p>
+
+<p class="rubricInlineUnnumbered">Wisdom 4:8</p>
+
+<p class="theBlack">For the age that is honorable comes not<br/>
+with the passing of time,<br/>
+nor can it be measured in terms of years.</p>
+
+<p class="rubricInlineUnnumbered">James 5:7-8</p>
+
+<p class="theBlack">Be patient, therefore, brothers and sisters, until the coming of the Lord. See how the farmer waits for the precious fruit of the earth, being patient with it until it receives the early and the late rains. You too must be patient.</p>
+
+<p class="rubricInlineUnnumbered">Luke 9:23</p>
+
+<p class="theBlack">Then Jesus said to all, “If anyone wishes to come after me, he must deny himself and take up his cross daily and follow me.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">340</span> A minister who is a priest or deacon may, as circumstances suggest, extend his hands over the elderly person or trace the sign of the cross on the elderly person’s forehead, as he says the prayer of blessing; a lay minister says the prayer with hands joined.</p>
+
+<p class="theBlack">Lord God almighty,<br/>
+bless your servant, N.,<br/>
+to whom you have given a long life.<br/>
+Let him/her be aware of your nearness,<br/>
+so that, when he/she worries about past failings,<br/>
+he/she will rejoice in your mercy<br/>
+and, when he/she thinks of the future,<br/>
+he/she will faithfully rely on you as his/her hope.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Short Formulary</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">341</span> As circumstances suggest, a priest or deacon may use the following short blessing formulary.</p>
+
+<p class="theBlack">May almighty God bless <span class="cross">+</span> you,<br/>
+for he forsakes no one,<br/>
+but with fatherly care<br/>
+sustains you, his child,<br/>
+even in old age and failing strength.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-35-->
+<p class="chapterNumber">Chapter 35</p>
+
+<p class="chapterTitle">Order for Visiting a Cemetery on All Souls Day (November 2), Memorial Day, or on the Anniversary of Death or Burial</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1127</span> This order is a solemn commemoration of the departed whose bodies lie in a cemetery. It may be used on All Souls Day, Memorial Day, on the anniversary of the death or burial of a particular deceased person, or when a gravestone or cemetery monument is erected. The service may also be adapted for use by individuals when they visit the grave of a relative or friend.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1128</span> The service may be used immediately following Mass or apart from Mass.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1129</span> If the service takes place immediately after Mass and there is to be a procession to the cemetery, the blessing and dismissal of the Mass are omitted. During the procession a psalm or other suitable song may be sung. The priest may wear the chasuble or a cope for the procession and for the service in the cemetery.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1130</span> This order may be used by a priest, deacon, or a lay minister.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1131</span> On those occasions when this service is used by a family, one of the family members takes the minister’s parts.</p>
+
+<p class="riteHeading">Order for Visiting a Cemetery</p>
+
+<p class="riteSectionHeading">Procession</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1132</span> If the service is to take place immediately after Mass and the cemetery is close to the parish church, the blessing and dismissal of the Mass are omitted and the procession to the cemetery is formed. During the procession Psalm 25, Psalm 116, Psalm 118, or Psalm 42 may be sung. Other suitable songs may also be used. When all have reached the cemetery, the minister addresses the people, using the introduction in no. 1135, below.</p>
+
+<p class="rubricInlineUnnumbered">If there is no procession, or the service takes place apart from Mass, a psalm or other suitable song may be sung after all have gathered at the cemetery.</p>
+
+<p class="riteSectionHeading">Greeting</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1133</span> A minister who is a priest or deacon greets the people in the following or other words preferably taken from Scripture:</p>
+
+<p class="theBlack">The grace and peace of God our Father, who raised Jesus from the dead, be with you always.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1134</span> A lay minister greets those present in the following words:</p>
+
+<p class="theBlack">Praise be to God our Father, who raised Jesus Christ from the dead. Blessed be God for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1135</span> The minister, using these or similar words, says:</p>
+
+<p class="theBlack">My dear friends, we gather today to pray for our brothers and sisters whose bodies lie here in rest. They have passed from death to life in company with the Lord Jesus, who died and rose to new life, and are purified now of their faults. We pray that God may welcome them among all the saints of heaven.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1136</span> If Mass has not preceded, a reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the first letter of Paul to the Thessalonians:<span class="rubricCitationInRdgIntro">4:13-18</span></p>
+
+<p class="rubricReadingTheme">We shall stay with the Lord for ever.</p>
+
+<p class="theBlack">We do not want you to be unaware, brothers and sisters, about those who have fallen asleep, so that you may not grieve like the rest, who have no hope. For if we believe that Jesus died and rose, so too will God, through Jesus, bring with him those who have fallen asleep. Indeed, we tell you this, on the word of the Lord, that we who are alive, who are left until the coming of the Lord, will surely not precede those who have fallen asleep. For the Lord himself, with a word of command, with the voice of an archangel and the trumpet of God, will come down from heaven, and the dead in Christ will rise first. Then we who are alive, who are left, will be caught up together with them in the clouds to meet the Lord in the air. Thus we shall always be with the Lord. Therefore, console one another with these words.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1137</span> Or one of the Scripture texts in Part III of the Order of Christian Funerals may be chosen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1138</span> As circumstances suggest, one of the following responsorial psalms may be sung, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> To you, O Lord, I lift up my soul.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 25</p>
+
+<p class="theBlack">In you I trust; let me not be put to shame,<br/>
+let not my enemies exult over me.<br/>
+No one who waits for you shall be put to shame;<br/>
+those shall be put to shame who heedlessly break faith. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Your ways, O LORD, make known to me;<br/>
+teach me your paths,<br/>
+Guide me in your truth and teach me,<br/>
+for you are God my savior,<br/>
+and for you I wait all the day. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Remember that your compassion, O LORD,<br/>
+and your kindness are from of old.<br/>
+The sins of my youth and my frailties remember not;<br/>
+in your kindness remember me,<br/>
+because of your goodness, O LORD. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Good and upright is the LORD;<br/>
+thus he shows sinners the way.<br/>
+He guides the humble to justice,<br/>
+he teaches the humble his way. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">All the paths of the LORD are kindness and constancy<br/>
+toward those who keep his covenant and his decrees.<br/>
+For your name’s sake, O LORD,<br/>
+you will pardon my guilt, great as it is. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 27:1, 2, 3, 4, 13</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1) The Lord is my light and my salvation.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 130:1-2, 3-4, 5-6, 7-8</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 5) My soul has hoped in the Lord.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 143:1-2, 3-4, 5-6, 7, 9-10, 11-12</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1) O Lord, hear my prayer.</p>
+
+<p class="riteSectionHeading">Litany</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1139</span> While the following litany is sung or recited, the minister sprinkles the graves with holy water and, if desired, may also incense them.</p>
+
+<p class="theBlack">Lord, have mercy (Lord, have mercy)<br/>
+Christ, have mercy (Christ, have mercy)<br/>
+Lord, have mercy (Lord, have mercy)</p>
+
+<p class="theBlack">Holy Mary, Mother of God (pray for them)<br/>
+Saint Michael<br/>
+Saint John the Baptist<br/>
+Saint Joseph<br/>
+Saint Peter<br/>
+Saint Paul<br/>
+Saint Andrew<br/>
+Saint Stephen<br/>
+Saint Ann<br/>
+Saint Teresa<br/>
+Saint Catherine<br/>
+Saint Frances Cabrini<br/>
+Saint Elizabeth Seton</p>
+
+<p class="rubricInlineUnnumbered">(The names of other saints may be added.)</p>
+
+<p class="theBlack">All holy men and women (pray for them)</p>
+
+<p class="theBlack">Christ, pardon all their faults (Lord, hear our prayer)<br/>
+Christ, remember the good they have done<br/>
+Christ, receive them into eternal life<br/>
+Christ, comfort all those who mourn</p>
+
+<p class="theBlack">Lord, have mercy (Lord, have mercy)<br/>
+Christ, have mercy (Christ, have mercy)<br/>
+Lord, have mercy (Lord, have mercy)</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1140</span> The minister then invites those present to pray the Lord’s Prayer, in these or similar words:</p>
+
+<p class="theBlack">With Christ there is mercy and fullness of redemption; let us pray as Jesus taught us:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1141</span> The minister then says the following prayer or another taken from the Order of Christian Funerals, no. 398.</p>
+
+<p class="theBlack">All-powerful God,<br/>
+whose mercy is never withheld<br/>
+from those who call upon you in hope,<br/>
+look kindly on your servants (N. and N.),<br/>
+who departed this life confessing your name,<br/>
+and number them among your saints for evermore.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1142</span> Or:</p>
+
+<p class="theBlack">Almighty God and Father,<br/>
+by the mystery of the cross, you have made us strong;<br/>
+by the sacrament of the resurrection<br/>
+you have sealed us as your own.<br/>
+Look kindly upon your servants,<br/>
+now freed from the bonds of mortality,<br/>
+and count them among your saints in heaven.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1143</span> Or: For one person</p>
+
+<p class="theBlack">Almighty God and Father,<br/>
+it is our certain faith<br/>
+that your Son, who died on the cross, was raised from the dead,<br/>
+the first fruits of all who have fallen asleep.<br/>
+Grant that through this mystery<br/>
+your servant N., who has gone to his/her rest in Christ,<br/>
+may share in the joy of his resurrection.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1144</span> Or: For the blessing of a gravestone or monument</p>
+
+<p class="theBlack">O God,<br/>
+by whose mercy the faithful departed find rest,<br/>
+bless this gravestone<br/>
+with which we mark the resting place of N.<br/>
+May he/she have everlasting life<br/>
+and rejoice in you with your saints for ever.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1145</span> The minister says:</p>
+
+<p class="theBlack">Eternal rest grant unto them, O Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> And let perpetual light shine upon them.</p>
+
+<p class="theBlack">May they rest in peace.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May their souls and the souls of the faithful departed, through the mercy of God, rest in peace.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1146</span> A priest or deacon adds:</p>
+
+<p class="theBlack">May the peace of God,<br/>
+which is beyond all understanding,<br/>
+keep your hearts and minds<br/>
+in the knowledge and love of God<br/>
+and of his Son, our Lord Jesus Christ.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1147</span> The service may be concluded by a suitable psalm or other song.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

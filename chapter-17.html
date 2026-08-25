@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-17-->
+<p class="chapterNumber">Chapter 17</p>
+
+<p class="chapterTitle">Order for the Blessing of Tools or Other Equipment for Work</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">702</span> It is appropriate to bless tools or even larger implements or equipment (for example, trucks, tractors, fishing boats) that people use in their work. Such a blessing enables us to realize that our work forms a bond and a channel of mutual service and charity between the members of the human family; that by our labor we can share in the work of perfecting God’s creation. Such a blessing may be celebrated on special occasions, for example, the feast of Saint Joseph the Worker or a patron saint, or during a convention of workers, who gather and present the tools of their trade to be blessed.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">703</span> The celebration of this blessing has reference not so much to the objects but to the people who will use them in their work. Therefore the blessing is not to be celebrated without their presence or at least the presence of representatives.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">704</span> The present order may be used by a priest or deacon. It may also be used by a layperson, who follows the rites and prayers designated for a lay minister.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">705</span> While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">706</span> Whenever just a single tool or piece of equipment is to be blessed, the shorter rite provided in nos. 722-724 may be used.</p>
+
+<p class="orderTitle">I. Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">707</span> When the community has gathered, a suitable song may be sung. After the singing, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">708</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">May Christ, the Son of God, who was pleased to be known as the carpenter’s son, be with you all.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">709</span> A lay minister greets those present in the following words.</p>
+
+<p class="theBlack">With glad hearts let us praise and bless Christ, the Son of God, who was pleased to be known as the carpenter’s son. Praised be the Lord now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">710</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">God commanded us to inhabit the earth and care for it, until a new heaven and a new earth come to be. As Saint Paul said: “All these things are yours, and you are Christ’s, and Christ is God’s” (1 Corinthians 3:22-23). To accomplish God’s purpose, we use suitable tools and so in some way cooperate with him and share in the good of redemption. Let us therefore bless God from our hearts for his wonderful plan and pray that his help will protect and sustain us as we work.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">711</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the first letter of Paul to the Thessalonians:<span class="rubricCitationInRdgIntro">4:9, 10b-12</span></p>
+
+<p class="rubricReadingTheme">Work with your hands.</p>
+
+<p class="theBlack">On the subject of mutual charity you have no need for anyone to write you, for you yourselves have been taught by God to love one another. Nevertheless we urge you, brothers and sisters, to progress even more, and to aspire to live a tranquil life, to mind your own affairs, and to work with your own hands, as we instructed you, that you may conduct yourselves properly toward outsiders and not depend on anyone.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">712</span> Or:</p>
+
+<p class="rubricAltReading">Exodus 35:30-36:1—<span class="readingTheme">God filled them with the skill and perception to carry out all that was required.</span></p>
+
+<p class="rubricAltReading">Job 28:1-28—<span class="readingTheme">Iron is extracted from the earth; the smelted rocks yield copper.</span></p>
+
+<p class="rubricAltReading">Proverbs 31:10-31—<span class="readingTheme">She sets her hands to the distaff, her fingers grasp the spindle.</span></p>
+
+<p class="rubricAltReading">Sirach 38:25-39 (Greek, 38:24-34)—<span class="readingTheme">They are skilled at their own crafts.</span></p>
+
+<p class="rubricAltReading">Isaiah 28:23-29—<span class="readingTheme">Does the plowman do nothing but plow and turn the soil and harrow it?</span></p>
+
+<p class="rubricAltReading">Acts 18:1-5—<span class="readingTheme">Paul was a tentmaker and worked at his trade.</span></p>
+
+<p class="rubricAltReading">Matthew 13:1-9—<span class="readingTheme">A sower went out to sow.</span></p>
+
+<p class="rubricAltReading">Luke 5:3-11—<span class="readingTheme">If you say so, I will lower the nets.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">713</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> You answer us, O God our Savior.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 65</p>
+
+<p class="theBlack">You have visited the land and watered it;<br/>
+greatly have you enriched it.<br/>
+God’s watercourses are filled;<br/>
+you have prepared the grain. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Thus have you prepared the land:<br/>
+drenching its furrows,<br/>
+breaking up its clods,<br/>
+Softening it with showers,<br/>
+blessing its yield.<br/>
+You have crowned the year with your bounty,<br/>
+and your paths overflow with a rich harvest. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">The untilled meadows overflow with it,<br/>
+and rejoicing clothes the hills.<br/>
+The fields are garmented with flocks<br/>
+and the valleys blanketed with grain.<br/>
+They shout and sing for joy. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 90:2, 3-4, 12-13, 14 and 16</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 17c) Lord, give success to the work of our hands.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 107:35-36, 37-38, 41-42</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1b) Give thanks to the Lord, for he is good.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 127:1, 2</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (see v. 1) May the Lord build our house and guard our city.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">714</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">715</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, no. 717 or no. 718.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">God put us into the world to perfect and preserve it. He continually inspires us to apply our talents and efforts to the progress of creation. Let us together, then, praise God, saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed are you, O Lord, Creator of the universe.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">In commanding us to work, you entrust us with building up the world you created. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">In entrusting to us the dignity of work, you make us your own co-workers in the world. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You continually enlighten us with the vision to build new things that glorify your name and make all the earth resound with your praises. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You sent your Son into the world to be for us a model of untiring toil, as he sanctified and exalted manual labor by the sweat of his own brow. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You direct all our actions by your holy inspiration and you carry them on with your gracious help. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">716</span> When there are no intercessions, the minister, before the prayer of blessing, says:</p>
+
+<p class="theBlack">Let us pray.</p>
+
+<p class="rubricInlineUnnumbered">As circumstances suggest, all may then pray for a moment in silence before the prayer of blessing.</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">717</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+
+<p class="theBlack">O God,<br/>
+the fullness of blessing comes down from you,<br/>
+to you our prayers of blessing rise up.<br/>
+In your kindness protect your servants,<br/>
+who stand before you devout and faithful,<br/>
+bearing the tools of their trade.</p>
+
+<p class="theBlack">Grant that their hard work may contribute<br/>
+to the perfecting of your creation<br/>
+and provide a decent life for themselves and their families.<br/>
+Help them to strive for a better society<br/>
+and to praise and glorify your holy name always.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">718</span> Or:</p>
+
+<p class="theBlack">In your loving providence, O God,<br/>
+you have made the forces of nature<br/>
+subject to the work of our hands.<br/>
+Grant that by devotion to our own work<br/>
+we may gladly cooperate with you<br/>
+in the building up of creation.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">719</span> As circumstances suggest, after the prayer of blessing, the minister may sprinkle those present and the implements with holy water.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">720</span> The minister concludes the rite by saying:</p>
+
+<p class="theBlack">May Christ the Lord,<br/>
+who for our salvation took on the burden of human toil,<br/>
+continue now to strengthen us with his help<br/>
+and give us his peace,<br/>
+now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">721</span> It is preferable to end the celebration with a suitable song.</p>
+
+<p class="orderTitle">II. Shorter Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">722</span> At the beginning of the celebration, the minister says:</p>
+
+<p class="theBlack">Our help is in the name of the Lord.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">Who made heaven and earth.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">723</span> One of those present or the minister reads a short text of sacred Scripture, for example:</p>
+
+<p class="rubricInlineUnnumbered">Sirach 38:31 and 34</p>
+
+<p class="theBlack">All these men are skilled with their hands,<br/>
+each one an expert at his own task;<br/>
+Yet they maintain God’s ancient handiwork,<br/>
+and their concern is for exercise of their skill.</p>
+
+<p class="rubricInlineUnnumbered">2 Thessalonians 3:7-8</p>
+
+<p class="theBlack">For you know how one must imitate us. For we did not act in a disorderly way among you, nor did we eat food received free from anyone. On the contrary, in toil and drudgery, night and day we worked, so as not to burden any of you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">724</span> With hands joined, the minister says the prayer of blessing. After the prayer of blessing, as circumstances suggest, the minister may sprinkle those present and the implements with holy water.</p>
+
+<p class="theBlack">In your loving providence, O God,<br/>
+you have made the forces of nature<br/>
+subject to the work of our hands.<br/>
+Grant that by devotion to our own work<br/>
+we may gladly cooperate with you<br/>
+in the building up of creation.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

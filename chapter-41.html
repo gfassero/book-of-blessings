@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-41-->
+<p class="chapterNumber">Chapter 41</p>
+
+<p class="chapterTitle">Order for a Blessing in Thanksgiving</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1227</span> In the desire that the grace of the eucharistic celebration should reach deeply into their daily lives, Christians strive to remain in an attitude of thanksgiving. The gifts of God are a constant reminder to thank him at all times in return, and especially when he has granted some special favor to his faithful. On such occasions they should gather to praise him together and to bless him.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1228</span> The present order may be used by a priest or deacon. It may also be used by a layperson, who follows the rites and prayers designated for a lay minister. While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1229</span> The present order is also useful in places where it is customary to celebrate a thanksgiving service at the end of each year, but where no priest is available.</p>
+
+<p class="riteHeading">Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1230</span> When the community has gathered, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1231</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">May God, who is rich in mercy and who has favored us in wonderful ways, be with you all.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1232</span> A lay minister greets those present in the following words.</p>
+
+<p class="theBlack">Brothers and sisters, give praise to God, who is rich in mercy and who has favored us in wonderful ways. Blessed be God now and for ever.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1233</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">Let us open our hearts in thanks to God for the favors showered upon us. Saint Paul teaches us to give thanks to God the Father always through Christ, in whom he has given us everything. For when we became God’s children in Christ, God gave us the riches of his grace, rescuing us from the powers of darkness and bringing us into the kingdom of his beloved Son. Whenever we acknowledge God’s gifts, we prepare ourselves to take part more fully in the eucharist, which is the sum of all blessings and the crown and source of all thanksgiving.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1234</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the apostle Paul to the Philippians:<span class="rubricCitationInRdgIntro">4:4-7</span></p>
+
+<p class="rubricReadingTheme">Present your needs to God in every form of prayer and in petitions full of gratitude.</p>
+
+<p class="theBlack">Rejoice in the Lord always. I shall say it again: rejoice! Your kindness should be known to all. The Lord is near. Have no anxiety at all, but in everything, by prayer and petition, with thanksgiving, make your requests known to God. Then the peace of God that surpasses all understanding will guard your hearts and minds in Christ Jesus.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1235</span> Or:</p>
+
+<p class="rubricAltReading">1 Corinthians 1:4-9—<span class="readingTheme">In Christ Jesus you have been richly endowed with every gift.</span></p>
+
+<p class="rubricAltReading">Colossians 3:15-17—<span class="readingTheme">Give thanks to God the Father through him.</span></p>
+
+<p class="rubricAltReading">1 Thessalonians 5:12-24—<span class="readingTheme">Render constant thanks; such is God’s will for you.</span></p>
+
+<p class="rubricAltReading">1 Timothy 2:1-10—<span class="readingTheme">First of all I urge that thanksgiving be offered for all people.</span></p>
+
+<p class="rubricAltReading">Luke 17:11-19—<span class="readingTheme">They praised God with a loud voice.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1236</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> All peoples, shout with joy to God.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 47</p>
+
+<p class="theBlack">All you peoples, clap your hands,<br/>
+shout to God with cries of gladness,<br/>
+For the LORD, the Most High, the awesome,<br/>
+is the great king over all the earth. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">He chooses for us our inheritance,<br/>
+the glory of Jacob, whom he loves.<br/>
+God mounts his throne amid shouts of joy;<br/>
+the LORD, amid trumpet blasts. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Sing praise to God, sing praise;<br/>
+sing praise to our king, sing praise.<br/>
+For king of all the earth is God;<br/>
+sing hymns of praise. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">God reigns over the nations,<br/>
+God sits upon his holy throne.<br/>
+The princes of the peoples are gathered together<br/>
+with the people of the God of Abraham.<br/>
+For God’s are the guardians of the earth;<br/>
+he is supreme. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 66:1b-2, 8-9, 10-11, 13-14, 16-17, 19-20</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (see v. 16) Come, listen as I tell you what God did for me.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 118:1-2, 5-6, 8-9, 17-19, 26-27, 28-29</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1) Give thanks to the Lord for he is good, his love is everlasting.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1237</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1238</span> As circumstances suggest, the intercessions may follow. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">The heavens declare the glory of God, our almighty Father, and every creature he has made extols his goodness. Mindful of our indebtedness, let us together with praise and thanksgiving call upon him by saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Glory to you, O Lord, for all your gifts to us.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Father most generous, in Christ Jesus, your Son, you have given us all things; grant that we may never fail to sing your praises. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Your loving response far exceeds the merits and expectations of those who pray to you; grant that with our lips and our hearts we may sing the wonders of your works. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You prepare and bestow upon us all countless signs of your love; grant that, as we receive your gifts, we may always see you as their giver. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You have told your disciples to share what they have with others; grant that our neighbors may share in your gifts to us, so that they may also share in our joy. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1239</span> Instead of the intercessions, the hymn <span class="hymnName">Te Deum</span>, or the canticle <span class="hymnName">Bless the Lord, all you works of the Lord</span>, or the Canticle of Mary, or a suitable psalm may be sung.</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1240</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+
+<p class="theBlack">Almighty Father,<br/>
+you are lavish in bestowing all your gifts,<br/>
+and we give you thanks for the favors you have given to us.<br/>
+In your goodness you have favored us<br/>
+and kept us safe in the past.<br/>
+We ask that you continue to protect us<br/>
+and to shelter us in the shadow of your wings.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1241</span> Or:</p>
+
+<p class="theBlack">O God,<br/>
+your mercy is without measure,<br/>
+the treasures of your goodness without limit.<br/>
+We thank your gentle majesty<br/>
+for the favors you have bestowed on us.<br/>
+As we do so, we appeal to your compassion:<br/>
+stay close to those whose petitions you have granted<br/>
+and prepare them for the rewards of the life to come.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1242</span> A minister who is a priest or deacon concludes the rite by saying:</p>
+
+<p class="theBlack">May God the Father, with the Son and the Holy Spirit,<br/>
+who has shown you such great mercy,<br/>
+bless you with an everlasting blessing.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1243</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+
+<p class="theBlack">May God the Father, with the Son and the Holy Spirit,<br/>
+who has shown us such great mercy,<br/>
+be praised and blessed for ever and ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1244</span> It is preferable to end the celebration with a suitable song.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

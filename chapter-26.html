@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-26-->
+<p class="chapterNumber">Chapter 26</p>
+
+<p class="chapterTitle">Order for the Blessing and Conferral of a Scapular</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">907</span> The blessing and conferral of a scapular should, if at all possible, be carried out in a communal celebration. Whenever the conferral is a way of receiving members of the faithful into a confraternity of a religious order or institute, this reception must be carried out by a member of that institute or else by a minister deputed by the competent authority of the institute.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">908</span> On the occasion of the blessing and conferral, the scapular itself, of prescribed design and material, must be used; afterwards a blessed medal may replace the scapular.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">909</span> Whenever a person joins a confraternity in order to share spiritually in the life of a religious institute, the particular norms established by each institute must be respected and followed exactly.</p>
+
+<p class="riteHeading">Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">910</span> When the people or simply the members of the confraternity have gathered, the celebrant enters during the singing of a hymn suited to the particular celebration. After the singing, the celebrant says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">911</span> The celebrant greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">Through the Son, born of Mary, every blessing comes to us from God our Father. May his grace and peace be with you all.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">912</span> In the following or similar words, the celebrant prepares those present for the blessing.</p>
+
+<p class="theBlack">God uses ordinary things as signs to express his extraordinary mercy toward us. Through simple things as well we express our gratitude, declare our willingness to serve God, and profess the resolve to live up to our baptismal consecration.</p>
+
+<p class="theBlack">(This scapular is a sign of entrance into the confraternity of N., approved by the Church. The scapular thus expresses our intention of sharing in the spirit of that Order. That intention renews our baptismal resolve to put on Christ with the help of Mary, whose own greatest desire is that we become more like Christ in praise of the Trinity, until, dressed for the wedding feast, we reach our home in heaven.)</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">913</span> A reader, one of those present, or the celebrant reads a text of sacred Scripture, taken preferably from the readings in the Lectionary for Mass for the mysteries of the Trinity, of our Lord, and of Mary. The text chosen may also be one of those particularly related to the spirit of the religious family with which the confraternity is affiliated.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">914</span> Or:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the second letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">4:13—5:10</span></p>
+
+<p class="rubricReadingTheme">We do not wish to be stripped naked but rather to have the heavenly dwelling place envelop us.</p>
+
+<p class="theBlack">Since, then, we have the same spirit of faith, according to what is written, “I believed, therefore I spoke,” we too believe and therefore speak, knowing that the one who raised the Lord Jesus will raise us also with Jesus and place us with you in his presence. Everything indeed is for you, so that the grace bestowed in abundance on more and more people may cause the thanksgiving to overflow for the glory of God.</p>
+
+<p class="theBlack">Therefore, we are not discouraged; rather, although our outer self is wasting away, our inner self is being renewed day by day. For this momentary light affliction is producing for us an eternal weight of glory beyond all comparison, as we look not to what is seen but to what is unseen; for what is seen is transitory, but what is unseen is eternal.</p>
+
+<p class="theBlack">For we know that if our earthly dwelling, a tent, should be destroyed, we have a building from God, a dwelling not made with hands, eternal in heaven. For in this tent we groan, longing to be further clothed with our heavenly habitation if indeed, when we have taken it off, we shall not be found naked. For while we are in this tent we groan and are weighed down, because we do not wish to be unclothed but to be further clothed, so that what is mortal may be swallowed up by life. Now the one who has prepared us for this very thing is God, who has given us the Spirit as a first installment.</p>
+
+<p class="theBlack">So we are always courageous, although we know that while we are at home in the body we are away from the Lord, for we walk by faith, not by sight. Yet we are courageous, and we would rather leave the body and go home to the Lord. Therefore, we aspire to please him, whether we are at home or away. For we must all appear before the judgment seat of Christ, so that each one may receive recompense, according to what he did in the body, whether good or evil.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">915</span> After the reading, the celebrant gives the homily in which he explains to those present the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">916</span> The intercessions are then said. The celebrant introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The celebrant says:</p>
+
+<p class="theBlack">Relying on the intercession of Mary, who by the power of the Holy Spirit gave the Word our flesh, so that we might share in the grace of our firstborn brother and live for the glory of God, let us pray to the Father, saying:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> God, grant that we may put on Christ.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Father, you willed to have your beloved Son take on our humanity, so that in him we might share in your own life; grant that we may be called and truly be your children. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You wished Christ to be in every respect like us, but without sin, so that in following him we might share in his filial image; grant that we may follow Christ so as to please you in all things. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You call those who are clothed in the wedding garment of the kingdom to the feast of your grace, where you reveal yourself to them; teach us to serve you loyally. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Through Saint Paul you urge us to be the sweet fragrance of Christ’s goodness in the world; let us become the sign of Christ’s presence for our brothers and sisters. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You clothe us with the robe of righteousness and holiness, so that through the Holy Spirit we may live for you and show forth the holiness of your Church; through Christ make us grow in holiness, so that we may work together generously for the salvation of others. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You continually bestow on us in Christ every spiritual blessing, until, clothed in the wedding garment, we go out to meet Christ at his coming; grant that through the prayers of Mary we may pass from death to life. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">917</span> With hands outstretched, the celebrant continues:</p>
+
+<p class="theBlack">O God,<br/>
+the author and perfecter of all holiness,<br/>
+you call all who are reborn of water and the Holy Spirit<br/>
+to the fullness of the Christian life and the perfection of charity.<br/>
+Look with kindness on those who devoutly receive this scapular<br/>
+(in praise of the holy Trinity<br/>
+or in honor of Christ’s passion<br/>
+or in honor of the Blessed Virgin Mary).<br/>
+As long as they live,<br/>
+let them become sharers in the image of Christ your Son<br/>
+and, after they have fulfilled their mission on earth<br/>
+with the help of Mary, the Virgin Mother,<br/>
+receive them into the joy of your heavenly home.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Conferral of the Scapular</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">918</span> The celebrant puts the scapular on each of the candidates, saying either the words given here or similar words from the proper ritual of the religious family.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> Scapular in honor of the Trinity or the mysteries of Christ</p>
+
+<p class="theBlack">Receive this scapular (or habit)<br/>
+as the sign of your acceptance into the confraternity<br/>
+of the religious family of N.,<br/>
+which is dedicated to the blessed Trinity (or, for example, to the passion of Jesus Christ).<br/>
+Live in such a way that,<br/>
+with the help of the Mother of God,<br/>
+you may more and more put on Christ,<br/>
+who redeemed us by his blood,<br/>
+for the glory of the Trinity<br/>
+and for the service of the Church and of your neighbor.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> Scapular in honor of Mary</p>
+
+<p class="theBlack">Receive this scapular (or habit)<br/>
+as the sign of your acceptance into the confraternity<br/>
+of the religious family of N.,<br/>
+which is dedicated to the Blessed Virgin Mary.<br/>
+Live in such a way that,<br/>
+with the help of the Mother of God,<br/>
+you may more and more put on Christ,<br/>
+who redeemed us by his blood,<br/>
+for the glory of the Trinity<br/>
+and for the service of the Church and of your neighbor.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">919</span> As circumstances suggest, the celebrant may, in a clear voice, pronounce the formulary of conferral once for all the recipients. They all join in replying “Amen,” then go one by one to receive the scapular from the celebrant.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">920</span> After the conferral, the celebrant, facing the new confraternity members, says:</p>
+
+<p class="theBlack">By being clothed with this scapular (or habit)<br/>
+you have been accepted into the religious family of N.,<br/>
+in order that you may more fully serve Christ and his Church<br/>
+in the spirit of that community.<br/>
+So that you may more completely achieve that goal,<br/>
+I admit you, in virtue of the power entrusted to me,<br/>
+into a participation in all the spiritual favors<br/>
+belonging to this religious family.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">921</span> After stating the duties and obligations proper to the confraternity, the celebrant, in silence, sprinkles all present with holy water.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">922</span> The celebrant concludes the rite either with the following words or with another blessing formulary related to the title of the scapular that has been received.</p>
+
+<p class="theBlack">May almighty God bless you with his gentle kindness and give you the vision of his saving wisdom.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May he continue to nourish you with the teaching of faith and enable you to remain steadfast in doing what is right.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">May he turn your steps always toward him and lead you along the pathway of peace and charity.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">923</span> It is preferable to end the celebration with a suitable song.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

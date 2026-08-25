@@ -1,0 +1,98 @@
+  /* ---------- Reading content ---------- */
+
+  main.content {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: calc(env(safe-area-inset-top, 0px) + 64px) 1.25rem calc(env(safe-area-inset-bottom, 0px) + 64px);
+  }
+  
+  
+  
+  
+/******** HEADINGS ********/
+.partNumber{ /* 5 */
+      font-size: 161%;
+      text-align: center;
+      font-variant: small-caps;}
+.partTitle{ /* 5 plus appendix */
+      font-size: 161%;
+      text-align: center;
+      text-transform: uppercase;}
+
+.chapterNumber{ /* 42 */
+      font-size: 146%;
+      text-align: center;
+      font-variant: small-caps;}
+.chapterTitle{ /* 42 plus appendix */
+      font-size: 146%;
+      text-align: center;
+      text-transform: uppercase;}
+.dateHeading{ /* 5, all in Part IV */
+      font-size: 133%;
+      text-align: center;}
+
+.orderTitle{
+      font-size: 133%;
+      text-align: center;
+      text-transform: uppercase;}
+
+.riteHeading{
+      font-size: 121%;
+      text-align: center;
+      text-transform: uppercase;}
+
+.introHeading{
+      font-size: 110%;
+      text-align: center;
+      font-variant: small-caps;}
+.riteSectionHeading{
+      font-size: 110%;
+      font-variant: small-caps;}
+
+/******** RUBRICS ********/
+.rubricParaNumbered{
+      color: red;}
+.rubricParaUnnumbered{
+      color: red;}
+
+.rubricInlineNumbered{
+      color: red;}
+.rubricInlineUnnumbered{
+      color: red;}
+
+.rubricReadingTheme{
+      color: red;
+      font-style: italic;}
+.rubricAltReading{
+      color: red;}
+
+.readingTheme{
+      font-style: italic;}
+.rubricRV{ /* Also "Ant." x4 all together */
+      color: red;}
+.cross{
+      color: red;}
+.parNumber{
+      }
+.marginRefNumber{
+      color: white;
+      background: black;}
+.hymnName{
+      font-style: italic;}
+
+/******** BLACK ********/
+.theBlack{
+      font-weight: bold;}
+.rubricCitationInRdgIntro{
+      color: red;
+      font-weight: normal;
+      float: right;
+      margin-left: 1em;}
+
+
+
+  /* ---------- Table of Contents ---------- */
+
+.contentsLevel1 {margin-left: 0em;}
+.contentsLevel2 {margin-left: 2em;}
+.contentsLevel3 {margin-left: 4em;}

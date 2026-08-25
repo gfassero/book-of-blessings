@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-30-->
+<p class="chapterNumber">Chapter 30</p>
+
+<p class="chapterTitle">Order for the Blessing of Homes During the Christmas and Easter Seasons</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1006</span> When the faithful wish to have their homes blessed, the priest or deacon should gladly assist them. The Christmas season, especially the feast of the Epiphany, and the Easter Season are traditional times when homes may be blessed.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1007</span> The structure of the rite and its chief elements are always to be maintained, but the individual parts of the rite can be selected in such a way that the celebration is better adapted to the season and the other circumstances.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1008</span> A home should not be blessed unless those who live in it are present.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1009</span> These orders may be used by a priest or a deacon, and also by a layperson, who follows the rites and prayers designated for a lay minister.</p>
+
+<p class="orderTitle">I. Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1010</span> When the community has gathered, a suitable song may be sung. After the singing, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1011</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">Peace be with this house and with all who live here.</p>
+
+<p class="rubricInlineUnnumbered">And all reply:</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1012</span> A lay minister greets those present in the following words:</p>
+
+<p class="theBlack">Let us praise God, who fills our hearts and homes with peace. Blessed be God for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1013</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">The Word became flesh and made his dwelling place among us. It is Christ who enlightens our hearts and homes with his love. It is Christ, risen from the dead, who is our source of hope, joy, and comfort. May all who enter this home find Christ’s light and love.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1014</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="rubricInlineUnnumbered">(For Epiphany)</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">19:1-9</span></p>
+
+<p class="rubricReadingTheme">Today salvation has come to this house.</p>
+
+<p class="theBlack">Jesus came to Jericho and intended to pass through the town. Now a man there named Zacchaeus, who was a chief tax collector and also a wealthy man, was seeking to see who Jesus was; but he could not see him because of the crowd, for he was short in stature. So he ran ahead and climbed a sycamore tree in order to see Jesus, who was about to pass that way. When he reached the place, Jesus looked up and said to him, “Zacchaeus, come down quickly, for today I must stay at your house.” And he came down quickly and received him with joy. When they all saw this, they began to grumble, saying, “He has gone to stay at the house of a sinner.” But Zacchaeus stood there and said to the Lord, “Behold, half of my possessions, Lord, I shall give to the poor, and if I have extorted anything from anyone I shall repay it four times over.” And Jesus said to him, “Today salvation has come to this house because this man too is a descendant of Abraham.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1015</span> Or: (For Easter)</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">24:28-32</span></p>
+
+<p class="rubricReadingTheme">Stay with us, Lord.</p>
+
+<p class="theBlack">As the disciples approached the village to which they were going, Jesus gave the impression that he was going on farther. But they urged him, “Stay with us, for it is nearly evening and the day is almost over.” So he went in to stay with them. And it happened that, while he was with them at table, he took bread, said the blessing, broke it, and gave it to them. With that their eyes were opened and they recognized him, but he vanished from their sight. Then they said to each other, “Were not our hearts burning within us while he spoke to us on the way and opened the scriptures to us?”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1016</span> Or:</p>
+
+<p class="rubricAltReading">John 20:19-21—<span class="readingTheme">Jesus came and said, “Peace be with you.” (For Easter)</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1017</span> As circumstances suggest, one of the following responsorial psalms may be sung, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Happy are those who fear the Lord.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 112</p>
+
+<p class="theBlack">Happy the man who fears the LORD,<br/>
+who greatly delights in his commands.<br/>
+His posterity shall be mighty upon the earth;<br/>
+the upright generation shall be blessed. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Wealth and riches shall be in his house;<br/>
+his generosity shall endure forever.<br/>
+The LORD dawns through the darkness, a light for the upright!<br/>
+he is gracious and merciful and just. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Well for the man who is gracious and lends,<br/>
+who conducts his affairs with justice;<br/>
+He shall never be moved;<br/>
+the just man shall be in everlasting remembrance. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">An evil report he shall not fear;<br/>
+his heart is firm, trusting in the LORD.<br/>
+His heart is steadfast; he shall not fear<br/>
+till he looks down upon his foes. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Lavishly he gives to the poor;<br/>
+his generosity shall endure forever;<br/>
+his horn shall be exalted in glory. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">(For Epiphany)</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, every nation on earth will adore you.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 72</p>
+
+<p class="theBlack">O God, with your judgment endow the king,<br/>
+and with your justice, the king’s son;<br/>
+He shall govern your people with justice<br/>
+and your afflicted ones with judgment. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Justice shall flower in his days,<br/>
+and profound peace, till the moon be no more.<br/>
+May he rule from sea to sea,<br/>
+and from the River to the ends of the earth. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">The kings of Tarshish and the Isles shall offer gifts;<br/>
+the kings of Arabia and Seba shall bring tribute.<br/>
+All kings shall pay him homage,<br/>
+all nations shall serve him. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">For he shall rescue the poor man when he cries out,<br/>
+and the afflicted when he has no one to help him.<br/>
+He shall have pity for the lowly and the poor;<br/>
+the lives of the poor he shall save. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 127:1, 2, 3-4, 5</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (see v. 1) May the Lord build us a home.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 128:1-2, 3, 4, 5-6</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1) All those who fear the Lord will be blessed.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 118:2-4, 13-15, 22-24</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1) Give thanks to the Lord, for he is good.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1018</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1019</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">The Son of God made his home among us. With thanks and praise let us call upon him.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Stay with us, Lord.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Lord Jesus Christ, with Mary and Joseph you formed the Holy Family: remain in our home, that we may know you as our guest and honor you as our head. We pray: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Lord Jesus Christ, through you every dwelling is a temple of holiness: build those who live in this house into the dwelling place of God in the Holy Spirit. We pray: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Lord Jesus Christ, you taught your followers to build their houses upon solid rock: grant that the members of this family may live their lives in firm allegiance to your teachings. We pray: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Lord Jesus Christ, you had no place to lay your head, but in the spirit of poverty accepted the hospitality of your friends: grant that through our help the homeless may obtain proper housing. We pray: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="rubricInlineUnnumbered">For Christmas</p>
+
+<p class="theBlack">Lord Jesus Christ, you became flesh of the Virgin Mary: grant that your presence may be known always in this home. We pray: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="rubricInlineUnnumbered">For Epiphany</p>
+
+<p class="theBlack">Lord Jesus Christ, the three kings presented their gifts to you in praise and adoration: grant that those living in this house may use their talents and abilities to your greater glory. We pray: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="rubricInlineUnnumbered">For Easter</p>
+
+<p class="theBlack">Lord Jesus Christ, the disciples recognized you in the breaking of the bread: grant that the members of this family may be open always to the presence of Christ in word and sacrament. We pray: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="rubricInlineUnnumbered">For Easter</p>
+
+<p class="theBlack">Lord Jesus Christ, you appeared to the frightened apostles and said, “Peace be with you”: grant that your abiding peace may remain with the members of this family. We pray: <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1020</span> After the intercessions the minister, in the following or similar words, invites all present to sing or say the Lord’s Prayer.</p>
+
+<p class="theBlack">As children of God we confidently pray:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1021</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> For the Christmas Season</p>
+
+<p class="theBlack">Lord God of heaven and earth,<br/>
+you revealed your only-begotten Son to every nation<br/>
+by the guidance of a star.</p>
+
+<p class="theBlack">Bless this house<br/>
+and all who inhabit it.<br/>
+Fill them with the light of Christ,<br/>
+that their concern for others may reflect your love.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> For the Easter Season</p>
+
+<p class="theBlack">Lord,<br/>
+we rejoice in the victory of your Son over death:<br/>
+by rising from the tomb to new life<br/>
+he gives us new hope and promise.</p>
+
+<p class="theBlack">Bless all the members of this household<br/>
+and surround them with your protection,<br/>
+that they may find comfort and peace<br/>
+in Jesus Christ, the paschal lamb,<br/>
+who lives and reigns with you and the Holy Spirit,<br/>
+one God, for ever and ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1022</span> As circumstances suggest, the minister in silence may sprinkle those present and the home with holy water. During the sprinkling the minister may say:</p>
+
+<p class="theBlack">Let this water call to mind our baptism in Christ,<br/>
+who by his death and resurrection has redeemed us.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1023</span> A minister who is a priest or deacon concludes the rite by saying:</p>
+
+<p class="theBlack">May Christ Jesus dwell with you,<br/>
+keep you from all harm,<br/>
+and make you one in mind and heart,<br/>
+now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1024</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+
+<p class="theBlack">May Christ Jesus dwell with us,<br/>
+keep us from all harm,<br/>
+and make us one in mind and heart,<br/>
+now and for ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1025</span> It is preferable to end the celebration with a suitable song.</p>
+
+<p class="orderTitle">II. Shorter Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1026</span> All make the sign of the cross as the minister says:</p>
+
+<p class="theBlack">Blessed be the name of the Lord.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">Now and for ever.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1027</span> One of those present or the minister reads a text of sacred Scripture, for example:</p>
+
+<p class="rubricInlineUnnumbered">(For Epiphany)</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">19:1-9</span></p>
+
+<p class="rubricReadingTheme">Today salvation has come to this house.</p>
+
+<p class="theBlack">Jesus came to Jericho and intended to pass through the town. Now a man there named Zacchaeus, who was a chief tax collector and also a wealthy man, was seeking to see who Jesus was; but he could not see him because of the crowd, for he was short in stature. So he ran ahead and climbed a sycamore tree in order to see Jesus, who was about to pass that way. When he reached the place, Jesus looked up and said to him, “Zacchaeus, come down quickly, for today I must stay at your house.” And he came down quickly and received him with joy. When they all saw this, they began to grumble, saying, “He has gone to stay at the house of a sinner.” But Zacchaeus stood there and said to the Lord, “Behold, half of my possessions, Lord, I shall give to the poor, and if I have extorted anything from anyone I shall repay it four times over.” And Jesus said to him, “Today salvation has come to this house because this man too is a descendant of Abraham.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1028</span> Or: (For Easter)</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">24:28-32</span></p>
+
+<p class="rubricReadingTheme">Stay with us, Lord.</p>
+
+<p class="theBlack">As the disciples approached the village to which they were going, Jesus gave the impression that he was going on farther. But they urged him, “Stay with us, for it is nearly evening and the day is almost over.” So he went in to stay with them. And it happened that, while he was with them at table, he took bread, said the blessing, broke it, and gave it to them. With that their eyes were opened and they recognized him, but he vanished from their sight. Then they said to each other, “Were not our hearts burning within us while he spoke to us on the way and opened the scriptures to us?”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1029</span> Or:</p>
+
+<p class="rubricAltReading">John 20:19-21—<span class="readingTheme">Jesus came and said, “Peace be with you.”</span> (For Easter)</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1030</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> For the Christmas Season</p>
+
+<p class="theBlack">Lord God of heaven and earth,<br/>
+you revealed your only-begotten Son to every nation<br/>
+by the guidance of a star.</p>
+
+<p class="theBlack">Bless this house<br/>
+and all who inhabit it.<br/>
+Fill them with the light of Christ,<br/>
+that their concern for others may reflect your love.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> For the Easter Season</p>
+
+<p class="theBlack">Lord,<br/>
+we rejoice in the victory of your Son over death:<br/>
+by rising from the tomb to new life<br/>
+he gives us new hope and promise.</p>
+
+<p class="theBlack">Bless all the members of this household<br/>
+and surround them with your protection,<br/>
+that they may find comfort and peace<br/>
+in Jesus Christ, the paschal lamb,<br/>
+who lives and reigns with you and the Holy Spirit,<br/>
+one God, for ever and ever.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

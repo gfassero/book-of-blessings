@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-25-->
+<p class="chapterNumber">Chapter 25</p>
+
+<p class="chapterTitle">Order for the Blessing of Rosaries</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">882</span> The blessing of a large number of rosaries is preferably carried out in a celebration that precedes the recitation of the rosary in which the people take part.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">883</span> The order for a communal celebration of this blessing may also be properly used on feasts or memorials of Mary or on the occasion of a pilgrimage. Rosaries may be blessed along with other religious articles by using the order provided in this chapter.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">884</span> The present order may be used by a priest or deacon. While maintaining the structure and chief elements of the rite, the celebrant should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">885</span> If a single rosary is to be blessed or just a few, the minister may use the shorter rite given at the end of this chapter, nos. 901-905; or in special circumstances the minister may use only the short formulary given in no. 906.</p>
+
+<p class="orderTitle">I. Order of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">886</span> When the community has gathered, the celebrant enters during the singing of a suitable hymn or song.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">887</span> After the singing, the celebrant says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">888</span> The celebrant greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">Through the Son, born of Mary, every blessing comes to us from God our Father. May his grace and peace be with you all.</p>
+
+<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">889</span> In the following or similar words, the celebrant prepares those present for the blessing.</p>
+
+<p class="theBlack">Brothers and sisters, the Blessed Virgin was chosen to be the Mother of God as part of the eternal plan for the incarnation of the Word of God. On this earth she was the cherished Mother of the Redeemer and in a unique way the companion of his saving work. The form of prayer that we call the rosary is a way of contemplating and extolling the plan of divine providence. This is the reason why the pastors of the Church have always praised the rosary and urged its use. The Church bestows a special blessing on rosaries and on those who, as they recite this prayer, reflect on the mysteries of our redemption. By this blessing the Church intends that with Mary and through Mary God’s praises will be sung.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">890</span> A reader, another person present, or the celebrant reads a text of sacred Scripture, taken preferably from those given in the Lectionary for Mass in the Common of the Blessed Virgin Mary or from those given here.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">2:46-52</span></p>
+
+<p class="rubricReadingTheme">His mother meanwhile kept all these things in memory.</p>
+
+<p class="theBlack">After three days they found Jesus in the temple, sitting in the midst of the teachers, listening to them and asking them questions, and all who heard him were astounded at his understanding and his answers. When his parents saw him, they were astonished, and his mother said to him, “Son, why have you done this to us? Your father and I have been looking for you with great anxiety.” And he said to them, “Why were you looking for me? Did you not know that I must be in my Father’s house?” But they did not understand what he said to them. He went down with them and came to Nazareth, and was obedient to them; and his mother kept all these things in her heart. And Jesus advanced in wisdom and age and favor before God and man.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">891</span> Or:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the Acts of the Apostles:<span class="rubricCitationInRdgIntro">1:12-14</span></p>
+
+<p class="rubricReadingTheme">Together they devoted themselves to prayer with Mary, the Mother of Jesus.</p>
+
+<p class="theBlack">Then they returned to Jerusalem from the mount called Olivet, which is near Jerusalem, a sabbath day’s journey away. When they entered the city they went to the upper room where they were staying, Peter and John and James and Andrew, Philip and Thomas, Bartholomew and Matthew, James son of Alphaeus, Simon the Zealot, and Judas son of James. All these devoted themselves with one accord to prayer, together with some women, and Mary the mother of Jesus, and his brothers.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">892</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be the name of the Lord for ever.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 113</p>
+
+<p class="theBlack">Praise, you servants of the LORD,<br/>
+praise the name of the LORD.<br/>
+Blessed be the name of the LORD<br/>
+both now and forever. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">From the rising to the setting of the sun<br/>
+is the name of the LORD to be praised.<br/>
+High above all nations is the LORD,<br/>
+above the heavens is his glory. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Who is like the LORD, our God, who is enthroned on high<br/>
+and looks upon the heavens and the earth below? <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">He raises up the lowly from the dust;<br/>
+from the dunghill he lifts up the poor<br/>
+To seat them with princes,<br/>
+with the princes of his own people. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Luke 1:46-47, 48-49, 50-51, 52-53, 54-55</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 49) The Almighty has done great things for me, and holy is his Name.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">893</span> As circumstances suggest, the celebrant may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration and learn to pray more devoutly and intently through the use of the rosary.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">894</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The celebrant introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, nos. 896-898.</p>
+
+<p class="rubricInlineUnnumbered">The celebrant says:</p>
+
+<p class="theBlack">Because the rosary is rightly considered to be a preeminent sign of devotion to Mary, let us call upon the name of the Lord through the intercession of the one in whose honor we bless these rosaries.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Through Mary, O Lord, join us more closely to Christ.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">Most compassionate Father, when Mary consented to your word you chose her as the companion of the Redeemer; grant that through her intercession your Church may abound in the fruits of Christ’s redemption. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You joined the Virgin Mary to your Son in a close and unbreakable bond and showered her with the fullness of your grace; grant that we may always find her to be our advocate, pleading for the graces we need. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">In Mary you have provided us with the perfect example of following Christ; help us to strive to reflect in our lives the mysteries that we devoutly recall in the rosary. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You taught Mary to keep all your words in memory;<br/>
+grant that, following her example, we may hold fast to the words of your Son in faith and carry them out in our lives. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">You gave the Holy Spirit to your apostles as they were at prayer with Mary the Mother of Jesus; grant that, persevering in prayer, we may walk in the Spirit even as we live in the Spirit. (For this we pray:) <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">895</span> When there are no intercessions, the celebrant, before the prayer of blessing, says:</p>
+
+<p class="theBlack">Let us pray.</p>
+
+<p class="rubricInlineUnnumbered">As circumstances suggest, all may then pray for a moment in silence before the prayer of blessing.</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">896</span> With hands outstretched, the celebrant says the prayer of blessing.</p>
+
+<p class="theBlack">Blessed be our God and Father,<br/>
+who has given us the mysteries of his Son<br/>
+to be pondered with devotion and celebrated with faith.<br/>
+May he grant us, his faithful people,<br/>
+that by praying the rosary<br/>
+we may, with Mary the Mother of Jesus,<br/>
+seek to keep his joys, sorrows, and glories<br/>
+in our minds and hearts.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">897</span> Or:</p>
+
+<p class="theBlack">Grant, O Lord, we pray<br/>
+that, in reciting the rosary,<br/>
+your faithful may confidently seek the help of Mary.<br/>
+As they meditate on the mysteries of Christ Jesus,<br/>
+help them to affirm by their actions<br/>
+the truths they treasure in their prayer.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">898</span> Or:</p>
+
+<p class="theBlack">Almighty and merciful God,<br/>
+out of the immense love with which you have loved us<br/>
+you willed that by the power of the Holy Spirit<br/>
+your Son should be born of the Virgin Mary,<br/>
+that he should suffer death through the cross,<br/>
+and rise again from the dead.</p>
+
+<p class="theBlack">Lord,<br/>
+send your blessing<br/>
+upon all who use these rosaries<br/>
+to pray with lips and hearts<br/>
+in honor of the Mother of your Son.<br/>
+Grant that they may be filled with an enduring devotion<br/>
+and at the end of their days<br/>
+be led into your presence<br/>
+by the Blessed Virgin Mary.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">899</span> The recitation of the rosary follows, in the manner customary in the place.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">900</span> After the recitation of the rosary, an antiphon, for example, <span class="hymnName">Salve Regina</span>, or some other suitable song may be sung. The celebrant then concludes the rite by saying:</p>
+
+<p class="theBlack">May God who has given joy to the world through the Blessed Virgin Mary<br/>
+shower you with his gracious kindness.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="orderTitle">II. Shorter Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">901</span> To begin, the celebrant says:</p>
+
+<p class="theBlack">Lord, show us your mercy and love.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">And grant us your salvation.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">902</span> As circumstances suggest, the celebrant may prepare those present for the blessing.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">903</span> One of those present or the celebrant reads a text of sacred Scripture, for example:</p>
+
+<p class="rubricInlineUnnumbered">Luke 2:51b-52</p>
+
+<p class="theBlack">Mary, his mother, kept all these things in her heart. And Jesus advanced in wisdom and age and favor before God and man.</p>
+
+<p class="rubricInlineUnnumbered">Acts 1:14</p>
+
+<p class="theBlack">All these devoted themselves with one accord to prayer, together with some women, and Mary the mother of Jesus, and his brothers.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">904</span> With hands outstretched, the celebrant says the prayer of blessing.</p>
+
+<p class="theBlack">Blessed by our God and Father,<br/>
+who has given us the mysteries of his Son<br/>
+to be pondered with devotion and celebrated with faith.<br/>
+May he grant us, his faithful people,<br/>
+that by praying the rosary<br/>
+we may, with Mary the Mother of Jesus,<br/>
+seek to keep his joys, sorrows, and glories<br/>
+in our minds and hearts.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">905</span> Or:</p>
+
+<p class="theBlack">In memory of the mysteries<br/>
+of the life, death, and resurrection of our Lord<br/>
+and in honor of the Virgin Mary,<br/>
+Mother of Christ and Mother of the Church,<br/>
+may those who devoutly use this rosary to pray be blessed,<br/>
+in the name of the Father, and of the Son, <span class="cross">+</span> and of the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Short Formulary</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">906</span> In special circumstances, a priest or deacon may use the following short blessing formulary.</p>
+
+<p class="theBlack">May this rosary and the one who uses it be blessed,<br/>
+in the name of the Father, and of the Son, <span class="cross">+</span> and of the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

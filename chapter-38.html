@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-38-->
+<p class="chapterNumber">Chapter 38</p>
+
+<p class="chapterTitle">Order for the Blessing of a Parish Council</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1192</span> The pastoral council of a parish provides valuable assistance and support to the pastor. Through the parish council the Christian faithful, along with those who share in the pastoral care of the parish in virtue of their office, give their help in fostering pastoral activity (C.I.C., c. 536,1). Because of the importance of their role it is appropriate that the members of the council receive God’s blessing as they begin their term of office.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1193</span> This order may be used during Mass (see complete edition, nos. 1900-1902) or in a celebration of the word of God.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1194</span> This order is used by the pastor of the parish or by another priest who has been delegated by him.</p>
+
+<p class="riteHeading">Order of Blessing Within a Celebration of the Word of God</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1195</span> When the community has gathered, a suitable song may be sung.</p>
+
+<p class="rubricInlineUnnumbered">The priest then says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1196</span> The priest greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">The grace of our Lord Jesus Christ, the love of God, and the fellowship of the Holy Spirit be with you.</p>
+
+<p class="rubricInlineUnnumbered">And all reply:</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1197</span> In the following or similar words, the priest next prepares those present to receive the blessing.</p>
+
+<p class="theBlack">The parish council provides the pastor with the wisdom of the laity for the good of the parish. Because of their knowledge and competence the members of the council are called to share with one another and with the pastor their insights honestly, with courage and prudence. And so, the parish is strengthened by the unity of effort achieved in reverence and charity.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1198</span> One of those present, or the priest himself, then reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the apostle Paul to the Philippians:<span class="rubricCitationInRdgIntro">2:1-4</span></p>
+
+<p class="rubricReadingTheme">Have the same convictions, the same love, the concern for unity.</p>
+
+<p class="theBlack">If there is any encouragement in Christ, any solace in love, any participation in the Spirit, any compassion and mercy, complete my joy by being of the same mind, with the same love, united in heart, thinking one thing. Do nothing out of selfishness or out of vainglory; rather, humbly regard others as more important than yourselves, each looking out not for his own interests, but also everyone for those of others.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1199</span> Or:</p>
+
+<p class="rubricAltReading">Ephesians 4:1-6—<span class="readingTheme">Do all you can to preserve the unity of the Spirit in the bond of peace.</span></p>
+
+<p class="rubricAltReading">Matthew 18:15-20—<span class="readingTheme">Where two or three meet in my name, I shall be there with them.</span></p>
+
+<p class="rubricAltReading">John 14:23-29—<span class="readingTheme">The Spirit of truth will teach you everything.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1200</span> As circumstances suggest, one of the following responsorial psalms may be sung, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, guard your people like a shepherd guarding his flock.</p>
+
+<p class="rubricInlineUnnumbered">Jeremiah 31</p>
+
+<p class="theBlack">Hear the word of the LORD, O nations,<br/>
+proclaim it on distant coasts, and say:<br/>
+He who scattered Israel, now gathers them together,<br/>
+he guards them as a shepherd his flock. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">The LORD shall ransom Jacob,<br/>
+he shall redeem him from the hand of his conqueror.<br/>
+Shouting, they shall mount the heights of Zion,<br/>
+they shall come streaming to the LORD’s blessings:<br/>
+The grain, the wine, and the oil,<br/>
+the sheep and the oxen;<br/>
+They themselves shall be like watered gardens,<br/>
+never again shall they languish. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Then the virgins shall make merry and dance,<br/>
+and young men and old as well.<br/>
+I will turn their mourning into joy,<br/>
+I will console and gladden them after their sorrows.<br/>
+I will lavish choice portions upon the priests,<br/>
+and my people shall be filled with my blessings,<br/>
+says the LORD. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 100:2, 3, 4, 5</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 3) We are his people: the sheep of his flock.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1201</span> As circumstances suggest, after the reading the priest may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1202</span> The intercessions are then said. The priest introduces them and an assisting minister or one of those present announces the intentions. From the following those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The priest says:</p>
+
+<p class="theBlack">My dear friends, let us pray to God our Father who binds us together in the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Graciously hear us, O Lord.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For the holy Church of God, that we may grow in Christ and in the bond of common fellowship, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For the members of our parish council, that they may give witness to the presence of Christ by lives manifesting faith, hope, and love, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For all concerned with the welfare of this parish, that they may be open to the movement of the Holy Spirit and be always ready to carry out God’s will, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For all gathered here, that we may reach out with compassion and care to those in need, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1203</span> After the intercessions the priest, in the following or similar words, invites all present to sing or say the Lord’s Prayer.</p>
+
+<p class="theBlack">Let us pray to the Father in the words Jesus taught us:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1204</span> The priest says the prayer of blessing with hands outstretched over the parish council.</p>
+
+<p class="theBlack">Ever-living God,<br/>
+you gather us together<br/>
+as the parish of N.<br/>
+to carry the Gospel of Christ to all people.</p>
+
+<p class="theBlack">Bless the members of this parish council.<br/>
+Let your Spirit enlighten their minds<br/>
+and guide all their actions<br/>
+that they may be renewed in faith,<br/>
+united in love,<br/>
+and bring to fulfillment the work of your Church<br/>
+to your greater honor and glory.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading">Concluding Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1205</span> The priest concludes the rite by saying:</p>
+
+<p class="theBlack">Lord, bless us with your heavenly gifts<br/>
+and in your mercy make us ready to do your will.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+
+<p class="theBlack">And may almighty God bless you all,<br/>
+the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1206</span> It is preferable to end the celebration with a suitable song.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

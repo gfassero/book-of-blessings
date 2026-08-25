@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+<a href="part-i.html" class="contentsLevel1">Part I: Of People</a><br/>
+<a href="chapter-1.html" class="contentsLevel2">Chapter 1: Of Families</a><br/>
+<a href="chapter-1-i-family.html" class="contentsLevel3">I-II. Of Families</a><br/>
+<a href="chapter-1-iii-married-couple.html" class="contentsLevel3">III. Of a Married Couple</a><br/>
+<a href="chapter-1-iv-children.html" class="contentsLevel3">IV. Of Children</a><br/>
+<a href="chapter-1-vi-engaged-couple.html" class="contentsLevel3">VI. Of an Engaged Couple</a><br/>
+<a href="chapter-1-vii-parents-before-childbirth.html" class="contentsLevel3">VII-VIII. Before and After Childbirth</a><br/>
+<a href="chapter-1-ix-parents-after-miscarriage.html" class="contentsLevel3">IX. After a Miscarriage</a><br/>
+<a href="chapter-1-x-parents-and-adopted-child.html" class="contentsLevel3">X. Of Parents & an Adopted Child</a><br/>
+<a href="chapter-1-xi-birthday.html" class="contentsLevel3">XI. On a Birthday</a><br/>
+<a href="chapter-1-xii-elderly-confined-home.html" class="contentsLevel3">XII. Of Elderly Confined at Home</a><br/>
+<a href="chapter-2.html" class="contentsLevel2">Chapter 2: Of the Sick</a><br/>
+<a href="chapter-2-ii-addiction-substance-abuse.html" class="contentsLevel3">II. Of a Sufferer from Addiction</a><br/>
+<a href="chapter-2-iii-crime-or-oppression.html" class="contentsLevel3">III. Of a Victim of Crime or Oppression</a><br/>
+<a href="chapter-3.html" class="contentsLevel2">Chapter 3: For Catechesis & Prayer</a><br/>
+<a href="chapter-3-i-catechetical-or-prayer-meeting.html" class="contentsLevel3">I. For a Catechetical or Prayer Meeting</a><br/>
+<a href="chapter-3-ii-catechumens.html" class="contentsLevel3">II. Of Catechumens</a><br/>
+<a href="chapter-4.html" class="contentsLevel2">Chapter 4: Of Students & Teachers</a><br/>
+<a href="chapter-5.html" class="contentsLevel2">Chapter 5: At a Meeting</a><br/>
+<a href="chapter-5-i-meetings.html" class="contentsLevel3">I. For Meetings</a><br/>
+<a href="chapter-5-ii-ecumenical-groups.html" class="contentsLevel3">II. Of Ecumenical Groups</a><br/>
+<a href="chapter-5-iii-interfaith-gatherings.html" class="contentsLevel3">III. For Interfaith Gatherings</a><br/>
+<a href="chapter-6.html" class="contentsLevel2">Chapter 6: Of Organizations for Public Service</a><br/>
+<a href="chapter-7.html" class="contentsLevel2">Chapter 7: Of Pilgrims</a><br/>
+<a href="chapter-8.html" class="contentsLevel2">Chapter 8: Of Travelers</a><br/>
+<a href="part-ii.html" class="contentsLevel1">Part II: Of Buildings & Activities</a><br/>
+<a href="chapter-9.html" class="contentsLevel2">Chapter 9: Of a New Building Site</a><br/>
+<a href="chapter-10.html" class="contentsLevel2">Chapter 10: Of a New Home</a><br/>
+<a href="chapter-11.html" class="contentsLevel2">Chapter 11: Of an Office, Shop, or Factory</a><br/>
+<a href="chapter-12.html" class="contentsLevel2">Chapter 12: Of Centers of Social Communication</a><br/>
+<a href="chapter-13.html" class="contentsLevel2">Chapter 13: Of a Gymnasium or Athletic Field</a><br/>
+<a href="chapter-14.html" class="contentsLevel2">Chapter 14: Of Means of Transportation</a><br/>
+<a href="chapter-15.html" class="contentsLevel2">Chapter 15: Of Boats & Fishing Gear</a><br/>
+<a href="chapter-16.html" class="contentsLevel2">Chapter 16: Of Technology or Equipment</a><br/>
+<a href="chapter-17.html" class="contentsLevel2">Chapter 17: Of Tools or Work Equipment</a><br/>
+<a href="chapter-18.html" class="contentsLevel2">Chapter 18: Of Animals</a><br/>
+<a href="chapter-19.html" class="contentsLevel2">Chapter 19: Of Fields & Flocks</a><br/>
+<a href="chapter-20.html" class="contentsLevel2">Chapter 20: Of Seeds at Planting Time</a><br/>
+<a href="chapter-21.html" class="contentsLevel2">Chapter 21: Giving Thanks for the Harvest</a><br/>
+<a href="chapter-22.html" class="contentsLevel2">Chapter 22: Of an Athletic Event</a><br/>
+<a href="chapter-23.html" class="contentsLevel2">Chapter 23: Before & After Meals</a><br/>
+<a href="part-iii.html" class="contentsLevel1">Part III: Of Articles of Devotion</a><br/>
+<a href="chapter-24.html" class="contentsLevel2">Chapter 24: Of Religious Articles</a><br/>
+<a href="chapter-25.html" class="contentsLevel2">Chapter 25: Of Rosaries</a><br/>
+<a href="chapter-26.html" class="contentsLevel2">Chapter 26: Of a Scapular</a><br/>
+<a href="part-iv.html" class="contentsLevel1">Part IV: For Feasts & Seasons</a><br/>
+<a href="chapter-27.html" class="contentsLevel2">Chapter 27: Of an Advent Wreath</a><br/>
+<a href="chapter-28.html" class="contentsLevel2">Chapter 28: Of a Manger or Nativity Scene</a><br/>
+<a href="chapter-29.html" class="contentsLevel2">Chapter 29: Of a Christmas Tree</a><br/>
+<a href="chapter-30.html" class="contentsLevel2">Chapter 30: Of Homes During Christmas & Easter</a><br/>
+<a href="chapter-31.html" class="contentsLevel2">Chapter 31: Of Throats (Saint Blase: Of February 3)</a><br/>
+<a href="chapter-32.html" class="contentsLevel2">Chapter 32: On Ash Wednesday</a><br/>
+<a href="chapter-33.html" class="contentsLevel2">Chapter 33: Of Saint Joseph’s Table (March 19)</a><br/>
+<a href="chapter-34.html" class="contentsLevel2">Chapter 34: Of Food for Easter</a><br/>
+<a href="chapter-35.html" class="contentsLevel2">Chapter 35: Visiting a Cemetery</a><br/>
+<a href="chapter-36.html" class="contentsLevel2">Chapter 36: Of Food for Thanksgiving Day</a><br/>
+<a href="chapter-37.html" class="contentsLevel2">Chapter 37: Of Food, Drink, Flowers, Candles, etc.</a><br/>
+<a href="part-v.html" class="contentsLevel1">Part V: For Various Needs & Occasions</a><br/>
+<a href="chapter-38.html" class="contentsLevel2">Chapter 38: Of a Parish Council</a><br/>
+<a href="chapter-39.html" class="contentsLevel2">Chapter 39: Of Officers of Parish Societies</a><br/>
+<a href="chapter-40.html" class="contentsLevel2">Chapter 40: On the Inauguration of a Public Official</a><br/>
+<a href="chapter-41.html" class="contentsLevel2">Chapter 41: In Giving Thanks</a><br/>
+<a href="chapter-42.html" class="contentsLevel2">Chapter 42: In Various Circumstances</a><br/>
+<a href="appendix.html" class="contentsLevel1">Appendix: Solemn Blessings & Prayers</a><br/>
+<a href="appendix-solemn-blessings.html" class="contentsLevel2">Solemn Blessings</a><br/>
+<a href="appendix-prayers-over-the-people.html" class="contentsLevel2">Prayers Over the People</a>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

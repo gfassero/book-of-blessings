@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Document Title — Reference</title>
+
+<!--
+
+At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
+- short/long/shortest
+- they/him/her
+- children/adults
+- addiction/abuse
+- sick/healthy
+- etc
+
+Other ideas:
+- On the main menu, gray out cleric blessings in lay mode (links still work).
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- And also with you. -> And with your spirit.
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+FORMAT THE PARAGRAPH NUMBERS
+FORMAT THE MARGIN NUMBERS
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
+    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
+    <!-- Report bugs & typos should work. -->
+  </div>
+</aside>
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT chapter-31-->
+<p class="chapterNumber">Chapter 31</p>
+
+<p class="chapterTitle">Order for the Blessing of Throats on the Feast of Saint Blase</p>
+
+<p class="dateHeading">February 3</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1031</span> “Suffering and illness have always been among the greatest problems that trouble the human spirit. Christians feel and experience pain as do all other people; yet their faith helps them to grasp more deeply the mystery of suffering and to bear their pain with greater courage. . . . Part of the plan laid out by God’s providence is that we should fight strenuously against all sickness and carefully seek the blessings of good health, so that we may fulfill our role in human society and in the Church.”</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1032</span> “The blessing of the sick by ministers of the Church is a very ancient custom, rooted in imitation of Christ himself and his apostles.”</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1033</span> In the United States the annual blessing of throats is a traditional sign of the struggle against illness in the life of the Christian. This blessing is ordinarily given during Mass (see complete edition, nos. 1630-1635) or a celebration of the word of God on February 3, the memorial of Saint Blase.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1034</span> Saint Blase was the bishop of Sebaste in Armenia during the fourth century. Very little is known about his life. According to various accounts he was a physician before becoming a bishop. His cult spread throughout the entire Church in the Middle Ages because he was reputed to have miraculously cured a little boy who nearly died because of a fishbone in his throat. From the eighth century he has been invoked on behalf of the sick, especially those afflicted with illnesses of the throat.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1035</span> The blessing of throats may be given by a priest, deacon, or a lay minister who follows the rites and prayers designated for a lay minister. If the blessing is conferred during Mass, the blessing follows the homily and general intercessions, or, for pastoral reasons, the prayer of blessing may take the place of the final blessing of the Mass. When the blessing is given outside Mass, it is preceded by a brief celebration of the word of God. If the blessing is to be celebrated at Morning Prayer or Evening Prayer, it is given after the reading and responsory (and homily) and before the gospel canticle.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1036</span> The blessing may be given by touching the throat of each person with two candles blessed on the feast of the Presentation of the Lord (February 2) and which have been joined together in the form of a cross.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1037</span> If, for pastoral reasons, each individual cannot be blessed in the manner described in no. 1036, for example when great numbers are gathered for the blessing or when the memorial of Saint Blase occurs on a Sunday, a priest or deacon may give the blessing to all assembled by extending hands, without the crossed candles, over the people while saying the prayer of blessing. A lay minister says the prayer proper to lay ministers without making the sign of the cross.</p>
+
+<p class="rubricParaNumbered"><span class="parNumber">1038</span> The blessing may also be given to the sick or the elderly in their homes when they cannot attend the parish celebration.</p>
+
+<p class="orderTitle">I. Order of Blessing Within a Celebration of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1039</span> The present order may be used by a priest or a deacon, and also by a lay person, who follows the rites and prayers designated for a lay minister.</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1040</span> When the community has gathered, a suitable song may be sung. After the singing, the minister says:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1041</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">The grace and peace of God the Father and the Lord Jesus Christ be with you.</p>
+
+<p class="rubricInlineUnnumbered">And all reply:</p>
+
+<p class="theBlack">And also with you.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1042</span> A lay minister greets those present in the following words:</p>
+
+<p class="theBlack">Let us praise the God and Father of our Lord Jesus Christ.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1043</span> In the following or similar words, the minister prepares those present for the blessing.</p>
+
+<p class="theBlack">Today we celebrate the feast of Saint Blase, who was bishop of Sebaste in Armenia in the fourth century. Before being martyred, he is said to have healed a boy who was choking. Since the eighth century, Saint Blase has been venerated as the patron of those who suffer from diseases of the throat. We pray in a special way today for protection from afflictions of the throat and from other illnesses. The blessing of Saint Blase is a sign of our faith in God’s protection and love for us and for the sick.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1044</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Mark:<span class="rubricCitationInRdgIntro">16:15-20</span></p>
+
+<p class="rubricReadingTheme">They will place their hands on the sick and they will recover.</p>
+
+<p class="theBlack">Jesus said to the eleven, “Go into the whole world and proclaim the gospel to every creature. Whoever believes and is baptized will be saved; whoever does not believe will be condemned. These signs will accompany those who believe: in my name they will drive out demons, they will speak new languages. They will pick up serpents with their hands, and if they drink any deadly thing, it will not harm them. They will lay hands on the sick, and they will recover.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1045</span> Or:</p>
+
+<p class="rubricAltReading">Matthew 8:14-17—<span class="readingTheme">Peter’s mother-in-law is healed.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1046</span> As circumstances suggest, one of the following responsorial psalms may be sung, or some other suitable song.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Taste and see the goodness of the Lord.</p>
+
+<p class="rubricInlineUnnumbered">Psalm 34</p>
+
+<p class="theBlack">I will bless the LORD at all times;<br/>
+his praise shall be ever in my mouth.<br/>
+Let my soul glory in the LORD;<br/>
+the lowly will hear me and be glad. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Glorify the LORD with me,<br/>
+let us together extol his name.<br/>
+I sought the LORD, and he answered me<br/>
+and delivered me from all my fears. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Look to him that you may be radiant with joy,<br/>
+and your faces may not blush with shame.<br/>
+When the afflicted man called out, the LORD heard,<br/>
+and from all his distress he saved him. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">The angel of the LORD encamps<br/>
+around those who fear him, and delivers them.<br/>
+Taste and see how good the LORD is;<br/>
+happy the man who takes refuge in him. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Fear the LORD, you his holy ones,<br/>
+for nought is lacking to those who fear him.<br/>
+The great grow poor and hungry;<br/>
+but those who seek the LORD want for no good thing. <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Come, children, hear me;<br/>
+I will teach you the fear of the LORD.<br/>
+Which of you desires life,<br/>
+and takes delight in prosperous days? <span class="rubricRV">℟.</span></p>
+
+<p class="theBlack">Keep your tongue from evil<br/>
+and your lips from speaking guile;<br/>
+Turn from evil and do good;<br/>
+seek peace, and follow after it. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Psalm 27</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> (v. 14) Put your hope in the Lord; take courage and be strong.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1047</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+
+<p class="riteSectionHeading">Intercessions</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1048</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+
+<p class="rubricInlineUnnumbered">The minister says:</p>
+
+<p class="theBlack">Let us now pray for those who are sick and suffering, for those who care for the sick, and for all who seek the blessings of good health.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
+
+<p class="rubricInlineUnnumbered">Or:</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Lord, have mercy.</p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For those who suffer from sickness and disease, that they may receive healing, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For the mentally ill and for their families, that they may receive comfort, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For those with physical disabilities, that the strength of Christ may invigorate them, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For doctors and nurses, and for all who care for the sick, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineUnnumbered">Assisting minister:</p>
+
+<p class="theBlack">For those who seek the prayers of Saint Blase today, that they may be protected from afflictions of the throat and other forms of illness, we pray to the Lord. <span class="rubricRV">℟.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1049</span> After the intercessions the minister, in the following or similar words, invites all present to sing or say the Lord’s Prayer.</p>
+
+<p class="theBlack">With confidence we call upon the Lord, saying:</p>
+
+<p class="rubricInlineUnnumbered">All:</p>
+
+<p class="theBlack">Our Father...</p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1050</span> A minister who is a priest or deacon touches the throat of each person with the crossed candles and says the prayer of blessing.</p>
+
+<p class="theBlack">Through the intercession of Saint Blase, bishop and martyr,<br/>
+may God deliver you from every disease of the throat<br/>
+and from every other illness:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, <span class="cross">+</span> and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">Each person responds:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="theBlack">During the blessing suitable psalms or other suitable songs may be sung.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1051</span> A lay minister touches the throat of each person with the crossed candles and, without making the sign of the cross, says the prayer of blessing.</p>
+
+<p class="theBlack">Through the intercession of Saint Blase, bishop and martyr,<br/>
+may God deliver you from every disease of the throat<br/>
+and from every other illness:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">Each person responds:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1052</span> After receiving the blessing each person may depart.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1053</span> If all cannot be blessed individually, a minister who is a priest or deacon, without candles, may extend his hands over the assembly and say the prayer of blessing. A lay minister says the prayer proper to lay ministers without making the sign of the cross.</p>
+
+<p class="orderTitle">II. Shorter Rite</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1054</span> All make the sign of the cross as the minister says:</p>
+
+<p class="theBlack">Our help is in the name of the Lord.</p>
+
+<p class="rubricInlineUnnumbered">All reply:</p>
+
+<p class="theBlack">Who made heaven and earth.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1055</span> One of those present or the minister reads a text of sacred Scripture, for example:</p>
+
+<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Mark:<span class="rubricCitationInRdgIntro">16:15-20</span></p>
+
+<p class="rubricReadingTheme">They will place their hands on the sick and they will recover.</p>
+
+<p class="theBlack">Jesus said to the eleven, “Go into the whole world and proclaim the gospel to every creature. Whoever believes and is baptized will be saved; whoever does not believe will be condemned. These signs will accompany those who believe: in my name they will drive out demons, they will speak new languages. They will pick up serpents with their hands, and if they drink any deadly thing, it will not harm them. They will lay hands on the sick, and they will recover.”</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1056</span> Or:</p>
+
+<p class="rubricAltReading">Matthew 8:14-17—<span class="readingTheme">Peter’s mother-in-law is healed.</span></p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1057</span> A minister who is a priest or deacon touches the throat of each person with the crossed candles and says the prayer of blessing.</p>
+
+<p class="theBlack">Through the intercession of Saint Blase, bishop and martyr,<br/>
+may God deliver you from every disease of the throat<br/>
+and from every other illness:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, <span class="cross">+</span> and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">Each person responds:</p>
+
+<p class="theBlack">Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1058</span> A lay minister touches the throat of each person with the crossed candles and, without making the sign of the cross, says the prayer of blessing.</p>
+
+<p class="theBlack">Through the intercession of Saint Blase, bishop and martyr,<br/>
+may God deliver you from every disease of the throat<br/>
+and from every other illness:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered">Each person responds:</p>
+
+<p class="theBlack">Amen.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>
