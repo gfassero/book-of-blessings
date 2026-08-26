@@ -1,8 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-powershell.exe -ExecutionPolicy Bypass -File "split.ps1"
-
 for %%F in ("working\*") do (
     if exist "%%F" (
         type "header.html" > "docs\%%~nxF"

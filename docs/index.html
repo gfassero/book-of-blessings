@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>Document Title — Reference</title>
+<title>Book of Blessings</title>
 
 <!--
 
@@ -16,16 +16,18 @@ At the top of each blessing, offer button to filter or autofill relevant categor
 - sick/healthy
 - etc
 
+Cull the meal blessings especially.
+
 Other ideas:
-- On the main menu, gray out cleric blessings in lay mode (links still work).
 - Link to suggested scriptures on USCCB.
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit.
+- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
+- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
@@ -33,8 +35,15 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-FORMAT THE PARAGRAPH NUMBERS
-FORMAT THE MARGIN NUMBERS
+Warn when lay users view clergy-only rite.
+Warn when deacon users view priest-only rite.
+
+How to use:
+- do the red, say the black
+- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
+- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
+- Link to general instruction
+- Link to https://canonlaw.ninja/?nums=1166-1172
 
 -->
 
@@ -94,7 +103,7 @@ FORMAT THE MARGIN NUMBERS
       </div>
     </div>
     <div class="setting-group">
-      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <span class="setting-label" id="presiderLabel">Presider Mode</span>
       <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
@@ -105,14 +114,14 @@ FORMAT THE MARGIN NUMBERS
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -121,36 +130,34 @@ FORMAT THE MARGIN NUMBERS
         </button>
       </div>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
     <div class="setting-group">
       <div class="setting-row">
-        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
           <span class="switch-thumb"></span>
         </button>
       </div>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
-    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
-    <!-- Report bugs & typos should work. -->
+<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
 <div class="popup-overlay" id="popupOverlay"></div>
@@ -174,9 +181,11 @@ FORMAT THE MARGIN NUMBERS
 
 <main class="content">
 
+<p class="partNumber">The Book of Blessings</p>
 <a href="part-i.html" class="contentsLevel1">Part I: Of People</a><br/>
 <a href="chapter-1.html" class="contentsLevel2">Chapter 1: Of Families</a><br/>
-<a href="chapter-1-i-family.html" class="contentsLevel3">I-II. Of Families</a><br/>
+<a href="chapter-1-i-family.html" class="contentsLevel3">I. Of Families</a><br/>
+<a href="chapter-1-ii-family-home.html" class="contentsLevel3 clergy">II. Of Families in Their Own Homes (by clergy)</a><br/>
 <a href="chapter-1-iii-married-couple.html" class="contentsLevel3">III. Of a Married Couple</a><br/>
 <a href="chapter-1-iv-children.html" class="contentsLevel3">IV. Of Children</a><br/>
 <a href="chapter-1-vi-engaged-couple.html" class="contentsLevel3">VI. Of an Engaged Couple</a><br/>
@@ -196,15 +205,15 @@ FORMAT THE MARGIN NUMBERS
 <a href="chapter-5-i-meetings.html" class="contentsLevel3">I. For Meetings</a><br/>
 <a href="chapter-5-ii-ecumenical-groups.html" class="contentsLevel3">II. Of Ecumenical Groups</a><br/>
 <a href="chapter-5-iii-interfaith-gatherings.html" class="contentsLevel3">III. For Interfaith Gatherings</a><br/>
-<a href="chapter-6.html" class="contentsLevel2">Chapter 6: Of Organizations for Public Service</a><br/>
-<a href="chapter-7.html" class="contentsLevel2">Chapter 7: Of Pilgrims</a><br/>
+<a href="chapter-6.html" class="contentsLevel2 clergy">Chapter 6: Of Organizations for Public Service (by clergy)</a><br/>
+<a href="chapter-7.html" class="contentsLevel2 clergy">Chapter 7: Of Pilgrims (by clergy)</a><br/>
 <a href="chapter-8.html" class="contentsLevel2">Chapter 8: Of Travelers</a><br/>
 <a href="part-ii.html" class="contentsLevel1">Part II: Of Buildings & Activities</a><br/>
-<a href="chapter-9.html" class="contentsLevel2">Chapter 9: Of a New Building Site</a><br/>
+<a href="chapter-9.html" class="contentsLevel2 clergy">Chapter 9: Of a New Building Site (by clergy)</a><br/>
 <a href="chapter-10.html" class="contentsLevel2">Chapter 10: Of a New Home</a><br/>
-<a href="chapter-11.html" class="contentsLevel2">Chapter 11: Of an Office, Shop, or Factory</a><br/>
-<a href="chapter-12.html" class="contentsLevel2">Chapter 12: Of Centers of Social Communication</a><br/>
-<a href="chapter-13.html" class="contentsLevel2">Chapter 13: Of a Gymnasium or Athletic Field</a><br/>
+<a href="chapter-11.html" class="contentsLevel2 clergy">Chapter 11: Of an Office, Shop, or Factory (by clergy)</a><br/>
+<a href="chapter-12.html" class="contentsLevel2 clergy">Chapter 12: Of Centers of Social Communication (by clergy)</a><br/>
+<a href="chapter-13.html" class="contentsLevel2 clergy">Chapter 13: Of a Gymnasium or Athletic Field (by clergy)</a><br/>
 <a href="chapter-14.html" class="contentsLevel2">Chapter 14: Of Means of Transportation</a><br/>
 <a href="chapter-15.html" class="contentsLevel2">Chapter 15: Of Boats & Fishing Gear</a><br/>
 <a href="chapter-16.html" class="contentsLevel2">Chapter 16: Of Technology or Equipment</a><br/>
@@ -216,30 +225,30 @@ FORMAT THE MARGIN NUMBERS
 <a href="chapter-22.html" class="contentsLevel2">Chapter 22: Of an Athletic Event</a><br/>
 <a href="chapter-23.html" class="contentsLevel2">Chapter 23: Before & After Meals</a><br/>
 <a href="part-iii.html" class="contentsLevel1">Part III: Of Articles of Devotion</a><br/>
-<a href="chapter-24.html" class="contentsLevel2">Chapter 24: Of Religious Articles</a><br/>
-<a href="chapter-25.html" class="contentsLevel2">Chapter 25: Of Rosaries</a><br/>
-<a href="chapter-26.html" class="contentsLevel2">Chapter 26: Of a Scapular</a><br/>
+<a href="chapter-24.html" class="contentsLevel2 clergy">Chapter 24: Of Religious Articles (by clergy)</a><br/>
+<a href="chapter-25.html" class="contentsLevel2 clergy">Chapter 25: Of Rosaries (by clergy)</a><br/>
+<a href="chapter-26.html" class="contentsLevel2 clergy">Chapter 26: Of a Scapular (by clergy)</a><br/>
 <a href="part-iv.html" class="contentsLevel1">Part IV: For Feasts & Seasons</a><br/>
 <a href="chapter-27.html" class="contentsLevel2">Chapter 27: Of an Advent Wreath</a><br/>
 <a href="chapter-28.html" class="contentsLevel2">Chapter 28: Of a Manger or Nativity Scene</a><br/>
 <a href="chapter-29.html" class="contentsLevel2">Chapter 29: Of a Christmas Tree</a><br/>
 <a href="chapter-30.html" class="contentsLevel2">Chapter 30: Of Homes During Christmas & Easter</a><br/>
 <a href="chapter-31.html" class="contentsLevel2">Chapter 31: Of Throats (Saint Blase: Of February 3)</a><br/>
-<a href="chapter-32.html" class="contentsLevel2">Chapter 32: On Ash Wednesday</a><br/>
-<a href="chapter-33.html" class="contentsLevel2">Chapter 33: Of Saint Joseph’s Table (March 19)</a><br/>
+<a class="contentsLevel2 omitted">Chapter 32: On Ash Wednesday (omitted)</a><br/>
+<a class="contentsLevel2 omitted">Chapter 33: Of Saint Joseph’s Table (March 19) (omitted)</a><br/>
 <a href="chapter-34.html" class="contentsLevel2">Chapter 34: Of Food for Easter</a><br/>
 <a href="chapter-35.html" class="contentsLevel2">Chapter 35: Visiting a Cemetery</a><br/>
 <a href="chapter-36.html" class="contentsLevel2">Chapter 36: Of Food for Thanksgiving Day</a><br/>
-<a href="chapter-37.html" class="contentsLevel2">Chapter 37: Of Food, Drink, Flowers, Candles, etc.</a><br/>
+<a href="chapter-37.html" class="contentsLevel2 clergy">Chapter 37: Of Food, Drink, Flowers, Candles, etc. (by clergy)</a><br/>
 <a href="part-v.html" class="contentsLevel1">Part V: For Various Needs & Occasions</a><br/>
-<a href="chapter-38.html" class="contentsLevel2">Chapter 38: Of a Parish Council</a><br/>
-<a href="chapter-39.html" class="contentsLevel2">Chapter 39: Of Officers of Parish Societies</a><br/>
+<a href="chapter-38.html" class="contentsLevel2 priest">Chapter 38: Of a Parish Council (by a priest)</a><br/>
+<a href="chapter-39.html" class="contentsLevel2 clergy">Chapter 39: Of Officers of Parish Societies (by clergy)</a><br/>
 <a href="chapter-40.html" class="contentsLevel2">Chapter 40: On the Inauguration of a Public Official</a><br/>
 <a href="chapter-41.html" class="contentsLevel2">Chapter 41: In Giving Thanks</a><br/>
 <a href="chapter-42.html" class="contentsLevel2">Chapter 42: In Various Circumstances</a><br/>
 <a href="appendix.html" class="contentsLevel1">Appendix: Solemn Blessings & Prayers</a><br/>
-<a href="appendix-solemn-blessings.html" class="contentsLevel2">Solemn Blessings</a><br/>
-<a href="appendix-prayers-over-the-people.html" class="contentsLevel2">Prayers Over the People</a>
+<a href="appendix-solemn-blessings.html" class="contentsLevel2 clergy">Solemn Blessings (by clergy)</a><br/>
+<a href="appendix-prayers-over-the-people.html" class="contentsLevel2 clergy">Prayers Over the People (by clergy)</a>
 
  
 

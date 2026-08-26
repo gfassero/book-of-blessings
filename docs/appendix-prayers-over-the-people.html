@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>Document Title — Reference</title>
+<title>Book of Blessings</title>
 
 <!--
 
@@ -16,16 +16,18 @@ At the top of each blessing, offer button to filter or autofill relevant categor
 - sick/healthy
 - etc
 
+Cull the meal blessings especially.
+
 Other ideas:
-- On the main menu, gray out cleric blessings in lay mode (links still work).
 - Link to suggested scriptures on USCCB.
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit.
+- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
+- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
@@ -33,8 +35,15 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-FORMAT THE PARAGRAPH NUMBERS
-FORMAT THE MARGIN NUMBERS
+Warn when lay users view clergy-only rite.
+Warn when deacon users view priest-only rite.
+
+How to use:
+- do the red, say the black
+- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
+- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
+- Link to general instruction
+- Link to https://canonlaw.ninja/?nums=1166-1172
 
 -->
 
@@ -94,7 +103,7 @@ FORMAT THE MARGIN NUMBERS
       </div>
     </div>
     <div class="setting-group">
-      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <span class="setting-label" id="presiderLabel">Presider Mode</span>
       <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
@@ -105,14 +114,14 @@ FORMAT THE MARGIN NUMBERS
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -121,36 +130,34 @@ FORMAT THE MARGIN NUMBERS
         </button>
       </div>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
     <div class="setting-group">
       <div class="setting-row">
-        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
           <span class="switch-thumb"></span>
         </button>
       </div>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
-    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
-    <!-- Report bugs & typos should work. -->
+<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
 <div class="popup-overlay" id="popupOverlay"></div>
@@ -176,6 +183,14 @@ FORMAT THE MARGIN NUMBERS
 
 ﻿<!--SPLIT appendix-prayers-over-the-people-->
 <p class="orderTitle">Prayers Over the People</p>
+
+<!--<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
+  </div>
+</div>-->
 
 <p class="rubricInlineNumbered"><span class="parNumber">1277</span> After the prayer over the people the priest or deacon always adds:</p>
 

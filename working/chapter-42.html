@@ -1,6 +1,14 @@
 ﻿<!--SPLIT chapter-42-->
 <p class="chapterNumber">Chapter 42</p>
 
+<!--<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
+  </div>
+</div>-->
+
 <p class="chapterTitle">Order for a Blessing to Be Used in Various Circumstances</p>
 
 <p class="introHeading">Introduction</p>
@@ -23,21 +31,22 @@
 
 <p class="theBlack">Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1249</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1249</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
 
-<p class="theBlack">May God, who is the fountain of all goodness, be with you all.</p>
+<p class="theBlack" data-presider="clergy">May God, who is the fountain of all goodness, be with you all.</p>
 
-<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">All make the following or some other suitable reply.</p>
 
-<p class="theBlack">And also with you.</p>
+<p class="theBlack" data-presider="clergy" data-xlation="old">And also with you.</p>
+<p class="theBlack" data-presider="clergy" data-xlation="new">And with your spirit.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1250</span> A lay minister greets those present in the following words.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">1250</span> A lay minister greets those present in the following words.</p>
 
-<p class="theBlack">Brothers and sisters, let us bless and praise the Lord, the fountain of all goodness. Blessed be God now and for ever.</p>
+<p class="theBlack" data-presider="lay">Brothers and sisters, let us bless and praise the Lord, the fountain of all goodness. Blessed be God now and for ever.</p>
 
-<p class="rubricInlineUnnumbered">All reply:</p>
+<p class="rubricInlineUnnumbered" data-presider="lay">All reply:</p>
 
-<p class="theBlack">Amen.</p>
+<p class="theBlack" data-presider="lay">Amen.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1251</span> In the following or similar words, the minister prepares those present for the blessing.</p>
 
@@ -47,7 +56,8 @@
 
 <p class="rubricInlineNumbered"><span class="parNumber">1252</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
 
-<p class="theBlack">Brothers and sisters, listen to the words of the apostle Paul to the Colossians:<span class="rubricCitationInRdgIntro">1:9b-14</span></p>
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the apostle Paul to the Colossians:<span class="rubricCitationInRdgIntro">1:9b-14</span></p>
+<p class="theBlack" data-xlation="new">A reading from the letter of Paul to the Colossians:<span class="rubricCitationInRdgIntro">1:9b-14</span></p>
 
 <p class="rubricReadingTheme">Multiplying good works of every sort.</p>
 
@@ -55,7 +65,8 @@
 
 <p class="rubricInlineNumbered"><span class="parNumber">1253</span> Or:</p>
 
-<p class="theBlack">Brothers and sisters, listen to the words of the apostle Paul to the Romans:<span class="rubricCitationInRdgIntro">8:24-28</span></p>
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the apostle Paul to the Romans:<span class="rubricCitationInRdgIntro">8:24-28</span></p>
+<p class="theBlack" data-xlation="new">A reading from the letter of Paul to the Romans:<span class="rubricCitationInRdgIntro">8:24-28</span></p>
 
 <p class="rubricReadingTheme">The Spirit too helps us in our weakness.</p>
 
@@ -67,7 +78,8 @@
 
 <p class="rubricInlineNumbered"><span class="parNumber">1254</span> Or:</p>
 
-<p class="theBlack">Brothers and sisters, listen to the words of the first letter of Paul to Timothy:<span class="rubricCitationInRdgIntro">4:4-5</span></p>
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the first letter of Paul to Timothy:<span class="rubricCitationInRdgIntro">4:4-5</span></p>
+<p class="theBlack" data-xlation="new">A reading from the first letter of Paul to Timothy:<span class="rubricCitationInRdgIntro">4:4-5</span></p>
 
 <p class="rubricReadingTheme">Everything God created is good.</p>
 
@@ -127,9 +139,9 @@ and by his oath to Isaac. <span class="rubricRV">℟.</span></p>
 
 <p class="theBlack">God loves his creation and his goodness sustains the universe. Let us pray now that he will bestow his blessing upon us and that he will renew and support us with his strength.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Lord, send us your blessing.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> Lord, send us your blessing.</p>
 
-<p class="rubricInlineUnnumbered">Or:</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Or:</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
 
@@ -287,27 +299,30 @@ and to bring to fulfillment every right desire.</p>
 
 <p class="riteSectionHeading">Concluding Rite</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1270</span> A minister who is a priest or deacon concludes the rite by saying:</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1270</span> A minister who is a priest or deacon concludes the rite by saying:</p>
 
-<p class="theBlack">May God, who is blessed above all,<br/>
+<p class="theBlack" data-presider="clergy">May God, who is blessed above all,<br/>
 bless you in all things through Christ,<br/>
 so that whatever happens in your lives<br/>
 will work together for your good.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">Then he blesses all present.</p>
 
-<p class="theBlack">And may almighty God bless you,<br/>
+<p class="theBlack" data-presider="clergy">And may almighty God bless you,<br/>
 the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1271</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">1271</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
 
-<p class="theBlack">May God, who is blessed above all, bless us in all things through Christ, so that whatever happens in our lives will work together for our good.</p>
+<p class="theBlack" data-presider="lay">May God, who is blessed above all,<br/>
+bless us in all things through Christ,<br/>
+so that whatever happens in our lives<br/>
+will work together for our good.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="lay"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1272</span> It is preferable to end the celebration with a suitable song.</p>
 

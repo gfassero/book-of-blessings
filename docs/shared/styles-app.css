@@ -105,32 +105,59 @@ span {
     letter-spacing: normal;
 }
 
-html[data-simplify="true"] .optWrapper:has(.simplify.out),
-html[data-simplify="false"] .optWrapper:has(.simplify.in),
-html[data-cull="true"] .optWrapper:has(.cull.out),
-html[data-cull="false"] .optWrapper:has(.cull.in),
-html[data-newScripture="true"] .optWrapper:has(.newScripture.out),
-html[data-newScripture="false"] .optWrapper:has(.newScripture.in),
-html[data-newMissal="true"] .optWrapper:has(.newMissal.out),
-html[data-newMissal="false"] .optWrapper:has(.newMissal.in),
-html[data-addCross="true"] .optWrapper:has(.addCross.out),
-html[data-addCross="false"] .optWrapper:has(.addCross.in) {
+/* Selects the next boundary wrapper (Paragraph 30) AND all following wrappers */
+html[data-rite="intro"] .optWrapper[data-rite-section="full"],
+html[data-rite="intro"] .optWrapper[data-rite-section="shorter"],
+html[data-rite="full"] .optWrapper[data-rite-section="intro"],
+html[data-rite="full"] .optWrapper[data-rite-section="shorter"],
+html[data-rite="shorter"] .optWrapper[data-rite-section="intro"],
+html[data-rite="shorter"] .optWrapper[data-rite-section="full"],
+
+html[data-presider="lay"] .optWrapper:has(p[data-presider="priest"], p[data-presider="deacon"], p[data-presider="clergy"]),
+html[data-presider="deacon"] .optWrapper:has(p[data-presider="priest"], p[data-presider="lay"]),
+html[data-presider="priest"] .optWrapper:has(p[data-presider="deacon"], p[data-presider="lay"]),
+
+html[data-newMissal="true"] .optWrapper:has(p[data-xlation="old"]),
+html[data-newMissal="false"] .optWrapper:has(p[data-xlation="new"]),
+html[data-cull="true"] .optWrapper:has(p[data-cullOut="true"]),
+
+html[data-simplify="true"] .optWrapper:has(.simplifyOut),
+html[data-simplify="false"] .optWrapper:has(.simplifyIn),
+html[data-cull="true"] .optWrapper:has(.cullOut),
+html[data-cull="false"] .optWrapper:has(.cullIn),
+html[data-newScripture="true"] .optWrapper:has(.newScriptureOut),
+html[data-newScripture="false"] .optWrapper:has(.newScriptureIn),
+html[data-addCross="true"] .optWrapper:has(.addCrossOut),
+html[data-addCross="false"] .optWrapper:has(.addCrossIn) {
   grid-template-rows: 0fr;
   opacity: 0;
 }
 
-html[data-simplify="true"] span.simplify.out,
-html[data-simplify="false"] span.simplify.in,
-html[data-cull="true"] span.cull.out,
-html[data-cull="false"] span.cull.in,
-html[data-newScripture="true"] span.newScripture.out,
-html[data-newScripture="false"] span.newScripture.in,
-html[data-newMissal="true"] span.newMissal.out,
-html[data-newMissal="false"] span.newMissal.in,
-html[data-addCross="true"] span.addCross.out,
-html[data-addCross="false"] span.addCross.in  {
+html[data-simplify="true"] span.simplifyOut,
+html[data-simplify="false"] span.simplifyIn,
+html[data-cull="true"] span.cullOut,
+html[data-cull="false"] span.cullIn,
+html[data-newScripture="true"] span.newScriptureOut,
+html[data-newScripture="false"] span.newScriptureIn,
+html[data-newMissal="true"] span.newMissalOut,
+html[data-newMissal="false"] span.newMissalIn,
+html[data-presider="lay"] span.cross,
+html[data-addCross="true"] span.addCrossOut,
+html[data-addCross="false"] span.addCrossIn  {
     opacity: 0;
     letter-spacing: -0.5em;
+}
+
+.content {
+	a:link, a:visited {color: var(--color-text);}
+	a.omitted {opacity: 0.6; cursor: default; text-decoration: none;}
+}
+html[data-presider="lay"] .content {
+	a.clergy:link, a.clergy:visited,
+	a.priest:link, a.priest:visited	{opacity: 0.6; cursor: auto; text-decoration: none;}
+}
+html[data-presider="deacon"] .content {
+	a.priest:link, a.priest:visited	{opacity: 0.6; cursor: auto; text-decoration: none;}
 }
 
   /* ---------- Settings drawer ---------- */

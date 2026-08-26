@@ -1,7 +1,7 @@
 # Set working directory to the folder containing this script
 Set-Location $PSScriptRoot
 
-$inputFile = "rites\book-of-blessings.html"
+$inputFile = "working\book-of-blessings.html"
 $filename = "default.txt"
 $createdFiles = @{}
 
@@ -14,7 +14,7 @@ if (-not (Test-Path $inputFile)) {
     if ($_ -match "<!--\s*SPLIT\s+(.+)\s*-->") {
         # Sanitize title to prevent invalid Windows filename errors
         $cleanTitle = $Matches[1].Trim() -replace '[\\/:*?"<>|]', '_'
-        $filename = "rites\$cleanTitle.html"
+        $filename = "working\$cleanTitle.html"
         Write-Host ">>> SPLIT TRIGGERED! New target file: $filename" -ForegroundColor Green
     }
 

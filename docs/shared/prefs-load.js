@@ -1,6 +1,6 @@
   (function () {
     var STORAGE_KEY = 'refDocPrefs';
-    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', simplify: true, cull: true, newScripture: true, newMissal: true, addCross: true };
+    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'shorter', simplify: true, cull: true, newScripture: true, newMissal: true, addCross: true };
     var root = document.documentElement;
     var drawer = document.getElementById('settingsDrawer');
     var overlay = document.getElementById('drawerOverlay');
@@ -35,6 +35,7 @@
       root.setAttribute('data-size', prefs.size);
       root.setAttribute('data-spacing', prefs.spacing);
       root.setAttribute('data-presider', prefs.presider);
+      root.setAttribute('data-rite', prefs.rite);
       root.setAttribute('data-simplify', prefs.simplify ? 'true' : 'false');
       root.setAttribute('data-cull', prefs.cull ? 'true' : 'false');
       root.setAttribute('data-newScripture', prefs.newScripture ? 'true' : 'false');
@@ -48,12 +49,17 @@
         btn.setAttribute('aria-checked', prefs[btn.getAttribute('data-pref')] ? 'true' : 'false');
       });
     }
+
+    var sessionOnlyPrefs = ['rite'];
+
     function setPref(key, value) {
-      saved[key] = value;
       prefs[key] = value;
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(saved)); } catch (e) {
-        // localStorage unavailable (private browsing, quota, etc.) — fail silently,
-        // the page still works, it just won't remember the choice next visit.
+      if (sessionOnlyPrefs.indexOf(key) === -1) {
+        saved[key] = value;
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(saved)); } catch (e) {
+          // localStorage unavailable (private browsing, quota, etc.) — fail silently,
+          // the page still works, it just won't remember the choice next visit.
+        }
       }
       applyPrefs();
     }
@@ -197,9 +203,24 @@
 
 
 
-document.querySelectorAll('.content .out:not(span), .content .in:not(span)').forEach(el => {
+
+
+let currentSection = '';
+
+document.querySelectorAll('.content p').forEach(el => {
   const wrapper = document.createElement('div');
   wrapper.className = 'optWrapper';
+  
+  // Update section tracker if data-rite-section is present
+  if (el.dataset.riteSection) {
+    currentSection = el.dataset.riteSection;
+  }
+
+  // Apply data-rite-section to EVERY optWrapper
+  if (currentSection) {
+    wrapper.dataset.riteSection = currentSection;
+  }
+
   el.parentNode.insertBefore(wrapper, el);
   wrapper.appendChild(el);
 });

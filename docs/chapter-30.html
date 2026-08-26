@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>Document Title — Reference</title>
+<title>Book of Blessings</title>
 
 <!--
 
@@ -16,16 +16,18 @@ At the top of each blessing, offer button to filter or autofill relevant categor
 - sick/healthy
 - etc
 
+Cull the meal blessings especially.
+
 Other ideas:
-- On the main menu, gray out cleric blessings in lay mode (links still work).
 - Link to suggested scriptures on USCCB.
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit.
+- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
+- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
@@ -33,8 +35,15 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-FORMAT THE PARAGRAPH NUMBERS
-FORMAT THE MARGIN NUMBERS
+Warn when lay users view clergy-only rite.
+Warn when deacon users view priest-only rite.
+
+How to use:
+- do the red, say the black
+- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
+- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
+- Link to general instruction
+- Link to https://canonlaw.ninja/?nums=1166-1172
 
 -->
 
@@ -94,7 +103,7 @@ FORMAT THE MARGIN NUMBERS
       </div>
     </div>
     <div class="setting-group">
-      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <span class="setting-label" id="presiderLabel">Presider Mode</span>
       <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
@@ -105,14 +114,14 @@ FORMAT THE MARGIN NUMBERS
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -121,36 +130,34 @@ FORMAT THE MARGIN NUMBERS
         </button>
       </div>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
     <div class="setting-group">
       <div class="setting-row">
-        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
           <span class="switch-thumb"></span>
         </button>
       </div>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
-    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
-    <!-- Report bugs & typos should work. -->
+<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
 <div class="popup-overlay" id="popupOverlay"></div>
@@ -177,6 +184,14 @@ FORMAT THE MARGIN NUMBERS
 ﻿<!--SPLIT chapter-30-->
 <p class="chapterNumber">Chapter 30</p>
 
+<!--<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
+  </div>
+</div>-->
+
 <p class="chapterTitle">Order for the Blessing of Homes During the Christmas and Easter Seasons</p>
 
 <p class="introHeading">Introduction</p>
@@ -201,19 +216,20 @@ FORMAT THE MARGIN NUMBERS
 
 <p class="theBlack">Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1011</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1011</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
 
-<p class="theBlack">Peace be with this house and with all who live here.</p>
+<p class="theBlack" data-presider="clergy">Peace be with this house and with all who live here.</p>
 
-<p class="rubricInlineUnnumbered">And all reply:</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">And all reply:</p>
 
-<p class="theBlack">And also with you.</p>
+<p class="theBlack" data-presider="clergy" data-xlation="old">And also with you.</p>
+<p class="theBlack" data-presider="clergy" data-xlation="new">And with your spirit.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1012</span> A lay minister greets those present in the following words:</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">1012</span> A lay minister greets those present in the following words:</p>
 
-<p class="theBlack">Let us praise God, who fills our hearts and homes with peace. Blessed be God for ever.</p>
+<p class="theBlack" data-presider="lay">Let us praise God, who fills our hearts and homes with peace. Blessed be God for ever.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
+<p class="theBlack" data-presider="lay"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1013</span> In the following or similar words, the minister prepares those present for the blessing.</p>
 
@@ -225,7 +241,8 @@ FORMAT THE MARGIN NUMBERS
 
 <p class="rubricInlineUnnumbered">(For Epiphany)</p>
 
-<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">19:1-9</span></p>
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">19:1-9</span></p>
+<p class="theBlack" data-xlation="new">A reading from the holy Gospel according to Luke:<span class="rubricCitationInRdgIntro">19:1-9</span></p>
 
 <p class="rubricReadingTheme">Today salvation has come to this house.</p>
 
@@ -233,7 +250,8 @@ FORMAT THE MARGIN NUMBERS
 
 <p class="rubricInlineNumbered"><span class="parNumber">1015</span> Or: (For Easter)</p>
 
-<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">24:28-32</span></p>
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">24:28-32</span></p>
+<p class="theBlack" data-xlation="new">A reading from the holy Gospel according to Luke:<span class="rubricCitationInRdgIntro">24:28-32</span></p>
 
 <p class="rubricReadingTheme">Stay with us, Lord.</p>
 
@@ -413,30 +431,30 @@ who by his death and resurrection has redeemed us.</p>
 
 <p class="riteSectionHeading">Concluding Rite</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1023</span> A minister who is a priest or deacon concludes the rite by saying:</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1023</span> A minister who is a priest or deacon concludes the rite by saying:</p>
 
-<p class="theBlack">May Christ Jesus dwell with you,<br/>
+<p class="theBlack" data-presider="clergy">May Christ Jesus dwell with you,<br/>
 keep you from all harm,<br/>
 and make you one in mind and heart,<br/>
 now and for ever.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">Then he blesses all present.</p>
 
-<p class="theBlack">And may almighty God bless you all,<br/>
+<p class="theBlack" data-presider="clergy">And may almighty God bless you all,<br/>
 the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1024</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">1024</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
 
-<p class="theBlack">May Christ Jesus dwell with us,<br/>
+<p class="theBlack" data-presider="lay">May Christ Jesus dwell with us,<br/>
 keep us from all harm,<br/>
 and make us one in mind and heart,<br/>
 now and for ever.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="lay"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1025</span> It is preferable to end the celebration with a suitable song.</p>
 
@@ -454,7 +472,8 @@ now and for ever.</p>
 
 <p class="rubricInlineUnnumbered">(For Epiphany)</p>
 
-<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">19:1-9</span></p>
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">19:1-9</span></p>
+<p class="theBlack" data-xlation="new">A reading from the holy Gospel according to Luke:<span class="rubricCitationInRdgIntro">19:1-9</span></p>
 
 <p class="rubricReadingTheme">Today salvation has come to this house.</p>
 
@@ -462,7 +481,8 @@ now and for ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1028</span> Or: (For Easter)</p>
 
-<p class="theBlack">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">24:28-32</span></p>
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">24:28-32</span></p>
+<p class="theBlack" data-xlation="new">A reading from the holy Gospel according to Luke:<span class="rubricCitationInRdgIntro">24:28-32</span></p>
 
 <p class="rubricReadingTheme">Stay with us, Lord.</p>
 

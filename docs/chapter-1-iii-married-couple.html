@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>Document Title — Reference</title>
+<title>Book of Blessings</title>
 
 <!--
 
@@ -16,16 +16,18 @@ At the top of each blessing, offer button to filter or autofill relevant categor
 - sick/healthy
 - etc
 
+Cull the meal blessings especially.
+
 Other ideas:
-- On the main menu, gray out cleric blessings in lay mode (links still work).
 - Link to suggested scriptures on USCCB.
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit.
+- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
+- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
@@ -33,8 +35,15 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-FORMAT THE PARAGRAPH NUMBERS
-FORMAT THE MARGIN NUMBERS
+Warn when lay users view clergy-only rite.
+Warn when deacon users view priest-only rite.
+
+How to use:
+- do the red, say the black
+- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
+- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
+- Link to general instruction
+- Link to https://canonlaw.ninja/?nums=1166-1172
 
 -->
 
@@ -94,7 +103,7 @@ FORMAT THE MARGIN NUMBERS
       </div>
     </div>
     <div class="setting-group">
-      <span class="setting-label" id="presiderLabel">Presider Mode (unimplemented)</span>
+      <span class="setting-label" id="presiderLabel">Presider Mode</span>
       <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
@@ -105,14 +114,14 @@ FORMAT THE MARGIN NUMBERS
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -121,36 +130,34 @@ FORMAT THE MARGIN NUMBERS
         </button>
       </div>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
     <div class="setting-group">
       <div class="setting-row">
-        <span class="setting-row-label" id="newMissalLabel">Use new translations from Roman Missal, third edition</span>
+        <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
           <span class="switch-thumb"></span>
         </button>
       </div>
     </div>
-    <div class="setting-group">
+<!--    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>
+    </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>
-    <!-- HOW TO USE BLESSINGS should link to prefatory material. -->
-    <!-- Report bugs & typos should work. -->
+<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
 <div class="popup-overlay" id="popupOverlay"></div>
@@ -176,6 +183,14 @@ FORMAT THE MARGIN NUMBERS
 
 ﻿<!--SPLIT chapter-1-iii-married-couple-->
 <p class="orderTitle">III. Orders for the Blessing of a Married Couple</p>
+
+<!--<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
+  </div>
+</div>-->
 
 <p class="introHeading">Introduction</p>
 
@@ -203,19 +218,20 @@ FORMAT THE MARGIN NUMBERS
 
 <p class="theBlack">Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">90</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">90</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
 
-<p class="theBlack">The grace and peace of God our Father, who exalted the marriage bond and made it the sign of Christ and his Church, be with you all.</p>
+<p class="theBlack" data-presider="clergy">The grace and peace of God our Father, who exalted the marriage bond and made it the sign of Christ and his Church, be with you all.</p>
 
-<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">All make the following or some other suitable reply.</p>
 
-<p class="theBlack">And also with you.</p>
+<p class="theBlack" data-presider="clergy" data-xlation="old">And also with you.</p>
+<p class="theBlack" data-presider="clergy" data-xlation="new">And with your spirit.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">91</span> A lay minister greets those present in the following words.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">91</span> A lay minister greets those present in the following words.</p>
 
-<p class="theBlack">Blessed be the God of all consolation, who has shown us his great mercy. Blessed be God now and for ever.</p>
+<p class="theBlack" data-presider="lay">Blessed be the God of all consolation, who has shown us his great mercy. Blessed be God now and for ever.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="lay"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">92</span> In the following or similar words, which should always be adapted to suit the particular occasion, the minister prepares the couple and all present for the blessing.</p>
 
@@ -225,7 +241,8 @@ FORMAT THE MARGIN NUMBERS
 
 <p class="rubricInlineNumbered"><span class="parNumber">93</span> A reader or another person present reads a text of sacred Scripture, taken preferably from the texts provided in the Rite of Marriage and the Lectionary for Mass. The readings chosen should be those that best apply to the life of the couple.</p>
 
-<p class="theBlack">Brothers and sisters, listen to the words of the first letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">1:4-9</span></p>
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the first letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">1:4-9</span></p>
+<p class="theBlack" data-xlation="new">A reading from the first letter of Paul to the Corinthians:<span class="rubricCitationInRdgIntro">1:4-9</span></p>
 
 <p class="rubricReadingTheme">I never stop thanking God because of the grace of God which was given you.</p>
 
@@ -284,30 +301,30 @@ and of the grace of the sacrament.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">98</span> A minister who is a priest or a deacon may also use one of the following formularies.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">98</span> A minister who is a priest or a deacon may also use one of the following formularies.</p>
 
-<p class="theBlack">Lord,<br/>
+<p class="theBlack" data-presider="clergy">Lord,<br/>
 bless these rings which we bless <span class="cross">+</span> in your name.<br/>
 Grant that those who wear them<br/>
 may always have a deep faith in each other.<br/>
 May they continue to enjoy your peace and goodwill<br/>
 and live together in love.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-presider="clergy">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineUnnumbered">Or:</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy" data-cullOut="true">Or:</p>
 
-<p class="theBlack">Lord,<br/>
+<p class="theBlack" data-presider="clergy" data-cullOut="true">Lord,<br/>
 bless <span class="cross">+</span> and consecrate the love which N. and N. have for one another.<br/>
 May these rings be a symbol<br/>
 of their true faith in each other<br/>
 and always remind them of their love.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-presider="clergy">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading">Intercessions</p>
 
@@ -317,9 +334,9 @@ and always remind them of their love.</p>
 
 <p class="theBlack">In the tender plan of his providence, God our almighty Father has given married love, its faithfulness, (and its fruitfulness,) a special significance in the history of salvation. Let us therefore call upon him, saying:</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Lord, renew in your servants their fidelity to each other.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> Lord, renew in your servants their fidelity to each other.</p>
 
-<p class="rubricInlineUnnumbered">Or:</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Or:</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
 
@@ -398,35 +415,35 @@ that you are the source and completion of every happiness.</p>
 
 <p class="riteSectionHeading">Concluding Rite</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">101</span> A minister who is a priest or deacon concludes the rite by first blessing the couple and saying, with hands outstretched toward them:</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">101</span> A minister who is a priest or deacon concludes the rite by first blessing the couple and saying, with hands outstretched toward them:</p>
 
-<p class="theBlack">May God, the almighty Father, give you joy.</p>
+<p class="theBlack" data-presider="clergy">May God, the almighty Father, give you joy.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May the only Son of God have mercy on you and help you in good times and in bad.</p>
+<p class="theBlack" data-presider="clergy">May the only Son of God have mercy on you and help you in good times and in bad.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May the Holy Spirit always fill your hearts with love.</p>
+<p class="theBlack" data-presider="clergy">May the Holy Spirit always fill your hearts with love.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineUnnumbered">Then he blesses all present.</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">Then he blesses all present.</p>
 
-<p class="theBlack">And may almighty God bless you all,<br/>
+<p class="theBlack" data-presider="clergy">And may almighty God bless you all,<br/>
 the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">102</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">102</span> A lay minister concludes the rite by signing himself or herself with the sign of the cross and saying:</p>
 
-<p class="theBlack">May the God of hope fill you with every joy in believing.<br/>
+<p class="theBlack" data-presider="lay">May the God of hope fill you with every joy in believing.<br/>
 May the peace of Christ abound in your hearts.<br/>
 May the Holy Spirit enrich you with his gifts,<br/>
 now and for ever.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-presider="lay"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">103</span> It is preferable to end the celebration with a suitable song.</p>
 
