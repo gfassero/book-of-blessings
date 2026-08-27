@@ -23,20 +23,15 @@ Other ideas:
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
-- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
 Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
-
-Warn when lay users view clergy-only rite.
-Warn when deacon users view priest-only rite.
 
 How to use:
 - do the red, say the black
@@ -52,6 +47,7 @@ How to use:
 <link rel="stylesheet" href="shared/styles-text.css" />
 </head>
 <body>
+
 <div class="page-controls">
   <a class="icon-btn" href="index.html" aria-label="Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -67,7 +63,9 @@ How to use:
     </svg>
   </button>
 </div>
+
 <div class="drawer-overlay" id="drawerOverlay"></div>
+
 <aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
   <div class="drawer-header">
     <h2 id="drawerTitle">Settings</h2>
@@ -114,14 +112,14 @@ How to use:
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -160,7 +158,9 @@ How to use:
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
+
 <div class="popup-overlay" id="popupOverlay"></div>
+
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
   <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
@@ -216,22 +216,22 @@ How to use:
 
 <p class="rubricInlineUnnumbered">Then:</p>
 
-<p class="theBlack">The eyes of all creatures look to you<br/>
+<p class="theBlack poetry">The eyes of all creatures look to you<br/>
 to give them food in due time.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> You give it to them, they gather it up;<br/>
+<p class="theBlack poetry"><span class="rubricRV">℟.</span> You give it to them, they gather it up;<br/>
 you open your hand, they have their fill.</p>
 
-<p class="theBlack">Let us call on the name of the Father,<br/>
+<p class="theBlack poetry">Let us call on the name of the Father,<br/>
 who always takes care of his children.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Our Father...but deliver us from evil.<br/>
+<p class="theBlack poetry"><span class="rubricRV">℟.</span> Our Father...but deliver us from evil.<br/>
 For the kingdom, the power, and the glory are yours,<br/>
 now and for ever. Amen.</p>
 
 <p class="rubricInlineUnnumbered">The one presiding then signs himself or herself with the sign of the cross (a priest or a deacon also makes the sign of the cross over the food) and says:</p>
 
-<p class="theBlack">Bless <span class="cross">+</span> us, O Lord, and these your gifts<br/>
+<p class="theBlack poetry">Bless <span class="cross">+</span> us, O Lord, and these your gifts<br/>
 which we are about to receive from your goodness.<br/>
 Through Christ our Lord.</p>
 
@@ -245,12 +245,12 @@ Through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Let all your people bless you.</p>
 
-<p class="theBlack">We give you thanks for all your gifts, almighty God,<br/>
+<p class="theBlack poetry">We give you thanks for all your gifts, almighty God,<br/>
 living and reigning now and for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">For the sake of your name, O Lord,<br/>
+<p class="theBlack poetry">For the sake of your name, O Lord,<br/>
 reward those who have been good to us<br/>
 and give them eternal life.</p>
 
@@ -258,7 +258,7 @@ and give them eternal life.</p>
 
 <p class="rubricInlineUnnumbered">Or:</p>
 
-<p class="theBlack">Lord, give all people the food they need,<br/>
+<p class="theBlack poetry">Lord, give all people the food they need,<br/>
 so that they may join us in giving you thanks.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
@@ -275,19 +275,19 @@ so that they may join us in giving you thanks.</p>
 
 <p class="rubricInlineUnnumbered">Then:</p>
 
-<p class="theBlack">The poor shall eat and have their fill.<br/>
+<p class="theBlack poetry">The poor shall eat and have their fill.<br/>
 Those who long for the Lord shall give him praise.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> May their hearts live for ever.</p>
 
-<p class="theBlack">Let us call on the name of the Lord,<br/>
+<p class="theBlack poetry">Let us call on the name of the Lord,<br/>
 who gives us our daily bread.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Our Father...but deliver us from evil.<br/>
+<p class="theBlack poetry"><span class="rubricRV">℟.</span> Our Father...but deliver us from evil.<br/>
 For the kingdom, the power and the glory are yours<br/>
 now and for ever. Amen.</p>
 
-<p class="theBlack">Protect us, O Lord our God,<br/>
+<p class="theBlack poetry">Protect us, O Lord our God,<br/>
 and give us the help we need in our frailty.<br/>
 Through Christ our Lord.</p>
 
@@ -301,7 +301,7 @@ Through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> He has given food to those who fear him.</p>
 
-<p class="theBlack">Lord, you have fed us from your gifts and favors;<br/>
+<p class="theBlack poetry">Lord, you have fed us from your gifts and favors;<br/>
 fill us with your mercy,<br/>
 for you live and reign for ever and ever.</p>
 
@@ -309,13 +309,13 @@ for you live and reign for ever and ever.</p>
 
 <p class="rubricInlineUnnumbered">Or:</p>
 
-<p class="theBlack">God is blessed in all his gifts<br/>
+<p class="theBlack poetry">God is blessed in all his gifts<br/>
 and holy in all his works,<br/>
 who lives and reigns for ever and ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">For the sake of your name, O Lord,<br/>
+<p class="theBlack poetry">For the sake of your name, O Lord,<br/>
 reward those who have been good to us<br/>
 and give them eternal life.</p>
 
@@ -323,7 +323,7 @@ and give them eternal life.</p>
 
 <p class="rubricInlineUnnumbered">Or:</p>
 
-<p class="theBlack">Lord, give all people the food they need,<br/>
+<p class="theBlack poetry">Lord, give all people the food they need,<br/>
 so that they may join us in giving you thanks.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
@@ -342,7 +342,7 @@ so that they may join us in giving you thanks.</p>
 
 <p class="theBlack">Let us live soberly, justly, and devoutly in this world.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> As we wait in joyful hope for the coming of our<br/>
+<p class="theBlack poetry"><span class="rubricRV">℟.</span> As we wait in joyful hope for the coming of our<br/>
 Savior, Jesus Christ.</p>
 
 <p class="riteHeading">Christmas Season</p>
@@ -422,7 +422,7 @@ Savior, Jesus Christ.</p>
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the prophet Isaiah:<span class="rubricCitationInRdgIntro">58:10-11a</span></p>
 <p class="theBlack" data-xlation="new">A reading from book of the prophet Isaiah:<span class="rubricCitationInRdgIntro">58:10-11a</span></p>
 
-<p class="theBlack">If you bestow your bread on the hungry<br/>
+<p class="theBlack poetry">If you bestow your bread on the hungry<br/>
 and satisfy the afflicted;<br/>
 Then light shall rise for you in the darkness,<br/>
 and the gloom shall become for you like midday;<br/>
@@ -443,7 +443,7 @@ and give you plenty even on the parched land.</p>
 
 <p class="theBlack">God is able to make every grace abundant for you, so that in all things, always having all you need, you may have an abundance for every good work. As it is written:</p>
 
-<p class="theBlack">“He scatters abroad, he gives to the poor;<br/>
+<p class="theBlack poetry">“He scatters abroad, he gives to the poor;<br/>
 his righteousness endures forever.”</p>
 
 <p class="theBlack">The one who supplies seed to the sower and bread for food will supply and multiply your seed and increase the harvest of your righteousness.</p>
@@ -480,7 +480,7 @@ his righteousness endures forever.”</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">God, the Father of mercies,<br/>
+<p class="theBlack poetry">God, the Father of mercies,<br/>
 you willed your Son to take flesh,<br/>
 in order to give life back to us.<br/>
 Bless <span class="cross">+</span> these your gifts<br/>
@@ -504,7 +504,7 @@ for the glorious coming of Christ.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">We thank you, all-powerful God,<br/>
+<p class="theBlack poetry">We thank you, all-powerful God,<br/>
 for your kindness in refreshing our bodies<br/>
 by these gifts from your providence.<br/>
 Strengthen us, we pray,<br/>
@@ -522,7 +522,7 @@ not only in body, but also in spirit.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">Blessed are you, Lord God.<br/>
+<p class="theBlack poetry">Blessed are you, Lord God.<br/>
 Through the fruitful virginity of Mary<br/>
 you fulfilled the long expectation of the poor and oppressed.<br/>
 Grant that with the same faith with which Mary<br/>
@@ -543,7 +543,7 @@ we may look for him in our brothers and sisters in need.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">All-holy Father,<br/>
+<p class="theBlack poetry">All-holy Father,<br/>
 your Word made flesh is the Son who is born to us,<br/>
 the child who is given to us.<br/>
 Grant that we who are committed to serving him in our brothers and sisters<br/>
@@ -561,7 +561,7 @@ may satisfy their needs of body and soul.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">We thank you, O Lord,<br/>
+<p class="theBlack poetry">We thank you, O Lord,<br/>
 who give us this food to eat.<br/>
 We pray that you may also provide food<br/>
 for those who are hungry<br/>
@@ -582,7 +582,7 @@ at the table of your heavenly kingdom.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">O God,<br/>
+<p class="theBlack poetry">O God,<br/>
 by his forty days of fasting<br/>
 your Son has taught us<br/>
 that we do not live on bread alone,<br/>
@@ -603,7 +603,7 @@ we may truly love you in our brothers and sisters.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">Lord Jesus Christ,<br/>
+<p class="theBlack poetry">Lord Jesus Christ,<br/>
 who in fulfilling your Father’s will<br/>
 became obedient unto death,<br/>
 bless us who are gathered as a family at this table.<br/>
@@ -623,7 +623,7 @@ for you live and reign for ever and ever.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">Father of all peoples,<br/>
+<p class="theBlack poetry">Father of all peoples,<br/>
 look kindly upon this family, which belongs to you.<br/>
 Grant that we who rejoice to be together at this table,<br/>
 may one day also be numbered among those<br/>
@@ -641,11 +641,11 @@ who share the surpassing joys of your heavenly kingdom.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">We joyfully sing your praises, Lord Jesus Christ,<br/>
+<p class="theBlack poetry">We joyfully sing your praises, Lord Jesus Christ,<br/>
 who on the day of your resurrection<br/>
 were recognized by your disciples in the breaking of the bread.</p>
 
-<p class="theBlack">Remain here with us<br/>
+<p class="theBlack poetry">Remain here with us<br/>
 as we gratefully partake of these gifts,<br/>
 and at the banquet table in heaven welcome us,<br/>
 who have welcomed you in our brothers and sisters,<br/>
@@ -663,7 +663,7 @@ for you live and reign for ever and ever.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">O God, source of life,<br/>
+<p class="theBlack poetry">O God, source of life,<br/>
 fill our hearts with the joys of Easter.<br/>
 In your goodness you have given us food to eat;<br/>
 grant also that we may continue to live that new life<br/>
@@ -681,7 +681,7 @@ for he lives and reigns with you for ever and ever.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">Lord, our God,<br/>
+<p class="theBlack poetry">Lord, our God,<br/>
 with fatherly love you come to the aid of your children.<br/>
 Bless us and these your gifts<br/>
 which we are about to receive from your goodness.<br/>
@@ -696,7 +696,7 @@ by the favors of your providence.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">Lord God,<br/>
+<p class="theBlack poetry">Lord God,<br/>
 you sustain all creatures<br/>
 and never cease to give your children the food they need.<br/>
 We bless you for bringing us together<br/>
@@ -730,7 +730,7 @@ you will provide for our brothers and sisters who are hungry.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">God of all goodness,<br/>
+<p class="theBlack poetry">God of all goodness,<br/>
 through the breaking of bread together<br/>
 you strengthen the bonds that unite us in love.<br/>
 Bless <span class="cross">+</span> us and these your gifts.<br/>
@@ -752,7 +752,7 @@ we may grow always closer in the bonds of love.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">We thank you, O Lord, the giver of all good gifts,<br/>
+<p class="theBlack poetry">We thank you, O Lord, the giver of all good gifts,<br/>
 who have kindly brought us together at this table.<br/>
 Refreshed in body, may we make our earthly journey in joy<br/>
 and one day arrive at the banquet table of heaven.</p>
@@ -765,7 +765,7 @@ and one day arrive at the banquet table of heaven.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">Lord, you feed every living thing.<br/>
+<p class="theBlack poetry">Lord, you feed every living thing.<br/>
 We have eaten together at this table; keep us in your love.<br/>
 Give us true concern for the least of our sisters and brothers,<br/>
 so that, as we gladly share our food with them,<br/>
@@ -780,7 +780,7 @@ at the table of the kingdom of heaven.</p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="theBlack">We thank you, O Lord,<br/>
+<p class="theBlack poetry">We thank you, O Lord,<br/>
 for graciously giving us food at this table.<br/>
 Grant that the nourishment of our bodies<br/>
 may also serve our growth in spirit.</p>
@@ -805,7 +805,7 @@ may also serve our growth in spirit.</p>
 
 <p class="rubricInlineUnnumbered" data-presider="clergy">(A priest or a deacon makes the sign of the cross.)</p>
 
-<p class="theBlack">We praise you, O Lord, from whom all good things come.<br/>
+<p class="theBlack poetry">We praise you, O Lord, from whom all good things come.<br/>
 Bless <span class="cross">+</span> this food we are about to receive.<br/>
 Grant that in the spirit of genuine love for one another<br/>
 we may always remain one in you.</p>
@@ -826,7 +826,7 @@ we may always remain one in you.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Now and for ever.</p>
 
-<p class="theBlack">God our Father,<br/>
+<p class="theBlack poetry">God our Father,<br/>
 we thank you for the food your bounty has given us,<br/>
 your gathered family.<br/>
 Grant that we also may freely give to others<br/>
@@ -844,7 +844,7 @@ in the banquet of heaven.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">848</span> When the community has gathered, all make the sign of the cross and the one presiding says the following (a priest or a deacon makes the sign of the cross).</p>
 
-<p class="theBlack">Bless <span class="cross">+</span> us, O Lord, and these your gifts<br/>
+<p class="theBlack poetry">Bless <span class="cross">+</span> us, O Lord, and these your gifts<br/>
 which we are about to receive from your goodness.<br/>
 Through Christ our Lord.</p>
 
@@ -852,7 +852,7 @@ Through Christ our Lord.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">849</span> Or:</p>
 
-<p class="theBlack">Protect us, O Lord our God,<br/>
+<p class="theBlack poetry">Protect us, O Lord our God,<br/>
 and give us the help we need in our frailty.<br/>
 Through Christ our Lord.</p>
 
@@ -860,14 +860,14 @@ Through Christ our Lord.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">850</span> Or:</p>
 
-<p class="theBlack">May your gifts refresh us, O Lord,<br/>
+<p class="theBlack poetry">May your gifts refresh us, O Lord,<br/>
 and your grace give us strength.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">851</span> Or:</p>
 
-<p class="theBlack">Every good and perfect gift comes from you, O Lord.<br/>
+<p class="theBlack poetry">Every good and perfect gift comes from you, O Lord.<br/>
 We ask you to bless <span class="cross">+</span> this food,<br/>
 which we wish to receive with grateful hearts.</p>
 
@@ -875,7 +875,7 @@ which we wish to receive with grateful hearts.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">852</span> Or:</p>
 
-<p class="theBlack">Blessed are you, almighty Father,<br/>
+<p class="theBlack poetry">Blessed are you, almighty Father,<br/>
 who give us our daily bread.<br/>
 Blessed is your only begotten Son,<br/>
 who continually feeds us with the word of life.<br/>
@@ -889,14 +889,14 @@ Blessed be God now and for ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">853</span> The one presiding says:</p>
 
-<p class="theBlack">We give you thanks for all your gifts, almighty God,<br/>
+<p class="theBlack poetry">We give you thanks for all your gifts, almighty God,<br/>
 living and reigning now and for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">854</span> Or:</p>
 
-<p class="theBlack">Lord, you have fed us from your gifts and favors;<br/>
+<p class="theBlack poetry">Lord, you have fed us from your gifts and favors;<br/>
 fill us with your mercy,<br/>
 for you live and reign for ever and ever.</p>
 
@@ -904,7 +904,7 @@ for you live and reign for ever and ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">855</span> Or:</p>
 
-<p class="theBlack">God is blessed in all his gifts<br/>
+<p class="theBlack poetry">God is blessed in all his gifts<br/>
 and holy in all his works,<br/>
 who lives and reigns for ever and ever.</p>
 
@@ -912,7 +912,7 @@ who lives and reigns for ever and ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">856</span> Or:</p>
 
-<p class="theBlack">We give you thanks, holy Lord, our Father,<br/>
+<p class="theBlack poetry">We give you thanks, holy Lord, our Father,<br/>
 for your loving gifts of our food and drink.<br/>
 Grant that some day we may sit<br/>
 at the table of your heavenly kingdom<br/>
@@ -922,7 +922,7 @@ and there sing a hymn of praise to you for ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">857</span> Or:</p>
 
-<p class="theBlack">For the sake of your name, O Lord,<br/>
+<p class="theBlack poetry">For the sake of your name, O Lord,<br/>
 reward those who have been good to us<br/>
 and give them eternal life.</p>
 
@@ -930,7 +930,7 @@ and give them eternal life.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">858</span> Or:</p>
 
-<p class="theBlack">Lord, give all people the food they need,<br/>
+<p class="theBlack poetry">Lord, give all people the food they need,<br/>
 so that they may join us in giving you thanks.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>

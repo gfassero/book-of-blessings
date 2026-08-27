@@ -23,20 +23,15 @@ Other ideas:
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
-- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
 Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
-
-Warn when lay users view clergy-only rite.
-Warn when deacon users view priest-only rite.
 
 How to use:
 - do the red, say the black
@@ -52,6 +47,7 @@ How to use:
 <link rel="stylesheet" href="shared/styles-text.css" />
 </head>
 <body>
+
 <div class="page-controls">
   <a class="icon-btn" href="index.html" aria-label="Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -67,7 +63,9 @@ How to use:
     </svg>
   </button>
 </div>
+
 <div class="drawer-overlay" id="drawerOverlay"></div>
+
 <aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
   <div class="drawer-header">
     <h2 id="drawerTitle">Settings</h2>
@@ -114,14 +112,14 @@ How to use:
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -160,7 +158,9 @@ How to use:
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
+
 <div class="popup-overlay" id="popupOverlay"></div>
+
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
   <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
@@ -182,6 +182,10 @@ How to use:
 <main class="content">
 
 ﻿<!--SPLIT chapter-25-->
+<div class="warning-banner-lay" id="warningBanner" role="alert">
+This blessing is intended for use by a priest or deacon.
+</div>
+
 <p class="chapterNumber">Chapter 25</p>
 
 <!--<div class="setting-group">
@@ -216,11 +220,11 @@ How to use:
 
 <p class="theBlack">Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">888</span> The celebrant greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+<p class="rubricInlineNumbered"><span class="parNumber">888</span> The celebrant greets those present<span class="simplifyOut"> in the following or other suitable words, taken mainly from sacred Scripture</span>.</p>
 
 <p class="theBlack">Through the Son, born of Mary, every blessing comes to us from God our Father. May his grace and peace be with you all.</p>
 
-<p class="rubricInlineUnnumbered">All make the following or some other suitable reply.</p>
+<p class="rubricInlineUnnumbered">All <span class="simplifyOut">make the following or some other suitable </span>reply.</p>
 
 <p class="theBlack" data-xlation="old">And also with you.</p>
 <p class="theBlack" data-xlation="new">And with your spirit.</p>
@@ -236,7 +240,7 @@ How to use:
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the holy gospel according to Luke:<span class="rubricCitationInRdgIntro">2:46-52</span></p>
 <p class="theBlack" data-xlation="new">A reading from the holy Gospel according to Luke:<span class="rubricCitationInRdgIntro">2:46-52</span></p>
 
-<p class="rubricReadingTheme">His mother meanwhile kept all these things in memory.</p>
+<p class="rubricReadingTheme simplifyOut">His mother meanwhile kept all these things in memory.</p>
 
 <p class="theBlack">After three days they found Jesus in the temple, sitting in the midst of the teachers, listening to them and asking them questions, and all who heard him were astounded at his understanding and his answers. When his parents saw him, they were astonished, and his mother said to him, “Son, why have you done this to us? Your father and I have been looking for you with great anxiety.” And he said to them, “Why were you looking for me? Did you not know that I must be in my Father’s house?” But they did not understand what he said to them. He went down with them and came to Nazareth, and was obedient to them; and his mother kept all these things in her heart. And Jesus advanced in wisdom and age and favor before God and man.</p>
 
@@ -245,7 +249,7 @@ How to use:
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the Acts of the Apostles:<span class="rubricCitationInRdgIntro">1:12-14</span></p>
 <p class="theBlack" data-xlation="new">A reading from the Acts of the Apostles:<span class="rubricCitationInRdgIntro">1:12-14</span></p>
 
-<p class="rubricReadingTheme">Together they devoted themselves to prayer with Mary, the Mother of Jesus.</p>
+<p class="rubricReadingTheme simplifyOut">Together they devoted themselves to prayer with Mary, the Mother of Jesus.</p>
 
 <p class="theBlack">Then they returned to Jerusalem from the mount called Olivet, which is near Jerusalem, a sabbath day’s journey away. When they entered the city they went to the upper room where they were staying, Peter and John and James and Andrew, Philip and Thomas, Bartholomew and Matthew, James son of Alphaeus, Simon the Zealot, and Judas son of James. All these devoted themselves with one accord to prayer, together with some women, and Mary the mother of Jesus, and his brothers.</p>
 
@@ -255,20 +259,20 @@ How to use:
 
 <p class="rubricInlineUnnumbered">Psalm 113</p>
 
-<p class="theBlack">Praise, you servants of the LORD,<br/>
+<p class="theBlack poetry">Praise, you servants of the LORD,<br/>
 praise the name of the LORD.<br/>
 Blessed be the name of the LORD<br/>
 both now and forever. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">From the rising to the setting of the sun<br/>
+<p class="theBlack poetry">From the rising to the setting of the sun<br/>
 is the name of the LORD to be praised.<br/>
 High above all nations is the LORD,<br/>
 above the heavens is his glory. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">Who is like the LORD, our God, who is enthroned on high<br/>
+<p class="theBlack poetry">Who is like the LORD, our God, who is enthroned on high<br/>
 and looks upon the heavens and the earth below? <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">He raises up the lowly from the dust;<br/>
+<p class="theBlack poetry">He raises up the lowly from the dust;<br/>
 from the dunghill he lifts up the poor<br/>
 To seat them with princes,<br/>
 with the princes of his own people. <span class="rubricRV">℟.</span></p>
@@ -277,13 +281,13 @@ with the princes of his own people. <span class="rubricRV">℟.</span></p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> (v. 49) The Almighty has done great things for me, and holy is his Name.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">893</span> As circumstances suggest, the celebrant may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration and learn to pray more devoutly and intently through the use of the rosary.</p>
+<p class="rubricInlineNumbered"><span class="parNumber">893</span> <span class="simplifyOut">As circumstances suggest, t</span><span class="simplifyIn">T</span>he celebrant may <span class="simplifyOut">give those present a brief explanation of</span><span class="simplifyIn">briefly explain</span> the biblical text, so that they may <span class="simplifyOut">understand through faith the meaning of the celebration and </span>learn to pray more devoutly and intently through the use of the rosary.</p>
 
-<p class="riteSectionHeading">Intercessions</p>
+<p class="riteSectionHeading">Intercessions<span class="simplifyIn rubricInlineUnnumbered"> (optional)</span></p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">894</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The celebrant introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, nos. 896-898.</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">894</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The celebrant introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, nos. 896-898.</p>
 
-<p class="rubricInlineUnnumbered">The celebrant says:</p>
+<p class="rubricInlineUnnumbered simplifyOut">The celebrant says:</p>
 
 <p class="theBlack">Because the rosary is rightly considered to be a preeminent sign of devotion to Mary, let us call upon the name of the Lord through the intercession of the one in whose honor we bless these rosaries.</p>
 
@@ -293,26 +297,26 @@ with the princes of his own people. <span class="rubricRV">℟.</span></p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">Most compassionate Father, when Mary consented to your word you chose her as the companion of the Redeemer; grant that through her intercession your Church may abound in the fruits of Christ’s redemption. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">Most compassionate Father, when Mary consented to your word you chose her as the companion of the Redeemer; grant that through her intercession your Church may abound in the fruits of Christ’s redemption. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You joined the Virgin Mary to your Son in a close and unbreakable bond and showered her with the fullness of your grace; grant that we may always find her to be our advocate, pleading for the graces we need. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You joined the Virgin Mary to your Son in a close and unbreakable bond and showered her with the fullness of your grace; grant that we may always find her to be our advocate, pleading for the graces we need. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">In Mary you have provided us with the perfect example of following Christ; help us to strive to reflect in our lives the mysteries that we devoutly recall in the rosary. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">In Mary you have provided us with the perfect example of following Christ; help us to strive to reflect in our lives the mysteries that we devoutly recall in the rosary. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You taught Mary to keep all your words in memory;<br/>
-grant that, following her example, we may hold fast to the words of your Son in faith and carry them out in our lives. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack poetry">You taught Mary to keep all your words in memory;<br/>
+grant that, following her example, we may hold fast to the words of your Son in faith and carry them out in our lives. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You gave the Holy Spirit to your apostles as they were at prayer with Mary the Mother of Jesus; grant that, persevering in prayer, we may walk in the Spirit even as we live in the Spirit. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You gave the Holy Spirit to your apostles as they were at prayer with Mary the Mother of Jesus; grant that, persevering in prayer, we may walk in the Spirit even as we live in the Spirit. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">895</span> When there are no intercessions, the celebrant, before the prayer of blessing, says:</p>
 
@@ -324,7 +328,7 @@ grant that, following her example, we may hold fast to the words of your Son in 
 
 <p class="rubricInlineNumbered"><span class="parNumber">896</span> With hands outstretched, the celebrant says the prayer of blessing.</p>
 
-<p class="theBlack">Blessed be our God and Father,<br/>
+<p class="theBlack poetry">Blessed be our God and Father,<br/>
 who has given us the mysteries of his Son<br/>
 to be pondered with devotion and celebrated with faith.<br/>
 May he grant us, his faithful people,<br/>
@@ -352,14 +356,14 @@ the truths they treasure in their prayer.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">898</span> Or:</p>
 
-<p class="theBlack">Almighty and merciful God,<br/>
+<p class="theBlack poetry">Almighty and merciful God,<br/>
 out of the immense love with which you have loved us<br/>
 you willed that by the power of the Holy Spirit<br/>
 your Son should be born of the Virgin Mary,<br/>
 that he should suffer death through the cross,<br/>
 and rise again from the dead.</p>
 
-<p class="theBlack">Lord,<br/>
+<p class="theBlack poetry">Lord,<br/>
 send your blessing<br/>
 upon all who use these rosaries<br/>
 to pray with lips and hearts<br/>
@@ -379,14 +383,14 @@ by the Blessed Virgin Mary.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">900</span> After the recitation of the rosary, an antiphon, for example, <span class="hymnName">Salve Regina</span>, or some other suitable song may be sung. The celebrant then concludes the rite by saying:</p>
 
-<p class="theBlack">May God who has given joy to the world through the Blessed Virgin Mary<br/>
+<p class="theBlack poetry">May God who has given joy to the world through the Blessed Virgin Mary<br/>
 shower you with his gracious kindness.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="rubricInlineUnnumbered">Then he blesses all present.</p>
 
-<p class="theBlack">And may almighty God bless you all,<br/>
+<p class="theBlack">And may almighty God bless you<span class="xlationOld"> all</span>,<br/>
 the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
@@ -415,7 +419,7 @@ the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">904</span> With hands outstretched, the celebrant says the prayer of blessing.</p>
 
-<p class="theBlack">Blessed by our God and Father,<br/>
+<p class="theBlack poetry">Blessed by our God and Father,<br/>
 who has given us the mysteries of his Son<br/>
 to be pondered with devotion and celebrated with faith.<br/>
 May he grant us, his faithful people,<br/>
@@ -430,7 +434,7 @@ in our minds and hearts.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">905</span> Or:</p>
 
-<p class="theBlack">In memory of the mysteries<br/>
+<p class="theBlack poetry">In memory of the mysteries<br/>
 of the life, death, and resurrection of our Lord<br/>
 and in honor of the Virgin Mary,<br/>
 Mother of Christ and Mother of the Church,<br/>

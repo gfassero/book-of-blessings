@@ -17,8 +17,12 @@
     --color-border: #e6e6e6;
     --color-accent: #2f5a5f;
     --color-overlay: rgba(20, 20, 20, 0.45);
+    --color-red: #9c2b2b;
+    --color-rubrics: #E64040;
 
     --drawer-width: min(86vw, 360px);
+
+    --banner-height: 2em;
   }
 
   html[data-font="sans"]  { --font-active: var(--font-sans); }
@@ -121,8 +125,9 @@ html[data-newMissal="true"] .optWrapper:has(p[data-xlation="old"]),
 html[data-newMissal="false"] .optWrapper:has(p[data-xlation="new"]),
 html[data-cull="true"] .optWrapper:has(p[data-cullOut="true"]),
 
-html[data-simplify="true"] .optWrapper:has(.simplifyOut),
-html[data-simplify="false"] .optWrapper:has(.simplifyIn),
+html[data-simplify="true"] .optWrapper:has(p.simplifyOut),
+html[data-simplify="false"] .optWrapper:has(p.simplifyIn),
+
 html[data-cull="true"] .optWrapper:has(.cullOut),
 html[data-cull="false"] .optWrapper:has(.cullIn),
 html[data-newScripture="true"] .optWrapper:has(.newScriptureOut),
@@ -133,14 +138,24 @@ html[data-addCross="false"] .optWrapper:has(.addCrossIn) {
   opacity: 0;
 }
 
+
+html[data-presider="lay"] .clergy,
+html[data-presider="lay"] .deacon,
+html[data-presider="lay"] .priest,
+html[data-presider="deacon"] .priest,
+html[data-presider="deacon"] .lay,
+html[data-presider="priest"] .lay,
+html[data-presider="priest"] .deacon,
+html[data-presider="priest"] .nonPriest,
+
 html[data-simplify="true"] span.simplifyOut,
 html[data-simplify="false"] span.simplifyIn,
 html[data-cull="true"] span.cullOut,
 html[data-cull="false"] span.cullIn,
 html[data-newScripture="true"] span.newScriptureOut,
 html[data-newScripture="false"] span.newScriptureIn,
-html[data-newMissal="true"] span.newMissalOut,
-html[data-newMissal="false"] span.newMissalIn,
+html[data-newMissal="true"] span.xlationOld,
+html[data-newMissal="false"] span.xlationNew,
 html[data-presider="lay"] span.cross,
 html[data-addCross="true"] span.addCrossOut,
 html[data-addCross="false"] span.addCrossIn  {
@@ -148,16 +163,18 @@ html[data-addCross="false"] span.addCrossIn  {
     letter-spacing: -0.5em;
 }
 
-.content {
-	a:link, a:visited {color: var(--color-text);}
-	a.omitted {opacity: 0.6; cursor: default; text-decoration: none;}
+.content a:link, .content a:visited {
+	color: var(--color-text);
+	transition: opacity 0.2s ease, text-decoration-color 0.2s ease;
 }
-html[data-presider="lay"] .content {
-	a.clergy:link, a.clergy:visited,
-	a.priest:link, a.priest:visited	{opacity: 0.6; cursor: auto; text-decoration: none;}
-}
-html[data-presider="deacon"] .content {
-	a.priest:link, a.priest:visited	{opacity: 0.6; cursor: auto; text-decoration: none;}
+
+.content a.omitted,
+html[data-presider="lay"] .content a:has(.lay),
+html[data-presider="lay"] .content a:has(.nonPriest),
+html[data-presider="deacon"] .content a:has(.nonPriest) {
+	opacity: 0.6;
+	cursor: auto;
+	text-decoration-color: transparent;
 }
 
   /* ---------- Settings drawer ---------- */
@@ -365,3 +382,45 @@ html[data-presider="deacon"] .content {
     color: var(--color-muted);
     font-size: 1.12em;
   }
+
+  /* ---------- WARNING BANNER ---------- */
+
+.warning-banner-lay, .warning-banner-nonPriest {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 15; /* above page content, below drawer-overlay (30) and popup-overlay (40) */
+  min-height: var(--banner-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.6em 1rem;
+  background: var(--color-red);
+  color: var(--color-bg);
+  font-family: var(--font-sans);
+  font-size: 0.85em;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+html[data-presider="priest"] #warningBanner,
+html[data-presider="deacon"] .warning-banner-lay {
+	transform: translateY(-100%);
+}
+
+/* When the banner is present and visible, push the corner icons and the
+   reading content down so nothing sits underneath it. No JS needed —
+   :has() reacts to the hidden attribute automatically. */
+html[data-presider="deacon"]:has(.warning-banner-nonPriest),
+html[data-presider="lay"]:has(#warningBanner) {
+	.page-controls {
+		top: calc(env(safe-area-inset-top, 0px) + var(--banner-height) + 10px);
+	}
+	main.content {
+		padding-top: calc(env(safe-area-inset-top, 0px) + var(--banner-height) + 64px);
+	}
+}
+.page-controls {transition: top 0.2s ease;}
+main.content {transition: padding-top 0.2s ease;}

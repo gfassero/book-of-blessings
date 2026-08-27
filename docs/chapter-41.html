@@ -23,20 +23,15 @@ Other ideas:
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
-- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
 Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
-
-Warn when lay users view clergy-only rite.
-Warn when deacon users view priest-only rite.
 
 How to use:
 - do the red, say the black
@@ -52,6 +47,7 @@ How to use:
 <link rel="stylesheet" href="shared/styles-text.css" />
 </head>
 <body>
+
 <div class="page-controls">
   <a class="icon-btn" href="index.html" aria-label="Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -67,7 +63,9 @@ How to use:
     </svg>
   </button>
 </div>
+
 <div class="drawer-overlay" id="drawerOverlay"></div>
+
 <aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
   <div class="drawer-header">
     <h2 id="drawerTitle">Settings</h2>
@@ -114,14 +112,14 @@ How to use:
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -160,7 +158,9 @@ How to use:
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
+
 <div class="popup-overlay" id="popupOverlay"></div>
+
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
   <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
@@ -214,11 +214,11 @@ How to use:
 
 <p class="theBlack">Amen.</p>
 
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1231</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1231</span> A minister who is a priest or deacon greets those present<span class="simplifyOut"> in the following or other suitable words, taken mainly from sacred Scripture</span>.</p>
 
 <p class="theBlack" data-presider="clergy">May God, who is rich in mercy and who has favored us in wonderful ways, be with you all.</p>
 
-<p class="rubricInlineUnnumbered" data-presider="clergy">All make the following or some other suitable reply.</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">All <span class="simplifyOut">make the following or some other suitable </span>reply.</p>
 
 <p class="theBlack" data-presider="clergy" data-xlation="old">And also with you.</p>
 <p class="theBlack" data-presider="clergy" data-xlation="new">And with your spirit.</p>
@@ -242,21 +242,21 @@ How to use:
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the apostle Paul to the Philippians:<span class="rubricCitationInRdgIntro">4:4-7</span></p>
 <p class="theBlack" data-xlation="new">A reading from the letter of Paul to the Philippians:<span class="rubricCitationInRdgIntro">4:4-7</span></p>
 
-<p class="rubricReadingTheme">Present your needs to God in every form of prayer and in petitions full of gratitude.</p>
+<p class="rubricReadingTheme simplifyOut">Present your needs to God in every form of prayer and in petitions full of gratitude.</p>
 
 <p class="theBlack">Rejoice in the Lord always. I shall say it again: rejoice! Your kindness should be known to all. The Lord is near. Have no anxiety at all, but in everything, by prayer and petition, with thanksgiving, make your requests known to God. Then the peace of God that surpasses all understanding will guard your hearts and minds in Christ Jesus.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1235</span> Or:</p>
+<p class="rubricInlineNumbered" data-cullOut="true"><span class="parNumber">1235</span> Or:</p>
 
-<p class="rubricAltReading">1 Corinthians 1:4-9—<span class="readingTheme">In Christ Jesus you have been richly endowed with every gift.</span></p>
+<p class="rubricAltReading" data-cullOut="true">1 Corinthians 1:4-9—<span class="readingTheme">In Christ Jesus you have been richly endowed with every gift.</span></p>
 
-<p class="rubricAltReading">Colossians 3:15-17—<span class="readingTheme">Give thanks to God the Father through him.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Colossians 3:15-17—<span class="readingTheme">Give thanks to God the Father through him.</span></p>
 
-<p class="rubricAltReading">1 Thessalonians 5:12-24—<span class="readingTheme">Render constant thanks; such is God’s will for you.</span></p>
+<p class="rubricAltReading" data-cullOut="true">1 Thessalonians 5:12-24—<span class="readingTheme">Render constant thanks; such is God’s will for you.</span></p>
 
-<p class="rubricAltReading">1 Timothy 2:1-10—<span class="readingTheme">First of all I urge that thanksgiving be offered for all people.</span></p>
+<p class="rubricAltReading" data-cullOut="true">1 Timothy 2:1-10—<span class="readingTheme">First of all I urge that thanksgiving be offered for all people.</span></p>
 
-<p class="rubricAltReading">Luke 17:11-19—<span class="readingTheme">They praised God with a loud voice.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Luke 17:11-19—<span class="readingTheme">They praised God with a loud voice.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1236</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
 
@@ -264,43 +264,43 @@ How to use:
 
 <p class="rubricInlineUnnumbered">Psalm 47</p>
 
-<p class="theBlack">All you peoples, clap your hands,<br/>
+<p class="theBlack poetry">All you peoples, clap your hands,<br/>
 shout to God with cries of gladness,<br/>
 For the LORD, the Most High, the awesome,<br/>
 is the great king over all the earth. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">He chooses for us our inheritance,<br/>
+<p class="theBlack poetry">He chooses for us our inheritance,<br/>
 the glory of Jacob, whom he loves.<br/>
 God mounts his throne amid shouts of joy;<br/>
 the LORD, amid trumpet blasts. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">Sing praise to God, sing praise;<br/>
+<p class="theBlack poetry">Sing praise to God, sing praise;<br/>
 sing praise to our king, sing praise.<br/>
 For king of all the earth is God;<br/>
 sing hymns of praise. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">God reigns over the nations,<br/>
+<p class="theBlack poetry">God reigns over the nations,<br/>
 God sits upon his holy throne.<br/>
 The princes of the peoples are gathered together<br/>
 with the people of the God of Abraham.<br/>
 For God’s are the guardians of the earth;<br/>
 he is supreme. <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Psalm 66:1b-2, 8-9, 10-11, 13-14, 16-17, 19-20</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Psalm 66:1b-2, 8-9, 10-11, 13-14, 16-17, 19-20</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> (see v. 16) Come, listen as I tell you what God did for me.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> (see v. 16) Come, listen as I tell you what God did for me.</p>
 
-<p class="rubricInlineUnnumbered">Psalm 118:1-2, 5-6, 8-9, 17-19, 26-27, 28-29</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Psalm 118:1-2, 5-6, 8-9, 17-19, 26-27, 28-29</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1) Give thanks to the Lord for he is good, his love is everlasting.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> (v. 1) Give thanks to the Lord for he is good, his love is everlasting.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1237</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+<p class="rubricInlineNumbered"><span class="parNumber">1237</span> <span class="simplifyOut">As circumstances suggest, t</span><span class="simplifyIn">T</span>he minister may <span class="simplifyOut">give those present a brief explanation of</span><span class="simplifyIn">briefly explain</span> the biblical text<span class="simplifyOut">, so that they may understand through faith the meaning of the celebration</span>.</p>
 
-<p class="riteSectionHeading">Intercessions</p>
+<p class="riteSectionHeading">Intercessions<span class="simplifyIn rubricInlineUnnumbered"> (optional)</span></p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1238</span> As circumstances suggest, the intercessions may follow. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">1238</span> As circumstances suggest, the intercessions may follow. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
 
-<p class="rubricInlineUnnumbered">The minister says:</p>
+<p class="rubricInlineUnnumbered simplifyOut">The minister says:</p>
 
 <p class="theBlack">The heavens declare the glory of God, our almighty Father, and every creature he has made extols his goodness. Mindful of our indebtedness, let us together with praise and thanksgiving call upon him by saying:</p>
 
@@ -310,29 +310,31 @@ he is supreme. <span class="rubricRV">℟.</span></p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">Father most generous, in Christ Jesus, your Son, you have given us all things; grant that we may never fail to sing your praises. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">Father most generous, in Christ Jesus, your Son, you have given us all things; grant that we may never fail to sing your praises. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">Your loving response far exceeds the merits and expectations of those who pray to you; grant that with our lips and our hearts we may sing the wonders of your works. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">Your loving response far exceeds the merits and expectations of those who pray to you; grant that with our lips and our hearts we may sing the wonders of your works. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You prepare and bestow upon us all countless signs of your love; grant that, as we receive your gifts, we may always see you as their giver. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You prepare and bestow upon us all countless signs of your love; grant that, as we receive your gifts, we may always see you as their giver. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You have told your disciples to share what they have with others; grant that our neighbors may share in your gifts to us, so that they may also share in our joy. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You have told your disciples to share what they have with others; grant that our neighbors may share in your gifts to us, so that they may also share in our joy. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1239</span> Instead of the intercessions, the hymn <span class="hymnName">Te Deum</span>, or the canticle <span class="hymnName">Bless the Lord, all you works of the Lord</span>, or the Canticle of Mary, or a suitable psalm may be sung.</p>
 
 <p class="riteSectionHeading">Prayer of Blessing</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">1240</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">1240</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1240</span> The minister says the prayer of blessing with hands outstretched.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">1240</span> The lay minister says the prayer with hands joined.</p>
 
-<p class="theBlack">Almighty Father,<br/>
+<p class="theBlack poetry">Almighty Father,<br/>
 you are lavish in bestowing all your gifts,<br/>
 and we give you thanks for the favors you have given to us.<br/>
 In your goodness you have favored us<br/>
@@ -346,7 +348,7 @@ and to shelter us in the shadow of your wings.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1241</span> Or:</p>
 
-<p class="theBlack">O God,<br/>
+<p class="theBlack poetry">O God,<br/>
 your mercy is without measure,<br/>
 the treasures of your goodness without limit.<br/>
 We thank your gentle majesty<br/>
@@ -371,7 +373,7 @@ bless you with an everlasting blessing.</p>
 
 <p class="rubricInlineUnnumbered" data-presider="clergy">Then he blesses all present.</p>
 
-<p class="theBlack" data-presider="clergy">And may almighty God bless you all,<br/>
+<p class="theBlack" data-presider="clergy">And may almighty God bless you<span class="xlationOld"> all</span>,<br/>
 the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
 <p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>

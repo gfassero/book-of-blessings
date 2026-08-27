@@ -23,20 +23,15 @@ Other ideas:
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
-- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
 Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
-
-Warn when lay users view clergy-only rite.
-Warn when deacon users view priest-only rite.
 
 How to use:
 - do the red, say the black
@@ -52,6 +47,7 @@ How to use:
 <link rel="stylesheet" href="shared/styles-text.css" />
 </head>
 <body>
+
 <div class="page-controls">
   <a class="icon-btn" href="index.html" aria-label="Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -67,7 +63,9 @@ How to use:
     </svg>
   </button>
 </div>
+
 <div class="drawer-overlay" id="drawerOverlay"></div>
+
 <aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
   <div class="drawer-header">
     <h2 id="drawerTitle">Settings</h2>
@@ -114,14 +112,14 @@ How to use:
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -160,7 +158,9 @@ How to use:
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
+
 <div class="popup-overlay" id="popupOverlay"></div>
+
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
   <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
@@ -224,7 +224,7 @@ How to use:
 
 <p class="theBlack">Amen.</p>
 
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">936</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">936</span> A minister who is a priest or deacon greets those present<span class="simplifyOut"> in the following or other suitable words, taken mainly from sacred Scripture</span>.</p>
 
 <p class="theBlack" data-presider="clergy">May God, who enlightens every heart, be with you.</p>
 
@@ -250,9 +250,9 @@ How to use:
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the prophet Isaiah:<span class="rubricCitationInRdgIntro">9:1-2, 5-6</span></p>
 <p class="theBlack" data-xlation="new">A reading from book of the prophet Isaiah:<span class="rubricCitationInRdgIntro">9:1-2, 5-6</span></p>
 
-<p class="rubricReadingTheme">The people who walked in darkness have seen a great light.</p>
+<p class="rubricReadingTheme simplifyOut">The people who walked in darkness have seen a great light.</p>
 
-<p class="theBlack">The people who walked in darkness<br/>
+<p class="theBlack poetry">The people who walked in darkness<br/>
 have seen a great light;<br/>
 Upon those who dwelt in the land of gloom<br/>
 a light has shone.<br/>
@@ -271,15 +271,15 @@ which he confirms and sustains<br/>
 By judgment and justice,<br/>
 both now and forever.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">940</span> Or:</p>
+<p class="rubricInlineNumbered" data-cullOut="true"><span class="parNumber">940</span> Or:</p>
 
-<p class="rubricAltReading">Isaiah 63:16-17, 19; 64:2-7—<span class="readingTheme">You, Lord, are our redeemer.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Isaiah 63:16-17, 19; 64:2-7—<span class="readingTheme">You, Lord, are our redeemer.</span></p>
 
-<p class="rubricAltReading">Jeremiah 33:14-16—<span class="readingTheme">I will cause a good seed to spring forth from David.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Jeremiah 33:14-16—<span class="readingTheme">I will cause a good seed to spring forth from David.</span></p>
 
-<p class="rubricAltReading">1 John 1:5-7—<span class="readingTheme">God is light; walk in the light.</span></p>
+<p class="rubricAltReading" data-cullOut="true">1 John 1:5-7—<span class="readingTheme">God is light; walk in the light.</span></p>
 
-<p class="rubricAltReading">Matthew 1:18-25—<span class="readingTheme">The birth of Jesus.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Matthew 1:18-25—<span class="readingTheme">The birth of Jesus.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">941</span> As circumstances suggest, one of the following responsorial psalms may be sung, or some other suitable song.</p>
 
@@ -287,51 +287,51 @@ both now and forever.</p>
 
 <p class="rubricInlineUnnumbered">Psalm 80</p>
 
-<p class="theBlack">O shepherd of Israel, hearken,<br/>
+<p class="theBlack poetry">O shepherd of Israel, hearken,<br/>
 O guide of the flock of Joseph!<br/>
 From your throne upon the cherubim, shine forth<br/>
 before Ephraim, Benjamin and Manasseh. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">Once again, O LORD of hosts,<br/>
+<p class="theBlack poetry">Once again, O LORD of hosts,<br/>
 look down from heaven, and see;<br/>
 Take care of this vine,<br/>
 and protect what your right hand has planted,<br/>
 the son of man whom you yourself made strong. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">May your help be with the man of your right hand,<br/>
+<p class="theBlack poetry">May your help be with the man of your right hand,<br/>
 with the son of man whom you yourself made strong.<br/>
 Then we will no more withdraw from you;<br/>
 give us new life, and we will call upon your name. <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Psalm 8:2, 3, 4, 5, 6, 7, 8-9</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Psalm 8:2, 3, 4, 5, 6, 7, 8-9</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> (v. 2) O Lord, our Lord, how great is your name over all the earth.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> (v. 2) O Lord, our Lord, how great is your name over all the earth.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">942</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+<p class="rubricInlineNumbered"><span class="parNumber">942</span> <span class="simplifyOut">As circumstances suggest, t</span><span class="simplifyIn">T</span>he minister may <span class="simplifyOut">give those present a brief explanation of</span><span class="simplifyIn">briefly explain</span> the biblical text<span class="simplifyOut">, so that they may understand through faith the meaning of the celebration</span>.</p>
 
 <p class="riteSectionHeading">Intercessions</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">943</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">943</span> The intercessions are then said. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
 
-<p class="rubricInlineUnnumbered">The minister says:</p>
+<p class="rubricInlineUnnumbered simplifyOut">The minister says:</p>
 
 <p class="theBlack">Christ came to bring us salvation and has promised to come again. Let us pray that we may be always ready to welcome him.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Come, Lord Jesus.</p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">That the keeping of Advent may open our hearts to God’s love, we pray to the Lord. <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">That the light of Christ may penetrate the darkness of sin, we pray to the Lord. <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">That this wreath may constantly remind us to prepare for the coming of Christ, we pray to the Lord. <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">That the Christmas season may fill us with peace and joy as we strive to follow the example of Jesus, we pray to the Lord. <span class="rubricRV">℟.</span></p>
 
@@ -345,14 +345,16 @@ give us new life, and we will call upon your name. <span class="rubricRV">℟.</
 
 <p class="riteSectionHeading">Prayer of Blessing</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">945</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">945</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">945</span> The minister says the prayer of blessing with hands outstretched.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">945</span> The lay minister says the prayer with hands joined.</p>
 
-<p class="theBlack">Lord God,<br/>
+<p class="theBlack poetry">Lord God,<br/>
 your Church joyfully awaits the coming of its Savior,<br/>
 who enlightens our hearts<br/>
 and dispels the darkness of ignorance and sin.</p>
 
-<p class="theBlack">Pour forth your blessings upon us<br/>
+<p class="theBlack poetry">Pour forth your blessings upon us<br/>
 as we light the candles of this wreath;<br/>
 may their light reflect the splendor of Christ,<br/>
 who is Lord, for ever and ever.</p>
@@ -361,13 +363,13 @@ who is Lord, for ever and ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">946</span> Or:</p>
 
-<p class="theBlack">Lord our God,<br/>
+<p class="theBlack poetry">Lord our God,<br/>
 we praise you for your Son, Jesus Christ:<br/>
 he is Emmanuel, the hope of the peoples,<br/>
 he is the wisdom that teaches and guides us,<br/>
 he is the Savior of every nation.</p>
 
-<p class="theBlack">Lord God,<br/>
+<p class="theBlack poetry">Lord God,<br/>
 let your blessing come upon us<br/>
 as we light the candles of this wreath.<br/>
 May the wreath and its light<br/>
@@ -390,7 +392,7 @@ May he come quickly and not delay.</p>
 
 <p class="rubricInlineUnnumbered" data-presider="clergy">Then he blesses all present.</p>
 
-<p class="theBlack" data-presider="clergy">And may almighty God bless you all,<br/>
+<p class="theBlack" data-presider="clergy">And may almighty God bless you<span class="xlationOld"> all</span>,<br/>
 the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
 <p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
@@ -418,9 +420,9 @@ the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the prophet Isaiah:<span class="rubricCitationInRdgIntro">9:1-2, 5-6</span></p>
 <p class="theBlack" data-xlation="new">A reading from book of the prophet Isaiah:<span class="rubricCitationInRdgIntro">9:1-2, 5-6</span></p>
 
-<p class="rubricReadingTheme">The people who walked in darkness have seen a great light.</p>
+<p class="rubricReadingTheme simplifyOut">The people who walked in darkness have seen a great light.</p>
 
-<p class="theBlack">The people who walked in darkness<br/>
+<p class="theBlack poetry">The people who walked in darkness<br/>
 have seen a great light;<br/>
 Upon those who dwelt in the land of gloom<br/>
 a light has shone.<br/>
@@ -439,14 +441,16 @@ which he confirms and sustains<br/>
 By judgment and justice,<br/>
 both now and forever.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">952</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">952</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">952</span> The minister says the prayer of blessing with hands outstretched.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">952</span> The lay minister says the prayer with hands joined.</p>
 
-<p class="theBlack">Lord God,<br/>
+<p class="theBlack poetry">Lord God,<br/>
 your Church joyfully awaits the coming of its Savior,<br/>
 who enlightens our hearts<br/>
 and dispels the darkness of ignorance and sin.</p>
 
-<p class="theBlack">Pour forth your blessings upon us<br/>
+<p class="theBlack poetry">Pour forth your blessings upon us<br/>
 as we light the candles of this wreath;<br/>
 may their light reflect the splendor of Christ,<br/>
 who is Lord, for ever and ever.</p>
@@ -455,13 +459,13 @@ who is Lord, for ever and ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">953</span> Or:</p>
 
-<p class="theBlack">Lord our God,<br/>
+<p class="theBlack poetry">Lord our God,<br/>
 we praise you for your Son, Jesus Christ:<br/>
 he is Emmanuel, the hope of the peoples,<br/>
 he is the wisdom that teaches and guides us,<br/>
 he is the Savior of every nation.</p>
 
-<p class="theBlack">Lord God,<br/>
+<p class="theBlack poetry">Lord God,<br/>
 let your blessing come upon us<br/>
 as we light the candles of this wreath.<br/>
 May the wreath and its light<br/>

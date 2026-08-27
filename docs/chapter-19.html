@@ -23,20 +23,15 @@ Other ideas:
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
-- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
 Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
-
-Warn when lay users view clergy-only rite.
-Warn when deacon users view priest-only rite.
 
 How to use:
 - do the red, say the black
@@ -52,6 +47,7 @@ How to use:
 <link rel="stylesheet" href="shared/styles-text.css" />
 </head>
 <body>
+
 <div class="page-controls">
   <a class="icon-btn" href="index.html" aria-label="Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -67,7 +63,9 @@ How to use:
     </svg>
   </button>
 </div>
+
 <div class="drawer-overlay" id="drawerOverlay"></div>
+
 <aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
   <div class="drawer-header">
     <h2 id="drawerTitle">Settings</h2>
@@ -114,14 +112,14 @@ How to use:
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -160,7 +158,9 @@ How to use:
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
+
 <div class="popup-overlay" id="popupOverlay"></div>
+
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
   <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
@@ -216,11 +216,11 @@ How to use:
 
 <p class="theBlack">Amen.</p>
 
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">754</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">754</span> A minister who is a priest or deacon greets those present<span class="simplifyOut"> in the following or other suitable words, taken mainly from sacred Scripture</span>.</p>
 
 <p class="theBlack" data-presider="clergy">May God, who is wonderful in all his works, be with you all.</p>
 
-<p class="rubricInlineUnnumbered" data-presider="clergy">All make the following or some other suitable reply.</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">All <span class="simplifyOut">make the following or some other suitable </span>reply.</p>
 
 <p class="theBlack" data-presider="clergy" data-xlation="old">And also with you.</p>
 <p class="theBlack" data-presider="clergy" data-xlation="new">And with your spirit.</p>
@@ -244,7 +244,7 @@ How to use:
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the book of Genesis:<span class="rubricCitationInRdgIntro">1:1, 11-12, 29-31a</span></p>
 <p class="theBlack" data-xlation="new">A reading from the book of Genesis:<span class="rubricCitationInRdgIntro">1:1, 11-12, 29-31a</span></p>
 
-<p class="rubricReadingTheme">God looked at everything he had made, and he found it very good.</p>
+<p class="rubricReadingTheme simplifyOut">God looked at everything he had made, and he found it very good.</p>
 
 <p class="theBlack">In the beginning, when God created the heavens and the earth, God said, “Let the earth bring forth vegetation: every kind of plant that bears seed and every kind of fruit tree on earth that bears fruit with its seed in it.” And so it happened: the earth brought forth every kind of plant that bears seed and every kind of fruit tree on earth that bears fruit with its seed in it. God saw how good it was.</p>
 
@@ -255,9 +255,9 @@ How to use:
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the book of Deuteronomy:<span class="rubricCitationInRdgIntro">32:10c-14</span></p>
 <p class="theBlack" data-xlation="new">A reading from the book of Deuteronomy:<span class="rubricCitationInRdgIntro">32:10c-14</span></p>
 
-<p class="rubricReadingTheme">God had them ride triumphant over the summits of the land and live off the products of its fields.</p>
+<p class="rubricReadingTheme simplifyOut">God had them ride triumphant over the summits of the land and live off the products of its fields.</p>
 
-<p class="theBlack">The LORD shielded them and cared for them,<br/>
+<p class="theBlack poetry">The LORD shielded them and cared for them,<br/>
 guarding them as the apple of his eye.<br/>
 As an eagle incites its nestlings forth<br/>
 by hovering over its brood,<br/>
@@ -275,11 +275,11 @@ Its Bashan bulls and its goats,<br/>
 with the cream of its finest wheat;<br/>
 and the foaming blood of its grapes you drank.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">759</span> Or:</p>
+<p class="rubricInlineNumbered" data-cullOut="true"><span class="parNumber">759</span> Or:</p>
 
-<p class="rubricAltReading">Matthew 6:25-34—<span class="readingTheme">Learn a lesson from the way the wild flowers grow.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Matthew 6:25-34—<span class="readingTheme">Learn a lesson from the way the wild flowers grow.</span></p>
 
-<p class="rubricAltReading">Mark 4:26-29—<span class="readingTheme">The seed sprouts and grows without the man’s knowing what happens.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Mark 4:26-29—<span class="readingTheme">The seed sprouts and grows without the man’s knowing what happens.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">760</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
 
@@ -287,63 +287,63 @@ and the foaming blood of its grapes you drank.</p>
 
 <p class="rubricInlineUnnumbered">Psalm 65</p>
 
-<p class="theBlack">You have visited the land and watered it;<br/>
+<p class="theBlack poetry">You have visited the land and watered it;<br/>
 greatly have you enriched it.<br/>
 God’s watercourses are filled;<br/>
 you have prepared the grain. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">Thus have you prepared the land: drenching its furrows,<br/>
+<p class="theBlack poetry">Thus have you prepared the land: drenching its furrows,<br/>
 breaking up its clods,<br/>
 Softening it with showers,<br/>
 blessing its yield.<br/>
 You have crowned the year with your bounty,<br/>
 and your paths overflow with a rich harvest. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">The untilled meadows overflow with it,<br/>
+<p class="theBlack poetry">The untilled meadows overflow with it,<br/>
 and rejoicing clothes the hills.<br/>
 The fields are garmented with flocks<br/>
 and the valleys blanketed with grain.<br/>
 They shout and sing for joy. <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Psalm 104:1-2a, 14-15, 24, 27-28</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Psalm 104:1-2a, 14-15, 24, 27-28</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> (v. 24c) The earth is full of your creatures, O Lord.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> (v. 24c) The earth is full of your creatures, O Lord.</p>
 
-<p class="rubricInlineUnnumbered">Psalm 107:35-36, 37-38, 41-42</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Psalm 107:35-36, 37-38, 41-42</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1b) Give thanks to the Lord, for he is good.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> (v. 1b) Give thanks to the Lord, for he is good.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">761</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+<p class="rubricInlineNumbered"><span class="parNumber">761</span> <span class="simplifyOut">As circumstances suggest, t</span><span class="simplifyIn">T</span>he minister may <span class="simplifyOut">give those present a brief explanation of</span><span class="simplifyIn">briefly explain</span> the biblical text<span class="simplifyOut">, so that they may understand through faith the meaning of the celebration</span>.</p>
 
-<p class="riteSectionHeading">Intercessions</p>
+<p class="riteSectionHeading">Intercessions<span class="simplifyIn rubricInlineUnnumbered"> (optional)</span></p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">762</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, no. 764 or no. 765.</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">762</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, no. 764 or no. 765.</p>
 
-<p class="rubricInlineUnnumbered">The minister says:</p>
+<p class="rubricInlineUnnumbered simplifyOut">The minister says:</p>
 
 <p class="theBlack">The Lord and Father of us all, looking with benign providence on his children, gives them nourishment and growth by blessing the earth with the fruitfulness that sustains human life. As children of this Father, let us pray to him, saying:</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Lord, hear our prayer.</p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You have called us, as Saint Paul says, a field under your cultivation; grant that by doing your will in all things we may remain always close to you. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You have called us, as Saint Paul says, a field under your cultivation; grant that by doing your will in all things we may remain always close to you. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You have told us that Christ is the vine and we are the branches; grant that by living in your Son we may produce much good fruit. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You have told us that Christ is the vine and we are the branches; grant that by living in your Son we may produce much good fruit. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You bless the earth and abundance flows in its pastures; grant that by your blessing our fields may yield the food we need. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You bless the earth and abundance flows in its pastures; grant that by your blessing our fields may yield the food we need. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You make the wheat grow that provides our daily bread and the gift of the eucharist; give us a crop made rich by abundant rain and fertile soil. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You make the wheat grow that provides our daily bread and the gift of the eucharist; give us a crop made rich by abundant rain and fertile soil. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
-<p class="theBlack">You feed the birds of the air and clothe the lilies of the field; teach us not to worry about what we are to eat or drink or wear, but to seek first your kingship over us and your way of holiness. (For this we pray:) <span class="rubricRV">℟.</span></p>
+<p class="theBlack">You feed the birds of the air and clothe the lilies of the field; teach us not to worry about what we are to eat or drink or wear, but to seek first your kingship over us and your way of holiness. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">763</span> When there are no intercessions, the minister, before the prayer of blessing, says:</p>
 
@@ -353,9 +353,11 @@ They shout and sing for joy. <span class="rubricRV">℟.</span></p>
 
 <p class="riteSectionHeading">Prayer of Blessing</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">764</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">764</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">764</span> The minister says the prayer of blessing with hands outstretched.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">764</span> The lay minister says the prayer with hands joined.</p>
 
-<p class="theBlack">All-holy Lord and Father,<br/>
+<p class="theBlack poetry">All-holy Lord and Father,<br/>
 you have commanded us<br/>
 to work the land and cultivate it.<br/>
 Your devoted people now pray that you will grant us<br/>
@@ -370,7 +372,7 @@ from the seeds we plant (today).</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">765</span> Or:</p>
 
-<p class="theBlack">O God,<br/>
+<p class="theBlack poetry">O God,<br/>
 from the very beginning of time<br/>
 you commanded the earth to bring forth vegetation<br/>
 and fruit of every kind.<br/>

@@ -51,48 +51,50 @@ p{margin: 0.5em 0;}
 	font-variant: small-caps;}
 
 /******** RUBRICS ********/
-.rubricParaNumbered{
-	color: red;}
-.rubricParaUnnumbered{
-	color: red;}
+.rubricParaNumbered,
+.rubricParaUnnumbered,
+.rubricInlineNumbered,
+.rubricInlineUnnumbered,
+.rubricAltReading,
+.rubricReadingTheme,
+.rubricCitationInRdgIntro,
+.rubricRV, /* Also includes "Ant." x4 all together */
+.cross,
+.nameN {
+	color: var(--color-rubrics);
+}
 
-.rubricInlineNumbered{
-	color: red;}
-.rubricInlineUnnumbered{
-	color: red;}
+.rubricReadingTheme,
+.readingTheme {
+	font-style: italic;
+}
 
-.rubricReadingTheme{
-	color: red;
-	font-style: italic;}
-.rubricAltReading{
-	color: red;}
-
-.readingTheme{
-	font-style: italic;}
-.rubricRV{ /* Also "Ant." x4 all together */
-	color: red;}
-.cross{
-	color: red;}
 .parNumber{
 	display: inline-block;
 	width: 2em;
-	}
+}
 .marginRefNumber{
 	padding: 0 0.3em;
 	margin-right: 0.3em;
 	color: white;
-	background: black;}
+	background: black;
+}
 .hymnName{
-	font-style: italic;}
+	font-style: italic;
+}
 
 /******** BLACK ********/
 .theBlack{
-	font-weight: bold;}
-.rubricCitationInRdgIntro{
-	color: red;
+	font-weight: bold;
+}
+.poetry{
+	text-indent: 2em hanging each-line;
+}
+.rubricCitationInRdgIntro {
 	font-weight: normal;
 	float: right;
-	margin-left: 1em;}
+	margin-left: 1em;
+}
 
 
 

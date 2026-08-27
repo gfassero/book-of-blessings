@@ -23,20 +23,15 @@ Other ideas:
 - Suggest a solemn blessing based on liturgical season.
 
 New missal translations:
-- And also with you. -> And with your spirit. DONE, but cut alternative responses.
 - Appendix blessings from old missal -> new missal.
 - Cut excess old-translation words.
 - one God -> God
-- for this we pray, etc. -> we pray to the lord
 
 Switch all CSS text styles to variables.
 
 Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
-
-Warn when lay users view clergy-only rite.
-Warn when deacon users view priest-only rite.
 
 How to use:
 - do the red, say the black
@@ -52,6 +47,7 @@ How to use:
 <link rel="stylesheet" href="shared/styles-text.css" />
 </head>
 <body>
+
 <div class="page-controls">
   <a class="icon-btn" href="index.html" aria-label="Home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -67,7 +63,9 @@ How to use:
     </svg>
   </button>
 </div>
+
 <div class="drawer-overlay" id="drawerOverlay"></div>
+
 <aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
   <div class="drawer-header">
     <h2 id="drawerTitle">Settings</h2>
@@ -114,14 +112,14 @@ How to use:
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
@@ -160,7 +158,9 @@ How to use:
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
   </div>
 </aside>
+
 <div class="popup-overlay" id="popupOverlay"></div>
+
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
   <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
@@ -218,11 +218,11 @@ How to use:
 
 <p class="theBlack">Amen.</p>
 
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">708</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">708</span> A minister who is a priest or deacon greets those present<span class="simplifyOut"> in the following or other suitable words, taken mainly from sacred Scripture</span>.</p>
 
 <p class="theBlack" data-presider="clergy">May Christ, the Son of God, who was pleased to be known as the carpenter’s son, be with you all.</p>
 
-<p class="rubricInlineUnnumbered" data-presider="clergy">All make the following or some other suitable reply.</p>
+<p class="rubricInlineUnnumbered" data-presider="clergy">All <span class="simplifyOut">make the following or some other suitable </span>reply.</p>
 
 <p class="theBlack" data-presider="clergy" data-xlation="old">And also with you.</p>
 <p class="theBlack" data-presider="clergy" data-xlation="new">And with your spirit.</p>
@@ -244,27 +244,27 @@ How to use:
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the first letter of Paul to the Thessalonians:<span class="rubricCitationInRdgIntro">4:9, 10b-12</span></p>
 <p class="theBlack" data-xlation="new">A reading from the first letter of Paul to the Thessalonians:<span class="rubricCitationInRdgIntro">4:9, 10b-12</span></p>
 
-<p class="rubricReadingTheme">Work with your hands.</p>
+<p class="rubricReadingTheme simplifyOut">Work with your hands.</p>
 
 <p class="theBlack">On the subject of mutual charity you have no need for anyone to write you, for you yourselves have been taught by God to love one another. Nevertheless we urge you, brothers and sisters, to progress even more, and to aspire to live a tranquil life, to mind your own affairs, and to work with your own hands, as we instructed you, that you may conduct yourselves properly toward outsiders and not depend on anyone.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">712</span> Or:</p>
+<p class="rubricInlineNumbered" data-cullOut="true"><span class="parNumber">712</span> Or:</p>
 
-<p class="rubricAltReading">Exodus 35:30-36:1—<span class="readingTheme">God filled them with the skill and perception to carry out all that was required.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Exodus 35:30-36:1—<span class="readingTheme">God filled them with the skill and perception to carry out all that was required.</span></p>
 
-<p class="rubricAltReading">Job 28:1-28—<span class="readingTheme">Iron is extracted from the earth; the smelted rocks yield copper.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Job 28:1-28—<span class="readingTheme">Iron is extracted from the earth; the smelted rocks yield copper.</span></p>
 
-<p class="rubricAltReading">Proverbs 31:10-31—<span class="readingTheme">She sets her hands to the distaff, her fingers grasp the spindle.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Proverbs 31:10-31—<span class="readingTheme">She sets her hands to the distaff, her fingers grasp the spindle.</span></p>
 
-<p class="rubricAltReading">Sirach 38:25-39 (Greek, 38:24-34)—<span class="readingTheme">They are skilled at their own crafts.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Sirach 38:25-39 (Greek, 38:24-34)—<span class="readingTheme">They are skilled at their own crafts.</span></p>
 
-<p class="rubricAltReading">Isaiah 28:23-29—<span class="readingTheme">Does the plowman do nothing but plow and turn the soil and harrow it?</span></p>
+<p class="rubricAltReading" data-cullOut="true">Isaiah 28:23-29—<span class="readingTheme">Does the plowman do nothing but plow and turn the soil and harrow it?</span></p>
 
-<p class="rubricAltReading">Acts 18:1-5—<span class="readingTheme">Paul was a tentmaker and worked at his trade.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Acts 18:1-5—<span class="readingTheme">Paul was a tentmaker and worked at his trade.</span></p>
 
-<p class="rubricAltReading">Matthew 13:1-9—<span class="readingTheme">A sower went out to sow.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Matthew 13:1-9—<span class="readingTheme">A sower went out to sow.</span></p>
 
-<p class="rubricAltReading">Luke 5:3-11—<span class="readingTheme">If you say so, I will lower the nets.</span></p>
+<p class="rubricAltReading" data-cullOut="true">Luke 5:3-11—<span class="readingTheme">If you say so, I will lower the nets.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">713</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
 
@@ -272,12 +272,12 @@ How to use:
 
 <p class="rubricInlineUnnumbered">Psalm 65</p>
 
-<p class="theBlack">You have visited the land and watered it;<br/>
+<p class="theBlack poetry">You have visited the land and watered it;<br/>
 greatly have you enriched it.<br/>
 God’s watercourses are filled;<br/>
 you have prepared the grain. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">Thus have you prepared the land:<br/>
+<p class="theBlack poetry">Thus have you prepared the land:<br/>
 drenching its furrows,<br/>
 breaking up its clods,<br/>
 Softening it with showers,<br/>
@@ -285,31 +285,31 @@ blessing its yield.<br/>
 You have crowned the year with your bounty,<br/>
 and your paths overflow with a rich harvest. <span class="rubricRV">℟.</span></p>
 
-<p class="theBlack">The untilled meadows overflow with it,<br/>
+<p class="theBlack poetry">The untilled meadows overflow with it,<br/>
 and rejoicing clothes the hills.<br/>
 The fields are garmented with flocks<br/>
 and the valleys blanketed with grain.<br/>
 They shout and sing for joy. <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Psalm 90:2, 3-4, 12-13, 14 and 16</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Psalm 90:2, 3-4, 12-13, 14 and 16</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> (v. 17c) Lord, give success to the work of our hands.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> (v. 17c) Lord, give success to the work of our hands.</p>
 
-<p class="rubricInlineUnnumbered">Psalm 107:35-36, 37-38, 41-42</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Psalm 107:35-36, 37-38, 41-42</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> (v. 1b) Give thanks to the Lord, for he is good.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> (v. 1b) Give thanks to the Lord, for he is good.</p>
 
-<p class="rubricInlineUnnumbered">Psalm 127:1, 2</p>
+<p class="rubricInlineUnnumbered" data-cullOut="true">Psalm 127:1, 2</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> (see v. 1) May the Lord build our house and guard our city.</p>
+<p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> (see v. 1) May the Lord build our house and guard our city.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">714</span> As circumstances suggest, the minister may give those present a brief explanation of the biblical text, so that they may understand through faith the meaning of the celebration.</p>
+<p class="rubricInlineNumbered"><span class="parNumber">714</span> <span class="simplifyOut">As circumstances suggest, t</span><span class="simplifyIn">T</span>he minister may <span class="simplifyOut">give those present a brief explanation of</span><span class="simplifyIn">briefly explain</span> the biblical text<span class="simplifyOut">, so that they may understand through faith the meaning of the celebration</span>.</p>
 
-<p class="riteSectionHeading">Intercessions</p>
+<p class="riteSectionHeading">Intercessions<span class="simplifyIn rubricInlineUnnumbered"> (optional)</span></p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">715</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, no. 717 or no. 718.</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">715</span> As circumstances suggest, the prayer of blessing may be preceded by the intercessions. The minister introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed. The intentions are followed immediately by the prayer of blessing, no. 717 or no. 718.</p>
 
-<p class="rubricInlineUnnumbered">The minister says:</p>
+<p class="rubricInlineUnnumbered simplifyOut">The minister says:</p>
 
 <p class="theBlack">God put us into the world to perfect and preserve it. He continually inspires us to apply our talents and efforts to the progress of creation. Let us together, then, praise God, saying:</p>
 
@@ -319,23 +319,23 @@ They shout and sing for joy. <span class="rubricRV">℟.</span></p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Blessed be God for ever.</p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">In commanding us to work, you entrust us with building up the world you created. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">In entrusting to us the dignity of work, you make us your own co-workers in the world. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">You continually enlighten us with the vision to build new things that glorify your name and make all the earth resound with your praises. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">You sent your Son into the world to be for us a model of untiring toil, as he sanctified and exalted manual labor by the sweat of his own brow. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">Assisting minister:</p>
+<p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">You direct all our actions by your holy inspiration and you carry them on with your gracious help. (Let us bless the Lord:) <span class="rubricRV">℟.</span></p>
 
@@ -347,16 +347,18 @@ They shout and sing for joy. <span class="rubricRV">℟.</span></p>
 
 <p class="riteSectionHeading">Prayer of Blessing</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">717</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">717</span> A minister who is a priest or deacon says the prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">717</span> The minister says the prayer of blessing with hands outstretched.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">717</span> The lay minister says the prayer with hands joined.</p>
 
-<p class="theBlack">O God,<br/>
+<p class="theBlack poetry">O God,<br/>
 the fullness of blessing comes down from you,<br/>
 to you our prayers of blessing rise up.<br/>
 In your kindness protect your servants,<br/>
 who stand before you devout and faithful,<br/>
 bearing the tools of their trade.</p>
 
-<p class="theBlack">Grant that their hard work may contribute<br/>
+<p class="theBlack poetry">Grant that their hard work may contribute<br/>
 to the perfecting of your creation<br/>
 and provide a decent life for themselves and their families.<br/>
 Help them to strive for a better society<br/>
@@ -368,7 +370,7 @@ and to praise and glorify your holy name always.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">718</span> Or:</p>
 
-<p class="theBlack">In your loving providence, O God,<br/>
+<p class="theBlack poetry">In your loving providence, O God,<br/>
 you have made the forces of nature<br/>
 subject to the work of our hands.<br/>
 Grant that by devotion to our own work<br/>
@@ -385,7 +387,7 @@ in the building up of creation.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">720</span> The minister concludes the rite by saying:</p>
 
-<p class="theBlack">May Christ the Lord,<br/>
+<p class="theBlack poetry">May Christ the Lord,<br/>
 who for our salvation took on the burden of human toil,<br/>
 continue now to strengthen us with his help<br/>
 and give us his peace,<br/>
@@ -409,7 +411,7 @@ now and for ever.</p>
 
 <p class="rubricInlineUnnumbered">Sirach 38:31 and 34</p>
 
-<p class="theBlack">All these men are skilled with their hands,<br/>
+<p class="theBlack poetry">All these men are skilled with their hands,<br/>
 each one an expert at his own task;<br/>
 Yet they maintain God’s ancient handiwork,<br/>
 and their concern is for exercise of their skill.</p>
@@ -420,7 +422,7 @@ and their concern is for exercise of their skill.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">724</span> With hands joined, the minister says the prayer of blessing. After the prayer of blessing, as circumstances suggest, the minister may sprinkle those present and the implements with holy water.</p>
 
-<p class="theBlack">In your loving providence, O God,<br/>
+<p class="theBlack poetry">In your loving providence, O God,<br/>
 you have made the forces of nature<br/>
 subject to the work of our hands.<br/>
 Grant that by devotion to our own work<br/>
