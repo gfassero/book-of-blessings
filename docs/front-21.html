@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
+
+<!--
+
+Cull the meal blessings especially.
+Add navigation for the meal blessings.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+Filter seasonally appropriate solemn blessings.
+
+Add navigation to the blessing of food, drink, flowers, candles, etc.
+Add seasonal riteVariants for Chapters 30 & 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Rename nav buttons shorter/shortest as needed for mobile display.
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Should all blessings end with the blessing formula (for clergy)?
+
+Other ideas:
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+New missal translations:
+- Appendix blessings from old missal -> new missal.
+- Cut excess old-translation words.
+- one God -> God
+
+Switch all CSS text styles to variables.
+
+Tag, remove, or assess:
+- () appearing anywhere in blackBlock
+- [] appearing anywhere
+
+INDEX.HTML
+- add General Intro
+- chapter-1-iv-children (used twice, under Home and Family) is missing .html
+- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
+- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js"></script>
+<link rel="stylesheet" href="shared/styles-app.css" />
+<link rel="stylesheet" href="shared/styles-text.css" />
+</head>
+<body>
+
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
+      <circle cx="12" cy="12" r="2.5"/>
+    </svg>
+  </button>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options in blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+<!--    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>-->
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+<!--    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>-->
+
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
+  </div>
+</aside>
+
+<div class="popup-overlay" id="popupOverlay"></div>
+
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT front-21-->
+<p class="chapterTitle">General Introduction</p>
+
+<p class="orderTitle">I. Blessings in the History of Salvation</p>
+
+<p class="frontMatterPara"><span class="parNumber">1</span> The source from whom every good gift comes is God, who is above all, blessed for ever. He who is all good has made all things good, so that he might fill his creatures with blessings and even after the Fall he has continued his blessings as a sign of his merciful love.</p>
+
+<p class="frontMatterPara"><span class="parNumber">2</span> But when the fullness of time arrived, the Father sent his own Son and through him, who took our flesh, gave us a new gift in every spiritual blessing. The ancient curse upon us was thus changed into a blessing: when “the glorious Sun of Justice, Christ our God, appeared, he freed us from the age-old curse and filled us with holiness.”</p>
+
+<p class="frontMatterPara"><span class="parNumber">3</span> Christ, the Father’s supreme blessing upon us, is portrayed in the gospel as blessing those he encountered, especially the children, and as offering to his Father prayers of blessing. Glorified by the Father, after his ascension Christ sent the gift of his Spirit upon the brothers and sisters he had gained at the cost of his blood. The power of the Spirit would enable them to offer the Father always and everywhere praise, adoration, and thanksgiving and, through the works of charity, to be numbered among the blessed in the Father’s kingdom.</p>
+
+<p class="frontMatterPara"><span class="parNumber">4</span> In Christ the blessing of God upon Abraham reached its complete fulfillment. Through the Spirit sent by Christ, those who are called to a new life, “showered with every blessing,” become children by adoption and so as members of Christ’s Body spread the fruits of the same Spirit in order to bring God’s healing blessings to the world.</p>
+
+<p class="frontMatterPara"><span class="parNumber">5</span> In anticipation of Christ’s coming as Savior, the Father had reaffirmed his original covenant of love toward us by the outpouring of many gifts. Thus he prepared a chosen people to welcome the Redeemer and he intervened to make them ever more worthy of the covenant. By walking in the path of righteousness, they had the power to honor God with their lips and with their hearts and thus to become before the world a sign and sacrament of divine blessings.</p>
+
+<p class="frontMatterPara"><span class="parNumber">6</span> The God from whom all blessings flow favored many persons—particularly the patriarchs, kings, priests, Levites, and parents—by allowing them to offer blessings in praise of his name and to invoke his name, so that other persons or the works of creation would be showered with divine blessings.</p>
+
+<p class="frontMatterPara">Whether God blessed the people himself or through the ministry of those who acted in his name, his blessing was always a promise of divine help, a proclamation of his favor, a reassurance of his faithfulness to the covenant he had made with his people. When, in turn, others uttered blessings, they were offering praise to the one whose goodness and mercy they were proclaiming.</p>
+
+<p class="frontMatterPara">In a word, God bestows his blessing by communicating or declaring his own goodness; his ministers bless God by praising him and thanking him and by offering him their reverent worship and service. Whoever blesses others in God’s name invokes the divine help upon individuals or upon an assembled people.</p>
+
+<p class="frontMatterPara"><span class="parNumber">7</span> Scripture attests that all the beings God has created and keeps in existence by his gracious goodness declare themselves to be blessings from him and should move us to bless him in return. This is above all true after the Word made flesh came to make all things holy by the mystery of his incarnation.</p>
+
+<p class="frontMatterPara">Blessings therefore refer first and foremost to God, whose majesty and goodness they extol, and, since they indicate the communication of God’s favor, they also involve human beings, whom he governs and in his providence protects. Further, blessings apply to other created things through which, in their abundance and variety, God blesses human beings.</p>
+
+<p class="orderTitle">II. Blessings in the Life of the Church</p>
+
+<p class="frontMatterPara"><span class="parNumber">8</span> Taught by the Savior’s own command, the Church shares the cup of blessing, as it gives thanks for the inexpressible gift received first in Christ’s paschal mystery and then brought to us in the eucharist. From the grace and power received in the eucharist the Church itself becomes a blessing existing in the world. The Church as the universal sacrament of salvation continues the work of sanctifying and in the Holy Spirit joins Christ its Head in giving glory to the Father.</p>
+
+<p class="frontMatterPara"><span class="parNumber">9</span> As the Church, through the working of the Holy Spirit, fulfills its many-sided ministry of sanctifying, it has accordingly established many forms of blessing. Through them it calls us to praise God, encourages us to implore his protection, exhorts us to seek his mercy by our holiness of life, and provides us with ways of praying that God will grant the favors we ask.</p>
+
+<p class="frontMatterPara">The blessings instituted by the Church are included among those signs perceptible to the senses by which human sanctification in Christ and the glorification of God are “signified and brought about in ways proper to each of these signs.” Human sanctification and God’s glorification are the ends toward which all the Church’s other activities are directed.</p>
+
+<p class="frontMatterPara"><span class="parNumber">10</span> Blessings are signs that have God’s word as their basis and that are celebrated from motives of faith. They are therefore meant to declare and to manifest the newness of life in Christ that has its origin and growth in the sacraments of the New Covenant established by the Lord. In addition, since they have been established as a kind of imitation of the sacraments, blessings are signs above all of spiritual effects that are achieved through the Church’s intercession.</p>
+
+<p class="frontMatterPara"><span class="parNumber">11</span> Because of these considerations, the Church has a profound concern that the celebration of blessings should truly contribute to God’s praise and glory and should serve to better God’s people. In order that this intent of the Church might stand out more clearly, blessing formularies have, from age-old tradition, centered above all on glorifying God for his gifts, on imploring favors from him, and on restraining the power of evil in this world.</p>
+
+<p class="frontMatterPara"><span class="parNumber">12</span> The Church gives glory to God in all things and is particularly intent on showing forth his glory to those who have been or will be reborn through his grace. For them and with them therefore the Church in celebrating its blessings praises the Lord and implores divine grace at important moments in the life of its members. At times the Church also invokes blessings on objects and places connected with human occupations or activities and those related to the liturgy or to piety and popular devotions. But such blessings are invoked always with a view to the people who use the objects to be blessed and frequent the places to be blessed. God has given into our use and care the good things he has created, and we are also the recipients of his own wisdom. Thus the celebration of blessings becomes the means for us to profess that as we make use of what God has created we wish to find him and to love and serve him with all fidelity.</p>
+
+<p class="frontMatterPara"><span class="parNumber">13</span> Through the guidance of faith, the assurance of hope, and the inspiration of charity the faithful receive the wisdom to discern the reflections of God’s goodness not only in the elements of creation but also in the events of human life. They see all of these as signs of that fatherly providence by which God guides and governs all things. At all times and in every situation, then, the faithful have an occasion for praising God through Christ in the Holy Spirit, for calling on divine help, and for giving thanks in all things, provided there is nothing that conflicts with the letter and spirit of the Gospel. Therefore every celebration of a blessing must be weighed beforehand with pastoral prudence, particularly if there is any danger of shocking the faithful or other persons.</p>
+
+<p class="frontMatterPara"><span class="parNumber">14</span> This pastoral evaluation of the blessings of creation is in keeping with another text of Vatican Council II: “Thus, for well-disposed members of the faithful, the effect of the liturgy of the sacraments and the sacramentals is that almost every event in their lives is made holy by divine grace that flows from the paschal mystery of Christ’s passion, death, and resurrection, the fount from which all the sacraments and sacramentals draw their power. The liturgy means also that there is hardly any proper use of material things that cannot thus be directed toward human sanctification and the praise of God.”</p>
+
+<p class="frontMatterPara">The celebration of a blessing, then, prepares us to receive the chief effect of the sacraments and makes holy the various situations of human life.</p>
+
+<p class="frontMatterPara"><span class="parNumber">15</span> “But in order that the liturgy may possess its full effectiveness, it is necessary that the faithful come to it with proper dispositions.” When through the Church we ask for God’s blessing, we should intensify our personal dispositions through faith, for which all things are possible; we should place our assurance in the hope that does not disappoint; above all we should be inspired by the love that impels us to keep God’s commandments. Then, seeking what is pleasing to God, we will fully appreciate his blessing and will surely receive it.</p>
+
+<p class="orderTitle">III. Offices and Ministries</p>
+
+<p class="frontMatterPara"><span class="parNumber">16</span> Blessings are a part of the liturgy of the Church. Therefore their communal celebration is in some cases obligatory but in all cases more in accord with the character of liturgical prayer; as the Church’s prayer places truth before the minds of the faithful, those who are present are led to join themselves with heart and voice to the voice of the Church.</p>
+
+<p class="frontMatterPara">For the more important blessings that concern the local Church, it is fitting that the diocesan or parish community assemble, with the bishop or pastor presiding, to celebrate the blessing.</p>
+
+<p class="frontMatterPara">Even in the case of other blessings, the presence of an assembly of the faithful is preferable, since what is done on behalf of any group within the community redounds in some way to the good of the entire community.</p>
+
+<p class="frontMatterPara"><span class="parNumber">17</span> Whenever there is no assembly of the faithful for the celebration, the person who wishes to bless God’s name or to ask God’s favor and the minister who presides should still keep in mind that they represent the Church in celebration. In this way from their shared prayer and petition a blessing results that “although a human being pronounces it, does not have a merely human source,” a blessing that is “the longed-for bestowal of sanctification and divine favor.”</p>
+
+<p class="frontMatterPara">The celebration of the blessing of things or places according to custom should not take place without the participation of at least some of the faithful.</p>
+
+<p class="frontMatterPara"><span class="parNumber">18</span> The ministry of blessing involves a particular exercise of the priesthood of Christ and, in keeping with the place and office within the people of God belonging to each person, the exercise of this ministry is determined in the following manner:</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">a.</span> It belongs to the ministry of the <span class="hymnName">bishop</span> to preside at celebrations that involve the entire diocesan community and that are carried out with special solemnity and with a large attendance of the faithful. The bishop, accordingly, may reserve certain celebrations to himself, particularly those celebrated with special solemnity.</p>
+ 
+<p class="frontMatterPara letterList"><span class="parNumber">b.</span> It belongs to the ministry of a <span class="hymnName">presbyter</span> or <span class="hymnName">priest</span>, in keeping with the nature of his service to the people of God, to preside at those blessings especially that involve the community he is appointed to serve. Priests therefore may preside at the celebration of all the blessings in this book, unless a bishop is present as presider.</p>
+ 
+<p class="frontMatterPara letterList"><span class="parNumber">c.</span> It belongs to the ministry of a <span class="hymnName">deacon</span> to preside at those blessings that are so indicated in place in this book, because, as the minister of the altar, of the word, and of charity, the deacon is the assistant of the bishop and the college of presbyters.</p>
+
+<p class="frontMatterPara letterList">But whenever a priest is present, it is more fitting that the office of presiding be assigned to him and that the deacon assist by carrying out those functions proper to the diaconate.</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">d.</span> An <span class="hymnName">acolyte</span> or a <span class="hymnName">reader</span> who by formal institution has this special office in the Church is rightly preferred over another layperson as the minister designated at the discretion of the local Ordinary to impart certain blessings.</p>
+
+<p class="frontMatterPara letterList">Other <span class="hymnName">laymen</span> and <span class="hymnName">laywomen</span>, in virtue of the universal priesthood, a dignity they possess because of their baptism and confirmation, may celebrate certain blessings, as indicated in the respective orders of blessings, by use of the rites and formularies designated for a lay minister. Such laypersons exercise this ministry in virtue of their office (for example, parents on behalf of their children) or by reason of some special liturgical ministry or in fulfillment of a particular charge in the Church, as is the case in many places with religious or catechists appointed by decision of the local Ordinary, after ascertaining their proper pastoral formation and prudence in the apostolate.</p>
+
+<p class="frontMatterPara letterList">But whenever a priest or a deacon is present, the office of presiding should be left to him.</p>
+
+<p class="frontMatterPara"><span class="parNumber">19</span> The participation of the faithful will be the more active in proportion to the effectiveness of their instruction on the importance of blessings. During the celebration of a blessing and in preaching and catechesis beforehand, priests and ministers should therefore explain to the faithful the meaning and power of blessings. There is a further advantage in teaching the people of God the proper meaning of the rites and prayers employed by the Church in imparting blessings: this will forestall the intrusion into the celebration of anything that might replace genuine faith with superstition and/or a shallow credulity.</p>
+
+<p class="orderTitle">IV. Celebration of a Blessing</p>
+
+<p class="riteSectionHeading">Typical Structure</p>
+
+<p class="frontMatterPara"><span class="parNumber">20</span> The typical celebration of a blessing consists of two parts: first, the proclamation of the word of God, and second, the praise of God’s goodness and the petition for his help.</p>
+
+<p class="frontMatterPara">In addition there are usually rites for the beginning and conclusion that are proper to each celebration.</p>
+
+<p class="frontMatterPara"><span class="parNumber">21</span> The purpose of the first part of the celebration is to ensure that the blessing is a genuine sacred sign, deriving its meaning and effectiveness from God’s word that is proclaimed.</p>
+
+<p class="frontMatterPara">Thus the proclamation of God’s word is the central point of the first part and the word proclaimed should provide a basis for the introductory comments and the brief instruction on the readings, as well as for any exhortation or homily that may be given, as occasion suggests.</p>
+
+<p class="frontMatterPara">Particularly when there are several readings, an intervening psalm or song or an interval of prayerful silence may be included, in order to intensify the faith of those taking part in the celebration.</p>
+
+<p class="frontMatterPara"><span class="parNumber">22</span> The purpose of the second part of the celebration is that through its rites and prayers the community will praise God and, through Christ in the Holy Spirit, implore divine help. The central point of this part, then, is the blessing formulary itself, that is, the prayer of the Church, along with the accompanying proper outward sign.</p>
+
+<p class="frontMatterPara">But intercessions may also be added as a way of fostering the prayerful petition of those present; the intercessions usually precede, but also may follow the prayer of blessing.</p>
+
+<p class="frontMatterPara"><span class="parNumber">23</span> In the adaptation of celebrations a careful distinction must be made between matters of less importance and those principal elements of the celebrations that are here provided, namely, the proclamation of the word of God and the Church’s prayer of blessing. These may never be omitted even when the shorter form of a rite is used.</p>
+
+<p class="frontMatterPara"><span class="parNumber">24</span> For the planning of a celebration these are the foremost considerations:</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">a.</span> in most cases a communal celebration is to be preferred, and in such a way that a deacon, reader, cantor or psalmist, and choir all fulfill their proper functions;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">b.</span> a primary criterion is that the faithful are able to participate actively, consciously, and easily;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">c.</span> provision should be made for the particular circumstances and persons involved, but with due regard for the principles of the liturgical reform and the norms laid down by the responsible authority.</p>
+
+<p class="riteSectionHeading">Signs to be Used</p>
+
+<p class="frontMatterPara"><span class="parNumber">25</span> The purpose of the outward signs frequently accompanying prayer is above all to bring to mind God’s saving acts, to express a relationship between the present celebration and the Church’s sacraments, and in this way to nurture the faith of those present and move them to take part in the rite attentively.</p>
+
+<p class="frontMatterPara"><span class="parNumber">26</span> The outward signs or gestures that are especially employed are: the outstretching, raising, or joining of the hands, the laying on of hands, the sign of the cross, sprinkling with holy water, and incensation.</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">a.</span> Because the blessing formulary is before all else an oratio, the minister stretches out his hands, joins them, or raises them during it, according to the rubrics in each order of blessing.</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">b.</span> The laying on of hands holds a special place among gestures of blessing. Christ often used this sign of blessing, spoke of it to his disciples, saying: “They will lay hands on the sick and these will recover” (Mark 16:18), and continues to use it in and through the Church.</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">c.</span> In keeping with an ancient tradition, the tracing of the sign of the cross also often accompanies a blessing.</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">d.</span> Some of the orders of blessing provide for sprinkling with holy water, and in these cases ministers should urge the faithful to recall the paschal mystery and renew their baptismal faith.</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">e.</span> Some orders of blessing provide for incensation, which is a sign of veneration and honor and, in some uses, a symbol of the Church’s prayer.</p>
+
+<p class="frontMatterPara"><span class="parNumber">27</span> The outward signs of blessing, and particularly the sign of the cross, are in themselves forms of preaching the Gospel and of expressing faith. But to ensure active participation in the celebration and to guard against any danger of superstition, it is ordinarily not permissible to impart the blessing of any article or place merely through a sign of blessing and without either the word of God or any sort of prayer being spoken.</p>
+
+<p class="riteSectionHeading">Manner of Joining the Celebration of a Blessing with Other Celebrations or with Other Blessings</p>
+
+<p class="frontMatterPara"><span class="parNumber">28</span> Because some blessings have a special relationship to the sacraments, they may sometimes be joined with the celebration of Mass.</p>
+
+<p class="frontMatterPara">This book specifies what such blessings are and the part or rite with which they are to be joined; it also provides ritual norms that may not be disregarded. No blessings except those so specified may be joined with the eucharistic celebration.</p>
+
+<p class="frontMatterPara"><span class="parNumber">29</span> As indicated in the individual orders of blessing, some blessings may be joined with other liturgical celebrations.</p>
+
+<p class="frontMatterPara"><span class="parNumber">30</span> At times it may suit the occasion to have several blessings in a single celebration. The principle of arrangement for such a celebration is that the rite belonging to the more important blessing is to be used, and in the introductory comments and in the intercessions suitable words and signs are added that indicate the intention also of bestowing the other blessings.</p>
+
+<p class="riteSectionHeading">Responsibilities of the Minister in Preparing and Planning a Blessing</p>
+
+<p class="frontMatterPara"><span class="parNumber">31</span> The minister should keep in mind that blessings are intended, first of all, for the faithful. But they may also be celebrated for catechumens and, in view of the provision of can. 1170, for non-Catholics, unless there is a contrary prohibition of the Church.</p>
+
+<p class="frontMatterPara">Whenever the celebration of a blessing is shared with Christians with whom we do not have full communion, the provisions laid down by the local Ordinary are to be respected.</p>
+
+<p class="frontMatterPara"><span class="parNumber">32</span> With a view to the particular circumstances and taking into account the wishes of the faithful, the celebrant or minister is to make full use of the options authorized in the various rites, but also is to maintain the structure of the celebration and is not to mix up the order of the principal parts.</p>
+
+<p class="frontMatterPara"><span class="parNumber">33</span> In planning a communal celebration care must be taken to ensure that all, both ministers and faithful, exercise their proper functions and carry them out devoutly and with proper decorum and order.</p>
+
+<p class="frontMatterPara"><span class="parNumber">34</span> Due attention must also be paid to the character proper to the liturgical season, in order that the minister’s introductory comments and the people’s prayers and intercessions will be linked with the annual cycle of the mysteries of Christ.</p>
+
+<p class="riteSectionHeading">Vestments</p>
+
+<p class="frontMatterPara"><span class="parNumber">35</span> A bishop when presiding at major celebrations wears the vestments prescribed in the <span class="hymnName">Ceremonial of Bishops.</span></p>
+
+<p class="frontMatterPara"><span class="parNumber">36</span> A priest or deacon when presiding at blessings celebrated communally, especially those that are celebrated in a church or with special solemnity, is to wear an alb with stole. A surplice may replace the alb when a cassock is worn; a cope may be worn for more solemn celebrations.</p>
+
+<p class="frontMatterPara"><span class="parNumber">37</span> Vestments are to be either white or of a color corresponding to the liturgical season or feast.</p>
+
+<p class="frontMatterPara"><span class="parNumber">38</span> A formally instituted minister when presiding at blessings celebrated communally is to wear the vesture prescribed for liturgical celebrations by the conference of bishops or by the local Ordinary.</p>
+
+<p class="orderTitle">V. Adaptations Belonging to the Conferences of Bishops</p>
+
+<p class="frontMatterPara"><span class="parNumber">39</span> In virtue of the Constitution on the Liturgy, each conference of bishops has the right to prepare a particular ritual, corresponding to the present title of the Roman Ritual, adapted to the needs of the respective region. Once the decisions of the conference have been reviewed by the Apostolic See, the ritual prepared by the conference is to be used in the region concerned.</p>
+
+<p class="frontMatterPara">In this matter the conference of bishops has the following responsibilities:</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">a.</span> to decide on adaptations, in keeping with the principles established in the present book, and preserving the proper structure of the rites;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">b.</span> to weigh carefully and prudently what elements from the traditions and culture of individual peoples may be appropriately admitted into divine worship, then to propose further adaptations that the conference considers to be necessary or helpful;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">c.</span> to retain or to adapt blessings belonging to particular rituals or those of the former Roman Ritual that are still in use, as long as such blessings are compatible with the tenor of the Constitution on the Liturgy, with the principles set out in this General Introduction, and with contemporary needs;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">d.</span> to add different texts of the same kind to the various orders of blessing whenever the present book gives a choice between several alternative texts;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">e.</span> not only to translate in their entirety but also, where necessary, to expand the Introductions in this book, so that the ministers will fully understand the meaning of the rites and carry them out effectively and the faithful will take part more consciously and actively;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">f.</span> to supply elements missing from this book, for example, to provide other readings that may be useful and to indicate what songs are suited to the celebrations;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">g.</span> to prepare translations of the texts that are adapted to the idiom of the different languages and to the genius of the diverse cultures;</p>
+
+<p class="frontMatterPara letterList"><span class="parNumber">h.</span> to arrange the contents of editions of a book of blessings in a format that will be as convenient as possible for pastoral use; to publish sections of the book separately, but with the major introductions always included.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+</body>
+</html>

@@ -5,18 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
 
-At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
-- short/long/shortest
-- they/him/her
-- children/adults
-- addiction/abuse
-- sick/healthy
-- etc
-
 Cull the meal blessings especially.
+Add navigation for the meal blessings.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+Filter seasonally appropriate solemn blessings.
+
+Add navigation to the blessing of food, drink, flowers, candles, etc.
+Add seasonal riteVariants for Chapters 30 & 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Rename nav buttons shorter/shortest as needed for mobile display.
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Should all blessings end with the blessing formula (for clergy)?
 
 Other ideas:
 - Link to suggested scriptures on USCCB.
@@ -33,12 +49,11 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-How to use:
-- do the red, say the black
-- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
-- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
-- Link to general instruction
-- Link to https://canonlaw.ninja/?nums=1166-1172
+INDEX.HTML
+- add General Intro
+- chapter-1-iv-children (used twice, under Home and Family) is missing .html
+- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
+- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
 
 -->
 
@@ -154,8 +169,7 @@ How to use:
     </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
   </div>
 </aside>
 
@@ -182,25 +196,41 @@ How to use:
 <main class="content">
 
 ﻿<!--SPLIT chapter-1-iv-children-->
-<p class="orderTitle">IV. Orders for the Blessing of Children</p>
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="2">As a family</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Other</button>
+  </div>
+</div>
 
-<!--<div class="setting-group">
+<div data-riteVariant="1">
+
+<div>
   <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Baptized</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt2">Unbaptized</button>
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
+    <button class="option-btn clergy" type="button" role="radio" data-pref="rite" data-value="shortForm">Short formulary</button>
   </div>
-</div>-->
+</div>
+
+<p class="orderTitle">IV. Orders for the Blessing of Children</p>
+
+<div data-rite-section="intro">
 
 <p class="introHeading">Introduction</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">107</span> There are many pastoral occasions for giving praise to God and praying for children who have already been baptized: for example, when the parents request a blessing, when special feasts are held for children, when the school year begins. The celebration of a blessing is to be adapted to the circumstances.</p>
+<p class="rubricPara"><span class="parNumber">107</span> There are many pastoral occasions for giving praise to God and praying for children who have already been baptized: for example, when the parents request a blessing, when special feasts are held for children, when the school year begins. The celebration of a blessing is to be adapted to the circumstances.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">108</span> The present orders may be used by a priest or a deacon. They may also be used by a layperson, particularly a catechist and also a person in charge of the children’s education, who follows the rites and prayers designated for a lay minister.</p>
+<p class="rubricPara"><span class="parNumber">108</span> The present orders may be used by a priest or a deacon. They may also be used by a layperson, particularly a catechist and also a person in charge of the children’s education, who follows the rites and prayers designated for a lay minister.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">109</span> While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the families and children involved.</p>
+<p class="rubricPara"><span class="parNumber">109</span> While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the families and children involved.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">110</span> When the blessing is for just one child, the minister adapts the texts accordingly or, if this seems more opportune, uses the shorter rite provided in nos. 142-144.</p>
+<p class="rubricPara"><span class="parNumber">110</span> When the blessing is for just one child, the minister adapts the texts accordingly or, if this seems more opportune, uses the shorter rite provided in nos. 142-144.</p>
+
+</div>
+<div data-rite-section="full">
 
 <p class="riteHeading">A. Order for the Blessing of Baptized Children</p>
 
@@ -431,11 +461,14 @@ now and for ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">127</span> It is preferable to end the celebration with a suitable song.</p>
 
+</div>
+<div data-rite-section="opt2">
+
 <p class="riteHeading">B. Order for the Blessing of a Child Not Yet Baptized</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">128</span> A gathering in preparation for a baptism soon to be celebrated is an opportune occasion for the blessing of a child not yet baptized through a celebration similar to the blessings imparted during the catechumenate. Pastoral practice should include an explanation of why the parents or the minister trace the sign of the cross upon the child, namely, as an indication that the child is marked by the sign of salvation, is already dedicated to God, and is being prepared for the reception of baptism.</p>
+<p class="rubricPara"><span class="parNumber">128</span> A gathering in preparation for a baptism soon to be celebrated is an opportune occasion for the blessing of a child not yet baptized through a celebration similar to the blessings imparted during the catechumenate. Pastoral practice should include an explanation of why the parents or the minister trace the sign of the cross upon the child, namely, as an indication that the child is marked by the sign of salvation, is already dedicated to God, and is being prepared for the reception of baptism.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">129</span> The present order may be used by a priest or deacon. It may also be used by a layperson, particularly a catechist, who follows the rites and prayers designated for a lay minister.</p>
+<p class="rubricPara"><span class="parNumber">129</span> The present order may be used by a priest or deacon. It may also be used by a layperson, particularly a catechist, who follows the rites and prayers designated for a lay minister.</p>
 
 <p class="riteSectionHeading">Introductory Rites</p>
 
@@ -545,7 +578,9 @@ praise the LORD! Alleluia. <span class="rubricRV">℟.</span></p>
 
 <p class="riteSectionHeading">Prayer of Blessing</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">138</span> A minister who is a priest or deacon says the prayer of blessing while laying hands on the child; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">138</span> A minister who is a priest or deacon says the prayer of blessing while laying hands on the child; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">138</span> The minister says the prayer of blessing while laying hands on the child.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">138</span> The lay minister says the prayer with hands joined.</p>
 
 <p class="theBlack poetry">All-powerful God and Father,<br/>
 you are the source of all blessings, the protector of infants,<br/>
@@ -580,6 +615,9 @@ now and for ever.</p>
 
 <p class="theBlack" data-presider="lay"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="shorter">
+
 <p class="riteHeading">C. Shorter Rite</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">142</span> The minister says:</p>
@@ -608,7 +646,9 @@ now and for ever.</p>
 
 <p class="theBlack">Brothers, stop being childish in your thinking. In respect to evil be like infants, but in your thinking be mature.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">144</span> A minister who is a priest or deacon says the appropriate prayer of blessing while laying hands on the child; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">144</span> A minister who is a priest or deacon says the appropriate prayer of blessing while laying hands on the child; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">144</span> The minister says the appropriate prayer of blessing while laying hands on the child.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">144</span> The lay minister says the prayer with hands joined.</p>
 
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> A child already baptized</p>
 
@@ -641,6 +681,9 @@ and with us to bless your name for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="shortForm">
+
 <p class="riteSectionHeading" data-presider="clergy">Short Formulary</p>
 
 <p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">145</span> As circumstances suggest, a priest or deacon may use the following short blessing formulary.</p>
@@ -651,19 +694,38 @@ now and for ever.</p>
 
 <p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
+
+</div>
+
+</div>
+<div data-riteVariant="2">
+
+<div>
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shortForm">Short formulary</button>
+  </div>
+</div>
+
 <p class="orderTitle">V. Order for the Blessing of Sons and Daughters</p>
+
+<div data-rite-section="intro">
 
 <p class="introHeading">Introduction</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">146</span> The gospels record that children were presented to Jesus, so that he might bless them and lay hands on them. Christian parents wish to bestow this blessing of the Lord on their own children and the practice of a blessing by parents is a tradition treasured by many peoples. The blessing may be celebrated on special occasions in the life of the children or whenever the family gathers for prayer or for reflection on sacred Scripture.</p>
+<p class="rubricPara"><span class="parNumber">146</span> The gospels record that children were presented to Jesus, so that he might bless them and lay hands on them. Christian parents wish to bestow this blessing of the Lord on their own children and the practice of a blessing by parents is a tradition treasured by many peoples. The blessing may be celebrated on special occasions in the life of the children or whenever the family gathers for prayer or for reflection on sacred Scripture.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">147</span> When a priest or deacon is present, the ministry of blessing more fittingly belongs to him. This is particularly the case on the occasion of the regular parish visitations that are scheduled for the blessing of families.</p>
+<p class="rubricPara"><span class="parNumber">147</span> When a priest or deacon is present, the ministry of blessing more fittingly belongs to him. This is particularly the case on the occasion of the regular parish visitations that are scheduled for the blessing of families.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">148</span> The present order may be used by the parents or by a priest or deacon. While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+<p class="rubricPara"><span class="parNumber">148</span> The present order may be used by the parents or by a priest or deacon. While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">149</span> When a child is to be blessed as part of the celebration of another blessing, the short formulary provided in no. 166 may be used.</p>
+<p class="rubricPara"><span class="parNumber">149</span> When a child is to be blessed as part of the celebration of another blessing, the short formulary provided in no. 166 may be used.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">150</span> When a child who is sick is to be blessed, the ritual provided in chapter 2, nos. 365-368 may be used.</p>
+<p class="rubricPara"><span class="parNumber">150</span> When a child who is sick is to be blessed, the ritual provided in chapter 2, nos. 365-368 may be used.</p>
+
+</div>
+<div data-rite-section="full">
 
 <p class="riteHeading">Order of Blessing</p>
 
@@ -859,6 +921,9 @@ now and for ever.</p>
 
 <p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="shortForm">
+
 <p class="riteSectionHeading">Short Formulary</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">166</span> As circumstances suggest, the following short blessing formulary may be used.</p>
@@ -869,6 +934,10 @@ so that you may live worthy of the calling he has given you,<br/>
 now and for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+
+</div>
 
  
 

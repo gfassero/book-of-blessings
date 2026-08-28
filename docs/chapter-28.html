@@ -5,18 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
 
-At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
-- short/long/shortest
-- they/him/her
-- children/adults
-- addiction/abuse
-- sick/healthy
-- etc
-
 Cull the meal blessings especially.
+Add navigation for the meal blessings.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+Filter seasonally appropriate solemn blessings.
+
+Add navigation to the blessing of food, drink, flowers, candles, etc.
+Add seasonal riteVariants for Chapters 30 & 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Rename nav buttons shorter/shortest as needed for mobile display.
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Should all blessings end with the blessing formula (for clergy)?
 
 Other ideas:
 - Link to suggested scriptures on USCCB.
@@ -33,12 +49,11 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-How to use:
-- do the red, say the black
-- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
-- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
-- Link to general instruction
-- Link to https://canonlaw.ninja/?nums=1166-1172
+INDEX.HTML
+- add General Intro
+- chapter-1-iv-children (used twice, under Home and Family) is missing .html
+- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
+- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
 
 -->
 
@@ -154,8 +169,7 @@ How to use:
     </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
   </div>
 </aside>
 
@@ -184,29 +198,34 @@ How to use:
 ﻿<!--SPLIT chapter-28-->
 <p class="chapterNumber">Chapter 28</p>
 
-<!--<div class="setting-group">
+<p class="chapterTitle">Order for the Blessing of a Christmas Manger or Nativity Scene</p>
+
+<div class="setting-group">
   <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
   </div>
-</div>-->
+</div>
 
-<p class="chapterTitle">Order for the Blessing of a Christmas Manger or Nativity Scene</p>
+<div data-rite-section="intro">
 
 <p class="introHeading">Introduction</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">954</span> In its present form the custom of displaying figures depicting the birth of Jesus Christ owes its origin to Saint Francis of Assisi who made the Christmas créche or manger for Christmas eve of 1223. However, as early as the fourth century representations of the nativity of the Lord were painted as wall decorations depicting not only the infancy narrative accounts of Christ’s birth, but also the words of the prophets Isaiah and Habakkuk taken to mean that the Messiah would be born in the midst of animals in a manger.</p>
+<p class="rubricPara"><span class="parNumber">954</span> In its present form the custom of displaying figures depicting the birth of Jesus Christ owes its origin to Saint Francis of Assisi who made the Christmas créche or manger for Christmas eve of 1223. However, as early as the fourth century representations of the nativity of the Lord were painted as wall decorations depicting not only the infancy narrative accounts of Christ’s birth, but also the words of the prophets Isaiah and Habakkuk taken to mean that the Messiah would be born in the midst of animals in a manger.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">955</span> The blessing of the Christmas manger or nativity scene, according to pastoral circumstances, may take place on the Vigil of Christmas or at another more suitable time.</p>
+<p class="rubricPara"><span class="parNumber">955</span> The blessing of the Christmas manger or nativity scene, according to pastoral circumstances, may take place on the Vigil of Christmas or at another more suitable time.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">956</span> The blessing may be given during a celebration of the word of God, during Mass (see complete edition, nos. 1562-1564), or even during another service, e.g., a carol service.</p>
+<p class="rubricPara"><span class="parNumber">956</span> The blessing may be given during a celebration of the word of God, during Mass (see complete edition, nos. 1562-1564), or even during another service, e.g., a carol service.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">957</span> When the manger is set up in the home, it is appropriate that it be blessed by a parent or another family member; the shorter rite may be used for this purpose.</p>
+<p class="rubricPara"><span class="parNumber">957</span> When the manger is set up in the home, it is appropriate that it be blessed by a parent or another family member; the shorter rite may be used for this purpose.</p>
 
-<p class="rubricParaUnnumbered">A form of this rite is also found in Catholic Household Blessings and Prayers.</p>
+<p class="rubricPara">A form of this rite is also found in Catholic Household Blessings and Prayers.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">958</span> The blessing may be given by a priest, deacon, or a lay minister.</p>
+<p class="rubricPara"><span class="parNumber">958</span> The blessing may be given by a priest, deacon, or a lay minister.</p>
+
+</div>
+<div data-rite-section="full">
 
 <p class="orderTitle">I. Order of Blessing Within a Celebration of the Word of God</p>
 
@@ -365,6 +384,9 @@ now and for ever.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">973</span> It is preferable to end the celebration with a suitable song.</p>
 
+</div>
+<div data-rite-section="shorter">
+
 <p class="orderTitle">II. Shorter Rite</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">974</span> This rite is especially appropriate for use when the blessing takes place in the home and is given by a family member.</p>
@@ -412,6 +434,8 @@ who is God-with-us and Savior of all,<br/>
 and who lives and reigns for ever and ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
 
  
 

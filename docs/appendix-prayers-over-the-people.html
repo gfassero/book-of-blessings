@@ -5,18 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
 
-At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
-- short/long/shortest
-- they/him/her
-- children/adults
-- addiction/abuse
-- sick/healthy
-- etc
-
 Cull the meal blessings especially.
+Add navigation for the meal blessings.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+Filter seasonally appropriate solemn blessings.
+
+Add navigation to the blessing of food, drink, flowers, candles, etc.
+Add seasonal riteVariants for Chapters 30 & 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Rename nav buttons shorter/shortest as needed for mobile display.
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Should all blessings end with the blessing formula (for clergy)?
 
 Other ideas:
 - Link to suggested scriptures on USCCB.
@@ -33,12 +49,11 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-How to use:
-- do the red, say the black
-- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
-- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
-- Link to general instruction
-- Link to https://canonlaw.ninja/?nums=1166-1172
+INDEX.HTML
+- add General Intro
+- chapter-1-iv-children (used twice, under Home and Family) is missing .html
+- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
+- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
 
 -->
 
@@ -154,8 +169,7 @@ How to use:
     </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
   </div>
 </aside>
 
@@ -184,13 +198,19 @@ How to use:
 ﻿<!--SPLIT appendix-prayers-over-the-people-->
 <p class="orderTitle">Prayers Over the People</p>
 
-<!--<div class="setting-group">
+<div class="setting-group">
   <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="0">All</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Benediction</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="2">Protection</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="3">Suffering</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="4">Repentance</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="5">Mercy</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="6">Thanksgiving</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="7">Action</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="8">Saints</button>
   </div>
-</div>-->
+</div>
 
 <p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1277</span> After the prayer over the people the priest or deacon always adds:</p>
 
@@ -199,7 +219,12 @@ the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
 <p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteHeading" data-presider="clergy"><span class="parNumber">1278</span> Prayers for General Use</p>
+<div data-riteVariant="0">
+
+<p class="riteHeading"><span class="parNumber">1278</span> Prayers for General Use</p>
+
+</div>
+<div data-riteVariant="5">
 
 <p class="theBlack poetry"><span class="marginRefNumber">1</span> Lord,<br/>
 have mercy on your people.<br/>
@@ -209,6 +234,9 @@ that lead to the everlasting life you prepare for us.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="2">
 
 <p class="theBlack poetry"><span class="marginRefNumber">2</span> Lord,<br/>
 grant your people your protection and grace.<br/>
@@ -220,6 +248,9 @@ and make them always faithful to you.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="6">
+
 <p class="theBlack poetry"><span class="marginRefNumber">3</span> Lord,<br/>
 may all Christian people both know and cherish<br/>
 the heavenly gifts they have received.</p>
@@ -227,6 +258,9 @@ the heavenly gifts they have received.</p>
 <p class="theBlack">We ask this in the name of Jesus the Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="4">
 
 <p class="theBlack poetry"><span class="marginRefNumber">4</span> Lord,<br/>
 bless your people and make them holy<br/>
@@ -237,6 +271,9 @@ they may find in you the fulfillment of their longing.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="3">
+
 <p class="theBlack poetry"><span class="marginRefNumber">5</span> Lord,<br/>
 bless and strengthen your people.<br/>
 May they remain faithful to you<br/>
@@ -245,6 +282,9 @@ and always rejoice in your mercy.</p>
 <p class="theBlack">We ask this in the name of Jesus the Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="4">
 
 <p class="theBlack poetry"><span class="marginRefNumber">6</span> Lord,<br/>
 you care for your people even when they stray.<br/>
@@ -255,6 +295,9 @@ so that we may follow you with greater fidelity.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="7">
+
 <p class="theBlack poetry"><span class="marginRefNumber">7</span> Lord,<br/>
 send your light upon your family.<br/>
 May they continue to enjoy your favor<br/>
@@ -264,6 +307,9 @@ and devote themselves to doing good.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="6">
+
 <p class="theBlack poetry"><span class="marginRefNumber">8</span> Lord,<br/>
 we rejoice that you are our creator and ruler.<br/>
 As we call upon your generosity,<br/>
@@ -272,6 +318,9 @@ renew and keep us in your love.</p>
 <p class="theBlack">Grant this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
 
 <p class="theBlack poetry"><span class="marginRefNumber">9</span> Lord,<br/>
 we pray for your people who believe in you.<br/>
@@ -283,6 +332,9 @@ and spread it everywhere.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="5">
+
 <p class="theBlack"><span class="marginRefNumber">10</span> Lord,</p>
 
 <p class="theBlack poetry">bless your people who hope for your mercy.<br/>
@@ -293,6 +345,9 @@ the things they ask for at your prompting.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="7">
+
 <p class="theBlack poetry"><span class="marginRefNumber">11</span> Lord,<br/>
 bless us with your heavenly gifts,<br/>
 and in your mercy make us ready to do your will.</p>
@@ -300,6 +355,9 @@ and in your mercy make us ready to do your will.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="2">
 
 <p class="theBlack poetry"><span class="marginRefNumber">12</span> Lord,<br/>
 protect your people always,<br/>
@@ -310,6 +368,9 @@ and serve you with all their hearts.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="7">
+
 <p class="theBlack poetry"><span class="marginRefNumber">13</span> Lord,<br/>
 help your people to seek you with all their hearts<br/>
 and to deserve what you promise.</p>
@@ -318,6 +379,9 @@ and to deserve what you promise.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="3">
+
 <p class="theBlack poetry"><span class="marginRefNumber">14</span> Father,<br/>
 help your people to rejoice in the mystery of redemption<br/>
 and to win its reward.</p>
@@ -325,6 +389,9 @@ and to win its reward.</p>
 <p class="theBlack">We ask this in the name of Jesus the Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="4">
 
 <p class="theBlack poetry"><span class="marginRefNumber">15</span> Lord,<br/>
 have pity on your people;<br/>
@@ -335,6 +402,9 @@ and grant that they may serve you with joy.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="3">
+
 <p class="theBlack poetry"><span class="marginRefNumber">16</span> Lord,<br/>
 care for your people and purify them.<br/>
 Console them in this life<br/>
@@ -343,6 +413,9 @@ and bring them to the life to come.</p>
 <p class="theBlack">We ask this in the name of Jesus the Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="3">
 
 <p class="theBlack poetry"><span class="marginRefNumber">17</span> Father,<br/>
 look with love upon your people,<br/>
@@ -353,6 +426,9 @@ for he is Lord for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="6">
+
 <p class="theBlack poetry"><span class="marginRefNumber">18</span> Lord,<br/>
 grant that your faithful people<br/>
 may continually desire to relive the mystery of the eucharist<br/>
@@ -361,6 +437,9 @@ and so be reborn to lead a new life.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="5">
 
 <p class="theBlack poetry"><span class="marginRefNumber">19</span> Lord God,<br/>
 in your great mercy,<br/>
@@ -372,14 +451,21 @@ so that they may praise you always.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="1">
+
 <p class="theBlack poetry"><span class="marginRefNumber">20</span> May God bless you with every good gift from on high.<br/>
 May he keep you pure and holy in his sight at all times.<br/>
 May he bestow the riches of his grace upon you,<br/>
 bring you the good news of salvation,<br/>
-and always fill you with love for all people.<br/>
-We ask this through Christ our Lord.</p>
+and always fill you with love for all people.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="4">
 
 <p class="theBlack poetry"><span class="marginRefNumber">21</span> Lord,<br/>
 make us pure in mind and body,<br/>
@@ -390,6 +476,9 @@ and always delight in you.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="7">
+
 <p class="theBlack poetry"><span class="marginRefNumber">22</span> Lord,<br/>
 bless your people and fill them with zeal.<br/>
 Strengthen them by your love to do your will.</p>
@@ -397,6 +486,9 @@ Strengthen them by your love to do your will.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
 
 <p class="theBlack poetry"><span class="marginRefNumber">23</span> Lord,<br/>
 come, live in your people<br/>
@@ -408,6 +500,9 @@ and give them a true love for one another.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="3">
+
 <p class="theBlack poetry"><span class="marginRefNumber">24</span> Father,<br/>
 look kindly on your children who put their trust in you;<br/>
 bless them and keep them from all harm,<br/>
@@ -418,6 +513,9 @@ but seek to love you in all they do.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="8">
 
 <p class="riteHeading"><span class="parNumber">1279</span> Prayers for Use on the Feasts of Saints</p>
 
@@ -439,6 +537,8 @@ and fill our hearts with your love.</p>
 <p class="theBlack">Grant this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
  
 
 </main>

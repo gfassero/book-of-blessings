@@ -5,18 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
 
-At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
-- short/long/shortest
-- they/him/her
-- children/adults
-- addiction/abuse
-- sick/healthy
-- etc
-
 Cull the meal blessings especially.
+Add navigation for the meal blessings.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+Filter seasonally appropriate solemn blessings.
+
+Add navigation to the blessing of food, drink, flowers, candles, etc.
+Add seasonal riteVariants for Chapters 30 & 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Rename nav buttons shorter/shortest as needed for mobile display.
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Should all blessings end with the blessing formula (for clergy)?
 
 Other ideas:
 - Link to suggested scriptures on USCCB.
@@ -33,12 +49,11 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-How to use:
-- do the red, say the black
-- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
-- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
-- Link to general instruction
-- Link to https://canonlaw.ninja/?nums=1166-1172
+INDEX.HTML
+- add General Intro
+- chapter-1-iv-children (used twice, under Home and Family) is missing .html
+- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
+- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
 
 -->
 
@@ -154,8 +169,7 @@ How to use:
     </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
   </div>
 </aside>
 
@@ -184,21 +198,33 @@ How to use:
 ﻿<!--SPLIT chapter-1-xi-birthday-->
 <p class="orderTitle">XI. Order of Blessing on the Occasion of a Birthday</p>
 
-<!--<div class="setting-group">
+<div class="setting-group">
   <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
   </div>
-</div>-->
+</div>
+
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Adults</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="2">Children</button>
+  </div>
+</div>
+
+<div data-rite-section="intro">
 
 <p class="introHeading">Introduction</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">295</span> It is always appropriate to give thanks to God, but especially so on the occasion of a birthday. The birthday celebration provides an opportunity for acknowledging and giving thanks to God as the author and giver of life.</p>
+<p class="rubricPara"><span class="parNumber">295</span> It is always appropriate to give thanks to God, but especially so on the occasion of a birthday. The birthday celebration provides an opportunity for acknowledging and giving thanks to God as the author and giver of life.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">296</span> A birthday is also an appropriate occasion for children to express love and thanks to their parents who have shared the gift of life and love with them.</p>
+<p class="rubricPara"><span class="parNumber">296</span> A birthday is also an appropriate occasion for children to express love and thanks to their parents who have shared the gift of life and love with them.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">297</span> These orders may be used by a priest or a deacon, and also by a layperson, who follows the rites and prayers designated for a lay minister, or by a family member.</p>
+<p class="rubricPara"><span class="parNumber">297</span> These orders may be used by a priest or a deacon, and also by a layperson, who follows the rites and prayers designated for a lay minister, or by a family member.</p>
+
+</div>
+<div data-rite-section="full">
 
 <p class="riteHeading">A. Order of Blessing</p>
 
@@ -337,6 +363,8 @@ and your glory by their children. <span class="rubricRV">℟.</span></p>
 <p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">308</span> The minister says the prayer of blessing with hands outstretched over the one who is to be blessed.</p>
 <p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">308</span> The lay minister says the prayer with hands joined.</p>
 
+<div data-riteVariant="1">
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> For adults</p>
 
 <p class="theBlack poetry">God of all creation,<br/>
@@ -354,6 +382,9 @@ all of them pleasing to you.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="2">
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> For children</p>
 
 <p class="theBlack poetry">Loving God,<br/>
@@ -368,6 +399,8 @@ and be faithful to his/her friends.</p>
 <p class="theBlack">Grant this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
 
 <p class="theBlack">As circumstances suggest, the minister in silence may sprinkle the person with holy water.</p>
 
@@ -411,6 +444,9 @@ and be gracious to us.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">311</span> It is preferable to end the celebration with a suitable song.</p>
 
+</div>
+<div data-rite-section="shorter">
+
 <p class="riteHeading">B. Shorter Rite</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">312</span> All make the sign of the cross as the minister says:</p>
@@ -440,6 +476,8 @@ and be gracious to us.</p>
 <p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">315</span> The minister says the prayer of blessing with hands outstretched over the one who is to be blessed.</p>
 <p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">315</span> The lay minister says the prayer with hands joined.</p>
 
+<div data-riteVariant="1">
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> For adults</p>
 
 <p class="theBlack poetry">God of all creation,<br/>
@@ -457,6 +495,9 @@ all of them pleasing to you.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="2">
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> For children</p>
 
 <p class="theBlack poetry">Loving God,<br/>
@@ -471,6 +512,9 @@ and be faithful to his/her friends.</p>
 <p class="theBlack">Grant this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+</div>
 
  
 

@@ -5,18 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
 
-At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
-- short/long/shortest
-- they/him/her
-- children/adults
-- addiction/abuse
-- sick/healthy
-- etc
-
 Cull the meal blessings especially.
+Add navigation for the meal blessings.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+Filter seasonally appropriate solemn blessings.
+
+Add navigation to the blessing of food, drink, flowers, candles, etc.
+Add seasonal riteVariants for Chapters 30 & 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Rename nav buttons shorter/shortest as needed for mobile display.
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Should all blessings end with the blessing formula (for clergy)?
 
 Other ideas:
 - Link to suggested scriptures on USCCB.
@@ -33,12 +49,11 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-How to use:
-- do the red, say the black
-- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
-- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
-- Link to general instruction
-- Link to https://canonlaw.ninja/?nums=1166-1172
+INDEX.HTML
+- add General Intro
+- chapter-1-iv-children (used twice, under Home and Family) is missing .html
+- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
+- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
 
 -->
 
@@ -154,8 +169,7 @@ How to use:
     </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
   </div>
 </aside>
 
@@ -184,35 +198,27 @@ How to use:
 ﻿<!--SPLIT chapter-31-->
 <p class="chapterNumber">Chapter 31</p>
 
-<!--<div class="setting-group">
-  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
-  </div>
-</div>-->
-
 <p class="chapterTitle">Order for the Blessing of Throats on the Feast of Saint Blase</p>
 
 <p class="dateHeading">February 3</p>
 
 <p class="introHeading">Introduction</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">1031</span> “Suffering and illness have always been among the greatest problems that trouble the human spirit. Christians feel and experience pain as do all other people; yet their faith helps them to grasp more deeply the mystery of suffering and to bear their pain with greater courage. . . . Part of the plan laid out by God’s providence is that we should fight strenuously against all sickness and carefully seek the blessings of good health, so that we may fulfill our role in human society and in the Church.”</p>
+<p class="rubricPara"><span class="parNumber">1031</span> “Suffering and illness have always been among the greatest problems that trouble the human spirit. Christians feel and experience pain as do all other people; yet their faith helps them to grasp more deeply the mystery of suffering and to bear their pain with greater courage. . . . Part of the plan laid out by God’s providence is that we should fight strenuously against all sickness and carefully seek the blessings of good health, so that we may fulfill our role in human society and in the Church.”</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">1032</span> “The blessing of the sick by ministers of the Church is a very ancient custom, rooted in imitation of Christ himself and his apostles.”</p>
+<p class="rubricPara"><span class="parNumber">1032</span> “The blessing of the sick by ministers of the Church is a very ancient custom, rooted in imitation of Christ himself and his apostles.”</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">1033</span> In the United States the annual blessing of throats is a traditional sign of the struggle against illness in the life of the Christian. This blessing is ordinarily given during Mass (see complete edition, nos. 1630-1635) or a celebration of the word of God on February 3, the memorial of Saint Blase.</p>
+<p class="rubricPara"><span class="parNumber">1033</span> In the United States the annual blessing of throats is a traditional sign of the struggle against illness in the life of the Christian. This blessing is ordinarily given during Mass (see complete edition, nos. 1630-1635) or a celebration of the word of God on February 3, the memorial of Saint Blase.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">1034</span> Saint Blase was the bishop of Sebaste in Armenia during the fourth century. Very little is known about his life. According to various accounts he was a physician before becoming a bishop. His cult spread throughout the entire Church in the Middle Ages because he was reputed to have miraculously cured a little boy who nearly died because of a fishbone in his throat. From the eighth century he has been invoked on behalf of the sick, especially those afflicted with illnesses of the throat.</p>
+<p class="rubricPara"><span class="parNumber">1034</span> Saint Blase was the bishop of Sebaste in Armenia during the fourth century. Very little is known about his life. According to various accounts he was a physician before becoming a bishop. His cult spread throughout the entire Church in the Middle Ages because he was reputed to have miraculously cured a little boy who nearly died because of a fishbone in his throat. From the eighth century he has been invoked on behalf of the sick, especially those afflicted with illnesses of the throat.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">1035</span> The blessing of throats may be given by a priest, deacon, or a lay minister who follows the rites and prayers designated for a lay minister. If the blessing is conferred during Mass, the blessing follows the homily and general intercessions, or, for pastoral reasons, the prayer of blessing may take the place of the final blessing of the Mass. When the blessing is given outside Mass, it is preceded by a brief celebration of the word of God. If the blessing is to be celebrated at Morning Prayer or Evening Prayer, it is given after the reading and responsory (and homily) and before the gospel canticle.</p>
+<p class="rubricPara"><span class="parNumber">1035</span> The blessing of throats may be given by a priest, deacon, or a lay minister who follows the rites and prayers designated for a lay minister. If the blessing is conferred during Mass, the blessing follows the homily and general intercessions, or, for pastoral reasons, the prayer of blessing may take the place of the final blessing of the Mass. When the blessing is given outside Mass, it is preceded by a brief celebration of the word of God. If the blessing is to be celebrated at Morning Prayer or Evening Prayer, it is given after the reading and responsory (and homily) and before the gospel canticle.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">1036</span> The blessing may be given by touching the throat of each person with two candles blessed on the feast of the Presentation of the Lord (February 2) and which have been joined together in the form of a cross.</p>
+<p class="rubricPara"><span class="parNumber">1036</span> The blessing may be given by touching the throat of each person with two candles blessed on the feast of the Presentation of the Lord (February 2) and which have been joined together in the form of a cross.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">1037</span> If, for pastoral reasons, each individual cannot be blessed in the manner described in no. 1036, for example when great numbers are gathered for the blessing or when the memorial of Saint Blase occurs on a Sunday, a priest or deacon may give the blessing to all assembled by extending hands, without the crossed candles, over the people while saying the prayer of blessing. A lay minister says the prayer proper to lay ministers without making the sign of the cross.</p>
+<p class="rubricPara"><span class="parNumber">1037</span> If, for pastoral reasons, each individual cannot be blessed in the manner described in no. 1036, for example when great numbers are gathered for the blessing or when the memorial of Saint Blase occurs on a Sunday, a priest or deacon may give the blessing to all assembled by extending hands, without the crossed candles, over the people while saying the prayer of blessing. A lay minister says the prayer proper to lay ministers without making the sign of the cross.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">1038</span> The blessing may also be given to the sick or the elderly in their homes when they cannot attend the parish celebration.</p>
+<p class="rubricPara"><span class="parNumber">1038</span> The blessing may also be given to the sick or the elderly in their homes when they cannot attend the parish celebration.</p>
 
 <p class="orderTitle">I. Order of Blessing Within a Celebration of the Word of God</p>
 

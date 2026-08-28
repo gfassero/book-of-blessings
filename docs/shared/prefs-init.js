@@ -2,7 +2,7 @@
   // there's no flash of default styling on load.
   (function () {
     var STORAGE_KEY = 'refDocPrefs';
-    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'shorter', simplify: true, cull: true, newScripture: true, newMissal: true, addCross: true };
+    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'full', riteVariant: '1', simplify: true, cull: true, newScripture: true, newMissal: true, addCross: true };
     var saved = {};
     try {
       saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -15,6 +15,7 @@
     root.setAttribute('data-spacing', saved.spacing || defaults.spacing);
     root.setAttribute('data-presider', saved.presider || defaults.presider);
     root.setAttribute('data-rite', saved.rite || defaults.rite);
+    root.setAttribute('data-riteVariant', saved.riteVariant || defaults.riteVariant);
     // Boolean prefs can't use the `saved.x || defaults.x` shorthand above —
     // an explicit `false` is falsy, so that pattern would silently override
     // "explicitly off" back to the default. Check key presence instead.

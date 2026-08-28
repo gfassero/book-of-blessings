@@ -37,7 +37,10 @@
   html[data-spacing="normal"]  { --leading-active: var(--leading-normal); }
   html[data-spacing="relaxed"] { --leading-active: var(--leading-relaxed); }
 
-  * { box-sizing: border-box; }
+  * {
+	box-sizing: border-box;
+	transition: visibility 0.3s;
+}
 
   body {
     margin: 0;
@@ -109,13 +112,24 @@ span {
     letter-spacing: normal;
 }
 
-/* Selects the next boundary wrapper (Paragraph 30) AND all following wrappers */
-html[data-rite="intro"] .optWrapper[data-rite-section="full"],
-html[data-rite="intro"] .optWrapper[data-rite-section="shorter"],
-html[data-rite="full"] .optWrapper[data-rite-section="intro"],
-html[data-rite="full"] .optWrapper[data-rite-section="shorter"],
-html[data-rite="shorter"] .optWrapper[data-rite-section="intro"],
-html[data-rite="shorter"] .optWrapper[data-rite-section="full"],
+html[data-rite="intro"] div[data-rite-section]:not([data-rite-section="intro"]),
+html[data-rite="full"] div[data-rite-section]:not([data-rite-section="full"]),
+html[data-rite="shorter"] div[data-rite-section]:not([data-rite-section="shorter"]),
+html[data-rite="shortForm"] div[data-rite-section]:not([data-rite-section="shortForm"]),
+html[data-rite="opt1"] div[data-rite-section]:not([data-rite-section="opt1"]),
+html[data-rite="opt2"] div[data-rite-section]:not([data-rite-section="opt2"]),
+
+html[data-riteVariant="0"] div[data-riteVariant-NONE],
+html[data-riteVariant="1"] div[data-riteVariant]:not([data-riteVariant="1"]),
+html[data-riteVariant="2"] div[data-riteVariant]:not([data-riteVariant="2"]),
+html[data-riteVariant="3"] div[data-riteVariant]:not([data-riteVariant="3"]),
+html[data-riteVariant="4"] div[data-riteVariant]:not([data-riteVariant="4"]),
+html[data-riteVariant="5"] div[data-riteVariant]:not([data-riteVariant="5"]),
+html[data-riteVariant="6"] div[data-riteVariant]:not([data-riteVariant="6"]),
+html[data-riteVariant="7"] div[data-riteVariant]:not([data-riteVariant="7"]),
+html[data-riteVariant="8"] div[data-riteVariant]:not([data-riteVariant="8"]) {
+	display: none;
+}
 
 html[data-presider="lay"] .optWrapper:has(p[data-presider="priest"], p[data-presider="deacon"], p[data-presider="clergy"]),
 html[data-presider="deacon"] .optWrapper:has(p[data-presider="priest"], p[data-presider="lay"]),
@@ -134,8 +148,9 @@ html[data-newScripture="true"] .optWrapper:has(.newScriptureOut),
 html[data-newScripture="false"] .optWrapper:has(.newScriptureIn),
 html[data-addCross="true"] .optWrapper:has(.addCrossOut),
 html[data-addCross="false"] .optWrapper:has(.addCrossIn) {
-  grid-template-rows: 0fr;
-  opacity: 0;
+	grid-template-rows: 0fr;
+	opacity: 0;
+	visibility: hidden;
 }
 
 
@@ -159,8 +174,13 @@ html[data-newMissal="false"] span.xlationNew,
 html[data-presider="lay"] span.cross,
 html[data-addCross="true"] span.addCrossOut,
 html[data-addCross="false"] span.addCrossIn  {
-    opacity: 0;
-    letter-spacing: -0.5em;
+	opacity: 0;
+	letter-spacing: -0.5em;
+	visibility: hidden;
+}
+
+html[data-presider="lay"] button.clergy {
+	display: none;
 }
 
 .content a:link, .content a:visited {

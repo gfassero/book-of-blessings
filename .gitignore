@@ -1,0 +1,9 @@
+# Do not sync the following files to GitHub:
+
+working/*.html
+
+# DO sync the following file:
+
+!working/index.html
+!working/contents.html
+!working/book-of-blessings.html

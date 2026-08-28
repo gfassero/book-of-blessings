@@ -51,8 +51,7 @@ p{margin: 0.5em 0;}
 	font-variant: small-caps;}
 
 /******** RUBRICS ********/
-.rubricParaNumbered,
-.rubricParaUnnumbered,
+.rubricPara,
 .rubricInlineNumbered,
 .rubricInlineUnnumbered,
 .rubricAltReading,
@@ -96,7 +95,18 @@ p{margin: 0.5em 0;}
 	margin-left: 1em;
 }
 
-
+/******** Paragraphs ********/
+.frontMatterPara:not(:has(.parNumber)),
+.rubricPara:not(:has(.parNumber)) {
+	text-indent: 2em;
+}
+.letterList {
+	margin-left: 2em;
+}
+.signature {
+	line-height: var(--leading-compact);
+	margin-left: 40%;
+}
 
   /* ---------- Table of Contents ---------- */
 

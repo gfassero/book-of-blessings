@@ -1,3 +1,4 @@
 # Do not sync the following files to GitHub, since they are too large:
 
 *.pdf
+*.zip

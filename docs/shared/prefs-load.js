@@ -1,6 +1,6 @@
   (function () {
     var STORAGE_KEY = 'refDocPrefs';
-    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'shorter', simplify: true, cull: true, newScripture: true, newMissal: true, addCross: true };
+    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'full', riteVariant: '1', simplify: true, cull: true, newScripture: true, newMissal: true, addCross: true };
     var root = document.documentElement;
     var drawer = document.getElementById('settingsDrawer');
     var overlay = document.getElementById('drawerOverlay');
@@ -36,6 +36,7 @@
       root.setAttribute('data-spacing', prefs.spacing);
       root.setAttribute('data-presider', prefs.presider);
       root.setAttribute('data-rite', prefs.rite);
+      root.setAttribute('data-riteVariant', prefs.riteVariant);
       root.setAttribute('data-simplify', prefs.simplify ? 'true' : 'false');
       root.setAttribute('data-cull', prefs.cull ? 'true' : 'false');
       root.setAttribute('data-newScripture', prefs.newScripture ? 'true' : 'false');
@@ -50,7 +51,7 @@
       });
     }
 
-    var sessionOnlyPrefs = ['rite'];
+    var sessionOnlyPrefs = ['rite', 'riteVariant'];
 
     function setPref(key, value) {
       prefs[key] = value;
@@ -205,22 +206,10 @@
 
 
 
-let currentSection = '';
-
 document.querySelectorAll('.content p').forEach(el => {
   const wrapper = document.createElement('div');
   wrapper.className = 'optWrapper';
   
-  // Update section tracker if data-rite-section is present
-  if (el.dataset.riteSection) {
-    currentSection = el.dataset.riteSection;
-  }
-
-  // Apply data-rite-section to EVERY optWrapper
-  if (currentSection) {
-    wrapper.dataset.riteSection = currentSection;
-  }
-
   el.parentNode.insertBefore(wrapper, el);
   wrapper.appendChild(el);
 });

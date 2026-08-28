@@ -5,18 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
 
-At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
-- short/long/shortest
-- they/him/her
-- children/adults
-- addiction/abuse
-- sick/healthy
-- etc
-
 Cull the meal blessings especially.
+Add navigation for the meal blessings.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+Filter seasonally appropriate solemn blessings.
+
+Add navigation to the blessing of food, drink, flowers, candles, etc.
+Add seasonal riteVariants for Chapters 30 & 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Rename nav buttons shorter/shortest as needed for mobile display.
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Should all blessings end with the blessing formula (for clergy)?
 
 Other ideas:
 - Link to suggested scriptures on USCCB.
@@ -33,12 +49,11 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-How to use:
-- do the red, say the black
-- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
-- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
-- Link to general instruction
-- Link to https://canonlaw.ninja/?nums=1166-1172
+INDEX.HTML
+- add General Intro
+- chapter-1-iv-children (used twice, under Home and Family) is missing .html
+- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
+- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
 
 -->
 
@@ -154,8 +169,7 @@ How to use:
     </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
   </div>
 </aside>
 
@@ -184,23 +198,30 @@ How to use:
 ﻿<!--SPLIT chapter-1-xii-elderly-confined-home-->
 <p class="orderTitle">XII. Orders for the Blessing of Elderly People Confined to Their Homes</p>
 
-<!--<div class="setting-group">
+<div class="setting-group">
   <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt1">With Communion</button>
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
+    <button class="option-btn clergy" type="button" role="radio" data-pref="rite" data-value="shortForm">Short formulary</button>
   </div>
-</div>-->
+</div>
+
+<div data-rite-section="intro">
 
 <p class="introHeading">Introduction</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">316</span> The faithful who are elderly and infirm, confined at home or in a nursing home, need their brothers and sisters in Christ to help them feel that they are still part of the family and the ecclesial community. The purpose of the present blessing is that the elderly may receive from the community a mark of respect and affection and together with the community thank God for his favors and for the good he has enabled them to do in their lives.</p>
+<p class="rubricPara"><span class="parNumber">316</span> The faithful who are elderly and infirm, confined at home or in a nursing home, need their brothers and sisters in Christ to help them feel that they are still part of the family and the ecclesial community. The purpose of the present blessing is that the elderly may receive from the community a mark of respect and affection and together with the community thank God for his favors and for the good he has enabled them to do in their lives.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">317</span> The present orders may be used by a priest, a deacon, or a lay minister. While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
+<p class="rubricPara"><span class="parNumber">317</span> The present orders may be used by a priest, a deacon, or a lay minister. While maintaining the structure and chief elements of the rite, the minister should adapt the celebration to the circumstances of the place and the people involved.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">318</span> When the blessing of the elderly takes place during Mass, nos. 363-368 of the complete edition are used. When communion is brought to them at home, the blessing in nos. 335-337 below is used. The blessing may also be celebrated by an acolyte or by a duly appointed special minister of the eucharist, who follows the rites and texts designated for use by lay ministers.</p>
+<p class="rubricPara"><span class="parNumber">318</span> When the blessing of the elderly takes place during Mass, nos. 363-368 of the complete edition are used. When communion is brought to them at home, the blessing in nos. 335-337 below is used. The blessing may also be celebrated by an acolyte or by a duly appointed special minister of the eucharist, who follows the rites and texts designated for use by lay ministers.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">319</span> When just one elderly person is to be blessed, a priest or a deacon may use the short formulary given in no. 341.</p>
+<p class="rubricPara"><span class="parNumber">319</span> When just one elderly person is to be blessed, a priest or a deacon may use the short formulary given in no. 341.</p>
+
+</div>
+<div data-rite-section="full">
 
 <p class="riteHeading">A. Order of Blessing</p>
 
@@ -334,7 +355,9 @@ though I know not their extent. <span class="rubricRV">℟.</span></p>
 
 <p class="riteSectionHeading">Prayer of Blessing</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">329</span> A minister who is a priest or deacon may, as circumstances suggest, extend his hands over the elderly people, individually or as a group, or trace the sign of the cross on the forehead of each, as he says the prayer of blessing; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">329</span> A minister who is a priest or deacon may, as circumstances suggest, extend his hands over the elderly people, individually or as a group, or trace the sign of the cross on the forehead of each, as he says the prayer of blessing; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">329</span> The minister may extend his hands over the elderly people, individually or as a group, or trace the sign of the cross on the forehead of each, as he says the prayer of blessing.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">329</span> The lay minister says the prayer with hands joined.</p>
 
 <p class="theBlack poetry">Lord, our God,<br/>
 you have given these your faithful<br/>
@@ -422,6 +445,9 @@ and bring us to everlasting life.</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">334</span> It is preferable to end the celebration with a suitable song.</p>
 
+</div>
+<div data-rite-section="opt1">
+
 <p class="riteHeading">B. Order of Blessing with Communion Outside Mass</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">335</span> When the rite is combined with an extended celebration of the word of God, the texts of sacred Scripture may be taken from those indicated already in nos. 324-326.</p>
@@ -458,6 +484,9 @@ they will faithfully rely on you as their hope.</p>
 
 <p class="theBlack" data-presider="lay"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="shorter">
+
 <p class="riteHeading">C. Shorter Rite</p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">338</span> The minister says:</p>
@@ -484,7 +513,9 @@ nor can it be measured in terms of years.</p>
 
 <p class="theBlack">Then Jesus said to all, “If anyone wishes to come after me, he must deny himself and take up his cross daily and follow me.”</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">340</span> A minister who is a priest or deacon may, as circumstances suggest, extend his hands over the elderly person or trace the sign of the cross on the elderly person’s forehead, as he says the prayer of blessing; a lay minister says the prayer with hands joined.</p>
+<!--<p class="rubricInlineNumbered"><span class="parNumber">340</span> A minister who is a priest or deacon may, as circumstances suggest, extend his hands over the elderly person or trace the sign of the cross on the elderly person’s forehead, as he says the prayer of blessing; a lay minister says the prayer with hands joined.</p>-->
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">340</span> The minister may extend his hands over the elderly person or trace the sign of the cross on the elderly person’s forehead, as he says the prayer of blessing.</p>
+<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">340</span> The lay minister says the prayer with hands joined.</p>
 
 <p class="theBlack poetry">Lord God almighty,<br/>
 bless your servant, <span class="nameN">N.</span>,<br/>
@@ -499,6 +530,9 @@ he/she will faithfully rely on you as his/her hope.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="shortForm">
+
 <p class="riteSectionHeading" data-presider="clergy">Short Formulary</p>
 
 <p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">341</span> As circumstances suggest, a priest or deacon may use the following short blessing formulary.</p>
@@ -510,6 +544,8 @@ sustains you, his child,<br/>
 even in old age and failing strength.</p>
 
 <p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
 
  
 

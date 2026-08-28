@@ -5,18 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
 
-At the top of each blessing, offer button to filter or autofill relevant categories, without saving to localstorage:
-- short/long/shortest
-- they/him/her
-- children/adults
-- addiction/abuse
-- sick/healthy
-- etc
-
 Cull the meal blessings especially.
+Add navigation for the meal blessings.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+Filter seasonally appropriate solemn blessings.
+
+Add navigation to the blessing of food, drink, flowers, candles, etc.
+Add seasonal riteVariants for Chapters 30 & 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Rename nav buttons shorter/shortest as needed for mobile display.
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Should all blessings end with the blessing formula (for clergy)?
 
 Other ideas:
 - Link to suggested scriptures on USCCB.
@@ -33,12 +49,11 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-How to use:
-- do the red, say the black
-- take time to say the words. if you are short on time, use a shorter rite, not a rushed pace.
-- read the rite out loud on your own before using it. pray with it beforehand if possible. this will prepare you to pray it well, and to pause and inflect appropriately.
-- Link to general instruction
-- Link to https://canonlaw.ninja/?nums=1166-1172
+INDEX.HTML
+- add General Intro
+- chapter-1-iv-children (used twice, under Home and Family) is missing .html
+- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
+- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
 
 -->
 
@@ -154,8 +169,7 @@ How to use:
     </div>-->
 
     <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
-<!--    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">How to use blessings</a>
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">Report bugs & typos</a>-->
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
   </div>
 </aside>
 
@@ -184,29 +198,21 @@ How to use:
 ﻿<!--SPLIT part-iv-->
 <p class="partNumber">Part IV</p>
 
-<!--<div class="setting-group">
-  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Full rite</button>
-    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">Shorter rite</button>
-  </div>
-</div>-->
-
 <p class="partTitle">Blessings Related to Feasts and Seasons</p>
 
 <p class="introHeading">Introduction</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">924</span> “The Church is conscious that it must celebrate the saving work of the divine Bridegroom by devoutly recalling it on certain days throughout the course of the year. Every week, on the day which the Church has called the Lord’s Day, it keeps the memory of the Lord’s resurrection, which it also celebrates once in the year, together with his blessed passion, in the most solemn festival of Easter</p>
+<p class="rubricPara"><span class="parNumber">924</span> “The Church is conscious that it must celebrate the saving work of the divine Bridegroom by devoutly recalling it on certain days throughout the course of the year. Every week, on the day which the Church has called the Lord’s Day, it keeps the memory of the Lord’s resurrection, which it also celebrates once in the year, together with his blessed passion, in the most solemn festival of Easter</p>
 
-<p class="rubricParaUnnumbered">“Within the cycle of a year, moreover, the Church unfolds the whole mystery of Christ, from his incarnation and birth until his ascension, the day of Pentecost, and the expectation of blessed hope and of the Lord’s return.</p>
+<p class="rubricPara">“Within the cycle of a year, moreover, the Church unfolds the whole mystery of Christ, from his incarnation and birth until his ascension, the day of Pentecost, and the expectation of blessed hope and of the Lord’s return.</p>
 
-<p class="rubricParaUnnumbered">“Recalling thus the mysteries of redemption, the Church opens to the faithful the riches of the Lord’s powers and merits, so that these are in some way made present in every age in order that the faithful may lay hold on them and be filled with saving grace.”</p>
+<p class="rubricPara">“Recalling thus the mysteries of redemption, the Church opens to the faithful the riches of the Lord’s powers and merits, so that these are in some way made present in every age in order that the faithful may lay hold on them and be filled with saving grace.”</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">925</span> The Church honors with special love Mary, the Mother of God and has also included in the annual cycle days devoted to the memory of the martyrs and other saints. By celebrating their passage from earth to heaven the Church proclaims the paschal mystery achieved in the saints, who have suffered and been glorified with Christ; it proposes them to the faithful as examples drawing all to the Father through Christ and pleads through their merits for God’s favors.</p>
+<p class="rubricPara"><span class="parNumber">925</span> The Church honors with special love Mary, the Mother of God and has also included in the annual cycle days devoted to the memory of the martyrs and other saints. By celebrating their passage from earth to heaven the Church proclaims the paschal mystery achieved in the saints, who have suffered and been glorified with Christ; it proposes them to the faithful as examples drawing all to the Father through Christ and pleads through their merits for God’s favors.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">926</span> In the various seasons of the year and according to its traditional discipline, the Church completes the formation of the faithful by means of devout practices for soul and body, by instruction, prayer, and works of penance and of mercy.</p>
+<p class="rubricPara"><span class="parNumber">926</span> In the various seasons of the year and according to its traditional discipline, the Church completes the formation of the faithful by means of devout practices for soul and body, by instruction, prayer, and works of penance and of mercy.</p>
 
-<p class="rubricParaNumbered"><span class="parNumber">927</span> Accordingly, Part IV contains blessings which are centered on the various feasts of the liturgical year. Some of these blessings serve to emphasize the great mysteries of our redemption in Christ, while others take their inspiration from the lives of the saints.</p>
+<p class="rubricPara"><span class="parNumber">927</span> Accordingly, Part IV contains blessings which are centered on the various feasts of the liturgical year. Some of these blessings serve to emphasize the great mysteries of our redemption in Christ, while others take their inspiration from the lives of the saints.</p>
 
  
 
