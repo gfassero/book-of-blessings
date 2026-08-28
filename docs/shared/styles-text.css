@@ -121,9 +121,6 @@ p{margin: 0.5em 0;}
 :root {
 	--tocMarginMultiplier: 0.3;
 }
-body {
-	background: red;
-}
 .tocNarrowHide {
 	display: none;
 }
