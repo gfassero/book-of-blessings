@@ -110,6 +110,28 @@ p{margin: 0.5em 0;}
 
   /* ---------- Table of Contents ---------- */
 
-.contentsLevel1 {margin-left: 0em;}
-.contentsLevel2 {margin-left: 2em;}
-.contentsLevel3 {margin-left: 4em;}
+.tocNarrowShow {
+	display: none;
+}
+
+:root {
+    --tocMarginMultiplier: 1;
+}
+@media (max-width: 35em) {
+:root {
+	--tocMarginMultiplier: 0.3;
+}
+body {
+	background: red;
+}
+.tocNarrowHide {
+	display: none;
+}
+.tocNarrowShow {
+	display: initial;
+}
+}
+
+.contentsLevel1 {margin-left: calc(0em * var(--tocMarginMultiplier));}
+.contentsLevel2 {margin-left: calc(2em * var(--tocMarginMultiplier));}
+.contentsLevel3 {margin-left: calc(4em * var(--tocMarginMultiplier));}
