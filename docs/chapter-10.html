@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
-<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
+
+INDEX: give specialized blessings a url query that filters the blessing variant.
 
 Cull the meal blessings especially.
 Add navigation for the meal blessings.
@@ -26,22 +27,13 @@ Add more navigation to Chapter 14.
 
 Add Latin text
 
-Rename nav buttons shorter/shortest as needed for mobile display.
-
 Flag/navigate scapular blessing appropriately.
 
 Add a switch to display full BOB paragraph numbers instead.
 
-Should all blessings end with the blessing formula (for clergy)?
-
 Other ideas:
 - Link to suggested scriptures on USCCB.
 - Suggest a solemn blessing based on liturgical season.
-
-New missal translations:
-- Appendix blessings from old missal -> new missal.
-- Cut excess old-translation words.
-- one God -> God
 
 Switch all CSS text styles to variables.
 
@@ -49,11 +41,24 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-INDEX.HTML
-- add General Intro
-- chapter-1-iv-children (used twice, under Home and Family) is missing .html
-- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
-- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
+--- SETTINGS PAGE ---
+- Change sidebar into hamburger.
+- Explain and cite authorities for each sidebar edit option:
+
+(https://canonlaw.ninja/?nums=1166-1172)
+(There's a footnote to the intro to the appendix, saying that the blessings and prayers over the people are from the missal.)
+
+Priorities regarding adding the cross:
+1. BLESS +
+If no BLESS:
+2. through + CHRIST OUR LORD
+   your Son + JESUS CHRIST
+If doesn't end with JESUS or CHRIST:
+3. for ever + and ever
+   now + and for ever
+If no temporal clause:
+4. GRACE + give us strength
+(Include stats re how many crosses in full rites, how many added, and where added.)
 
 -->
 
@@ -71,7 +76,7 @@ INDEX.HTML
       <path d="M10 21L10 15L14 15L14 21"/>
     </svg>
   </a>
-  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Settings" aria-expanded="false" aria-controls="settingsDrawer">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
       <circle cx="12" cy="12" r="2.5"/>
@@ -115,6 +120,7 @@ INDEX.HTML
         <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
       </div>
     </div>
+
     <div class="setting-group">
       <span class="setting-label" id="presiderLabel">Presider Mode</span>
       <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
@@ -123,7 +129,7 @@ INDEX.HTML
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
       </div>
     </div>
-
+<!--
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
@@ -143,14 +149,14 @@ INDEX.HTML
         </button>
       </div>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
@@ -159,17 +165,20 @@ INDEX.HTML
         </button>
       </div>
     </div>
-<!--    <div class="setting-group">
+   <div class="optWrapper">
+    <div class="setting-group clergy">
       <div class="setting-row">
-        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <span class="setting-row-label" id="addCrossLabel">Add ✠ where missing from blessing formulas</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
-
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    </div>
+   </div>
+-->
+    <a href="settings.html" class="setting-label">More settings</a>
     <a href="guide.html" class="setting-label">Guide to blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">View on GitHub</a>
   </div>
 </aside>
 
@@ -177,7 +186,7 @@ INDEX.HTML
 
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
-  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+  <p class="popup-sub" id="popupSub">You can change this any time in settings.</p>
 
   <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
     <span class="popup-option-name" aria-hidden="true">Layperson</span>
@@ -343,7 +352,7 @@ his horn shall be exalted in glory. <span class="rubricRV">℟.</span></p>
 <p class="theBlack poetry">Lord,<br/>
 be close to your servants<br/>
 who move into this home (today)<br/>
-and ask for your blessing.<br/>
+and ask for your<span class="cross added"> ✠</span> blessing.<br/>
 Be their shelter when they are at home,<br/>
 their companion when they are away,<br/>
 and their welcome guest when they return.<br/>

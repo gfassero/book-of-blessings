@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
-<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
+
+INDEX: give specialized blessings a url query that filters the blessing variant.
 
 Cull the meal blessings especially.
 Add navigation for the meal blessings.
@@ -26,22 +27,13 @@ Add more navigation to Chapter 14.
 
 Add Latin text
 
-Rename nav buttons shorter/shortest as needed for mobile display.
-
 Flag/navigate scapular blessing appropriately.
 
 Add a switch to display full BOB paragraph numbers instead.
 
-Should all blessings end with the blessing formula (for clergy)?
-
 Other ideas:
 - Link to suggested scriptures on USCCB.
 - Suggest a solemn blessing based on liturgical season.
-
-New missal translations:
-- Appendix blessings from old missal -> new missal.
-- Cut excess old-translation words.
-- one God -> God
 
 Switch all CSS text styles to variables.
 
@@ -49,11 +41,24 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-INDEX.HTML
-- add General Intro
-- chapter-1-iv-children (used twice, under Home and Family) is missing .html
-- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
-- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
+--- SETTINGS PAGE ---
+- Change sidebar into hamburger.
+- Explain and cite authorities for each sidebar edit option:
+
+(https://canonlaw.ninja/?nums=1166-1172)
+(There's a footnote to the intro to the appendix, saying that the blessings and prayers over the people are from the missal.)
+
+Priorities regarding adding the cross:
+1. BLESS +
+If no BLESS:
+2. through + CHRIST OUR LORD
+   your Son + JESUS CHRIST
+If doesn't end with JESUS or CHRIST:
+3. for ever + and ever
+   now + and for ever
+If no temporal clause:
+4. GRACE + give us strength
+(Include stats re how many crosses in full rites, how many added, and where added.)
 
 -->
 
@@ -71,7 +76,7 @@ INDEX.HTML
       <path d="M10 21L10 15L14 15L14 21"/>
     </svg>
   </a>
-  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Settings" aria-expanded="false" aria-controls="settingsDrawer">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
       <circle cx="12" cy="12" r="2.5"/>
@@ -115,6 +120,7 @@ INDEX.HTML
         <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
       </div>
     </div>
+
     <div class="setting-group">
       <span class="setting-label" id="presiderLabel">Presider Mode</span>
       <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
@@ -123,7 +129,7 @@ INDEX.HTML
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
       </div>
     </div>
-
+<!--
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
@@ -143,14 +149,14 @@ INDEX.HTML
         </button>
       </div>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
@@ -159,17 +165,20 @@ INDEX.HTML
         </button>
       </div>
     </div>
-<!--    <div class="setting-group">
+   <div class="optWrapper">
+    <div class="setting-group clergy">
       <div class="setting-row">
-        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <span class="setting-row-label" id="addCrossLabel">Add ✠ where missing from blessing formulas</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
-
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    </div>
+   </div>
+-->
+    <a href="settings.html" class="setting-label">More settings</a>
     <a href="guide.html" class="setting-label">Guide to blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">View on GitHub</a>
   </div>
 </aside>
 
@@ -177,7 +186,7 @@ INDEX.HTML
 
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
-  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+  <p class="popup-sub" id="popupSub">You can change this any time in settings.</p>
 
   <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
     <span class="popup-option-name" aria-hidden="true">Layperson</span>
@@ -196,13 +205,16 @@ INDEX.HTML
 <main class="content">
 
 ﻿<!--SPLIT appendix-prayers-over-the-people-->
+<div class="warning-banner-lay" id="warningBanner" role="alert">
+These blessings are intended for use by a priest or deacon.
+</div>
+
 <p class="orderTitle">Prayers Over the People</p>
 
 <div class="setting-group">
   <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
     <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="0">All</button>
-    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Benediction</button>
-    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="2">Protection</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Protection</button>
     <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="3">Suffering</button>
     <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="4">Repentance</button>
     <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="5">Mercy</button>
@@ -212,12 +224,12 @@ INDEX.HTML
   </div>
 </div>
 
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">1277</span> After the prayer over the people the priest or deacon always adds:</p>
+<p class="rubricInlineNumbered simplifyOut" data-presider="clergy"><span class="parNumber">1277</span> After the prayer over the people the priest or deacon always adds:</p>
 
-<p class="theBlack" data-presider="clergy">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack simplifyOut" data-presider="clergy">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
-<p class="theBlack" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack simplifyOut" data-presider="clergy"><span class="rubricRV">℟.</span> Amen.</p>
 
 <div data-riteVariant="0">
 
@@ -226,317 +238,939 @@ the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 </div>
 <div data-riteVariant="5">
 
-<p class="theBlack poetry"><span class="marginRefNumber">1</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">1</span> Lord,<br/>
 have mercy on your people.<br/>
 Grant us in this life the good things<br/>
 that lead to the everlasting life you prepare for us.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
-<div data-riteVariant="2">
+<div data-riteVariant="1">
 
-<p class="theBlack poetry"><span class="marginRefNumber">2</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">2</span> Lord,<br/>
 grant your people your protection and grace.<br/>
 Give them health of mind and body,<br/>
 perfect love for one another,<br/>
 and make them always faithful to you.</p>
 
-<p class="theBlack">Grant this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">Grant this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="6">
 
-<p class="theBlack poetry"><span class="marginRefNumber">3</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">3</span> Lord,<br/>
 may all Christian people both know and cherish<br/>
 the heavenly gifts they have received.</p>
 
-<p class="theBlack">We ask this in the name of Jesus the Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this in the name of Jesus the Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="4">
 
-<p class="theBlack poetry"><span class="marginRefNumber">4</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">4</span> Lord,<br/>
 bless your people and make them holy<br/>
 so that, avoiding evil,<br/>
 they may find in you the fulfillment of their longing.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="3">
 
-<p class="theBlack poetry"><span class="marginRefNumber">5</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">5</span> Lord,<br/>
 bless and strengthen your people.<br/>
 May they remain faithful to you<br/>
 and always rejoice in your mercy.</p>
 
-<p class="theBlack">We ask this in the name of Jesus the Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this in the name of Jesus the Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="4">
 
-<p class="theBlack poetry"><span class="marginRefNumber">6</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">6</span> Lord,<br/>
 you care for your people even when they stray.<br/>
 Grant us a complete change of heart,<br/>
 so that we may follow you with greater fidelity.</p>
 
-<p class="theBlack">Grant this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">Grant this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="7">
 
-<p class="theBlack poetry"><span class="marginRefNumber">7</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">7</span> Lord,<br/>
 send your light upon your family.<br/>
 May they continue to enjoy your favor<br/>
 and devote themselves to doing good.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="6">
 
-<p class="theBlack poetry"><span class="marginRefNumber">8</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">8</span> Lord,<br/>
 we rejoice that you are our creator and ruler.<br/>
 As we call upon your generosity,<br/>
 renew and keep us in your love.</p>
 
-<p class="theBlack">Grant this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">Grant this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="7">
 
-<p class="theBlack poetry"><span class="marginRefNumber">9</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">9</span> Lord,<br/>
 we pray for your people who believe in you.<br/>
 May they enjoy the gift of your love,<br/>
 share it with others,<br/>
 and spread it everywhere.</p>
 
-<p class="theBlack">We ask this in the name of Jesus the Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this in the name of Jesus the Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="5">
 
-<p class="theBlack"><span class="marginRefNumber">10</span> Lord,</p>
-
-<p class="theBlack poetry">bless your people who hope for your mercy.<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">10</span> Lord,<br/>
+bless your people who hope for your mercy.<br/>
 Grant that they may receive<br/>
 the things they ask for at your prompting.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="7">
 
-<p class="theBlack poetry"><span class="marginRefNumber">11</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">11</span> Lord,<br/>
 bless us with your heavenly gifts,<br/>
 and in your mercy make us ready to do your will.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
-<div data-riteVariant="2">
+<div data-riteVariant="1">
 
-<p class="theBlack poetry"><span class="marginRefNumber">12</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">12</span> Lord,<br/>
 protect your people always,<br/>
 that they may be free from every evil<br/>
 and serve you with all their hearts.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="7">
 
-<p class="theBlack poetry"><span class="marginRefNumber">13</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">13</span> Lord,<br/>
 help your people to seek you with all their hearts<br/>
 and to deserve what you promise.</p>
 
-<p class="theBlack">Grant this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">Grant this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="3">
 
-<p class="theBlack poetry"><span class="marginRefNumber">14</span> Father,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">14</span> Father,<br/>
 help your people to rejoice in the mystery of redemption<br/>
 and to win its reward.</p>
 
-<p class="theBlack">We ask this in the name of Jesus the Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this in the name of Jesus the Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="4">
 
-<p class="theBlack poetry"><span class="marginRefNumber">15</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">15</span> Lord,<br/>
 have pity on your people;<br/>
 help them each day to avoid what displeases you<br/>
 and grant that they may serve you with joy.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="3">
 
-<p class="theBlack poetry"><span class="marginRefNumber">16</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">16</span> Lord,<br/>
 care for your people and purify them.<br/>
 Console them in this life<br/>
 and bring them to the life to come.</p>
 
-<p class="theBlack">We ask this in the name of Jesus the Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this in the name of Jesus the Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="3">
 
-<p class="theBlack poetry"><span class="marginRefNumber">17</span> Father,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">17</span> Father,<br/>
 look with love upon your people,<br/>
 the love which our Lord Jesus Christ showed us<br/>
 when he delivered himself to evil men<br/>
 and suffered the agony of the cross,<br/>
 for he is Lord for ever.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="6">
 
-<p class="theBlack poetry"><span class="marginRefNumber">18</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">18</span> Lord,<br/>
 grant that your faithful people<br/>
 may continually desire to relive the mystery of the eucharist<br/>
 and so be reborn to lead a new life.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="5">
 
-<p class="theBlack poetry"><span class="marginRefNumber">19</span> Lord God,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">19</span> Lord God,<br/>
 in your great mercy,<br/>
 enrich your people with your grace<br/>
 and strengthen them by your blessing<br/>
 so that they may praise you always.</p>
 
-<p class="theBlack">Grant this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">Grant this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="1">
 
-<p class="theBlack poetry"><span class="marginRefNumber">20</span> May God bless you with every good gift from on high.<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">20</span> May God bless you with every good gift from on high.<br/>
 May he keep you pure and holy in his sight at all times.<br/>
 May he bestow the riches of his grace upon you,<br/>
 bring you the good news of salvation,<br/>
 and always fill you with love for all people.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="4">
 
-<p class="theBlack poetry"><span class="marginRefNumber">21</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">21</span> Lord,<br/>
 make us pure in mind and body,<br/>
 that we will avoid all evil pleasures<br/>
 and always delight in you.</p>
 
-<p class="theBlack">We ask this in the name of Jesus the Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this in the name of Jesus the Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="7">
 
-<p class="theBlack poetry"><span class="marginRefNumber">22</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">22</span> Lord,<br/>
 bless your people and fill them with zeal.<br/>
 Strengthen them by your love to do your will.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="7">
 
-<p class="theBlack poetry"><span class="marginRefNumber">23</span> Lord,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">23</span> Lord,<br/>
 come, live in your people<br/>
 and strengthen them by your grace.<br/>
 Help them to remain close to you in prayer<br/>
 and give them a true love for one another.</p>
 
-<p class="theBlack">Grant this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">Grant this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="3">
 
-<p class="theBlack poetry"><span class="marginRefNumber">24</span> Father,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">24</span> Father,<br/>
 look kindly on your children who put their trust in you;<br/>
 bless them and keep them from all harm,<br/>
 strengthen them against the attacks of the devil.<br/>
 May they never offend you<br/>
 but seek to love you in all they do.</p>
 
-<p class="theBlack">We ask this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="3">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[1]</span> Be gracious to your people, O Lord,<br/>
+and do not withhold consolation on earth<br/>
+from those you call to strive for heaven.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[2]</span> Grant, O Lord, we pray,<br/>
+that the Christian people<br/>
+may understand the truths they profess<br/>
+and love the heavenly liturgy<br/>
+in which they participate.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[3]</span> May your people receive your holy blessing,<br/>
+O Lord, we pray,<br/>
+and, by that gift,<br/>
+spurn all that would harm them<br/>
+and obtain what they desire.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="4">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[4]</span> Turn your people to you with all their heart,<br/>
+O Lord, we pray,<br/>
+for you protect even those who go astray,<br/>
+but when they serve you with undivided heart,<br/>
+you sustain them with still greater care.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[5]</span> Graciously enlighten your family, O Lord, we pray,<br/>
+that by holding fast to what is pleasing to you,<br/>
+they may be worthy to accomplish all that is good.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="4">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[6]</span> Bestow pardon and peace, O Lord, we pray,<br/>
+upon your faithful,<br/>
+that they may be cleansed from every offense<br/>
+and serve you with untroubled hearts.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[7]</span> May your heavenly favor, O Lord, we pray,<br/>
+increase in number the people subject to you<br/>
+and make them always obedient to your commands.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[8]</span> Be propitious to your people, O God,<br/>
+that, freed from every evil,<br/>
+they may serve you with all their heart<br/>
+and ever stand firm under your protection.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[9]</span> May your family always rejoice together, O God,<br/>
+over the mysteries of redemption they have celebrated,<br/>
+and grant its members the perseverance<br/>
+to attain the effects that flow from them.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="1">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[10]</span> Lord God, from the abundance of your mercies<br/>
+provide for your servants and ensure their safety,<br/>
+so that, strengthened by your blessings,<br/>
+they may at all times abound in thanksgiving<br/>
+and bless you with unending exultation.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="1">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[11]</span> Keep your family, we pray, O Lord,<br/>
+in your constant care,<br/>
+so that, under your protection,<br/>
+they may be free from all troubles<br/>
+and by good works show dedication to your name.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="4">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[12]</span> Purify your faithful, both in body and in mind,<br/>
+O Lord, we pray,<br/>
+so that, feeling the compunction you inspire,<br/>
+they may be able to avoid harmful pleasures<br/>
+and ever feed upon your delights.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[13]</span> May the effects of your sacred blessing, O Lord,<br/>
+make themselves felt among your faithful,<br/>
+to prepare with spiritual sustenance the minds of all,<br/>
+that they may be strengthened by the power of your love<br/>
+to carry out works of charity.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="4">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[14]</span> The hearts of your faithful submitted to your name,<br/>
+entreat your help, O Lord,<br/>
+and since without you they can do nothing that is just,<br/>
+grant by your abundant mercy<br/>
+that they may both know what is right<br/>
+and receive all that they need for their good.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="3">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[15]</span> Hasten to the aid of your faithful people<br/>
+who call upon you, O Lord, we pray,<br/>
+and graciously give strength in their human weakness,<br/>
+so that, being dedicated to you in complete sincerity,<br/>
+they may find gladness in your remedies<br/>
+both now and in the life to come.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="5">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[16]</span> Look with favor on your family, O Lord,<br/>
+and bestow your endless mercy on those who seek it:<br/>
+and just as without your mercy,<br/>
+they can do nothing truly worthy of you,<br/>
+so through it,<br/>
+may they merit to obey your saving commands.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="6">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[17]</span> Bestow increase of heavenly grace<br/>
+on your faithful, O Lord;<br/>
+may they praise you with their lips,<br/>
+with their souls, with their lives;<br/>
+and since it is by your gift that we exist,<br/>
+may our whole lives be yours.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="5">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[18]</span> Direct your people, O Lord, we pray,<br/>
+with heavenly instruction,<br/>
+that by avoiding every evil<br/>
+and pursuing all that is good,<br/>
+they may earn not your anger<br/>
+but your unending mercy.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="1">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[19]</span> Be near to those who call on you, O Lord,<br/>
+and graciously grant your protection<br/>
+to all who place their hope in your mercy,<br/>
+that they may remain faithful in holiness of life<br/>
+and, having enough for their needs in this world,<br/>
+they may be made full heirs of your promise for eternity.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="1">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[20]</span> Bestow the grace of your kindness<br/>
+upon your supplicant people, O Lord,<br/>
+that, formed by you, their creator,<br/>
+and restored by you, their sustainer,<br/>
+through your constant action they may be saved.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[21]</span> May your faithful people, O Lord, we pray,<br/>
+always respond to the promptings of your love<br/>
+and, moved by wholesome compunction,<br/>
+may they do gladly what you command,<br/>
+so as to receive the things you promise.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="5">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[22]</span> May the weakness of your devoted people<br/>
+stir your compassion, O Lord, we pray,<br/>
+and let their faithful pleading win your mercy,<br/>
+that what they do not presume upon by their merits<br/>
+they may receive by your generous pardon.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="1">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[23]</span> In defense of your children, O Lord, we pray,<br/>
+stretch forth the right hand of your majesty,<br/>
+so that, obeying your fatherly will,<br/>
+they may have the unfailing protection<br/>
+of your fatherly care.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="5">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[24]</span> Look, O Lord, on the prayers of your family,<br/>
+and grant them the assistance they humbly implore,<br/>
+so that, strengthened by the help they need,<br/>
+they may persevere in confessing your name.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="1">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[25]</span> Keep your family safe, O Lord, we pray,<br/>
+and grant them the abundance of your mercies,<br/>
+that they may find growth<br/>
+through the teachings and the gifts of heaven.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[26]</span> May your faithful people rejoice, we pray, O Lord,<br/>
+to be upheld by your right hand,<br/>
+and, progressing in the Christian life,<br/>
+may they delight in good things<br/>
+both now and in the time to come.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
 <div data-riteVariant="8">
 
 <p class="riteHeading"><span class="parNumber">1279</span> Prayers for Use on the Feasts of Saints</p>
 
-<p class="theBlack poetry"><span class="marginRefNumber">25</span> God our Father,<br/>
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">25</span> God our Father,<br/>
 may all Christian people rejoice in the glory of your Saints.<br/>
 Give us fellowship with them<br/>
 and unending joy in your kingdom.</p>
 
-<p class="theBlack">We ask this in the name of Jesus the Lord.</p>
+<p class="theBlack" data-xlation="old">We ask this in the name of Jesus the Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry"><span class="marginRefNumber">26</span> Lord,<br/>
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry" data-xlation="old"><span class="marginRefNumber">26</span> Lord,<br/>
 you have given us many friends in heaven.<br/>
 Through their prayers we are confident<br/>
 that you will watch over us always<br/>
 and fill our hearts with your love.</p>
 
-<p class="theBlack">Grant this through Christ our Lord.</p>
+<p class="theBlack" data-xlation="old">Grant this through Christ our Lord.</p>
 
-<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+
+<p class="theBlack simplifyIn" data-presider="clergy" data-xlation="old"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[27]</span> May the Christian people exult, O Lord,<br/>
+at the glorification of the illustrious members of your Son’s Body,<br/>
+and may they gain a share in the eternal lot<br/>
+of the Saints on whose feast day<br/>
+they reaffirm their devotion to you,<br/>
+rejoicing with them for ever in your glory.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry" data-xlation="new"><span class="marginRefNumber">[28]</span> Turn the hearts of your people<br/>
+always to you, O Lord, we pray,<br/>
+and, as you give them the help of such great patrons as these,<br/>
+grant also the unfailing help of your protection.<br/>
+Through Christ our Lord.
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry simplifyIn" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack simplifyIn" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
 
 </div>
  

@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <title>Book of Blessings</title>
-<!-- https://canonlaw.ninja/?nums=1166-1172 -->
 
 <!--
+
+INDEX: give specialized blessings a url query that filters the blessing variant.
 
 Cull the meal blessings especially.
 Add navigation for the meal blessings.
@@ -26,22 +27,13 @@ Add more navigation to Chapter 14.
 
 Add Latin text
 
-Rename nav buttons shorter/shortest as needed for mobile display.
-
 Flag/navigate scapular blessing appropriately.
 
 Add a switch to display full BOB paragraph numbers instead.
 
-Should all blessings end with the blessing formula (for clergy)?
-
 Other ideas:
 - Link to suggested scriptures on USCCB.
 - Suggest a solemn blessing based on liturgical season.
-
-New missal translations:
-- Appendix blessings from old missal -> new missal.
-- Cut excess old-translation words.
-- one God -> God
 
 Switch all CSS text styles to variables.
 
@@ -49,11 +41,24 @@ Tag, remove, or assess:
 - () appearing anywhere in blackBlock
 - [] appearing anywhere
 
-INDEX.HTML
-- add General Intro
-- chapter-1-iv-children (used twice, under Home and Family) is missing .html
-- chapter-1-ii vs. chapter-1-ii-family-home, and chapter-1-xii vs. chapter-1-xii-home — same page (same href), but different ids under different folders. If you star one, its "twin" in the other folder won't show as starred, since starring tracks by id. Worth merging to one id each if that's not what you want.
-- chapter-30 and chapter-34 each show up with two different labels ("Christmas & Easter" vs. "Homes"; "Food" vs. "Easter") depending on which folder you're viewing from. Since the id is shared this time, it won't break starring — but the Starred section will only ever show whichever label happens to be last in the array, so double check that's the one you want representing it there.
+--- SETTINGS PAGE ---
+- Change sidebar into hamburger.
+- Explain and cite authorities for each sidebar edit option:
+
+(https://canonlaw.ninja/?nums=1166-1172)
+(There's a footnote to the intro to the appendix, saying that the blessings and prayers over the people are from the missal.)
+
+Priorities regarding adding the cross:
+1. BLESS +
+If no BLESS:
+2. through + CHRIST OUR LORD
+   your Son + JESUS CHRIST
+If doesn't end with JESUS or CHRIST:
+3. for ever + and ever
+   now + and for ever
+If no temporal clause:
+4. GRACE + give us strength
+(Include stats re how many crosses in full rites, how many added, and where added.)
 
 -->
 
@@ -71,7 +76,7 @@ INDEX.HTML
       <path d="M10 21L10 15L14 15L14 21"/>
     </svg>
   </a>
-  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Display settings" aria-expanded="false" aria-controls="settingsDrawer">
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Settings" aria-expanded="false" aria-controls="settingsDrawer">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12.0 2.7 L15.56 3.41 L14.68 5.53 L16.95 7.05 L18.58 5.42 L20.59 8.44 L18.47 9.32 L19.0 12.0 L21.3 12.0 L20.59 15.56 L18.47 14.68 L16.95 16.95 L18.58 18.58 L15.56 20.59 L14.68 18.47 L12.0 19.0 L12.0 21.3 L8.44 20.59 L9.32 18.47 L7.05 16.95 L5.42 18.58 L3.41 15.56 L5.53 14.68 L5.0 12.0 L2.7 12.0 L3.41 8.44 L5.53 9.32 L7.05 7.05 L5.42 5.42 L8.44 3.41 L9.32 5.53 L12.0 5.0 Z"/>
       <circle cx="12" cy="12" r="2.5"/>
@@ -115,6 +120,7 @@ INDEX.HTML
         <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
       </div>
     </div>
+
     <div class="setting-group">
       <span class="setting-label" id="presiderLabel">Presider Mode</span>
       <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
@@ -123,7 +129,7 @@ INDEX.HTML
         <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
       </div>
     </div>
-
+<!--
     <div class="setting-group">
       <span class="setting-label">Text Options</span>
     </div>
@@ -143,14 +149,14 @@ INDEX.HTML
         </button>
       </div>
     </div>
-<!--    <div class="setting-group">
+    <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
+    </div>
     <div class="setting-group">
       <div class="setting-row">
         <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
@@ -159,17 +165,20 @@ INDEX.HTML
         </button>
       </div>
     </div>
-<!--    <div class="setting-group">
+   <div class="optWrapper">
+    <div class="setting-group clergy">
       <div class="setting-row">
-        <span class="setting-row-label" id="addCrossLabel">Add + where missing from blessing formula</span>
+        <span class="setting-row-label" id="addCrossLabel">Add ✠ where missing from blessing formulas</span>
         <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
           <span class="switch-thumb"></span>
         </button>
       </div>
-    </div>-->
-
-    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">About the app</a>
+    </div>
+   </div>
+-->
+    <a href="settings.html" class="setting-label">More settings</a>
     <a href="guide.html" class="setting-label">Guide to blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">View on GitHub</a>
   </div>
 </aside>
 
@@ -177,7 +186,7 @@ INDEX.HTML
 
 <div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
   <h2 id="popupTitle">Choose your presider mode</h2>
-  <p class="popup-sub" id="popupSub">You can change this any time from the settings icon.</p>
+  <p class="popup-sub" id="popupSub">You can change this any time in settings.</p>
 
   <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
     <span class="popup-option-name" aria-hidden="true">Layperson</span>
@@ -206,109 +215,173 @@ These blessings are intended for use by a priest or deacon.
 
 <p class="riteSectionHeading"><span class="marginRefNumber">1</span> Advent</p>
 
-<p class="theBlack poetry">You believe that the Son of God once came to us;<br/>
+<p class="theBlack poetry" data-xlation="old">You believe that the Son of God once came to us;<br/>
 you look for him to come again.<br/>
 May his coming bring you the light of his holiness<br/>
 and free you with his blessing.</p>
+<p class="theBlack poetry" data-xlation="new">May the almighty and merciful God,<br/>
+by whose grace you have placed your faith<br/>
+in the First Coming of his Only Begotten Son<br/>
+and yearn for his coming again<br/>
+sanctify you by the radiance of Christ’s Advent<br/>
+and enrich you with his blessing.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May God make you steadfast in faith,<br/>
+<p class="theBlack poetry" data-xlation="old">May God make you steadfast in faith,<br/>
 joyful in hope, and untiring in love<br/>
 all the days of your life.</p>
+<p class="theBlack poetry" data-xlation="new">As you run the race of this present life,<br/>
+may he make you firm in faith,<br/>
+joyful in hope and active in charity.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">You rejoice that our Redeemer came to live with us as man.<br/>
+<p class="theBlack poetry" data-xlation="old">You rejoice that our Redeemer came to live with us as man.<br/>
 When he comes again in glory,<br/>
 may he reward you with endless life.</p>
+<p class="theBlack poetry" data-xlation="new">So that, rejoicing now with devotion<br/>
+at the Redeemer’s coming in the flesh,<br/>
+you may be endowed with the rich reward of eternal life<br/>
+when he comes again in majesty.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">2</span> Christmas</p>
 
-<p class="theBlack poetry">When he came to us as man,<br/>
+<p class="theBlack poetry" data-xlation="old">When he came to us as man,<br/>
 the Son of God scattered the darkness of this world,<br/>
-and filled this holy night (day) with his glory.</p>
-
-<p class="theBlack poetry">May the God of infinite goodness<br/>
+and filled this holy night (day) with his glory.<br/>
+May the God of infinite goodness<br/>
 scatter the darkness of sin<br/>
 and brighten your hearts with holiness.</p>
+<p class="theBlack poetry" data-xlation="new">May the God of infinite goodness,<br/>
+who by the Incarnation of his Son has driven darkness from the world<br/>
+and by that glorious Birth has illumined this most holy night (day),<br/>
+drive far from you the darkness of vice<br/>
+and illumine your hearts with the light of virtue.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">God sent his angels to shepherds<br/>
+<p class="theBlack poetry" data-xlation="old">God sent his angels to shepherds<br/>
 to herald the great joy of our Savior’s birth.<br/>
 May he fill you with joy<br/>
 and make you heralds of his gospel.</p>
+<p class="theBlack poetry" data-xlation="new">May God, who willed that the great joy<br/>
+of his Son’s saving Birth<br/>
+be announced to shepherds by the Angel,<br/>
+fill your minds with the gladness he gives<br/>
+and make you heralds of his Gospel.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">When the Word became man,<br/>
+<p class="theBlack poetry" data-xlation="old">When the Word became man,<br/>
 earth was joined to heaven.<br/>
 May he give you his peace and good will,<br/>
 and fellowship with all the heavenly host.</p>
+<p class="theBlack poetry" data-xlation="new">And may God, who by the Incarnation<br/>
+brought together the earthly and heavenly realm,<br/>
+fill you with the gift of his peace and favor<br/>
+and make you sharers with the Church in heaven.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">3</span> Beginning of the New Year</p>
 
-<p class="theBlack poetry">Every good gift comes from the Father of light.<br/>
+<p class="theBlack poetry" data-xlation="old">Every good gift comes from the Father of light.<br/>
 May he grant you his grace and every blessing,<br/>
 and keep you safe throughout the coming year.</p>
+<p class="theBlack poetry" data-xlation="new">May God, the source and origin of all blessing,<br/>
+grant you grace,<br/>
+pour out his blessing in abundance,<br/>
+and keep you safe from harm throughout the year.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May he grant you unwavering faith,<br/>
+<p class="theBlack poetry" data-xlation="old">May he grant you unwavering faith,<br/>
 constant hope, and love that endures to the end.</p>
+<p class="theBlack poetry" data-xlation="new">May he give you integrity in the faith,<br/>
+endurance in hope,<br/>
+and perseverance in charity<br/>
+with holy patience to the end.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May he order your days and work in his peace,<br/>
+<p class="theBlack poetry" data-xlation="old">May he order your days and work in his peace,<br/>
 hear your every prayer,<br/>
 and lead you to everlasting life and joy.</p>
+<p class="theBlack poetry" data-xlation="new">May he order your days and your deeds in his peace,<br/>
+grant your prayers in this and in every place,<br/>
+and lead you happily to eternal life.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">4</span> Epiphany</p>
 
-<p class="theBlack poetry">God has called you out of darkness<br/>
+<p class="theBlack poetry" data-xlation="old">God has called you out of darkness<br/>
 into his wonderful light.<br/>
 May you experience his kindness and blessings,<br/>
 and be strong in faith, in hope, and in love.</p>
+<p class="theBlack poetry" data-xlation="new">May God, who has called you<br/>
+out of darkness into his wonderful light,<br/>
+pour out in kindness his blessing upon you<br/>
+and make your hearts firm<br/>
+in faith, hope and charity.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">Because you are followers of Christ,<br/>
+<p class="theBlack poetry" data-xlation="old">Because you are followers of Christ,<br/>
 who appeared on this day as a light shining in darkness,<br/>
 may he make you a light to all your sisters and brothers.</p>
+<p class="theBlack poetry" data-xlation="new">And since in all confidence you follow Christ,<br/>
+who today appeared in the world<br/>
+as a light shining in darkness,<br/>
+may God make you, too,<br/>
+a light for your brothers and sisters.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">The wise men followed the star,<br/>
+<p class="theBlack poetry" data-xlation="old">The wise men followed the star,<br/>
 and found Christ who is light from light.<br/>
 May you too find the Lord<br/>
 when your pilgrimage is ended.</p>
+<p class="theBlack poetry" data-xlation="new">And so when your pilgrimage is ended,<br/>
+may you come to him<br/>
+whom the Magi sought as they followed the star<br/>
+and whom they found with great joy, the Light from Light,<br/>
+who is Christ the Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
@@ -333,33 +406,46 @@ so that you may be able to celebrate with Christ the paschal victory.</p>
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">6</span> Passion of the Lord</p>
 
-<p class="theBlack poetry">The Father of mercies has given us an example of unselfish love<br/>
+<p class="theBlack poetry" data-xlation="old">The Father of mercies has given us an example of unselfish love<br/>
 in the sufferings of his only Son.<br/>
 Through your service of God and neighbor<br/>
 may you receive his countless blessings.</p>
+<p class="theBlack poetry" data-xlation="new">May God, the Father of mercies,<br/>
+who has given you an example of love<br/>
+in the Passion of his Only Begotten Son,<br/>
+grant that, by serving God and your neighbor,<br/>
+you may lay hold of the wondrous gift of his blessing.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">You believe that by his dying<br/>
+<p class="theBlack poetry" data-xlation="old">You believe that by his dying<br/>
 Christ destroyed death for ever.<br/>
 May he give you everlasting life.</p>
+<p class="theBlack poetry" data-xlation="new">So that you may receive the reward of everlasting life from him,<br/>
+through whose earthly Death<br/>
+you believe that you escape eternal death.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">He humbled himself for our sakes.<br/>
+<p class="theBlack poetry" data-xlation="old">He humbled himself for our sakes.<br/>
 May you follow his example<br/>
 and share in his resurrection.</p>
+<p class="theBlack poetry" data-xlation="new">And by following the example of his self-abasement,<br/>
+may you possess a share in his Resurrection.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
@@ -384,86 +470,132 @@ May you come with joy to the feast which lasts for ever.</p>
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">8</span> Easter Season</p>
 
-<p class="theBlack poetry">Through the resurrection of his Son<br/>
+<p class="theBlack poetry" data-xlation="old">Through the resurrection of his Son<br/>
 God has redeemed you and made you his children.<br/>
 May he bless you with joy.</p>
+<p class="theBlack poetry" data-xlation="new">May God, who by the Resurrection of his Only Begotten Son<br/>
+was pleased to confer on you<br/>
+the gift of redemption and of adoption,<br/>
+give you gladness by his blessing.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">The Redeemer has given you lasting freedom.<br/>
+<p class="theBlack poetry" data-xlation="old">The Redeemer has given you lasting freedom.<br/>
 May you inherit his everlasting life.</p>
+<p class="theBlack poetry" data-xlation="new">May he, by whose redeeming work<br/>
+you have received the gift of everlasting freedom,<br/>
+make you heirs to an eternal inheritance.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">By faith you rose with him in baptism.<br/>
+<p class="theBlack poetry" data-xlation="old">By faith you rose with him in baptism.<br/>
 May your lives be holy,<br/>
 so that you will be united with him for ever.</p>
+<p class="theBlack poetry" data-xlation="new">And may you, who have already risen with Christ<br/>
+in Baptism through faith,<br/>
+by living in a right manner on this earth,<br/>
+be united with him in the homeland of heaven.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">9</span> Ascension</p>
 
-<p class="theBlack poetry">May almighty God bless you on this day<br/>
+<p class="theBlack poetry" data-xlation="old">May almighty God bless you on this day<br/>
 when his only Son ascended into heaven<br/>
 to prepare a place for you.</p>
+<p class="theBlack poetry" data-xlation="new">May almighty God bless you,<br/>
+for on this very day his Only Begotten Son<br/>
+pierced the heights of heaven<br/>
+and unlocked for you the way<br/>
+to ascend to where he is.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">After his resurrection, Christ was seen by his disciples.<br/>
+<p class="theBlack poetry" data-xlation="old">After his resurrection, Christ was seen by his disciples.<br/>
 When he appears as judge<br/>
 may you be pleasing for ever in his sight.</p>
+<p class="theBlack poetry" data-xlation="new">May he grant that,<br/>
+as Christ after his Resurrection<br/>
+was seen plainly by his disciples,<br/>
+so when he comes as Judge<br/>
+he may show himself merciful to you for all eternity.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">You believe that Jesus has taken his seat in majesty<br/>
+<p class="theBlack poetry" data-xlation="old">You believe that Jesus has taken his seat in majesty<br/>
 at the right hand of the Father.<br/>
 May you have the joy of experiencing<br/>
 that he is also with you to the end of time,<br/>
 according to his promise.</p>
+<p class="theBlack poetry" data-xlation="new">And may you, who believe he is seated<br/>
+with the Father in his majesty,<br/>
+know with joy the fulfillment of his promise<br/>
+to stay with you until the end of time.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">10</span> Holy Spirit</p>
 
-<p class="theBlack poetry">(This day) the Father of light<br/>
+<p class="theBlack poetry" data-xlation="old">(This day) the Father of light<br/>
 has enlightened the minds of the disciples<br/>
 by the outpouring of the Holy Spirit.<br/>
 May he bless you<br/>
 and give you the gifts of the Spirit for ever.</p>
+<p class="theBlack poetry" data-xlation="new">May God, the Father of lights,<br/>
+who was pleased to enlighten the disciples’ minds<br/>
+by the outpouring of the Spirit, the Paraclete,<br/>
+grant you gladness by his blessing<br/>
+and make you always abound with the gifts of the same Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May that fire which hovered over the disciples as tongues of flame<br/>
+<p class="theBlack poetry" data-xlation="old">May that fire which hovered over the disciples as tongues of flame<br/>
 burn out all evil from your hearts<br/>
 and make them glow with pure light.</p>
+<p class="theBlack poetry" data-xlation="new">May the wondrous flame that appeared above the disciples,<br/>
+powerfully cleanse your hearts from every evil<br/>
+and pervade them with its purifying light.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">God inspired speech in different tongues<br/>
+<p class="theBlack poetry" data-xlation="old">God inspired speech in different tongues<br/>
 to proclaim one faith.<br/>
 May he strengthen your faith<br/>
 and fulfill your hope of seeing him face to face.</p>
+<p class="theBlack poetry" data-xlation="new">And may God, who has been pleased to unite many tongues<br/>
+in the profession of one faith,<br/>
+give you perseverance in that same faith<br/>
+and, by believing, may you journey from hope to clear vision.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
@@ -473,102 +605,148 @@ the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May his face shine upon you,<br/>
+<p class="theBlack poetry" data-xlation="old">May his face shine upon you,<br/>
 and be gracious to you.</p>
+<p class="theBlack poetry" data-xlation="new">May he let his face shine upon you<br/>
+and show you his mercy.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May he look upon you with kindness,<br/>
+<p class="theBlack poetry" data-xlation="old">May he look upon you with kindness,<br/>
+and give you his peace.</p>
+<p class="theBlack poetry" data-xlation="new">May he turn his countenance towards you<br/>
 and give you his peace.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">12</span> Ordinary Time II</p>
 
-<p class="theBlack poetry">May the peace of God<br/>
+<p class="theBlack poetry" data-xlation="old">May the peace of God<br/>
 which is beyond all understanding<br/>
 keep your hearts and minds<br/>
 in the knowledge and love of God<br/>
 and of his Son, our Lord Jesus Christ.</p>
+<p class="theBlack poetry" data-xlation="new">May the peace of God,<br/>
+which surpasses all understanding,<br/>
+keep your hearts and minds<br/>
+in the knowledge and love of God,<br/>
+and of his Son, our Lord Jesus Christ.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">13</span> Ordinary Time III</p>
 
-<p class="theBlack poetry">May almighty God bless you in his mercy,<br/>
+<p class="theBlack poetry" data-xlation="old">May almighty God bless you in his mercy,<br/>
 and make you always aware of his saving wisdom.</p>
+<p class="theBlack poetry" data-xlation="new">May almighty God bless you in his kindness<br/>
+and pour out saving wisdom upon you.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May he strengthen your faith with proofs of his love,<br/>
+<p class="theBlack poetry" data-xlation="old">May he strengthen your faith with proofs of his love,<br/>
 so that you will persevere in good works.</p>
+<p class="theBlack poetry" data-xlation="new">May he nourish you always with the teachings of the faith<br/>
+and make you persevere in holy deeds.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May he direct your steps to himself,<br/>
+<p class="theBlack poetry" data-xlation="old">May he direct your steps to himself,<br/>
 and show you how to walk in charity and peace.</p>
+<p class="theBlack poetry" data-xlation="new">May he turn your steps towards himself<br/>
+and show you the path of charity and peace.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">14</span> Ordinary Time IV</p>
 
-<p class="theBlack poetry">May the God of all consolation<br/>
+<p class="theBlack poetry" data-xlation="old">May the God of all consolation<br/>
 bless you in every way<br/>
 and grant you peace all the days of your life.</p>
+<p class="theBlack poetry" data-xlation="new">May the God of all consolation order your days in his peace<br/>
+and grant you the gifts of his blessing.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May he free you from all anxiety<br/>
+<p class="theBlack poetry" data-xlation="old">May he free you from all anxiety<br/>
 and strengthen your hearts in his love.</p>
+<p class="theBlack poetry" data-xlation="new">May he free you always from every distress<br/>
+and confirm your hearts in his love.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May he enrich you with his gifts of faith, hope, and love,<br/>
+<p class="theBlack poetry" data-xlation="old">May he enrich you with his gifts of faith, hope, and love,<br/>
 so that what you do in this life<br/>
 will bring you to the happiness of everlasting life.</p>
+<p class="theBlack poetry" data-xlation="new">So that on this life’s journey<br/>
+you may be effective in good works,<br/>
+rich in the gifts of hope, faith and charity,<br/>
+and may come happily to eternal life.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">15</span> Ordinary Time V</p>
 
-<p class="theBlack poetry">May almighty God keep you from all harm<br/>
+<p class="theBlack poetry" data-xlation="old">May almighty God keep you from all harm<br/>
 and bless you with every good gift.</p>
+<p class="theBlack poetry" data-xlation="new">May almighty God always keep every adversity far from you<br/>
+and in his kindness pour out upon you the gifts of his blessing.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May he set his Word in your heart<br/>
+<p class="theBlack poetry" data-xlation="old">May he set his Word in your heart<br/>
 and fill you with lasting joy.</p>
+<p class="theBlack poetry" data-xlation="new">May God keep your hearts attentive to his words,<br/>
+that they may be filled with everlasting gladness.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May you walk in his ways,<br/>
+<p class="theBlack poetry" data-xlation="old">May you walk in his ways,<br/>
 always knowing what is right and good,<br/>
 until you enter your heavenly inheritance.</p>
+<p class="theBlack poetry" data-xlation="new">And so, may you always understand what is good and right,<br/>
+and be found ever hastening along<br/>
+in the path of God’s commands,<br/>
+made coheirs with the citizens of heaven.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
@@ -583,9 +761,27 @@ for every good deed and word.</p>
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="riteSectionHeading" data-xlation="new"><span class="marginRefNumber">–</span> Ordinary Time VI</p>
+
+<p class="theBlack poetry" data-xlation="new">May God bless you with every heavenly blessing,<br/>
+make you always holy and pure in his sight,<br/>
+pour out in abundance upon you the riches of his glory,<br/>
+and teach you with the words of truth;<br/>
+may he instruct you in the Gospel of salvation,<br/>
+and ever endow you with fraternal charity.<br/>
+Through Christ our Lord.</p>
+
+<p class="theBlack" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
+
+<p class="theBlack" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">17</span> Ordinary Time VII</p>
 
@@ -596,7 +792,7 @@ free from fault at the coming of Jesus Christ our Lord.</p>
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
@@ -612,7 +808,7 @@ working in you that which is pleasing in his sight.</p>
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
@@ -625,7 +821,7 @@ confirm you and make you strong and sure in your faith.</p>
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
@@ -633,101 +829,156 @@ the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">20</span> Blessed Virgin Mary</p>
 
-<p class="theBlack poetry">Born of the Blessed Virgin Mary,<br/>
+<p class="theBlack poetry" data-xlation="old">Born of the Blessed Virgin Mary,<br/>
 the Son of God redeemed humankind.<br/>
 May he enrich you with his blessings.</p>
+<p class="theBlack poetry" data-xlation="new">May God, who through the childbearing of the Blessed Virgin Mary<br/>
+willed in his great kindness to redeem the human race,<br/>
+be pleased to enrich you with his blessing.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">You received the author of life through Mary.<br/>
+<p class="theBlack poetry" data-xlation="old">You received the author of life through Mary.<br/>
 May you always rejoice in her loving care.</p>
+<p class="theBlack poetry" data-xlation="new">May you know always and everywhere the protection of her,<br/>
+through whom you have been found worthy to receive the author of life.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">You have come to rejoice at Mary’s feast.<br/>
+<p class="theBlack poetry" data-xlation="old">You have come to rejoice at Mary’s feast.<br/>
 May you be filled with the joys of the Spirit<br/>
 and the gifts of your eternal home.</p>
+<p class="theBlack poetry" data-xlation="new">May you, who have devoutly gathered on this day,<br/>
+carry away with you the gifts of spiritual joys and heavenly rewards.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">21</span> Peter and Paul</p>
 
-<p class="theBlack poetry">The Lord has set you firm within his Church,<br/>
+<p class="theBlack poetry" data-xlation="old">The Lord has set you firm within his Church,<br/>
 which he built upon the rock of Peter’s faith.<br/>
 May he bless you with a faith that never falters.</p>
+<p class="theBlack poetry" data-xlation="new">May almighty God bless you,<br/>
+for he has made you steadfast in Saint Peter’s saving confession<br/>
+and through it has set you on the solid rock of the Church’s faith.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">The Lord has given you knowledge of the faith<br/>
+<p class="theBlack poetry" data-xlation="old">The Lord has given you knowledge of the faith<br/>
 through the labors and preaching of Saint Paul.<br/>
 May his example inspire you to lead others to Christ<br/>
 by the manner of your life.</p>
+<p class="theBlack poetry" data-xlation="new">And having instructed you<br/>
+by the tireless preaching of Saint Paul,<br/>
+may God teach you constantly by his example<br/>
+to win brothers and sisters for Christ.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May the keys of Peter, and the words of Paul,<br/>
+<p class="theBlack poetry" data-xlation="old">May the keys of Peter, and the words of Paul,<br/>
 their undying witness and their prayers,<br/>
 lead you to the joy of that eternal home<br/>
 which Peter gained by his cross, and Paul by the sword.</p>
+<p class="theBlack poetry" data-xlation="new">So that by the keys of Saint Peter and the words of Saint Paul,<br/>
+and by the support of their intercession,<br/>
+God may bring us happily to that homeland<br/>
+that Peter attained on a cross<br/>
+and Paul by the blade of a sword.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">22</span> Apostles</p>
 
-<p class="theBlack poetry">May God who founded his Church upon the apostles<br/>
+<p class="theBlack poetry" data-xlation="old">May God who founded his Church upon the apostles<br/>
 bless you through the prayers of Saint <span class="nameN">N.</span> (and Saint <span class="nameN">N.</span>).</p>
+<p class="theBlack poetry" data-xlation="new">May God, who has granted you<br/>
+to stand firm on apostolic foundations,<br/>
+graciously bless you through the glorious merits<br/>
+of the holy Apostles N. and N. (the holy Apostle N.).</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May God inspire you to follow the example of the apostles,<br/>
+<p class="theBlack poetry" data-xlation="old">May God inspire you to follow the example of the apostles,<br/>
 and give witness to the truth before all people.</p>
+<p class="theBlack poetry" data-xlation="new">And may he who endowed you<br/>
+with the teaching and example of the Apostles,<br/>
+make you, under their protection,<br/>
+witnesses to the truth before all.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">The teaching of the apostles has strengthened your faith.<br/>
+<p class="theBlack poetry" data-xlation="old">The teaching of the apostles has strengthened your faith.<br/>
 May their prayers lead you<br/>
 to your true and eternal home.</p>
+<p class="theBlack poetry" data-xlation="new">So that through the intercession of the Apostles,<br/>
+you may inherit the eternal homeland,<br/>
+for by their teaching you possess firmness of faith.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">23</span> All Saints</p>
 
-<p class="theBlack poetry">God is the glory and joy of all his saints,<br/>
+<p class="theBlack poetry" data-xlation="old">God is the glory and joy of all his saints,<br/>
 whose memory we celebrate today.<br/>
 May his blessing be with you always.</p>
+<p class="theBlack poetry" data-xlation="new">May God, the glory and joy of the Saints,<br/>
+who has caused you to be strengthened<br/>
+by means of their outstanding prayers,<br/>
+bless you with unending blessings.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May the prayers of the saints deliver you from present evil.<br/>
+<p class="theBlack poetry" data-xlation="old">May the prayers of the saints deliver you from present evil.<br/>
 May their example of holy living<br/>
 turn your thoughts to service of God and neighbor.</p>
+<p class="theBlack poetry" data-xlation="new">Freed through their intercession from present ills<br/>
+and formed by the example of their holy way of life,<br/>
+may you be ever devoted<br/>
+to serving God and your neighbor.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">God’s holy Church rejoices that her saints<br/>
+<p class="theBlack poetry" data-xlation="old">God’s holy Church rejoices that her saints<br/>
 have reached their heavenly goal,<br/>
 and are in lasting peace.<br/>
 May you come to share all the joys of our Father’s house.</p>
+<p class="theBlack poetry" data-xlation="new">So that, together with all,<br/>
+you may possess the joys of the homeland,<br/>
+where Holy Church rejoices<br/>
+that her children are admitted in perpetual peace<br/>
+to the company of the citizens of heaven.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
@@ -735,58 +986,84 @@ the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
 
 <p class="riteSectionHeading"><span class="marginRefNumber">24</span> Dedication of a Church</p>
 
-<p class="theBlack poetry">The Lord of earth and heaven<br/>
+<p class="theBlack poetry" data-xlation="old">The Lord of earth and heaven<br/>
 has assembled you before him this day<br/>
 to dedicate this house of prayer<br/>
 (to recall the dedication of this church).<br/>
 May he fill you with the blessings of heaven.</p>
+<p class="theBlack poetry" data-xlation="new">May God, the Lord of heaven and earth,<br/>
+who has gathered you today for the dedication of this church,<br/>
+(who has gathered you today to recall the dedication of this church,)<br/>
+make you abound in heavenly blessings.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">God the Father wills that all his children<br/>
+<p class="theBlack poetry" data-xlation="old">God the Father wills that all his children<br/>
 scattered throughout the world<br/>
 become one family in his Son.<br/>
 May he make you his temple,<br/>
 the dwelling-place of his Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may he who has willed that all his scattered children<br/>
+should be gathered together in his Son,<br/>
+grant that you may become his temple<br/>
+and the dwelling place of the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">May God free you from every bond of sin,<br/>
+<p class="theBlack poetry" data-xlation="old">May God free you from every bond of sin,<br/>
 dwell within you and give you joy.<br/>
 May you live with him for ever<br/>
 in the company of all his saints.</p>
+<p class="theBlack poetry" data-xlation="new">And so, when you are thoroughly cleansed,<br/>
+may God dwell within you<br/>
+and grant you to possess with all the Saints<br/>
+the inheritance of eternal happiness.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">25</span> the Dead</p>
+<p class="riteSectionHeading"><span class="marginRefNumber">25</span> The Dead</p>
 
-<p class="theBlack poetry">In his great love,<br/>
+<p class="theBlack poetry" data-xlation="old">In his great love,<br/>
 the God of all consolation gave us the gift of life.<br/>
 May he bless you with faith<br/>
 in the resurrection of his Son,<br/>
 and with the hope of rising to new life.</p>
+<p class="theBlack poetry" data-xlation="new">May the God of all consolation bless you,<br/>
+for in his unfathomable goodness he created the human race,<br/>
+and in the Resurrection of his Only Begotten Son<br/>
+he has given believers the hope of rising again.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">To us who are alive<br/>
+<p class="theBlack poetry" data-xlation="old">To us who are alive<br/>
 may he grant forgiveness,<br/>
 and to all who have died<br/>
 a place of light and peace.</p>
+<p class="theBlack poetry" data-xlation="new">To us who are alive, may God grant pardon for our sins,<br/>
+and to all the dead, a place of light and peace.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack poetry">As you believe that Jesus rose from the dead,<br/>
+<p class="theBlack poetry" data-xlation="old">As you believe that Jesus rose from the dead,<br/>
 so may you live with him for ever in joy.</p>
+<p class="theBlack poetry" data-xlation="new">So may we all live happily for ever with Christ,<br/>
+whom we believe truly rose from the dead.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="theBlack">May almighty God bless you,<br/>
-the Father, and the Son, <span class="cross">+</span> and the Holy Spirit.</p>
+<p class="theBlack" data-xlation="old">May almighty God bless you,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
+<p class="theBlack poetry" data-xlation="new">And may the blessing of almighty God,<br/>
+the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/>
+come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 

@@ -16,7 +16,11 @@
     --color-muted: #6e6e6e;
     --color-border: #e6e6e6;
     --color-accent: #2f5a5f;
+    --color-star: #c9962c;
     --color-overlay: rgba(20, 20, 20, 0.45);
+
+    --color-star: #c9962c;
+
     --color-red: #9c2b2b;
     --color-rubrics: #E64040;
 
@@ -97,6 +101,7 @@
   transition: grid-template-rows 0.15s ease, opacity 0.15s ease;
 }
 
+.setting-group.clergy,
 .content p {
   overflow: hidden;
 }
@@ -131,7 +136,7 @@ html[data-riteVariant="8"] div[data-riteVariant]:not([data-riteVariant="8"]) {
 	display: none;
 }
 
-html[data-presider="lay"] .optWrapper:has(p[data-presider="priest"], p[data-presider="deacon"], p[data-presider="clergy"]),
+html[data-presider="lay"] .optWrapper:has(p[data-presider="priest"], p[data-presider="deacon"], p[data-presider="clergy"], div.clergy),
 html[data-presider="deacon"] .optWrapper:has(p[data-presider="priest"], p[data-presider="lay"]),
 html[data-presider="priest"] .optWrapper:has(p[data-presider="deacon"], p[data-presider="lay"]),
 
@@ -145,9 +150,7 @@ html[data-simplify="false"] .optWrapper:has(p.simplifyIn),
 html[data-cull="true"] .optWrapper:has(.cullOut),
 html[data-cull="false"] .optWrapper:has(.cullIn),
 html[data-newScripture="true"] .optWrapper:has(.newScriptureOut),
-html[data-newScripture="false"] .optWrapper:has(.newScriptureIn),
-html[data-addCross="true"] .optWrapper:has(.addCrossOut),
-html[data-addCross="false"] .optWrapper:has(.addCrossIn) {
+html[data-newScripture="false"] .optWrapper:has(.newScriptureIn) {
 	grid-template-rows: 0fr;
 	opacity: 0;
 	visibility: hidden;
@@ -161,7 +164,9 @@ html[data-presider="deacon"] .priest,
 html[data-presider="deacon"] .lay,
 html[data-presider="priest"] .lay,
 html[data-presider="priest"] .deacon,
-html[data-presider="priest"] .nonPriest,
+html[data-presider="priest"] .nonPriest {
+	display: none;
+}
 
 html[data-simplify="true"] span.simplifyOut,
 html[data-simplify="false"] span.simplifyIn,
@@ -172,8 +177,7 @@ html[data-newScripture="false"] span.newScriptureIn,
 html[data-newMissal="true"] span.xlationOld,
 html[data-newMissal="false"] span.xlationNew,
 html[data-presider="lay"] span.cross,
-html[data-addCross="true"] span.addCrossOut,
-html[data-addCross="false"] span.addCrossIn  {
+html[data-addCross="false"] span.cross.added {
 	opacity: 0;
 	letter-spacing: -0.5em;
 	visibility: hidden;
@@ -444,3 +448,6 @@ html[data-presider="lay"]:has(#warningBanner) {
 }
 .page-controls {transition: top 0.2s ease;}
 main.content {transition: padding-top 0.2s ease;}
+main:has(div.cancelMain) {
+	display: none;
+}

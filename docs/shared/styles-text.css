@@ -61,16 +61,19 @@ p{margin: 0.5em 0;}
 .cross,
 .nameN {
 	color: var(--color-rubrics);
+	text-align: justify;
 }
 
 .rubricReadingTheme,
 .readingTheme {
 	font-style: italic;
+	text-align: justify;
 }
 
 .parNumber{
 	display: inline-block;
-	width: 2em;
+	min-width: 2em;
+	padding-right: 0.5em;
 }
 .marginRefNumber{
 	padding: 0 0.3em;
@@ -85,9 +88,11 @@ p{margin: 0.5em 0;}
 /******** BLACK ********/
 .theBlack{
 	font-weight: bold;
+	text-align: justify;
 }
 .poetry{
 	text-indent: 2em hanging each-line;
+	text-align: left;
 }
 .rubricCitationInRdgIntro {
 	font-weight: normal;
@@ -99,9 +104,11 @@ p{margin: 0.5em 0;}
 .frontMatterPara:not(:has(.parNumber)),
 .rubricPara:not(:has(.parNumber)) {
 	text-indent: 2em;
+	text-align: justify;
 }
 .letterList {
 	margin-left: 2em;
+	text-align: justify;
 }
 .signature {
 	line-height: var(--leading-compact);
@@ -119,7 +126,7 @@ p{margin: 0.5em 0;}
 }
 @media (max-width: 35em) {
 :root {
-	--tocMarginMultiplier: 0.3;
+	--tocMarginMultiplier: 0.5;
 }
 .tocNarrowHide {
 	display: none;
@@ -129,6 +136,7 @@ p{margin: 0.5em 0;}
 }
 }
 
+.contentsLevel1, .contentsLevel2, .contentsLevel3 {display: inline-block;}
 .contentsLevel1 {margin-left: calc(0em * var(--tocMarginMultiplier));}
 .contentsLevel2 {margin-left: calc(2em * var(--tocMarginMultiplier));}
 .contentsLevel3 {margin-left: calc(4em * var(--tocMarginMultiplier));}
