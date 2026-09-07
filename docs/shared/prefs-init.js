@@ -2,7 +2,7 @@
   // there's no flash of default styling on load.
   (function () {
     var STORAGE_KEY = 'refDocPrefs';
-    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'full', riteVariant: '1', simplify: true, cull: true, newScripture: true, newMissal: true, addCross: true };
+    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'full', riteVariant: '1', simplify: false, cull: false, newScripture: false, newMissal: true, addCross: true };
     var saved = {};
     try {
       saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};

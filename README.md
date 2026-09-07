@@ -7,7 +7,7 @@ The web app is available at http://gfassero.github.io/book-of-blessings/.
 Most of these blessings can be given by any baptized person. A few are reserved to clergy.
 
 ## How to use it
-- Read the [guide to using the app](http://gfassero.github.io/book-of-blessings/guide.html).
+- Read the [guide to using the web app](http://gfassero.github.io/book-of-blessings/guide.html).
 - Read the [General Introduction to the _Book of Blessings_](http://gfassero.github.io/book-of-blessings/front-21.html).
 
 ## Sources

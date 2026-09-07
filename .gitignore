@@ -6,4 +6,7 @@ working/*.html
 
 !working/index.html
 !working/contents.html
+!working/guide.html
+!working/settings.html
 !working/book-of-blessings.html
+!working/text-option-info.html
