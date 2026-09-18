@@ -1,8 +1,12 @@
   // Apply saved display preferences before the page paints, so
   // there's no flash of default styling on load.
+  
+  var defaultRite = 'full';
+  var defaultRiteVariant = '1';
+  
   (function () {
     var STORAGE_KEY = 'refDocPrefs';
-    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'full', riteVariant: '1', simplify: false, cull: false, newScripture: false, newMissal: true, addCross: true };
+    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: defaultRite, riteVariant: defaultRiteVariant, simplify: false, cull: false, newScripture: false, newMissal: true, addCross: true };
     var saved = {};
     try {
       saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};

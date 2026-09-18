@@ -1,6 +1,6 @@
   (function () {
     var STORAGE_KEY = 'refDocPrefs';
-    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: 'full', riteVariant: '1', simplify: false, cull: false, newScripture: false, newMissal: true, addCross: true };
+    var defaults = { font: 'serif', size: 'medium', spacing: 'normal', presider: 'lay', rite: defaultRite, riteVariant: defaultRiteVariant, simplify: false, cull: false, newScripture: false, newMissal: true, addCross: true };
     var root = document.documentElement;
     var drawer = document.getElementById('settingsDrawer');
     var overlay = document.getElementById('drawerOverlay');

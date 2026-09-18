@@ -19,8 +19,6 @@
     --color-star: #c9962c;
     --color-overlay: rgba(20, 20, 20, 0.45);
 
-    --color-star: #c9962c;
-
     --color-red: #9c2b2b;
     --color-rubrics: #E64040;
 
@@ -132,7 +130,8 @@ html[data-riteVariant="4"] div[data-riteVariant]:not([data-riteVariant="4"]),
 html[data-riteVariant="5"] div[data-riteVariant]:not([data-riteVariant="5"]),
 html[data-riteVariant="6"] div[data-riteVariant]:not([data-riteVariant="6"]),
 html[data-riteVariant="7"] div[data-riteVariant]:not([data-riteVariant="7"]),
-html[data-riteVariant="8"] div[data-riteVariant]:not([data-riteVariant="8"]) {
+html[data-riteVariant="8"] div[data-riteVariant]:not([data-riteVariant="8"]),
+html[data-riteVariant="9"] div[data-riteVariant]:not([data-riteVariant="9"]) {
 	display: none;
 }
 

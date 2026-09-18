@@ -16,7 +16,6 @@ Cull the meal blessings especially.
 Add navigation for the meal blessings.
 
 Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
-Filter seasonally appropriate solemn blessings.
 
 Add navigation to the blessing of food, drink, flowers, candles, etc.
 Add seasonal riteVariants for Chapters 30 & 34.
@@ -41,9 +40,9 @@ Switch all CSS text styles to variables.
 
 -->
 
-<script type="text/javascript" src="shared/prefs-init.js"></script>
-<link rel="stylesheet" href="shared/styles-app.css" />
-<link rel="stylesheet" href="shared/styles-text.css" />
+<script type="text/javascript" src="shared/prefs-init.js?v=260918"></script>
+<link rel="stylesheet" href="shared/styles-app.css?v=260918" />
+<link rel="stylesheet" href="shared/styles-text.css?v=260918" />
 </head>
 <body>
 
@@ -186,9 +185,89 @@ Switch all CSS text styles to variables.
 These blessings are intended for use by a priest or deacon.
 </div>
 
+<script type="text/javascript" src="shared/calendar.js?v=260918"></script>
+<script type="text/javascript">
+if (sameDay(today, date(year, 12, 31))) {
+    defaultRite = 'opt1';
+    defaultRiteVariant = '3'; // NEW YEAR'S EVE
+} else if (sameDay(today, epiphany)) {
+    defaultRite = 'opt2';
+    defaultRiteVariant = '3'; // EPIPHANY — JANUARY 6
+} else if (sameDay(today, epiphanySunday)) {
+    defaultRite = 'opt2';
+    defaultRiteVariant = '3'; // EPIPHANY SUNDAY
+} else if (sameDay(today, goodFriday)) {
+    defaultRite = 'opt1';
+    defaultRiteVariant = '5'; // GOOD FRIDAY
+} else if (    sameDay(today, holySaturday) ||    sameDay(today, easter)    ) {
+    defaultRiteVariant = '5'; // EASTER VIGIL / EASTER SUNDAY
+} else if (sameDay(today, ascensionThursday)) {
+    defaultRite = 'opt1';
+    defaultRiteVariant = '6'; // ASCENSION THURSDAY
+} else if (sameDay(today, ascensionSunday)) {
+    defaultRite = 'opt1';
+    defaultRiteVariant = '6'; // ASCENSION SUNDAY
+} else if (sameDay(today, pentecost)) {
+    defaultRite = 'opt2';
+    defaultRiteVariant = '6'; // PENTECOST
+} else if (sameDay(today, date(year, 6, 29))) {
+    defaultRite = 'opt1';
+    defaultRiteVariant = '7'; // FEAST OF PETER & PAUL
+} else if (todayMarian) {
+    defaultRiteVariant = '7'; // MARIAN CELEBRATION
+} else if (movableMarian) {
+    defaultRiteVariant = '7'; // MOVABLE MARIAN CELEBRATION
+} else if (todayApostle) {
+    defaultRite = 'opt2';
+    defaultRiteVariant = '7'; // APOSTLE FEAST
+} else if (sameDay(today, date(year, 11, 1))) {
+    defaultRite = 'shorter';
+    defaultRiteVariant = '7'; // ALL SAINTS' DAY
+} else if (sameDay(today, date(year, 11, 2))) {
+    defaultRiteVariant = '8'; // ALL SOULS' DAY
+} else if (    inRange(today, adventStart, date(year, 12, 24))    ) {
+    defaultRiteVariant = '2'; // ADVENT
+} else if (    today >= date(year, 12, 25) ||    today <= baptismOfTheLord    ) {
+    defaultRiteVariant = '3'; // CHRISTMAS SEASON
+} else if (    inRange(today, ashWednesday, holyThursday)    ) {
+    defaultRiteVariant = '4'; // LENT
+} else if (    inRange(today, easter, pentecost)    ) {
+    defaultRiteVariant = '6'; // EASTER SEASON
+} else if (    inRange(today, addDays(baptismOfTheLord, 1), addDays(ashWednesday, -1)) ||    inRange(today, addDays(pentecost, 1), addDays(adventStart, -1))    ) {
+    defaultRiteVariant = '1'; // ORDINARY TIME
+} else {
+    defaultRiteVariant = '9'; // NO CATEGORY MATCHED
+}
+</script>
+
 <p class="orderTitle">Solemn Blessings</p>
 
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="9">Introduction</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="2">Advent</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="3">Christmastime</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="4">Lent</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="5">Triduum</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="6">Easter Season</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Ordinary Time</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="7">Saints</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="8">Other</button>
+  </div>
+</div>
+
+<div data-riteVariant="9">
+
+<p class="rubricPara simplifyOut"><span class="parNumber">1273</span> The following solemn blessings and prayers over the people may be used to conclude any of the blessings contained in this book. They may also be used for the blessing at the end of Morning or Evening Prayer of the Liturgy of the Hours or on any occasion when a priest or deacon is asked to give a blessing.</p>
+<p class="rubricPara simplifyIn"><span class="parNumber">1273</span> The following solemn blessings may be used to conclude any of the blessings in this book or at the end of Morning or Evening Prayer. They may also be used whenever clergy are asked to give a blessing.</p>
+
+</div>
+
+<!--
 <p class="riteHeading"><span class="parNumber">1274</span> I. Celebrations During the Proper of Seasons</p>
+-->
+
+<div data-riteVariant="2">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">1</span> Advent</p>
 
@@ -231,6 +310,19 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/
 come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="3">
+
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Christmas</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt1">New Year</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt2">Epiphany</button>
+  </div>
+</div>
+
+<div data-rite-section="full">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">2</span> Christmas</p>
 
@@ -279,6 +371,9 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="opt1">
+
 <p class="riteSectionHeading"><span class="marginRefNumber">3</span> Beginning of the New Year</p>
 
 <p class="theBlack poetry" data-xlation="old">Every good gift comes from the Father of light.<br/>
@@ -316,6 +411,9 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/
 come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-rite-section="opt2">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">4</span> Epiphany</p>
 
@@ -362,6 +460,11 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+
+</div>
+<div data-riteVariant="4">
+
 <p class="riteSectionHeading"><span class="marginRefNumber">5</span> Lent</p>
 
 <p class="theBlack poetry">May God, our merciful Father,<br/>
@@ -387,7 +490,19 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">6</span> Passion of the Lord</p>
+</div>
+<div data-riteVariant="5">
+
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt1">Good Friday</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Easter</button>
+  </div>
+</div>
+
+<div data-rite-section="opt1">
+
+<p class="riteSectionHeading"><span class="marginRefNumber">6</span> Passion of the Lord [Good Friday]</p>
 
 <p class="theBlack poetry" data-xlation="old">The Father of mercies has given us an example of unselfish love<br/>
 in the sufferings of his only Son.<br/>
@@ -426,6 +541,9 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="full">
+
 <p class="riteSectionHeading"><span class="marginRefNumber">7</span> Easter Vigil and Easter Sunday</p>
 
 <p class="theBlack poetry">May almighty God bless you on this solemn feast of Easter,<br/>
@@ -450,6 +568,21 @@ May you come with joy to the feast which lasts for ever.</p>
 the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+
+</div>
+<div data-riteVariant="6">
+
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Easter Season</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt1">Ascension</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt2">Pentecost</button>
+  </div>
+</div>
+
+<div data-rite-section="full">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">8</span> Easter Season</p>
 
@@ -488,6 +621,9 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/
 come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-rite-section="opt1">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">9</span> Ascension</p>
 
@@ -533,7 +669,10 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">10</span> Holy Spirit</p>
+</div>
+<div data-rite-section="opt2">
+
+<p class="riteSectionHeading"><span class="marginRefNumber">10</span> Holy Spirit [Pentecost]</p>
 
 <p class="theBlack poetry" data-xlation="old">(This day) the Father of light<br/>
 has enlightened the minds of the disciples<br/>
@@ -576,7 +715,21 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">11</span> Ordinary Time I</p>
+</div>
+
+</div>
+<div data-riteVariant="1">
+
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Scriptural</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt1">Traditional</button>
+  </div>
+</div>
+
+<div data-rite-section="full">
+
+<p class="riteSectionHeading"><span class="marginRefNumber">11</span> Ordinary Time I [Numbers 6:24–26]</p>
 
 <p class="theBlack">May the Lord bless you and keep you.</p>
 
@@ -604,7 +757,7 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">12</span> Ordinary Time II</p>
+<p class="riteSectionHeading"><span class="marginRefNumber">12</span> Ordinary Time II [Philippians 4:7]</p>
 
 <p class="theBlack poetry" data-xlation="old">May the peace of God<br/>
 which is beyond all understanding<br/>
@@ -626,6 +779,9 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/
 come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-rite-section="opt1">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">13</span> Ordinary Time III</p>
 
@@ -727,7 +883,10 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">16</span> Ordinary Time VI</p>
+</div>
+<div data-rite-section="full">
+
+<p class="riteSectionHeading"><span class="marginRefNumber">16</span> Ordinary Time VI [2 Thessalonians 2:16–17]</p>
 
 <p class="theBlack poetry">May our Lord Jesus Christ himself and God our Father,<br/>
 who has loved us and has given us everlasting encouragement<br/>
@@ -741,6 +900,9 @@ for every good deed and word.</p>
 the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-rite-section="opt1">
 
 <p class="riteSectionHeading" data-xlation="new"><span class="marginRefNumber">–</span> Ordinary Time VI</p>
 
@@ -760,7 +922,10 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack" data-xlation="new"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">17</span> Ordinary Time VII</p>
+</div>
+<div data-rite-section="full">
+
+<p class="riteSectionHeading"><span class="marginRefNumber">17</span> Ordinary Time VII [1 Thessalonians 5:23]</p>
 
 <p class="theBlack poetry">The God of peace make you perfect in holiness,<br/>
 keep you whole and entire, spirit, soul and body,<br/>
@@ -773,7 +938,7 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">18</span> Ordinary Time VIII</p>
+<p class="riteSectionHeading"><span class="marginRefNumber">18</span> Ordinary Time VIII [Hebrews 13:20–21]</p>
 
 <p class="theBlack poetry">May the God of peace,<br/>
 who brought again from the dead our Lord Jesus Christ,<br/>
@@ -789,7 +954,7 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="riteSectionHeading"><span class="marginRefNumber">19</span> Ordinary Time IX</p>
+<p class="riteSectionHeading"><span class="marginRefNumber">19</span> Ordinary Time IX [1 Peter 5:10]</p>
 
 <p class="theBlack poetry">May the God of all grace,<br/>
 who has called you to his eternal glory in Christ,<br/>
@@ -802,7 +967,26 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+
+</div>
+
+<!--
 <p class="riteHeading"><span class="parNumber">1275</span> II. Celebrations of Saints</p>
+-->
+
+<div data-riteVariant="7">
+
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">Mary</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt1">Peter & Paul</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt2">Apostles</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">All Saints</button>
+  </div>
+</div>
+
+<div data-rite-section="full">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">20</span> Blessed Virgin Mary</p>
 
@@ -837,6 +1021,9 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/
 come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-rite-section="opt1">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">21</span> Peter and Paul</p>
 
@@ -880,6 +1067,9 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="opt2">
+
 <p class="riteSectionHeading"><span class="marginRefNumber">22</span> Apostles</p>
 
 <p class="theBlack poetry" data-xlation="old">May God who founded his Church upon the apostles<br/>
@@ -916,6 +1106,9 @@ the Father, and the Son,<span class="cross"> ✠</span> and the Holy Spirit,<br/
 come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-rite-section="shorter">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">23</span> All Saints</p>
 
@@ -959,7 +1152,24 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+
+</div>
+
+<!--
 <p class="riteHeading"><span class="parNumber">1276</span> III. Other Blessings</p>
+-->
+
+<div data-riteVariant="8">
+
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt1">Dedication of a Church</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">The Dead</button>
+  </div>
+</div>
+
+<div data-rite-section="opt1">
 
 <p class="riteSectionHeading"><span class="marginRefNumber">24</span> Dedication of a Church</p>
 
@@ -1006,6 +1216,9 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="full">
+
 <p class="riteSectionHeading"><span class="marginRefNumber">25</span> The Dead</p>
 
 <p class="theBlack poetry" data-xlation="old">In his great love,<br/>
@@ -1044,10 +1257,14 @@ come down on you and remain with you for ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+
+</div>
+
  
 
 </main>
 
-<script type="text/javascript" src="shared/prefs-load.js?v=260821"></script>
+<script type="text/javascript" src="shared/prefs-load.js?v=260918"></script>
 </body>
 </html>
