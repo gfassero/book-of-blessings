@@ -142,6 +142,7 @@ html[data-presider="priest"] .optWrapper:has(p[data-presider="deacon"], p[data-p
 html[data-newMissal="true"] .optWrapper:has(p[data-xlation="old"]),
 html[data-newMissal="false"] .optWrapper:has(p[data-xlation="new"]),
 html[data-cull="true"] .optWrapper:has(p[data-cullOut="true"]),
+html[data-cull="false"] .optWrapper:has(p[data-cullIn="true"]),
 
 html[data-simplify="true"] .optWrapper:has(p.simplifyOut),
 html[data-simplify="false"] .optWrapper:has(p.simplifyIn),
