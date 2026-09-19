@@ -13,14 +13,14 @@
 INDEX: give specialized blessings a url query that filters the blessing variant.
 
 Cull the meal blessings especially.
-Add navigation for the meal blessings.
 
 Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
 
-Add navigation to the blessing of food, drink, flowers, candles, etc.
-Add seasonal riteVariants for Chapters 30 & 34.
+Add seasonal riteVariants for Chapters 23, 30, 34.
 Add navigation to Chapters 11, 16, 3.ii.
 Add more navigation to Chapter 14.
+
+In index, split candles from flowers.
 
 1.ii  Add variant for easter/other.
 1.iii Add variants for anniversary/other.
@@ -189,6 +189,20 @@ This blessing is for use by a priest or deacon.
 
 <p class="chapterTitle">Order for the Blessing of Food or Drink or Other Elements Connected with Devotion</p>
 
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="2">Water</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="3">Bread</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="4">Oil</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="5">Wine</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="6">Salt</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Foods</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="7">Flowers</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="8">Candles</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="9">Other/Multiple</button>
+  </div>
+</div>
+
 <p class="introHeading">Introduction</p>
 
 <p class="rubricPara"><span class="parNumber">1171</span> On the occasion of a feast or season of the liturgical year or in honor of Mary or other saints, it is customary in some places to celebrate a rite for the blessing of food or drink (for example, bread, water, wine, oil) or of other articles that the faithful devoutly present to be blessed. In such a celebration pastors are to ensure that the faithful have a correct understanding of the true meaning of the blessing. In his comments or homily the celebrant is as far as possible to take into account traditions and biographical information on the saints that may serve to clarify the origin and meaning of the special blessing celebrated in honor of a saint. There must always be respect for historical accuracy.</p>
@@ -238,6 +252,8 @@ This blessing is for use by a priest or deacon.
 
 <p class="theBlack">Jesus said to the crowds: “Ask and it will be given to you; seek and you will find; knock and the door will be opened to you. For everyone who asks, receives; and the one who seeks, finds; and to the one who knocks, the door will be opened. Which one of you would hand his son a stone when he asks for a loaf of bread, or a snake when he asks for a fish? If you then, who are wicked, know how to give good gifts to your children, how much more will your heavenly Father give good things to those who ask him.”</p>
 
+<div data-riteVariant="2">
+
 <p class="rubricInlineNumbered"><span class="parNumber">1180</span> Or:</p>
 
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> Blessing of water</p>
@@ -246,6 +262,11 @@ This blessing is for use by a priest or deacon.
 
 <p class="rubricAltReading">2 Kings 2:19-22—<span class="readingTheme">I have purified this water. Never again shall death or miscarriage spring from it.</span></p>
 
+</div>
+<div data-riteVariant="3">
+
+<p class="rubricInlineNumbered"><span class="parNumber">1180</span> Or:</p>
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> Blessing of bread</p>
 
 <p class="rubricAltReading">1 Kings 19:3b-8—<span class="readingTheme">Strengthened by that food, he walked forty days and forty nights.</span></p>
@@ -253,6 +274,11 @@ This blessing is for use by a priest or deacon.
 <p class="rubricAltReading">Wisdom 16:20-21, 24-26—<span class="readingTheme">That your children whom you loved might learn.</span></p>
 
 <p class="rubricAltReading">John 6:27-35—<span class="readingTheme">You should not be working for perishable food.</span></p>
+
+</div>
+<div data-riteVariant="1">
+
+<p class="rubricInlineNumbered"><span class="parNumber">1180</span> Or:</p>
 
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">C</span> Blessing of other foods</p>
 
@@ -264,7 +290,40 @@ This blessing is for use by a priest or deacon.
 
 <p class="rubricAltReading">Luke 11:9-13—<span class="readingTheme">Ask and it will be given to you.</span></p>
 
-<p class="rubricInlineUnnumbered"><span class="marginRefNumber">D</span> Blessing of oil, wine, salt</p>
+</div>
+<div data-riteVariant="4">
+
+<p class="rubricInlineNumbered"><span class="parNumber">1180</span> Or:</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">D</span> Blessing of oil</p>
+
+<p class="rubricAltReading">Sirach 39:30-41 (Greek, 39:25-35)—<span class="readingTheme">Chief of all the needs of human life.</span></p>
+
+<p class="rubricAltReading">Matthew 5:13-16—<span class="readingTheme">You are the salt of the earth.</span></p>
+
+<p class="rubricAltReading">Mark 6:7-13—<span class="readingTheme">They anointed the sick with oil and worked many cures.</span></p>
+
+<p class="rubricAltReading">Luke 10:30-37—<span class="readingTheme">He dressed his wounds, pouring in oil and wine.</span></p>
+
+<!--
+30Jesus replied, “A man fell victim to robbers as he went down from Jerusalem to Jericho. They stripped and beat him and went off leaving him half-dead.
+31* A priest happened to be going down that road, but when he saw him, he passed by on the opposite side.
+32Likewise a Levite came to the place, and when he saw him, he passed by on the opposite side.
+33But a Samaritan traveler who came upon him was moved with compassion at the sight.
+34He approached the victim, poured oil and wine over his wounds and bandaged them. Then he lifted him up on his own animal, took him to an inn and cared for him.
+35The next day he took out two silver coins and gave them to the innkeeper with the instruction, ‘Take care of him. If you spend more than what I have given you, I shall repay you on my way back.’
+36Which of these three, in your opinion, was neighbor to the robbers’ victim?”
+37He answered, “The one who treated him with mercy.” Jesus said to him, “Go and do likewise.” 
+-->
+
+<p class="rubricAltReading">John 2:1-11—<span class="readingTheme">You have kept the best wine till now.</span></p>
+
+</div>
+<div data-riteVariant="5">
+
+<p class="rubricInlineNumbered"><span class="parNumber">1180</span> Or:</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">D</span> Blessing of wine</p>
 
 <p class="rubricAltReading">Sirach 39:30-41 (Greek, 39:25-35)—<span class="readingTheme">Chief of all the needs of human life.</span></p>
 
@@ -276,6 +335,49 @@ This blessing is for use by a priest or deacon.
 
 <p class="rubricAltReading">John 2:1-11—<span class="readingTheme">You have kept the best wine till now.</span></p>
 
+<!--
+1* On the third day there was a wedding* in Cana* in Galilee, and the mother of Jesus was there.a
+2Jesus and his disciples were also invited to the wedding.
+3When the wine ran short, the mother of Jesus said to him, “They have no wine.”
+4* [And] Jesus said to her, “Woman, how does your concern affect me? My hour has not yet come.”b
+5His mother said to the servers, “Do whatever he tells you.”c
+6* Now there were six stone water jars there for Jewish ceremonial washings,d each holding twenty to thirty gallons.
+7Jesus told them, “Fill the jars with water.” So they filled them to the brim.
+8Then he told them, “Draw some out now and take it to the headwaiter.”* So they took it.
+9And when the headwaiter tasted the water that had become wine, without knowing where it came from (although the servers who had drawn the water knew), the headwaiter called the bridegroom
+10and said to him, “Everyone serves good wine first, and then when people have drunk freely, an inferior one; but you have kept the good wine until now.”
+11Jesus did this as the beginning of his signs* in Cana in Galilee and so revealed his glory, and his disciples began to believe in him.e 
+-->
+
+</div>
+<div data-riteVariant="6">
+
+<p class="rubricInlineNumbered"><span class="parNumber">1180</span> Or:</p>
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">D</span> Blessing of salt</p>
+
+<p class="rubricAltReading">Sirach 39:30-41 (Greek, 39:25-35)—<span class="readingTheme">Chief of all the needs of human life.</span></p>
+
+<p class="rubricAltReading">Matthew 5:13-16—<span class="readingTheme">You are the salt of the earth.</span></p>
+
+<!--
+13i “You are the salt of the earth. But if salt loses its taste, with what can it be seasoned? It is no longer good for anything but to be thrown out and trampled underfoot.*
+14You are the light of the world. A city set on a mountain cannot be hidden.j
+15Nor do they light a lamp and then put it under a bushel basket; it is set on a lampstand, where it gives light to all in the house.k
+16Just so, your light must shine before others, that they may see your good deeds and glorify your heavenly Father.l 
+-->
+
+<p class="rubricAltReading">Mark 6:7-13—<span class="readingTheme">They anointed the sick with oil and worked many cures.</span></p>
+
+<p class="rubricAltReading">Luke 10:30-37—<span class="readingTheme">He dressed his wounds, pouring in oil and wine.</span></p>
+
+<p class="rubricAltReading">John 2:1-11—<span class="readingTheme">You have kept the best wine till now.</span></p>
+
+</div>
+<div data-riteVariant="7">
+
+<p class="rubricInlineNumbered"><span class="parNumber">1180</span> Or:</p>
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">E</span> Blessing of flowers (for example, roses, lilies)</p>
 
 <p class="rubricAltReading">Sirach 24:1a, 17-31 (Greek, 24:1a, 13-22)—<span class="readingTheme">Like a rosebush in Jericho.</span></p>
@@ -283,6 +385,11 @@ This blessing is for use by a priest or deacon.
 <p class="rubricAltReading">2 Corinthians 2:14-17—<span class="readingTheme">We are an aroma of Christ for God’s sake.</span></p>
 
 <p class="rubricAltReading">Matthew 6:25-34—<span class="readingTheme">Learn a lesson from the way the wild flowers grow.</span></p>
+
+</div>
+<div data-riteVariant="8">
+
+<p class="rubricInlineNumbered"><span class="parNumber">1180</span> Or:</p>
 
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">F</span> Blessing of candles</p>
 
@@ -293,6 +400,8 @@ This blessing is for use by a priest or deacon.
 <p class="rubricAltReading">John 1:6-10—<span class="readingTheme">The real light which gives light to everyone.</span></p>
 
 <p class="rubricAltReading">Ephesians 5:8-10—<span class="readingTheme">Live as children of light.</span></p>
+
+</div>
 
 <p class="rubricInlineNumbered simplifyOut"><span class="parNumber">1181</span> As circumstances suggest, one of the following responsorial psalms may be sung or said, or some other suitable song.</p>
 <p class="rubricInlineNumbered simplifyIn"><span class="parNumber">1181</span> Responsorial psalm (optional):</p>
@@ -350,12 +459,14 @@ and whatever swims the paths of the seas. <span class="rubricRV">℟.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1185</span> With hands outstretched, the celebrant says the prayer of blessing.</p>
 
+<div data-riteVariant="1">
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> Blessing of food</p>
 
 <p class="theBlack poetry">Blessed are you, Lord God,<br/>
 who have showered all creatures with your blessings.<br/>
 Hear the prayers of these your servants:<br/>
-that whenever they eat this food (bread)<br/>
+that whenever they eat this food<br/>
 (in honor of the Blessed Virgin Mary or Saint <span class="nameN">N.</span>)<br/>
 (in the celebration of this festival)<br/>
 they may be blessed with your heavenly blessing;<br/>
@@ -365,6 +476,28 @@ they may continually grow in charity.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="3">
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> Blessing of food [bread]</p>
+
+<p class="theBlack poetry">Blessed are you, Lord God,<br/>
+who have showered all creatures with your blessings.<br/>
+Hear the prayers of these your servants:<br/>
+that whenever they eat this bread<br/>
+(in honor of the Blessed Virgin Mary or Saint <span class="nameN">N.</span>)<br/>
+(in the celebration of this festival)<br/>
+they may be blessed with your heavenly blessing;<br/>
+that striving always for what is holy,<br/>
+they may continually grow in charity.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="5">
 
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> Blessing of wine</p>
 
@@ -377,6 +510,9 @@ and be invited to sit at your heavenly banquet<br/>
 for ever and ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="7">
 
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">C</span> Blessing of flowers</p>
 
@@ -393,6 +529,9 @@ with which you clothed your creation.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="8">
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">D</span> Blessing of candles</p>
 
 <p class="theBlack poetry">God of power,<br/>
@@ -406,6 +545,9 @@ who is Lord, for ever and ever.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-riteVariant="4">
+
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">E</span> Blessing of oil</p>
 
 <p class="theBlack poetry">God of compassion, mercy, and love,<br/>
@@ -418,6 +560,47 @@ be blessed with health of mind and body.</p>
 <p class="theBlack">Grant this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="2">
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">F</span> Blessing of other materials</p>
+
+<p class="theBlack poetry">Lord God,<br/>
+you beautify your Church<br/>
+with the rich variety of the virtues of your saints.<br/>
+Show your kindness to these your servants,<br/>
+who with devotion wish to use this (these) sign (signs) of your goodness<br/>
+(in remembrance and in honor of the Blessed Virgin Mary or Saint <span class="nameN">N.</span>).<br/>
+Grant that they may be filled with the love of your commandments<br/>
+and that, sustained by the helps they need in the present life,<br/>
+they may progress toward the goal of life everlasting.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="6">
+
+<p class="rubricInlineUnnumbered"><span class="marginRefNumber">F</span> Blessing of other materials</p>
+
+<p class="theBlack poetry">Lord God,<br/>
+you beautify your Church<br/>
+with the rich variety of the virtues of your saints.<br/>
+Show your kindness to these your servants,<br/>
+who with devotion wish to use this (these) sign (signs) of your goodness<br/>
+(in remembrance and in honor of the Blessed Virgin Mary or Saint <span class="nameN">N.</span>).<br/>
+Grant that they may be filled with the love of your commandments<br/>
+and that, sustained by the helps they need in the present life,<br/>
+they may progress toward the goal of life everlasting.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
+<div data-riteVariant="9">
 
 <p class="rubricInlineUnnumbered"><span class="marginRefNumber">F</span> Blessing of other materials</p>
 
@@ -451,6 +634,8 @@ whose protection is our comfort on earth.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
 
 <p class="rubricInlineNumbered"><span class="parNumber">1186</span> If this is the local custom, the objects blessed may now be sprinkled with holy water.</p>
 

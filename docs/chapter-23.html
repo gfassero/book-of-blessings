@@ -13,14 +13,14 @@
 INDEX: give specialized blessings a url query that filters the blessing variant.
 
 Cull the meal blessings especially.
-Add navigation for the meal blessings.
 
 Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
 
-Add navigation to the blessing of food, drink, flowers, candles, etc.
-Add seasonal riteVariants for Chapters 30 & 34.
+Add seasonal riteVariants for Chapters 23, 30, 34.
 Add navigation to Chapters 11, 16, 3.ii.
 Add more navigation to Chapter 14.
+
+In index, split candles from flowers.
 
 1.ii  Add variant for easter/other.
 1.iii Add variants for anniversary/other.
@@ -193,6 +193,18 @@ Switch all CSS text styles to variables.
 
 <p class="chapterTitle">Order for the Blessing Before and After Meals</p>
 
+<div>
+  <div class="option-buttons" role="radiogroup" aria-labelledby="riteLabel">
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt1">I. With responses</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="opt2">II. With reading</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="shorter">III. With response</button>
+    <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="full">IV. Familiar</button>
+  </div>
+</div>
+
+<div data-rite-section="intro">
+
 <p class="introHeading">Introduction</p>
 
 <p class="rubricPara"><span class="parNumber">813</span> Christians, whether alone or with companions at table, say grace before and after meals to thank God for his goodness in providing their daily food. This practice is also a reminder that the Lord Jesus combined the sacrament of the eucharist with the ritual of a family meal and showed himself to his disciples as their risen Lord in the breaking of the bread.</p>
@@ -200,6 +212,9 @@ Switch all CSS text styles to variables.
 <p class="rubricPara"><span class="parNumber">814</span> As they gather at table and see in the food they share a sign of God’s blessings on them, Christians should be mindful of the poor, who lack even the bare minimum of food that those at table may have in abundance. By their moderation they will therefore try to provide help for the hungry and as a sign of Christ’s love will on occasion invite the poor to their own table, in keeping with the words of Christ recorded in the Gospel (see Luke 14:13-14).</p>
 
 <p class="rubricPara"><span class="parNumber">815</span> The plans, texts, and formularies provided in the present chapter are to be regarded as models for the use of families or of any type of community. But the blessing at table should be given a tone that is in keeping with the festive or penitential character of the various days and seasons of the liturgical year.</p>
+
+</div>
+<div data-rite-section="opt1">
 
 <p class="orderTitle">First Plan</p>
 
@@ -402,6 +417,9 @@ Savior, Jesus Christ.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> In the breaking of the bread, alleluia.</p>
 
+</div>
+<div data-rite-section="opt2">
+
 <p class="orderTitle">Second Plan</p>
 
 <p class="riteHeading">I. Advent</p>
@@ -475,7 +493,7 @@ his righteousness endures forever.”</p>
 
 <p class="theBlack">Jesus said to the crowds: “Therefore I tell you, do not worry about your life, what you will eat or drink. Your heavenly Father knows that you need them all. But seek first the kingdom of God and his righteousness, and all these things will be given you besides.”</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">829</span> After the reading, the one presiding says the following prayer (a priest or a deacon makes the sign of the cross).</p>
+<p class="rubricInlineNumbered"><span class="parNumber">829</span> After the reading, the one presiding says the following prayer<span class="simplifyOut"> (a priest or a deacon makes the sign of the cross)</span>.</p>
 
 <p class="theBlack">Let us pray.</p>
 
@@ -725,7 +743,7 @@ you will provide for our brothers and sisters who are hungry.</p>
 
 <p class="theBlack" data-cullOut="true"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">842</span> Or (a priest or a deacon makes the sign of the cross):</p>
+<p class="rubricInlineNumbered"><span class="parNumber">842</span> Or<span class="simplifyOut"> (a priest or a deacon makes the sign of the cross)</span>:</p>
 
 <p class="theBlack">Let us pray.</p>
 
@@ -788,6 +806,9 @@ may also serve our growth in spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="shorter">
+
 <p class="orderTitle">Third Plan</p>
 
 <p class="riteSectionHeading">Before Meals</p>
@@ -802,7 +823,7 @@ may also serve our growth in spirit.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> We thank him at all times.</p>
 
-<p class="rubricInlineUnnumbered" data-presider="clergy">(A priest or a deacon makes the sign of the cross.)</p>
+<p class="rubricInlineUnnumbered simplifyOut" data-presider="clergy">(A priest or a deacon makes the sign of the cross.)</p>
 
 <p class="theBlack poetry">We praise you, O Lord, from whom all good things come.<br/>
 Bless<span class="cross"> ✠</span> this food we are about to receive.<br/>
@@ -837,11 +858,14 @@ in the banquet of heaven.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
+<div data-rite-section="full">
+
 <p class="orderTitle">Fourth Plan</p>
 
 <p class="riteSectionHeading">Before Meals</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">848</span> When the community has gathered, all make the sign of the cross and the one presiding says the following (a priest or a deacon makes the sign of the cross).</p>
+<p class="rubricInlineNumbered"><span class="parNumber">848</span> <span class="simplifyOut">When the community has gathered, a</span><span class="simplifyIn">A</span>ll make the sign of the cross and the one presiding says the following<span class="simplifyOut"> (a priest or a deacon makes the sign of the cross)</span>.</p>
 
 <p class="theBlack poetry">Bless<span class="cross"> ✠</span> us, O Lord, and these your gifts<br/>
 which we are about to receive from your goodness.<br/>
@@ -933,6 +957,8 @@ and give them eternal life.</p>
 so that they may join us in giving you thanks.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
 
  
 
