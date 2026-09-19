@@ -648,11 +648,13 @@ Switch all CSS text styles to variables.
 
   var STAR_SVG = '<svg viewBox="0 0 24 24"><path d="M12.0 2.0 L14.53 8.52 L21.51 8.91 L16.09 13.33 L17.88 20.09 L12.0 16.3 L6.12 20.09 L7.91 13.33 L2.49 8.91 L9.47 8.52 Z"/></svg>';
 
+  var DEFAULT_STARRED = ["introduction", "guide", "appendix-solemn-blessings", "appendix-prayers-over-the-people", "chapter-1-xi", "chapter-1-iii2", "chapter-2", "chapter-1-xii"];
+
   // ---------------------------------------------------------------
   // Starred state (localStorage) — a flat array of item ids
   // ---------------------------------------------------------------
   function loadStarred() {
-    try { return JSON.parse(localStorage.getItem(STAR_KEY)) || []; } catch (e) { return []; }
+    try { return JSON.parse(localStorage.getItem(STAR_KEY)) || DEFAULT_STARRED; } catch (e) { return DEFAULT_STARRED; }
   }
   function saveStarred() {
     try { localStorage.setItem(STAR_KEY, JSON.stringify(starred)); } catch (e) {}
