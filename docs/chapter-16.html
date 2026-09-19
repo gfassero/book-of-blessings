@@ -12,8 +12,6 @@
 
 INDEX: give specialized blessings a url query that filters the blessing variant.
 
-Cull the meal blessings especially.
-
 Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
 
 Add seasonal riteVariants for Chapters 23, 30, 34.
@@ -40,9 +38,9 @@ Switch all CSS text styles to variables.
 
 -->
 
-<script type="text/javascript" src="shared/prefs-init.js?v=260918"></script>
-<link rel="stylesheet" href="shared/styles-app.css?v=260918" />
-<link rel="stylesheet" href="shared/styles-text.css?v=260918" />
+<script type="text/javascript" src="shared/prefs-init.js?v=260919"></script>
+<link rel="stylesheet" href="shared/styles-app.css?v=260919" />
+<link rel="stylesheet" href="shared/styles-text.css?v=260919" />
 </head>
 <body>
 
@@ -199,25 +197,22 @@ Switch all CSS text styles to variables.
 
 <p class="riteSectionHeading">Introductory Rites</p>
 
-<p class="rubricInlineNumbered" data-cullOut="true"><span class="parNumber">686</span> When the community has gathered, a suitable song may be sung. After the singing, the minister says:</p>
-<p class="rubricInlineNumbered" data-cullIn="true"><span class="parNumber">686</span> The minister says:</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">686</span> When the community has gathered,<span class="cullOut"> a suitable song may be sung. After the singing,</span> the minister says:</p>
 
 <p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
 
-<p class="rubricInlineUnnumbered">All make the sign of the cross and reply:</p>
+<p class="rubricInlineUnnumbered simplifyOut">All make the sign of the cross and reply:</p>
+<p class="theBlack"><span class="rubricRV simplifyIn">℟. </span>Amen.</p>
 
-<p class="theBlack">Amen.</p>
-
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">687</span> A minister who is a priest or deacon greets those present<span class="simplifyOut"> in the following or other suitable words, taken mainly from sacred Scripture</span>.</p>
+<p class="rubricInlineNumbered simplifyOut" data-presider="clergy"><span class="parNumber">687</span> A minister who is a priest or deacon greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
 
 <p class="theBlack" data-presider="clergy">May God, who has set us over the works of his hands, be with you all.</p>
 
-<p class="rubricInlineUnnumbered" data-presider="clergy">All <span class="simplifyOut">make the following or some other suitable </span>reply.</p>
+<p class="rubricInlineUnnumbered simplifyOut" data-presider="clergy">All make the following or some other suitable reply.</p>
+<p class="theBlack" data-presider="clergy" data-xlation="old"><span class="rubricRV simplifyIn">℟. </span>And also with you.</p>
+<p class="theBlack" data-presider="clergy" data-xlation="new"><span class="rubricRV simplifyIn">℟. </span>And with your spirit.</p>
 
-<p class="theBlack" data-presider="clergy" data-xlation="old">And also with you.</p>
-<p class="theBlack" data-presider="clergy" data-xlation="new">And with your spirit.</p>
-
-<p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">688</span> A lay minister greets those present in the following words.</p>
+<p class="rubricInlineNumbered simplifyOut" data-presider="lay"><span class="parNumber">688</span> A lay minister greets those present in the following words.</p>
 
 <p class="theBlack" data-presider="lay">Let us give praise to God, who has set us over the works of his hands. Blessed be God now and for ever.</p>
 
@@ -229,7 +224,7 @@ Switch all CSS text styles to variables.
 
 <p class="riteSectionHeading">Reading of the Word of God</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">690</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">690</span> A reader, another person present, or the minister reads a text of sacred Scripture.</p>
 
 <p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the book of Genesis:<span class="rubricCitationInRdgIntro">1:1-5a, 14-18</span></p>
 <p class="theBlack" data-xlation="new">A reading from the book of Genesis:<span class="rubricCitationInRdgIntro">1:1-5a, 14-18</span></p>
@@ -330,7 +325,7 @@ and he rescued me, because he loves me. <span class="rubricRV">℟.</span></p>
 
 <p class="theBlack">Let us pray.</p>
 
-<p class="rubricInlineUnnumbered">As circumstances suggest, all may then pray for a moment in silence before the prayer of blessing.</p>
+<p class="rubricInlineUnnumbered simplifyOut">As circumstances suggest, all may then pray for a moment in silence before the prayer of blessing.</p>
 
 <p class="riteSectionHeading">Prayer of Blessing</p>
 
@@ -388,8 +383,7 @@ the source of the water that springs up to eternal life.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered" data-cullOut="true"><span class="parNumber">698</span> After the prayer of blessing, the new equipment is turned on for the first time and a suitable song may be sung.</p>
-<p class="rubricInlineNumbered" data-cullIn="true"><span class="parNumber">698</span> After the prayer of blessing, the new equipment is turned on for the first time.</p>
+<p class="rubricInlineNumbered"><span class="parNumber">698</span> After the prayer of blessing, the new equipment is turned on for the first time<span style="cullOut"> and a suitable song may be sung</span>.</p>
 
 <p class="riteSectionHeading">Concluding Rite</p>
 

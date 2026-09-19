@@ -147,10 +147,10 @@ html[data-cull="false"] .optWrapper:has(p[data-cullIn="true"]),
 html[data-simplify="true"] .optWrapper:has(p.simplifyOut),
 html[data-simplify="false"] .optWrapper:has(p.simplifyIn),
 
-html[data-cull="true"] .optWrapper:has(.cullOut),
-html[data-cull="false"] .optWrapper:has(.cullIn),
-html[data-newScripture="true"] .optWrapper:has(.newScriptureOut),
-html[data-newScripture="false"] .optWrapper:has(.newScriptureIn) {
+html[data-cull="true"] .optWrapper:has(p.cullOut),
+html[data-cull="false"] .optWrapper:has(p.cullIn),
+html[data-newScripture="true"] .optWrapper:has(p.newScriptureOut),
+html[data-newScripture="false"] .optWrapper:has(p.newScriptureIn) {
 	grid-template-rows: 0fr;
 	opacity: 0;
 	visibility: hidden;
