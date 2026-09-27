@@ -14,41 +14,51 @@ p{margin: 0.5em 0;}
 .partNumber{ /* 5 */
 	font-size: 161%;
 	text-align: center;
-	font-variant: small-caps;}
+	font-variant: small-caps;
+}
 .partTitle{ /* 5 plus appendix */
 	font-size: 161%;
 	text-align: center;
-	text-transform: uppercase;}
+	text-transform: uppercase;
+}
 
 .chapterNumber{ /* 42 */
 	font-size: 146%;
 	text-align: center;
-	font-variant: small-caps;}
+	font-variant: small-caps;
+}
 .chapterTitle{ /* 42 plus appendix */
 	font-size: 146%;
 	text-align: center;
-	text-transform: uppercase;}
+	text-transform: uppercase;
+}
 .dateHeading{ /* 5, all in Part IV */
 	font-size: 133%;
-	text-align: center;}
+	text-align: center;
+}
 
 .orderTitle{
 	font-size: 133%;
 	text-align: center;
-	text-transform: uppercase;}
+	text-transform: uppercase;
+}
 
 .riteHeading{
 	font-size: 121%;
 	text-align: center;
-	text-transform: uppercase;}
+	text-transform: uppercase;
+}
 
 .introHeading{
 	font-size: 110%;
 	text-align: center;
-	font-variant: small-caps;}
+	font-variant: small-caps;
+}
 .riteSectionHeading{
 	font-size: 110%;
-	font-variant: small-caps;}
+	font-variant: small-caps;
+	color: var(--color-rubrics);
+}
 
 /******** RUBRICS ********/
 .rubricPara,
@@ -68,6 +78,13 @@ p{margin: 0.5em 0;}
 .readingTheme {
 	font-style: italic;
 	text-align: justify;
+}
+
+p.rubricInlineNumbered,
+p.rubricInlineUnnumbered,
+p.rubricAltReading,
+p.rubricReadingTheme {
+	font-size: 90%;
 }
 
 .parNumber{
