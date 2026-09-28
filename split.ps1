@@ -15,7 +15,7 @@ if (-not (Test-Path $inputFile)) {
         # Sanitize title to prevent invalid Windows filename errors
         $cleanTitle = $Matches[1].Trim() -replace '[\\/:*?"<>|]', '_'
         $filename = "working\$cleanTitle.html"
-        Write-Host ">>> SPLIT TRIGGERED! New target file: $filename" -ForegroundColor Green
+        Write-Host ">>> SPLIT $filename" -ForegroundColor Green
     }
 
     # Overwrite/clear target file on its first write of this execution
