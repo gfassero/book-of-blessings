@@ -41,7 +41,6 @@
 
   * {
 	box-sizing: border-box;
-	transition: visibility 0.3s;
 }
 
   body {
@@ -93,12 +92,6 @@
 
   /* ---------- OPTION IMPLEMENTATION ---------- */
 
-.optWrapper {
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: grid-template-rows 0.15s ease, opacity 0.15s ease;
-}
-
 .setting-group.clergy,
 .content p {
   overflow: hidden;
@@ -106,13 +99,11 @@
 
 span {
     transition:
-        opacity 0.15s ease,
-        letter-spacing 0.15s ease;
+        opacity 0.15s ease;
 }
 
 * {
     opacity: 1;
-    letter-spacing: normal;
 }
 
 html[data-rite="intro"] div[data-rite-section]:not([data-rite-section="intro"]),
@@ -135,25 +126,30 @@ html[data-riteVariant="9"] div[data-riteVariant]:not([data-riteVariant="9"]) {
 	display: none;
 }
 
-html[data-presider="lay"] .optWrapper:has(p[data-presider="priest"], p[data-presider="deacon"], p[data-presider="clergy"], div.clergy),
-html[data-presider="deacon"] .optWrapper:has(p[data-presider="priest"], p[data-presider="lay"]),
-html[data-presider="priest"] .optWrapper:has(p[data-presider="deacon"], p[data-presider="lay"]),
+html[data-presider="lay"] p[data-presider="priest"],
+html[data-presider="lay"] p[data-presider="deacon"],
+html[data-presider="lay"] p[data-presider="clergy"],
+html[data-presider="lay"] div.clergy,
 
-html[data-newMissal="true"] .optWrapper:has(p[data-xlation="old"]),
-html[data-newMissal="false"] .optWrapper:has(p[data-xlation="new"]),
-html[data-cull="true"] .optWrapper:has(p[data-cullOut="true"]),
-html[data-cull="false"] .optWrapper:has(p[data-cullIn="true"]),
+html[data-presider="deacon"] p[data-presider="priest"],
+html[data-presider="deacon"] p[data-presider="lay"],
 
-html[data-simplify="true"] .optWrapper:has(p.simplifyOut),
-html[data-simplify="false"] .optWrapper:has(p.simplifyIn),
+html[data-presider="priest"] p[data-presider="deacon"],
+html[data-presider="priest"] p[data-presider="lay"],
 
-html[data-cull="true"] .optWrapper:has(p.cullOut),
-html[data-cull="false"] .optWrapper:has(p.cullIn),
-html[data-newScripture="true"] .optWrapper:has(p.newScriptureOut),
-html[data-newScripture="false"] .optWrapper:has(p.newScriptureIn) {
-	grid-template-rows: 0fr;
-	opacity: 0;
-	visibility: hidden;
+html[data-newMissal="true"] p[data-xlation="old"],
+html[data-newMissal="false"] p[data-xlation="new"],
+html[data-cull="true"] p[data-cullOut="true"],
+html[data-cull="false"] p[data-cullIn="true"],
+
+html[data-simplify="true"] p.simplifyOut,
+html[data-simplify="false"] p.simplifyIn,
+
+html[data-cull="true"] p.cullOut,
+html[data-cull="false"] p.cullIn,
+html[data-newScripture="true"] p.newScriptureOut,
+html[data-newScripture="false"] p.newScriptureIn {
+	display: none;
 }
 
 
@@ -178,9 +174,7 @@ html[data-newMissal="true"] span.xlationOld,
 html[data-newMissal="false"] span.xlationNew,
 html[data-presider="lay"] span.cross,
 html[data-addCross="false"] span.cross.added {
-	opacity: 0;
-	letter-spacing: -0.5em;
-	visibility: hidden;
+	display: none;
 }
 
 html[data-presider="lay"] button.clergy {

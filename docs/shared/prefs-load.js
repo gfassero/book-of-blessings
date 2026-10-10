@@ -201,15 +201,3 @@
       }
     }
   })();
-
-
-
-
-
-document.querySelectorAll('.content p').forEach(el => {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'optWrapper';
-  
-  el.parentNode.insertBefore(wrapper, el);
-  wrapper.appendChild(el);
-});
