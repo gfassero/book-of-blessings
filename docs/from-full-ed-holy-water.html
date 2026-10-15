@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Book of Blessings</title>
+<!-- https://canonlaw.ninja/?nums=1166-1172 -->
+<link rel="icon" type="image/png" href="./favicon.png">
+
+<!--
+
+Work through each of my favorite blessings and look for things to simplify.
+
+INDEX: give specialized blessings a url query that filters the blessing variant.
+
+Link from end of every blessing to solemn blessings (in clergy mode) and prayers over the people.
+
+Add seasonal riteVariants for Chapters 23, 30, 34.
+Add navigation to Chapters 11, 16, 3.ii.
+Add more navigation to Chapter 14.
+
+In index, split candles from flowers.
+
+1.ii  Add variant for easter/other.
+1.iii Add variants for anniversary/other.
+1.xii "With Communion" is an incomplete rite.
+
+Add Latin text
+
+Flag/navigate scapular blessing appropriately.
+
+Add a switch to display full BOB paragraph numbers instead.
+
+Other ideas:
+- Link to suggested scriptures on USCCB.
+- Suggest a solemn blessing based on liturgical season.
+
+Switch all CSS text styles to variables.
+
+-->
+
+<script type="text/javascript" src="shared/prefs-init.js?v=260927"></script>
+<link rel="stylesheet" href="shared/styles-app.css?v=261010" />
+<link rel="stylesheet" href="shared/styles-text.css?v=261015" />
+</head>
+<body>
+
+<div class="page-controls">
+  <a class="icon-btn" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11L12 4L20 11"/>
+      <path d="M4 11L4 21L20 21L20 11"/>
+      <path d="M10 21L10 15L14 15L14 21"/>
+    </svg>
+  </a>
+  <button class="icon-btn" id="settingsToggle" type="button" aria-label="Settings" aria-expanded="false" aria-controls="settingsDrawer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M3 6H21M3 13H21M3 20H21"/>
+    </svg>
+  </button>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<aside class="settings-drawer" id="settingsDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
+  <div class="drawer-header">
+    <h2 id="drawerTitle">Settings</h2>
+    <button class="icon-btn" id="drawerClose" type="button" aria-label="Close settings" style="opacity:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 5L19 19 M19 5L5 19"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <span class="setting-label" id="fontLabel">Font</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="fontLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="serif">Serif</button>
+        <button class="option-btn" type="button" role="radio" data-pref="font" data-value="sans">Sans-serif</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="sizeLabel">Text Size</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="sizeLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="small" aria-label="Small text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="medium" aria-label="Medium text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="large" aria-label="Large text">A</button>
+        <button class="option-btn" type="button" role="radio" data-pref="size" data-value="xlarge" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" id="spacingLabel">Line Spacing</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="spacingLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="compact">Compact</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="normal">Normal</button>
+        <button class="option-btn" type="button" role="radio" data-pref="spacing" data-value="relaxed">Relaxed</button>
+      </div>
+    </div>
+
+    <div class="setting-group">
+      <span class="setting-label" id="presiderLabel">Presider Mode</span>
+      <div class="option-buttons" role="radiogroup" aria-labelledby="presiderLabel">
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="lay">Lay</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="deacon">Deacon</button>
+        <button class="option-btn" type="button" role="radio" data-pref="presider" data-value="priest">Priest</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label">Text Options</span>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="simplifyLabel">Simplify rubrics</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="simplifyLabel" data-pref="simplify">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="cullLabel">Cull excessive options</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="cullLabel" data-pref="cull">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div><!--
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newScriptureLabel">Use new NABRE scripture translations from USCCB</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newScriptureLabel" data-pref="newScripture">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-row">
+        <span class="setting-row-label" id="newMissalLabel">Use updated translations from Roman Missal, third edition</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="newMissalLabel" data-pref="newMissal">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+    <div class="setting-group clergy">
+      <div class="setting-row">
+        <span class="setting-row-label" id="addCrossLabel">Add ✠ where missing from blessing formulas</span>
+        <button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="addCrossLabel" data-pref="addCross">
+          <span class="switch-thumb"></span>
+        </button>
+      </div>
+    </div>
+-->
+    <a href="settings.html" class="setting-label">More settings</a>
+    <a href="guide.html" class="setting-label">Guide to blessings</a>
+    <a href="https://github.com/gfassero/book-of-blessings" class="setting-label">View on GitHub</a>
+  </div>
+</aside>
+
+<div class="popup-overlay" id="popupOverlay"></div>
+
+<div class="first-visit-popup" id="firstVisitPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupSub" inert>
+  <h2 id="popupTitle">Choose your presider mode</h2>
+  <p class="popup-sub" id="popupSub">You can change this any time in settings.</p>
+
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="lay" aria-label="Lay presider">
+    <span class="popup-option-name" aria-hidden="true">Layperson</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a layperson, lay religious, catechist, acolyte, or lector.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="deacon" aria-label="Deacon presider">
+    <span class="popup-option-name" aria-hidden="true">Deacon</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a deacon.</span>
+  </button>
+  <button type="button" class="popup-option-btn" data-pref="presider" data-value="priest" aria-label="Priest presider">
+    <span class="popup-option-name" aria-hidden="true">Priest</span>
+    <span class="popup-option-preview" aria-hidden="true">The person giving blessings is a priest or bishop.</span>
+  </button>
+</div>
+
+<main class="content">
+
+﻿<!--SPLIT from-full-ed-holy-water-->
+<div class="warning-banner-lay" id="warningBanner" role="alert">
+This blessing is intended for use by a priest or deacon.
+</div>
+
+<p class="chapterNumber">Chapter 41</p>
+
+<p class="chapterTitle">Order for the Blessing of Holy Water Outside Mass</p>
+
+<p class="introHeading">Introduction</p>
+
+<p class="rubricPara"><span class="parNumber">1388</span> On the basis of age-old custom, water is one of the signs that the Church often uses in blessing the faithful. Holy water reminds the faithful of Christ, who is given to us as the supreme divine blessing, who called himself the living water, and who in water established baptism for our sake as the sacramental sign of the blessing that brings salvation.</p>
+
+<p class="rubricPara"><span class="parNumber">1389</span> The blessing and sprinkling of holy water usually take place on Sunday, in keeping with the rite given in the Roman Missal (Sacramentary).</p>
+
+<p class="rubricPara"><span class="parNumber">1390</span> But when the blessing of water takes place outside Mass, the rite given here may be used by a priest or deacon. While maintaining the structure and chief elements of the rite, the celebrant should adapt the celebration to the circumstances of the place and the people involved.</p>
+
+<p class="riteHeading">Order of Blessing</p>
+
+<p class="riteSectionHeading">Introductory Rites</p>
+
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">1391</span> The celebrant begins with these words:</p>
+
+<p class="theBlack">In the name of the Father, and of the Son, and of the Holy Spirit.</p>
+
+<p class="rubricInlineUnnumbered simplifyOut">All make the sign of the cross and reply:</p>
+<p class="theBlack"><span class="rubricRV simplifyIn">℟. </span>Amen.</p>
+
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">1392</span> The celebrant greets those present in the following or other suitable words, taken mainly from sacred Scripture.</p>
+
+<p class="theBlack">May God, who through water and the Holy Spirit has given us a new birth in Christ, be with you all.</p>
+
+<p class="rubricInlineUnnumbered simplifyOut">All make the following or some other suitable reply.</p>
+<p class="theBlack" data-xlation="old"><span class="rubricRV simplifyIn">℟. </span>And also with you.</p>
+<p class="theBlack" data-xlation="new"><span class="rubricRV simplifyIn">℟. </span>And with your spirit.</p>
+
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">1393</span> As circumstances suggest, the celebrant may prepare those present for the blessing in the following or similar words.</p>
+<p class="rubricInlineNumbered simplifyIn"><span class="parNumber">1393</span> The celebrant may prepare those present for the blessing in the following or similar words.</p>
+
+<p class="theBlack">The blessing of this water reminds us of Christ, the living water, and of the sacrament of baptism, in which we were born of water and the Holy Spirit. Whenever, therefore, we are sprinkled with this holy water or use it in blessing ourselves on entering the church or at home, we thank God for his priceless gift to us and we ask for his help to keep us faithful to the sacrament we have received in faith.</p>
+
+<p class="riteSectionHeading">Reading of the Word of God</p>
+
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">1394</span> A reader, another person present, or the celebrant reads a short text of sacred Scripture.</p>
+
+<p class="theBlack" data-xlation="old">Brothers and sisters, listen to the words of the holy gospel according to John:<span class="rubricCitationInRdgIntro">7:37-39</span></p>
+<p class="theBlack" data-xlation="new">A reading from the holy Gospel according to John:<span class="rubricCitationInRdgIntro">7:37-39</span></p>
+
+<p class="rubricReadingTheme simplifyOut">Let anyone who is thirsty come to me.</p>
+
+<p class="theBlack">On the last and greatest day of the feast, Jesus stood up and exclaimed, “Let anyone who thirsts come to me and drink. Whoever believes in me, as scripture says:</p>
+
+<p class="theBlack">‘Rivers of living water will flow from within him.’”</p>
+
+<p class="theBlack">He said this in reference to the Spirit that those who came to believe in him were to receive. There was, of course, no Spirit yet, because Jesus had not yet been glorified.</p>
+
+<p class="rubricInlineNumbered" data-cullOut="true"><span class="parNumber">1395</span> Or:</p>
+
+<p class="rubricAltReading" data-cullOut="true">Isaiah 12:1-6—<span class="readingTheme">You will draw water joyfully from the springs of salvation.</span></p>
+
+<p class="rubricAltReading" data-cullOut="true">Isaiah 55:1-11—<span class="readingTheme">Oh, come to the water, all you who are thirsty.</span></p>
+
+<p class="rubricAltReading" data-cullOut="true">Sirach 15:1-6—<span class="readingTheme">She will give him the water of wisdom to drink.</span></p>
+
+<p class="rubricAltReading" data-cullOut="true">1 John 5:1-6—<span class="readingTheme">Jesus Christ came by water and blood.</span></p>
+
+<p class="rubricAltReading" data-cullOut="true">Revelation 7:13-17—<span class="readingTheme">The Lamb will lead them to the springs of living water.</span></p>
+
+<p class="rubricAltReading" data-cullOut="true">Revelation 22:1-5—<span class="readingTheme">The river of life, rising from the throne of God and of the Lamb.</span></p>
+
+<p class="rubricAltReading" data-cullOut="true">John 13:3-15—<span class="readingTheme">You too are clean.</span></p>
+
+<p class="riteSectionHeading">Prayer of Blessing</p>
+
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">1396</span> After the reading, the celebrant says:</p>
+
+<p class="theBlack">Let us pray.</p>
+
+<p class="rubricInlineUnnumbered">All pray briefly in silence; then, with hands outstretched, the celebrant says the prayer of blessing.</p>
+
+<p class="theBlack poetry">Blessed are you, Lord, all-powerful God,<br/>
+who in Christ, the living water of salvation,<br/>
+blessed and transformed us.<br/>
+Grant that, when we are sprinkled with this water<br/>
+or make use of it,<br/>
+we will be refreshed inwardly by the power of the Holy Spirit<br/>
+and continue to walk in the new life we received at baptism.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1397</span> Or:</p>
+
+<p class="theBlack poetry">Lord, holy Father,<br/>
+look with kindness on your children,<br/>
+redeemed by your Son<br/>
+and born to a new life by water and the Holy Spirit.<br/>
+Grant that those who are sprinkled with this water<br/>
+may be renewed in body and spirit<br/>
+and may make a pure offering of their service to you.</p>
+
+<p class="theBlack">We ask this through Christ our Lord.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineNumbered"><span class="parNumber">1398</span> Or the celebrant says:</p>
+
+<p class="theBlack">O God, the Creator of all things,<br/>
+by water and the Holy Spirit<br/>
+you have given the universe its beauty<br/>
+and fashioned us in your own image.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Bless and purify your Church.</p>
+
+<p class="theBlack">O Christ the Lord, from your pierced side<br/>
+you gave us your sacraments<br/>
+as fountains of salvation.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Bless and purify your Church.</p>
+
+<p class="theBlack">O Holy Spirit, giver of life,<br/>
+from the baptismal font of the Church<br/>
+you have formed us into a new creation<br/>
+in the waters of rebirth.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Bless and purify your Church.</p>
+
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">1399</span> After the prayer of blessing, the celebrant sprinkles those present with holy water, as a suitable song is sung; as circumstances suggest, he may first say the following words.</p>
+
+<p class="rubricInlineNumbered simplifyIn"><span class="parNumber">1399</span> The celebrant may say the following words.</p>
+
+<p class="theBlack">Let this water call to mind our baptism into Christ,<br/>
+who has redeemed us by his death and resurrection.</p>
+
+<p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+<p class="rubricInlineUnnumbered simplifyIn">The celebrant sprinkles those present with holy water, as a suitable song is sung.</p>
+
+ 
+
+</main>
+
+<script type="text/javascript" src="shared/prefs-load.js?v=261010"></script>
+</body>
+</html>
