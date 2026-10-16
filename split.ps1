@@ -2,7 +2,7 @@
 Set-Location $PSScriptRoot
 
 $inputFile = "working\book-of-blessings.html"
-$filename = "default.txt"
+$filename = "trash"
 $createdFiles = @{}
 
 if (-not (Test-Path $inputFile)) {
