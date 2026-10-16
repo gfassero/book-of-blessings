@@ -189,6 +189,13 @@ Switch all CSS text styles to variables.
   </div>
 </div>
 
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup">
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Anniversary</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="2">Other</button>
+  </div>
+</div>
+
 <div data-rite-section="intro">
 
 <p class="introHeading">Introduction</p>
@@ -277,7 +284,10 @@ all the days of your life. <span class="rubricRV">℟.</span></p>
 
 <p class="rubricInlineUnnumbered">Then the minister invites the couple to pray in silence and to renew before God their sacred matrimonial commitment to each other.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">96</span> On a wedding anniversary the minister may say the following prayer<span class="simplifyOut"> and then incense the couple’s wedding rings</span>.</p>
+<div data-riteVariant="1">
+
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">96</span> On a wedding anniversary the minister may say the following prayer and then incense the couple’s wedding rings.</p>
+<p class="rubricInlineNumbered simplifyIn"><span class="parNumber">96</span> The minister may say the following prayer and then incense the couple’s wedding rings.</p>
 
 <p class="theBlack poetry">Lord,<br/>
 increase and consecrate the love which <span class="nameN">N.</span> and <span class="nameN">N.</span> have for one another.<br/>
@@ -290,9 +300,14 @@ in the grace of the sacrament.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered simplifyIn">On a wedding anniversary the minister may incense the couple’s wedding rings.</p>
-
 <p class="rubricInlineNumbered"><span class="parNumber">97</span> Or, if the couple renews the exchange of rings<span class="rubricRV simplifyOut">, the minister says the following prayer of blessing.</span><span class="rubricRV simplifyIn">:</span></p>
+
+</div>
+<div data-riteVariant="2">
+
+<p class="rubricInlineNumbered"><span class="parNumber">97</span> If the couple renews the exchange of rings<span class="rubricRV simplifyOut">, the minister says the following prayer of blessing.</span><span class="rubricRV simplifyIn">:</span></p>
+
+</div>
 
 <p class="theBlack poetry">Lord,<br/>
 bless and consecrate the love which <span class="nameN">N.</span> and <span class="nameN">N.</span> have for one another.<br/>
@@ -304,7 +319,9 @@ and of the grace of the sacrament.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">98</span> A minister who is a priest or a deacon may also use one of the following formularies.</p>
+<p class="rubricInlineNumbered simplifyOut" data-presider="clergy" data-cullOut="true"><span class="parNumber">98</span> A minister who is a priest or a deacon may also use one of the following formularies.</p>
+<p class="rubricInlineNumbered simplifyOut" data-presider="clergy" data-cullIn="true"><span class="parNumber">98</span> A minister who is a priest or a deacon may also use the following formulary.</p>
+<p class="rubricInlineNumbered simplifyIn" data-presider="clergy"><span class="parNumber">98</span> Or:</p>
 
 <p class="theBlack poetry" data-presider="clergy">Lord,<br/>
 bless these rings which we bless<span class="cross"> ✠</span> in your name.<br/>
@@ -347,11 +364,15 @@ and always remind them of their love.</p>
 
 <p class="theBlack">Father all-holy, you have made marriage the great symbol of Christ’s love for his Church; bestow on these your servants the fullness of your own love. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineUnnumbered">On the 25th, 50th, 60th, or other wedding anniversary</p>
+<div data-riteVariant="1">
+
+<p class="rubricInlineUnnumbered simplifyOut">On the 25th, 50th, 60th, or other wedding anniversary</p>
 
 <p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
 <p class="theBlack">Father all-holy, the faithful one, you ask for and respond to fidelity to your covenant; fill with your blessings your servants who are celebrating their (25th, 50th, 60th, other) wedding anniversary. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
+
+</div>
 
 <p class="rubricInlineUnnumbered simplifyOut">Assisting minister:</p>
 
@@ -368,10 +389,12 @@ and always remind them of their love.</p>
 <p class="riteSectionHeading">Prayer of Blessing</p>
 
 <!--<p class="rubricInlineNumbered"><span class="parNumber">100</span> A minister who is a priest or deacon says the appropriate prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>-->
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">100</span> The minister says the appropriate prayer of blessing with hands outstretched.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">100</span> The minister says the<span class="simplifyOut"> appropriate</span> prayer of blessing with hands outstretched.</p>
 <p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">100</span> The lay minister says the prayer with hands joined.</p>
 
-<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> On the 25th, 50th, 60th, or other anniversary</p>
+<div data-riteVariant="1">
+
+<p class="rubricInlineUnnumbered simplifyOut"><span class="marginRefNumber">A</span> On the 25th, 50th, 60th, or other anniversary</p>
 
 <p class="theBlack poetry">Lord God and Creator,<br/>
 we bless and praise your name.<br/>
@@ -392,7 +415,10 @@ they may always rejoice in the gift of your blessing.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> On other occasions</p>
+</div>
+<div data-riteVariant="2">
+
+<p class="rubricInlineUnnumbered simplifyOut"><span class="marginRefNumber">B</span> On other occasions</p>
 
 <p class="theBlack poetry">Almighty and eternal God,<br/>
 you have so exalted the unbreakable bond of marriage<br/>
@@ -417,6 +443,8 @@ that you are the source and completion of every happiness.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
 
 <p class="riteSectionHeading">Concluding Rite</p>
 
@@ -477,10 +505,12 @@ now and for ever.</p>
 <p class="theBlack">“I have told you this so that my joy might be in you and your joy might be complete.”</p>
 
 <!--<p class="rubricInlineNumbered"><span class="parNumber">106</span> A minister who is a priest or deacon says the appropriate prayer of blessing with hands outstretched; a lay minister says the prayer with hands joined.</p>-->
-<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">106</span> The minister says the appropriate prayer of blessing with hands outstretched.</p>
+<p class="rubricInlineNumbered" data-presider="clergy"><span class="parNumber">106</span> The minister says the<span class="simplifyOut"> appropriate</span> prayer of blessing with hands outstretched.</p>
 <p class="rubricInlineNumbered" data-presider="lay"><span class="parNumber">106</span> The lay minister says the prayer with hands joined.</p>
 
-<p class="rubricInlineUnnumbered"><span class="marginRefNumber">A</span> On the 25th, 50th, 60th, or other anniversary</p>
+<div data-riteVariant="1">
+
+<p class="rubricInlineUnnumbered simplifyOut"><span class="marginRefNumber">A</span> On the 25th, 50th, 60th, or other anniversary</p>
 
 <p class="theBlack poetry">Lord God and Creator,<br/>
 we bless and praise your name.<br/>
@@ -501,7 +531,10 @@ they may always rejoice in the gift of your<span class="cross added"> ✠</span>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineUnnumbered"><span class="marginRefNumber">B</span> On other occasions</p>
+</div>
+<div data-riteVariant="2">
+
+<p class="rubricInlineUnnumbered simplifyOut"><span class="marginRefNumber">B</span> On other occasions</p>
 
 <p class="theBlack poetry">Almighty and eternal God,<br/>
 you have so exalted the unbreakable bond of marriage<br/>
@@ -527,6 +560,7 @@ that you are the source and completion of every happiness.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
+</div>
 </div>
 
  

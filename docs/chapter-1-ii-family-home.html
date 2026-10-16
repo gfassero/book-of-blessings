@@ -183,6 +183,13 @@ Switch all CSS text styles to variables.
 This blessing is for use by a priest or deacon.
 </div>
 
+<script type="text/javascript" src="shared/calendar.js?v=260918"></script>
+<script type="text/javascript">
+if (    inRange(today, easter, pentecost)    ) {
+    defaultRiteVariant = '2'; // EASTER SEASON
+}
+</script>
+
 <div class="setting-group">
   <div class="option-buttons" role="radiogroup">
     <button class="option-btn" type="button" role="radio" data-pref="rite" data-value="intro">Intro</button>
@@ -212,6 +219,13 @@ This blessing is for use by a priest or deacon.
 
 </div>
 <div data-rite-section="full">
+
+<div class="setting-group">
+  <div class="option-buttons" role="radiogroup">
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="2">During Easter Season</button>
+    <button class="option-btn" type="button" role="radio" data-pref="riteVariant" data-value="1">Outside Easter</button>
+  </div>
+</div>
 
 <p class="riteHeading">Order of Blessing</p>
 
@@ -296,7 +310,9 @@ and his faithfulness, to all generations. <span class="rubricRV">℟.</span></p>
 
 <p class="rubricInlineNumbered simplifyOut"><span class="parNumber">75</span> The intercessions are then said. The celebrant introduces them and an assisting minister or one of those present announces the intentions. From the following intentions those best suited to the occasion may be used or adapted, or other intentions that apply to the particular circumstances may be composed.</p>
 
-<p class="rubricInlineUnnumbered">During the Easter Season</p>
+<div data-riteVariant="2">
+
+<p class="rubricInlineUnnumbered simplifyOut">During the Easter Season</p>
 
 <p class="rubricInlineUnnumbered simplifyOut">The celebrant says:</p>
 
@@ -324,9 +340,10 @@ and his faithfulness, to all generations. <span class="rubricRV">℟.</span></p>
 
 <p class="theBlack">With the power of the Holy Spirit you filled the house where the disciples were gathered; send the same Holy Spirit upon this family with the gifts of peace and joy. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">76</span> Or:</p>
+</div>
+<div data-riteVariant="1">
 
-<p class="rubricInlineUnnumbered">Outside the Easter Season</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">76</span> Outside the Easter Season</p>
 
 <p class="rubricInlineUnnumbered simplifyOut">The celebrant says:</p>
 
@@ -354,6 +371,8 @@ and his faithfulness, to all generations. <span class="rubricRV">℟.</span></p>
 
 <p class="theBlack">You gathered the first members of the Church together in the upper room around Mary your mother; grant that the members of this household Church may learn from her to keep your words in their hearts, to be constant in prayer, and to be generous in giving of themselves and of all they possess to others. (<span class="xlationOld">For this we pray:</span><span class="xlationNew">Let us pray to the Lord.</span>) <span class="rubricRV">℟.</span></p>
 
+</div>
+
 <p class="rubricInlineNumbered simplifyOut"><span class="parNumber">77</span> After the intercessions the celebrant, in the following or similar words, invites all present to sing or say the Lord’s Prayer:</p>
 <p class="rubricInlineNumbered simplifyIn"><span class="parNumber">77</span> The Lord’s Prayer:</p>
 
@@ -366,7 +385,9 @@ and his faithfulness, to all generations. <span class="rubricRV">℟.</span></p>
 
 <p class="rubricInlineNumbered"><span class="parNumber">78</span> With hands outstretched over the family members, the celebrant continues with the prayer of blessing.</p>
 
-<p class="rubricInlineUnnumbered">During the Easter Season</p>
+<div data-riteVariant="2">
+
+<p class="rubricInlineUnnumbered simplifyOut">During the Easter Season</p>
 
 <p class="theBlack poetry">Blessed are you, O Lord.<br/>
 In the Passover of the Old Testament<br/>
@@ -384,9 +405,10 @@ may gladden the hearts of all who live here.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
 
-<p class="rubricInlineNumbered"><span class="parNumber">79</span> Or:</p>
+</div>
+<div data-riteVariant="1">
 
-<p class="rubricInlineUnnumbered">Outside the Easter Season</p>
+<p class="rubricInlineNumbered simplifyOut"><span class="parNumber">79</span> Outside the Easter Season</p>
 
 <p class="theBlack poetry">Almighty and eternal God,<br/>
 your fatherly tenderness never ceases to provide for our needs.<br/>
@@ -417,6 +439,8 @@ which only you can give.</p>
 <p class="theBlack">We ask this through Christ our Lord.</p>
 
 <p class="theBlack"><span class="rubricRV">℟.</span> Amen.</p>
+
+</div>
 
 <p class="rubricInlineNumbered simplifyOut"><span class="parNumber">81</span> After the prayer of blessing, the celebrant sprinkles those present and the home with holy water and, as circumstances suggest, may say:</p>
 <p class="rubricInlineNumbered simplifyIn"><span class="parNumber">81</span> The celebrant sprinkles those present and the home with holy water and may say:</p>
