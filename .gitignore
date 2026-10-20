@@ -1,7 +1,7 @@
 # Do not sync the following files to GitHub:
 
 working/*.html
-trash
+working/trash
 
 # DO sync the following file:
 
